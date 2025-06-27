@@ -215,21 +215,24 @@ export class PromptEngine {
   ): string {
     let enhanced = baseFormula;
 
-    // Add quality modifiers
+    // Add quality modifiers optimized for SORA and ChatGPT
     const qualityModifiers = {
       product:
-        "professional product photography, commercial quality, sharp focus, high resolution",
+        "professional product photography, commercial quality, sharp focus, high resolution, studio lighting",
       lifestyle:
-        "authentic lifestyle photography, natural lighting, genuine moments, high quality",
+        "authentic lifestyle photography, natural lighting, genuine moments, high quality, cinematic composition",
       graphic:
-        "professional graphic design, modern aesthetics, balanced composition, print-ready quality",
+        "professional graphic design, modern aesthetics, balanced composition, print-ready quality, brand-focused",
     };
 
     enhanced += `, ${qualityModifiers[generatorType as keyof typeof qualityModifiers]}`;
 
-    // Add technical specifications
+    // Add SORA-specific technical specifications
     enhanced +=
-      ", 4K resolution, professional grade, optimized for commercial use";
+      ", 4K ultra-high resolution, professional grade, optimized for SORA AI video generation, cinematic quality, 16:9 aspect ratio suitable for video";
+
+    // Add AI optimization markers
+    enhanced += ", [AI_OPTIMIZATION: enhanced_for_sora_chatgpt_generation]";
 
     // Add contextual improvements based on combinations
     const improvementSuggestions = this.generateImprovementSuggestions(
