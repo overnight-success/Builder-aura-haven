@@ -251,18 +251,31 @@ export class PromptEngine {
     customInstructions: string = "",
     uploadedFiles: ProcessedFile[] = [],
   ): { mainPrompt: string; imageData: any[]; combinedPrompt: string } {
-    const mainPrompt = this.generateFormula(
+    const cleanMainPrompt = this.buildMainPrompt(
+      generatorType,
+      selections,
+      customInstructions,
+    );
+    const imageReferences = this.buildImageReferences(uploadedFiles);
+    const imageData = this.getImageJSONData(uploadedFiles);
+
+    // Create clean version and full version with JSON
+    const cleanPrompt = this.formatForSORA(
+      cleanMainPrompt,
+      imageReferences,
+      generatorType,
+    );
+    const fullPrompt = this.generateFormula(
       generatorType,
       selections,
       customInstructions,
       uploadedFiles,
     );
-    const imageData = this.getImageJSONData(uploadedFiles);
 
     return {
-      mainPrompt,
+      mainPrompt: cleanPrompt,
       imageData,
-      combinedPrompt: mainPrompt, // For now, keep them the same since main prompt is clean
+      combinedPrompt: fullPrompt, // This includes JSON data for SORA
     };
   }
 
