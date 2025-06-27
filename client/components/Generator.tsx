@@ -83,6 +83,7 @@ export function Generator({ type }: GeneratorProps) {
 
   const handleCategorySelect = useCallback(
     (category: string, option: string) => {
+      console.log("DEBUG handleCategorySelect called:", { category, option });
       actions.updateSelection(category, option);
     },
     [actions],
