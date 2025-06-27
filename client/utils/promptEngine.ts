@@ -176,12 +176,18 @@ export class PromptEngine {
         });
 
         references.push(
-          `[SORA_IMAGE_DATA]${JSON.stringify({
+          `[SORA_REFERENCE_IMAGES: ${JSON.stringify({
             images: imageJsonData,
             count: processedImages.length,
-            instruction:
-              "Process embedded image data with prompt for enhanced AI understanding",
-          })}[/SORA_IMAGE_DATA]`,
+            format: "base64_embedded",
+            ai_instruction:
+              "Use these reference images to enhance visual understanding and generation accuracy for SORA AI",
+            processing_metadata: {
+              converted_at: Date.now(),
+              optimized_for: ["sora", "chatgpt", "midjourney"],
+              quality: "high_resolution",
+            },
+          })}]`,
         );
       }
 
