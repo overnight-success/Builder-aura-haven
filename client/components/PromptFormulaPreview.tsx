@@ -173,19 +173,6 @@ export function PromptFormulaPreview({
     computed.hasCustomInstructions ||
     computed.hasFiles;
 
-  // DEBUG: Log the current state
-  console.log("DEBUG PromptFormulaPreview:", {
-    generatorType,
-    selections: state.selections,
-    customInstructions: state.customInstructions,
-    uploadedFiles: state.uploadedFiles,
-    optimizedFormula,
-    hasContent,
-    selectedCount: computed.selectedCount,
-    hasCustomInstructions: computed.hasCustomInstructions,
-    hasFiles: computed.hasFiles,
-  });
-
   return (
     <Card className="bg-black border-2 border-cream sticky top-6">
       <CardHeader className="pb-3">

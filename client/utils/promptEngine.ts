@@ -44,13 +44,6 @@ export class PromptEngine {
     customInstructions: string = "",
     uploadedFiles: ProcessedFile[] = [],
   ): string {
-    console.log("DEBUG generateFormula called with:", {
-      generatorType,
-      selections,
-      customInstructions,
-      uploadedFiles,
-    });
-
     try {
       const parts: string[] = [];
 
@@ -82,7 +75,6 @@ export class PromptEngine {
 
       // Join with proper punctuation
       const result = parts.filter((p) => p && p.trim()).join(", ");
-      console.log("DEBUG generateFormula result:", result);
 
       return (
         result ||
