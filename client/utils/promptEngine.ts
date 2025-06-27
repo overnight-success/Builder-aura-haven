@@ -37,89 +37,166 @@ export class PromptEngine {
     return PromptEngine.instance;
   }
 
-  // Generate optimized prompt formula
+  // Generate SORA-optimized prompt formula
   generateFormula(
     generatorType: "product" | "lifestyle" | "graphic",
     selections: Record<string, string>,
     customInstructions: string = "",
     uploadedFiles: ProcessedFile[] = [],
   ): string {
-    const config = generatorData[generatorType];
-    const components: string[] = [];
-
-    // Start with custom instructions (Step 1 in new flow)
-    if (customInstructions.trim()) {
-      const processedInstructions =
-        this.processCustomInstructions(customInstructions);
-      components.push(processedInstructions);
-    }
-
-    // Process category selections (Step 2 in new flow)
-    Object.entries(selections).forEach(([category, value]) => {
-      if (!value) return;
-
-      const optimizedComponent = this.optimizeComponent(
-        generatorType,
-        category,
-        value,
-      );
-      components.push(optimizedComponent);
-    });
-
-    // Add file references with metadata (Step 3 in new flow)
-    if (uploadedFiles.length > 0) {
-      const fileReference = this.generateFileReference(uploadedFiles);
-      components.push(fileReference);
-    }
-
-    // Apply context-aware enhancements
-    const baseFormula = components.join(", ");
-    return this.applyContextualEnhancements(
+    // Build the main SORA prompt (clean, natural language)
+    const mainPrompt = this.buildMainPrompt(
       generatorType,
-      baseFormula,
       selections,
+      customInstructions,
     );
+
+    // Add image references if available (separate from main prompt)
+    const imageReferences = this.buildImageReferences(uploadedFiles);
+
+    // Combine with proper SORA formatting
+    return this.formatForSORA(mainPrompt, imageReferences, generatorType);
   }
 
-  // Optimize individual component based on context
-  private optimizeComponent(
+  // Build clean, natural language main prompt
+  private buildMainPrompt(
     generatorType: string,
-    category: string,
-    value: string,
+    selections: Record<string, string>,
+    customInstructions: string,
   ): string {
-    const optimizations = {
+    const parts: string[] = [];
+
+    // Start with custom vision (if provided)
+    if (customInstructions.trim()) {
+      const cleanInstructions = customInstructions.trim();
+      parts.push(cleanInstructions);
+    }
+
+    // Add generator-specific base description
+    const baseDescriptions = {
+      product: "Professional product showcase",
+      lifestyle: "Authentic lifestyle scene",
+      graphic: "Modern graphic design composition",
+    };
+
+    if (!customInstructions.trim()) {
+      parts.push(
+        baseDescriptions[generatorType as keyof typeof baseDescriptions],
+      );
+    }
+
+    // Process selections into natural language
+    const processedSelections = this.processSelectionsForSORA(
+      generatorType,
+      selections,
+    );
+    if (processedSelections.length > 0) {
+      parts.push(...processedSelections);
+    }
+
+    return parts.join(", ");
+  }
+
+  // Process selections into SORA-friendly natural language
+  private processSelectionsForSORA(
+    generatorType: string,
+    selections: Record<string, string>,
+  ): string[] {
+    const parts: string[] = [];
+
+    // SORA-optimized category processing
+    const soraOptimizations = {
       product: {
-        style: (val: string) => `featuring ${val.toLowerCase()}`,
-        background: (val: string) => `with ${val.toLowerCase()} backdrop`,
-        lighting: (val: string) => `illuminated by ${val.toLowerCase()}`,
-        angle: (val: string) => `captured from ${val.toLowerCase()}`,
-        mood: (val: string) => `conveying ${val.toLowerCase()}`,
+        style: (val: string) => `styled as ${val.toLowerCase()}`,
+        background: (val: string) => `against ${val.toLowerCase()}`,
+        lighting: (val: string) => `lit with ${val.toLowerCase()}`,
+        angle: (val: string) => `shot from ${val.toLowerCase()}`,
+        mood: (val: string) => `with ${val.toLowerCase()} aesthetic`,
         enhancement: (val: string) => `enhanced with ${val.toLowerCase()}`,
       },
       lifestyle: {
-        scene: (val: string) => `depicting ${val.toLowerCase()}`,
+        scene: (val: string) => `${val.toLowerCase()} scene`,
         people: (val: string) => `featuring ${val.toLowerCase()}`,
-        environment: (val: string) => `set in ${val.toLowerCase()}`,
-        mood: (val: string) => `radiating ${val.toLowerCase()}`,
-        lighting: (val: string) => `bathed in ${val.toLowerCase()}`,
-        style: (val: string) => `shot in ${val.toLowerCase()} approach`,
+        environment: (val: string) => `in ${val.toLowerCase()}`,
+        mood: (val: string) => `${val.toLowerCase()} atmosphere`,
+        lighting: (val: string) => `${val.toLowerCase()} lighting`,
+        style: (val: string) => `${val.toLowerCase()} cinematography`,
       },
       graphic: {
-        style: (val: string) => `designed with ${val.toLowerCase()}`,
-        layout: (val: string) => `structured as ${val.toLowerCase()}`,
-        color: (val: string) => `using ${val.toLowerCase()}`,
-        typography: (val: string) => `featuring ${val.toLowerCase()}`,
-        elements: (val: string) => `incorporating ${val.toLowerCase()}`,
-        purpose: (val: string) => `optimized for ${val.toLowerCase()}`,
+        style: (val: string) => `${val.toLowerCase()} design style`,
+        layout: (val: string) => `${val.toLowerCase()} composition`,
+        color: (val: string) => `${val.toLowerCase()} color palette`,
+        typography: (val: string) => `with ${val.toLowerCase()} typography`,
+        elements: (val: string) => `featuring ${val.toLowerCase()}`,
+        purpose: (val: string) => `for ${val.toLowerCase()}`,
       },
     };
 
     const categoryOptimizations =
-      optimizations[generatorType as keyof typeof optimizations];
-    const optimizer =
-      categoryOptimizations?.[category as keyof typeof categoryOptimizations];
+      soraOptimizations[generatorType as keyof typeof soraOptimizations];
 
-    return optimizer ? optimizer(value) : value.toLowerCase();
+    Object.entries(selections).forEach(([category, value]) => {
+      if (!value) return;
+
+      const optimizer =
+        categoryOptimizations?.[category as keyof typeof categoryOptimizations];
+      const processed = optimizer ? optimizer(value) : value.toLowerCase();
+      parts.push(processed);
+    });
+
+    return parts;
+  }
+
+  // Build clean image references for SORA
+  private buildImageReferences(files: ProcessedFile[]): string {
+    const processedImages = files.filter(
+      (f) =>
+        f.type.startsWith("image/") &&
+        f.jsonData &&
+        f.processingStatus === "complete",
+    );
+
+    if (processedImages.length === 0) return "";
+
+    const imageNames = processedImages.map((f) =>
+      f.name.replace(/\.[^/.]+$/, ""),
+    );
+    return `using reference image${processedImages.length > 1 ? "s" : ""}: ${imageNames.join(", ")}`;
+  }
+
+  // Format final prompt for SORA with proper structure
+  private formatForSORA(
+    mainPrompt: string,
+    imageReferences: string,
+    generatorType: string,
+  ): string {
+    const parts: string[] = [mainPrompt];
+
+    // Add image references if available
+    if (imageReferences) {
+      parts.push(imageReferences);
+    }
+
+    // Add SORA-specific technical requirements
+    const soraSpecs = this.getSORASpecs(generatorType);
+    parts.push(soraSpecs);
+
+    return parts.join(", ");
+  }
+
+  // Get SORA-specific technical specifications
+  private getSORASpecs(generatorType: string): string {
+    const baseSpecs =
+      "cinematic quality, 4K resolution, professional cinematography";
+
+    const typeSpecs = {
+      product: "commercial photography style, product focus, marketing ready",
+      lifestyle: "documentary style, natural movement, authentic moments",
+      graphic: "motion graphics style, clean animation, brand focused",
+    };
+
+    const specificSpecs = typeSpecs[generatorType as keyof typeof typeSpecs];
+    return `${baseSpecs}, ${specificSpecs}`;
   }
 
   // Process custom instructions for better integration as opening statement
