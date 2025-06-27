@@ -236,6 +236,15 @@ export function Generator({ type }: GeneratorProps) {
         {/* Categories Flow */}
         <div className="lg:col-span-2">
           <div className="space-y-4">
+            {/* Custom Instructions - Step 1 */}
+            <CustomInstructions
+              value={state.customInstructions}
+              onChange={actions.setCustomInstructions}
+              stepNumber={1}
+              isCompleted={computed.hasCustomInstructions}
+              showFlow={true}
+            />
+
             {Object.entries(generatorConfig.categories).map(
               ([key, category], index) => (
                 <CollapsiblePromptCategory
@@ -249,21 +258,12 @@ export function Generator({ type }: GeneratorProps) {
                   options={category.options}
                   selectedOption={state.selections[key]}
                   onSelect={(option) => handleCategorySelect(key, option)}
-                  stepNumber={index + 1}
+                  stepNumber={index + 2}
                   isCompleted={!!state.selections[key]}
                   showFlow={true}
                 />
               ),
             )}
-
-            {/* Custom Instructions */}
-            <CustomInstructions
-              value={state.customInstructions}
-              onChange={actions.setCustomInstructions}
-              stepNumber={Object.keys(generatorConfig.categories).length + 1}
-              isCompleted={computed.hasCustomInstructions}
-              showFlow={true}
-            />
 
             {/* File Upload */}
             <FileUpload
