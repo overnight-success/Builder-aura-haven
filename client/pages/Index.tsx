@@ -167,12 +167,12 @@ export default function Index() {
   const isComplete = selectedCount >= 4;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background to-midnight">
+    <div className="min-h-screen bg-gradient-to-br from-background via-flame/20 to-ember/30">
       {/* Background Effects */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 left-20 w-72 h-72 bg-primary/20 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-20 right-20 w-96 h-96 bg-cosmic/15 rounded-full blur-3xl animate-pulse delay-1000" />
-        <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-aurora/10 rounded-full blur-3xl animate-pulse delay-500" />
+        <div className="absolute top-20 left-20 w-72 h-72 bg-flame/25 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-20 right-20 w-96 h-96 bg-ember/20 rounded-full blur-3xl animate-pulse delay-1000" />
+        <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-sunset/15 rounded-full blur-3xl animate-pulse delay-500" />
       </div>
 
       <div className="relative z-10">
@@ -182,15 +182,19 @@ export default function Index() {
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-4">
                 <div className="flex items-center gap-3">
-                  <div className="p-3 rounded-xl bg-gradient-to-r from-primary to-cosmic shadow-lg shadow-primary/20">
-                    <Sparkles className="h-6 w-6 text-white" />
+                  <div className="relative">
+                    <img
+                      src="https://cdn.builder.io/api/v1/image/assets%2F326314a2e8634f90977b83f81df01501%2Fec00ceaef5524675ba25aca88f5d5cec?format=webp&width=200"
+                      alt="Overnight Success"
+                      className="h-12 w-auto"
+                    />
                   </div>
                   <div>
-                    <h1 className="text-2xl font-bold bg-gradient-to-r from-primary to-cosmic bg-clip-text text-transparent">
-                      Sora AI Prompt Generator
+                    <h1 className="text-2xl font-bold text-cream drop-shadow-[2px_2px_0px_#000000]">
+                      AI Prompt Generator
                     </h1>
-                    <p className="text-sm text-muted-foreground">
-                      Build your perfect prompt formula step by step
+                    <p className="text-sm text-cream/80">
+                      Build your perfect Sora prompt formula step by step
                     </p>
                   </div>
                 </div>

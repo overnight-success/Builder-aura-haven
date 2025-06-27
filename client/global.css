@@ -15,43 +15,43 @@
     ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
     "Courier New", monospace;
 
-  /* AI Prompt Generator Brand Colors */
-  --color-electric: #6366f1;
-  --color-neon: #06ffa5;
-  --color-cosmic: #8b5cf6;
-  --color-aurora: #ec4899;
-  --color-midnight: #0f0f23;
-  --color-slate-dark: #1e293b;
-  --color-glass: rgba(255, 255, 255, 0.1);
+  /* Overnight Success Brand Colors */
+  --color-flame: #ff3120;
+  --color-ember: #ff4500;
+  --color-sunset: #ff6b35;
+  --color-cream: #f5e6d3;
+  --color-charcoal: #1a1a1a;
+  --color-shadow: #000000;
+  --color-warm-white: #fef7f0;
 
   /* Theme and design tokens */
-  --color-background: hsl(240 10% 3.9%);
-  --color-foreground: hsl(0 0% 98%);
+  --color-background: hsl(8 100% 8%);
+  --color-foreground: hsl(32 46% 90%);
 
-  --color-card: hsl(240 10% 3.9%);
-  --color-card-foreground: hsl(0 0% 98%);
+  --color-card: hsl(8 50% 12%);
+  --color-card-foreground: hsl(32 46% 90%);
 
-  --color-popover: hsl(240 10% 3.9%);
-  --color-popover-foreground: hsl(0 0% 98%);
+  --color-popover: hsl(8 50% 12%);
+  --color-popover-foreground: hsl(32 46% 90%);
 
-  --color-primary: hsl(251 91% 65%);
-  --color-primary-foreground: hsl(210 40% 98%);
+  --color-primary: hsl(8 100% 56%);
+  --color-primary-foreground: hsl(32 46% 95%);
 
-  --color-secondary: hsl(240 3.7% 15.9%);
-  --color-secondary-foreground: hsl(0 0% 98%);
+  --color-secondary: hsl(8 30% 20%);
+  --color-secondary-foreground: hsl(32 46% 90%);
 
-  --color-muted: hsl(240 3.7% 15.9%);
-  --color-muted-foreground: hsl(240 5% 64.9%);
+  --color-muted: hsl(8 30% 18%);
+  --color-muted-foreground: hsl(8 15% 65%);
 
-  --color-accent: hsl(240 3.7% 15.9%);
-  --color-accent-foreground: hsl(0 0% 98%);
+  --color-accent: hsl(8 30% 22%);
+  --color-accent-foreground: hsl(32 46% 90%);
 
   --color-destructive: hsl(0 62.8% 30.6%);
-  --color-destructive-foreground: hsl(0 85.7% 97.3%);
+  --color-destructive-foreground: hsl(32 46% 95%);
 
-  --color-border: hsl(240 3.7% 15.9%);
-  --color-input: hsl(240 3.7% 15.9%);
-  --color-ring: hsl(251 91% 65%);
+  --color-border: hsl(8 30% 25%);
+  --color-input: hsl(8 30% 18%);
+  --color-ring: hsl(8 100% 56%);
 
   --color-sidebar-background: hsl(0 0% 98%);
 
@@ -64,6 +64,12 @@
   --color-sidebar-border: hsl(220 13% 91%);
 
   --color-sidebar-ring: hsl(217.2 91.2% 59.8%);
+
+  /* Custom Overnight Success colors */
+  --color-flame: #ff3120;
+  --color-ember: #ff4500;
+  --color-sunset: #ff6b35;
+  --color-cream: #f5e6d3;
 }
 
 @utility container {
@@ -77,7 +83,7 @@
   }
 }
 
-/* Custom utilities for AI prompt generator */
+/* Custom utilities for Overnight Success prompt generator */
 .bg-gradient-radial {
   background: radial-gradient(ellipse at center, var(--tw-gradient-stops));
 }
@@ -87,20 +93,24 @@
 }
 
 .text-gradient {
-  background: linear-gradient(
-    135deg,
-    var(--color-electric),
-    var(--color-cosmic)
-  );
+  background: linear-gradient(135deg, var(--color-flame), var(--color-sunset));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
+.retro-text {
+  color: var(--color-cream);
+  text-shadow:
+    2px 2px 0px var(--color-shadow),
+    4px 4px 8px rgba(0, 0, 0, 0.5);
+  font-weight: 700;
+}
+
 .glass-effect {
   backdrop-filter: blur(16px);
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 49, 32, 0.1);
+  border: 1px solid rgba(255, 107, 53, 0.2);
 }
 
 .card-hover {
@@ -110,8 +120,8 @@
 .card-hover:hover {
   transform: translateY(-2px);
   box-shadow:
-    0 20px 25px -5px rgba(0, 0, 0, 0.1),
-    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    0 20px 25px -5px rgba(255, 49, 32, 0.3),
+    0 10px 10px -5px rgba(255, 107, 53, 0.2);
 }
 
 @keyframes float {
@@ -131,4 +141,24 @@
 .animate-float-delayed {
   animation: float 6s ease-in-out infinite;
   animation-delay: 2s;
+}
+
+@keyframes glow {
+  0%,
+  100% {
+    text-shadow:
+      2px 2px 0px var(--color-shadow),
+      0 0 10px rgba(255, 49, 32, 0.5),
+      0 0 20px rgba(255, 49, 32, 0.3);
+  }
+  50% {
+    text-shadow:
+      2px 2px 0px var(--color-shadow),
+      0 0 20px rgba(255, 49, 32, 0.8),
+      0 0 30px rgba(255, 49, 32, 0.5);
+  }
+}
+
+.animate-glow {
+  animation: glow 3s ease-in-out infinite;
 }
