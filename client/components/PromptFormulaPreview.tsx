@@ -309,12 +309,12 @@ export function PromptFormulaPreview({
           </div>
         )}
 
-        {/* Action Buttons */}
+        {/* Action Buttons - Mobile Optimized */}
         <div className="space-y-2">
-          <div className="grid grid-cols-2 gap-2">
+          <div className="grid grid-cols-2 gap-1 lg:gap-2">
             <Button
               onClick={handleCopy}
-              className="bg-black border-2 border-neon-orange text-cream font-bold text-xs px-3 py-2 h-auto hover:bg-neon-orange hover:text-black transition-all duration-200 truncate"
+              className="bg-black border-2 border-neon-orange text-cream font-bold text-xs lg:text-sm px-2 lg:px-3 py-2 h-auto hover:bg-neon-orange hover:text-black transition-all duration-200 truncate"
               disabled={!hasContent}
             >
               <Copy className="h-3 w-3 text-neon-orange mr-1 shrink-0" />

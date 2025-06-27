@@ -186,6 +186,7 @@ export function Generator({ type }: GeneratorProps) {
       console.log("Prompt exported successfully");
     } catch (error) {
       console.error("Export failed:", error);
+      alert("Export failed. Please try again or contact support.");
     }
   }, [
     type,
