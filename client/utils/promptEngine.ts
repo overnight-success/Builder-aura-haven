@@ -184,6 +184,40 @@ export class PromptEngine {
     return parts.join(", ");
   }
 
+  // Format complete SORA prompt with JSON data
+  private formatCompleteSORAPrompt(
+    mainPrompt: string,
+    imageData: any[],
+    generatorType: string,
+  ): string {
+    const parts: string[] = [mainPrompt];
+
+    // Add JSON data if images are available
+    if (imageData.length > 0) {
+      const jsonSection = this.formatJSONForSORA(imageData);
+      parts.push(jsonSection);
+    }
+
+    return parts.join(" ");
+  }
+
+  // Format JSON data in SORA-friendly structure
+  private formatJSONForSORA(imageData: any[]): string {
+    const soraData = {
+      type: "SORA_REFERENCE_DATA",
+      images: imageData.map((img) => ({
+        name: img.name,
+        format: img.type,
+        data: img.data,
+        sora_optimized: true,
+      })),
+      instruction:
+        "Process these reference images alongside the text prompt for enhanced visual generation",
+    };
+
+    return `[SORA_DATA:${JSON.stringify(soraData)}]`;
+  }
+
   // Get SORA-specific technical specifications
   private getSORASpecs(generatorType: string): string {
     const baseSpecs =
