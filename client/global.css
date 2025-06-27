@@ -161,6 +161,16 @@
   animation: glow 3s ease-in-out infinite;
 }
 
+/* Utility Classes */
+.scrollbar-hide {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none; /* Chrome, Safari and Opera */
+}
+
 .btn-shiny-black {
   background: #000000;
   border: 2px solid #ff3120;
