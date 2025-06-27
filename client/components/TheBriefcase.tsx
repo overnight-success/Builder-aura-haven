@@ -16,6 +16,136 @@ import {
 export function TheBriefcase() {
   const [activeTab, setActiveTab] = useState("guides");
 
+  const downloadGuide = (guide: any) => {
+    // Create a mock PDF download
+    const content = `
+# ${guide.title}
+
+## Overview
+${guide.description}
+
+## Duration: ${guide.duration}
+## Difficulty: ${guide.difficulty}
+
+## Content
+This guide covers advanced techniques for AI content generation.
+
+### Key Topics:
+- Prompt optimization strategies
+- Quality enhancement techniques
+- Professional workflow integration
+- Best practices and tips
+
+### Getting Started:
+1. Understand your content goals
+2. Choose appropriate style parameters
+3. Iterate and refine your prompts
+4. Apply professional enhancement techniques
+
+For more detailed information, visit our full documentation.
+    `;
+
+    const blob = new Blob([content], { type: "text/plain" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `${guide.title.replace(/\s+/g, "-").toLowerCase()}.txt`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  };
+
+  const accessVault = (category: any) => {
+    // Generate sample prompts for the category
+    const samplePrompts = [
+      `Create professional ${category.category.toLowerCase()} with modern ${category.tags[0].toLowerCase()} style`,
+      `Generate high-quality ${category.category.toLowerCase()} featuring ${category.tags[1].toLowerCase()} aesthetic`,
+      `Design ${category.category.toLowerCase()} with ${category.tags[2].toLowerCase()} approach and premium quality`,
+      `Produce ${category.category.toLowerCase()} content using ${category.tags[3].toLowerCase()} methodology`,
+    ];
+
+    const content = `
+# ${category.category} Prompt Vault
+
+## Category: ${category.category}
+## Total Prompts: ${category.count}
+## Description: ${category.description}
+
+## Sample Prompts:
+
+${samplePrompts.map((prompt, i) => `${i + 1}. ${prompt}`).join("\n")}
+
+## Tags Available:
+${category.tags.map((tag: string) => `- ${tag}`).join("\n")}
+
+## Usage:
+Copy any prompt above and customize it for your specific needs.
+Add details like lighting, camera angles, and style preferences.
+
+## Pro Tips:
+- Be specific with your requirements
+- Include quality indicators (4K, professional, etc.)
+- Mention style preferences clearly
+- Add technical details when needed
+    `;
+
+    const blob = new Blob([content], { type: "text/plain" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `${category.category.replace(/\s+/g, "-").toLowerCase()}-prompts.txt`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  };
+
+  const getToolkit = (toolkit: any) => {
+    if (toolkit.price === "Free") {
+      // Download free toolkit info
+      const content = `
+# ${toolkit.name} - FREE TOOLKIT
+
+## Description
+${toolkit.description}
+
+## Included Tools:
+${toolkit.tools.map((tool: string) => `- ${tool}`).join("\n")}
+
+## Getting Started:
+1. Download this toolkit information
+2. Access the free resources
+3. Follow the included guides
+4. Start creating amazing content!
+
+## Free Resources Include:
+- Basic prompt templates
+- Quick start guide
+- Community access
+- Email support
+
+## Upgrade Options:
+Consider our premium toolkits for advanced features and priority support.
+      `;
+
+      const blob = new Blob([content], { type: "text/plain" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `${toolkit.name.replace(/\s+/g, "-").toLowerCase()}-free.txt`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    } else {
+      // Open pricing page
+      alert(
+        `${toolkit.name} - ${toolkit.price}\n\n${toolkit.description}\n\nIn a real app, this would redirect to the pricing/checkout page.`,
+      );
+    }
+  };
+
   const howToGuides = [
     {
       title: "Mastering Sora AI Video Generation",
@@ -176,9 +306,12 @@ export function TheBriefcase() {
                   <span className="text-sm text-cream">
                     Updated {guide.updated}
                   </span>
-                  <Button className="bg-neon-orange border-2 border-neon-orange text-black font-bold text-sm px-4 py-2 h-auto">
+                  <Button
+                    onClick={() => downloadGuide(guide)}
+                    className="bg-neon-orange border-2 border-neon-orange text-black font-bold text-sm px-4 py-2 h-auto hover:bg-black hover:text-neon-orange transition-all duration-200"
+                  >
                     <Play className="h-4 w-4 mr-1" />
-                    READ
+                    DOWNLOAD
                   </Button>
                 </div>
               </CardContent>
@@ -205,15 +338,26 @@ export function TheBriefcase() {
                   {category.tags.map((tag) => (
                     <Badge
                       key={tag}
-                      className="bg-cream text-black font-bold text-xs"
+                      onClick={() => {
+                        const samplePrompt = `Create ${category.category.toLowerCase()} content with ${tag.toLowerCase()} style, professional quality, 4K resolution`;
+                        navigator.clipboard
+                          .writeText(samplePrompt)
+                          .catch(() => {
+                            alert(`Sample prompt: ${samplePrompt}`);
+                          });
+                      }}
+                      className="bg-cream text-black font-bold text-xs cursor-pointer hover:bg-neon-orange transition-all duration-200"
                     >
                       {tag}
                     </Badge>
                   ))}
                 </div>
-                <Button className="w-full bg-neon-orange border-2 border-neon-orange text-black font-bold text-sm py-2 h-auto">
+                <Button
+                  onClick={() => accessVault(category)}
+                  className="w-full bg-neon-orange border-2 border-neon-orange text-black font-bold text-sm py-2 h-auto hover:bg-black hover:text-neon-orange transition-all duration-200"
+                >
                   <Download className="h-4 w-4 mr-1" />
-                  ACCESS VAULT
+                  DOWNLOAD VAULT
                 </Button>
               </CardContent>
             </Card>
@@ -249,9 +393,12 @@ export function TheBriefcase() {
                     </div>
                   ))}
                 </div>
-                <Button className="w-full bg-neon-orange border-2 border-neon-orange text-black font-bold text-sm py-2 h-auto">
+                <Button
+                  onClick={() => getToolkit(toolkit)}
+                  className="w-full bg-neon-orange border-2 border-neon-orange text-black font-bold text-sm py-2 h-auto hover:bg-black hover:text-neon-orange transition-all duration-200"
+                >
                   <ExternalLink className="h-4 w-4 mr-1" />
-                  GET TOOLKIT
+                  {toolkit.price === "Free" ? "GET FREE" : "SUBSCRIBE"}
                 </Button>
               </CardContent>
             </Card>
@@ -278,7 +425,14 @@ export function TheBriefcase() {
                     <p className="text-sm text-cream">{update.date}</p>
                   </div>
                 </div>
-                <Button className="bg-neon-orange border-2 border-neon-orange text-black font-bold text-sm px-4 py-2 h-auto">
+                <Button
+                  onClick={() => {
+                    alert(
+                      `${update.title}\n\nDate: ${update.date}\nType: ${update.type}\n\n${update.description}\n\nIn a real app, this would open the full update details.`,
+                    );
+                  }}
+                  className="bg-neon-orange border-2 border-neon-orange text-black font-bold text-sm px-4 py-2 h-auto hover:bg-black hover:text-neon-orange transition-all duration-200"
+                >
                   <ExternalLink className="h-4 w-4 mr-1" />
                   VIEW UPDATE
                 </Button>
