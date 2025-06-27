@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "./ui/button";
 import { Badge } from "./ui/badge";
+import { TheBriefcase } from "./TheBriefcase";
 import {
   Package,
   Camera,
@@ -8,6 +9,7 @@ import {
   Briefcase,
   Target,
   RefreshCw,
+  X,
 } from "lucide-react";
 
 interface NavigationProps {
@@ -23,6 +25,8 @@ export function Navigation({
   totalComponents,
   onReset,
 }: NavigationProps) {
+  const [showBriefcase, setShowBriefcase] = useState(false);
+
   const menuItems = [
     {
       id: "product",
@@ -46,57 +50,96 @@ export function Navigation({
     },
   ];
 
+  const handlePageChange = (pageId: string) => {
+    if (pageId === "briefcase") {
+      setShowBriefcase(true);
+    } else {
+      setShowBriefcase(false);
+      onPageChange(pageId);
+    }
+  };
+
+  const handleCloseBriefcase = () => {
+    setShowBriefcase(false);
+  };
+
   return (
-    <nav className="bg-neon-orange border-b-4 border-black">
-      <div className="container mx-auto px-8 py-4">
-        <div className="flex items-center justify-between">
-          {/* Logo */}
-          <div className="flex items-center">
-            <img
-              src="https://cdn.builder.io/api/v1/image/assets%2F326314a2e8634f90977b83f81df01501%2Fec00ceaef5524675ba25aca88f5d5cec?format=webp&width=400"
-              alt="Overnight Success"
-              className="h-12 w-auto"
-            />
-          </div>
+    <>
+      <nav className="bg-neon-orange border-b-4 border-black">
+        <div className="container mx-auto px-8 py-4">
+          <div className="flex items-center justify-between">
+            {/* Logo */}
+            <div className="flex items-center">
+              <img
+                src="https://cdn.builder.io/api/v1/image/assets%2F326314a2e8634f90977b83f81df01501%2Fec00ceaef5524675ba25aca88f5d5cec?format=webp&width=400"
+                alt="Overnight Success"
+                className="h-12 w-auto"
+              />
+            </div>
 
-          {/* Menu Items */}
-          <div className="flex items-center gap-1 overflow-x-auto">
-            {menuItems.map((item) => (
+            {/* Menu Items */}
+            <div className="flex items-center gap-1 overflow-x-auto">
+              {menuItems.map((item) => (
+                <Button
+                  key={item.id}
+                  onClick={() => handlePageChange(item.id)}
+                  className={`
+                    font-bold text-xs px-3 py-2 h-auto border-2 transition-all duration-200 whitespace-nowrap shrink-0
+                    ${
+                      (currentPage === item.id && !showBriefcase) ||
+                      (item.id === "briefcase" && showBriefcase)
+                        ? "bg-black border-black text-cream"
+                        : "bg-neon-orange border-black text-black hover:bg-black hover:text-cream"
+                    }
+                  `}
+                >
+                  <span className="mr-1 shrink-0">{item.icon}</span>
+                  <span className="truncate">{item.label}</span>
+                </Button>
+              ))}
+            </div>
+
+            {/* Stats & Reset */}
+            <div className="flex items-center gap-2 shrink-0">
+              <Badge className="bg-black border-2 border-black text-cream font-bold text-xs px-2 py-1 whitespace-nowrap">
+                <Target className="h-3 w-3 text-neon-orange mr-1 shrink-0" />
+                <span>{totalComponents}/8</span>
+              </Badge>
               <Button
-                key={item.id}
-                onClick={() => onPageChange(item.id)}
-                className={`
-                  font-bold text-xs px-3 py-2 h-auto border-2 transition-all duration-200 whitespace-nowrap shrink-0
-                  ${
-                    currentPage === item.id
-                      ? "bg-black border-black text-cream"
-                      : "bg-neon-orange border-black text-black hover:bg-black hover:text-cream"
-                  }
-                `}
+                onClick={onReset}
+                className="bg-black border-2 border-black text-cream font-bold text-xs px-3 py-1.5 h-auto hover:bg-cream hover:text-black transition-all duration-200 whitespace-nowrap"
+                disabled={totalComponents === 0}
               >
-                <span className="mr-1 shrink-0">{item.icon}</span>
-                <span className="truncate">{item.label}</span>
+                <RefreshCw className="h-3 w-3 text-neon-orange mr-1 shrink-0" />
+                <span>RESET</span>
               </Button>
-            ))}
-          </div>
-
-          {/* Stats & Reset */}
-          <div className="flex items-center gap-2 shrink-0">
-            <Badge className="bg-black border-2 border-black text-cream font-bold text-xs px-2 py-1 whitespace-nowrap">
-              <Target className="h-3 w-3 text-neon-orange mr-1 shrink-0" />
-              <span>{totalComponents}/8</span>
-            </Badge>
-            <Button
-              onClick={onReset}
-              className="bg-black border-2 border-black text-cream font-bold text-xs px-3 py-1.5 h-auto hover:bg-cream hover:text-black transition-all duration-200 whitespace-nowrap"
-              disabled={totalComponents === 0}
-            >
-              <RefreshCw className="h-3 w-3 text-neon-orange mr-1 shrink-0" />
-              <span>RESET</span>
-            </Button>
+            </div>
           </div>
         </div>
-      </div>
-    </nav>
+      </nav>
+
+      {/* Briefcase Modal/Overlay */}
+      {showBriefcase && (
+        <div className="fixed inset-0 z-50 bg-neon-orange">
+          <div className="relative h-full">
+            {/* Close Button */}
+            <div className="absolute top-4 right-4 z-10">
+              <Button
+                onClick={handleCloseBriefcase}
+                className="bg-black border-2 border-black text-cream font-bold px-4 py-2 hover:bg-cream hover:text-black"
+              >
+                <X className="h-4 w-4 mr-1" />
+                CLOSE
+              </Button>
+            </div>
+
+            {/* Briefcase Content */}
+            <div className="h-full overflow-y-auto">
+              <TheBriefcase />
+            </div>
+          </div>
+        </div>
+      )}
+    </>
   );
 }
