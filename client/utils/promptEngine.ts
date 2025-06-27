@@ -82,6 +82,8 @@ export class PromptEngine {
 
       // Join with proper punctuation
       const result = parts.filter((p) => p && p.trim()).join(", ");
+      console.log("DEBUG generateFormula result:", result);
+
       return (
         result ||
         "Professional video content, cinematic quality, 4K resolution, optimized for SORA AI"
