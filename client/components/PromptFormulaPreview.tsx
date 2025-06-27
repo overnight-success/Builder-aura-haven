@@ -30,6 +30,7 @@ export function PromptFormulaPreview({
   onExport,
 }: PromptFormulaPreviewProps) {
   const [copied, setCopied] = useState(false);
+  const [exported, setExported] = useState(false);
   const [suggestedTweaks, setSuggestedTweaks] = useState<string[]>([]);
 
   const generatePromptFormula = () => {
@@ -167,11 +168,40 @@ export function PromptFormulaPreview({
         fullFormula += `\n\nReference files included: ${uploadedFiles.map((f) => f.name).join(", ")}`;
       }
 
-      await navigator.clipboard.writeText(fullFormula);
+      // Try modern clipboard API first
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(fullFormula);
+      } else {
+        // Fallback for older browsers or non-secure contexts
+        const textArea = document.createElement("textarea");
+        textArea.value = fullFormula;
+        textArea.style.position = "fixed";
+        textArea.style.left = "-999999px";
+        textArea.style.top = "-999999px";
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+
+        try {
+          document.execCommand("copy");
+        } catch (execError) {
+          console.error("Fallback copy failed:", execError);
+          // Last resort: show the text for manual copy
+          alert(
+            `Copy failed. Please manually copy this text:\n\n${fullFormula}`,
+          );
+          return;
+        } finally {
+          document.body.removeChild(textArea);
+        }
+      }
+
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch (error) {
       console.error("Failed to copy:", error);
+      // Show fallback alert with the text
+      alert(`Copy failed. Please manually copy this text:\n\n${fullFormula}`);
     }
   };
 
@@ -185,10 +215,41 @@ export function PromptFormulaPreview({
         enhancedFormula += `\n\nReference files included: ${uploadedFiles.map((f) => f.name).join(", ")}`;
       }
 
-      await navigator.clipboard.writeText(enhancedFormula);
+      // Try modern clipboard API first
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(enhancedFormula);
+      } else {
+        // Fallback for older browsers or non-secure contexts
+        const textArea = document.createElement("textarea");
+        textArea.value = enhancedFormula;
+        textArea.style.position = "fixed";
+        textArea.style.left = "-999999px";
+        textArea.style.top = "-999999px";
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+
+        try {
+          document.execCommand("copy");
+        } catch (execError) {
+          console.error("Fallback export failed:", execError);
+          alert(
+            `Export failed. Please manually copy this enhanced text:\n\n${enhancedFormula}`,
+          );
+          return;
+        } finally {
+          document.body.removeChild(textArea);
+        }
+      }
+
+      setExported(true);
+      setTimeout(() => setExported(false), 2000);
       onExport();
     } catch (error) {
       console.error("Failed to export:", error);
+      alert(
+        `Export failed. Please manually copy this enhanced text:\n\n${enhancedFormula}`,
+      );
     }
   };
 
@@ -306,7 +367,7 @@ export function PromptFormulaPreview({
               disabled={!isComplete}
             >
               <ExternalLink className="h-4 w-4 text-neon-orange mr-2" />
-              EXPORT
+              {exported ? "EXPORTED!" : "EXPORT"}
             </Button>
           </div>
 

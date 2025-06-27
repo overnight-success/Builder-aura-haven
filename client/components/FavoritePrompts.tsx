@@ -48,7 +48,35 @@ export function FavoritePrompts({ onCopy }: FavoritePromptsProps) {
   };
 
   const handleCopyFavorite = async (formula: string) => {
-    await onCopy(formula);
+    try {
+      // Try modern clipboard API first
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(formula);
+      } else {
+        // Fallback for older browsers or non-secure contexts
+        const textArea = document.createElement("textarea");
+        textArea.value = formula;
+        textArea.style.position = "fixed";
+        textArea.style.left = "-999999px";
+        textArea.style.top = "-999999px";
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+
+        try {
+          document.execCommand("copy");
+        } catch (execError) {
+          console.error("Fallback copy failed:", execError);
+          alert(`Copy failed. Please manually copy this text:\n\n${formula}`);
+          return;
+        } finally {
+          document.body.removeChild(textArea);
+        }
+      }
+    } catch (error) {
+      console.error("Failed to copy:", error);
+      alert(`Copy failed. Please manually copy this text:\n\n${formula}`);
+    }
   };
 
   // Export this function to be used by parent component
