@@ -104,7 +104,7 @@ export function CustomInstructions({
                 Additional Instructions
               </label>
               <Textarea
-                placeholder="Add any specific instructions, details, or creative direction not covered in the categories above..."
+                placeholder="Start with your specific instructions, creative vision, or requirements that will guide the AI generation..."
                 value={value}
                 onChange={(e) => onChange(e.target.value)}
                 className="min-h-24 resize-none bg-black border-2 border-cream text-cream focus:border-neon-orange focus:bg-black placeholder:text-cream"
