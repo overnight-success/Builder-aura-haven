@@ -150,9 +150,50 @@ export function Generator({ type }: GeneratorProps) {
   );
 
   const handleExport = useCallback(() => {
-    console.log("Export prompt for", type, ":", state.selections);
-    // Could integrate with external services here
-  }, [type, state.selections]);
+    try {
+      // Generate the current formula
+      const formula = promptEngine.generateFormula(
+        type,
+        state.selections,
+        state.customInstructions,
+        state.uploadedFiles,
+      );
+
+      // Create export data
+      const exportData = {
+        timestamp: new Date().toISOString(),
+        generator: type,
+        formula: formula,
+        selections: state.selections,
+        customInstructions: state.customInstructions,
+        filesCount: state.uploadedFiles.length,
+        quality: promptAnalysis?.quality || 0,
+      };
+
+      // Create and download JSON file
+      const dataStr = JSON.stringify(exportData, null, 2);
+      const dataBlob = new Blob([dataStr], { type: "application/json" });
+      const url = URL.createObjectURL(dataBlob);
+
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = `sora-prompt-${type}-${Date.now()}.json`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+
+      console.log("Prompt exported successfully");
+    } catch (error) {
+      console.error("Export failed:", error);
+    }
+  }, [
+    type,
+    state.selections,
+    state.customInstructions,
+    state.uploadedFiles,
+    promptAnalysis,
+  ]);
 
   // Memoized current step calculation based on new flow
   const currentStep = useMemo(() => {
