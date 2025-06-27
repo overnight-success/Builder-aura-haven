@@ -295,22 +295,22 @@ export function PromptFormulaPreview({
 
   return (
     <Card className="bg-black border-2 border-cream sticky top-6">
-      <CardHeader className="pb-4">
-        <CardTitle className="flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <div className="p-3 rounded-lg bg-black border-2 border-neon-orange">
-              <Wand2 className="h-6 w-6 text-neon-orange" />
+      <CardHeader className="pb-3">
+        <CardTitle className="space-y-2">
+          <div className="flex items-center gap-3">
+            <div className="p-2 rounded-lg bg-black border-2 border-neon-orange shrink-0">
+              <Wand2 className="h-4 w-4 text-neon-orange" />
             </div>
-            <div>
-              <span className="text-2xl font-black text-cream tracking-tight">
+            <div className="min-w-0 flex-1">
+              <span className="text-lg font-black text-cream tracking-tight block truncate">
                 AI PROMPT FORMULA
               </span>
-              <p className="text-sm font-bold text-neon-orange tracking-wider">
+              <p className="text-xs font-bold text-neon-orange tracking-wide">
                 OPTIMIZED FOR SORA AI
               </p>
             </div>
           </div>
-          <Badge className="btn-shiny-black text-cream font-bold text-base px-4 py-2 h-auto border-0">
+          <Badge className="bg-black border-2 border-neon-orange text-cream font-bold text-xs px-3 py-1 w-fit">
             {totalComponents}/8 COMPONENTS
           </Badge>
         </CardTitle>
@@ -349,16 +349,16 @@ export function PromptFormulaPreview({
 
         {/* Suggested Tweaks */}
         {suggestedTweaks.length > 0 && (
-          <div className="space-y-4">
-            <h4 className="text-lg font-black text-cream flex items-center gap-3">
-              <RefreshCw className="h-5 w-5 text-neon-orange" />
-              SUGGESTED ENHANCEMENTS
+          <div className="space-y-2">
+            <h4 className="text-sm font-black text-cream flex items-center gap-2">
+              <RefreshCw className="h-3 w-3 text-neon-orange shrink-0" />
+              <span className="truncate">SUGGESTED ENHANCEMENTS</span>
             </h4>
-            <div className="space-y-3">
+            <div className="space-y-2">
               {suggestedTweaks.map((tweak, index) => (
                 <div
                   key={index}
-                  className="text-sm font-semibold p-4 rounded-lg bg-black border-2 border-cream text-cream"
+                  className="text-xs font-medium p-2 rounded-lg bg-black border border-cream text-cream leading-tight"
                 >
                   {tweak}
                 </div>
@@ -368,55 +368,57 @@ export function PromptFormulaPreview({
         )}
 
         {/* Action Buttons */}
-        <div className="space-y-3">
-          <div className="grid grid-cols-2 gap-3">
+        <div className="space-y-2">
+          <div className="grid grid-cols-2 gap-2">
             <Button
               onClick={handleCopy}
-              className="bg-black border-2 border-neon-orange text-cream font-bold text-sm px-4 py-3 h-auto hover:bg-neon-orange hover:text-black transition-all duration-200"
+              className="bg-black border-2 border-neon-orange text-cream font-bold text-xs px-3 py-2 h-auto hover:bg-neon-orange hover:text-black transition-all duration-200 truncate"
               disabled={!isComplete}
             >
-              <Copy className="h-4 w-4 text-neon-orange mr-2" />
-              {copied ? "COPIED!" : "COPY"}
+              <Copy className="h-3 w-3 text-neon-orange mr-1 shrink-0" />
+              <span className="truncate">{copied ? "COPIED!" : "COPY"}</span>
             </Button>
             <Button
               onClick={handleExportToSora}
-              className="bg-black border-2 border-neon-orange text-cream font-bold text-sm px-4 py-3 h-auto hover:bg-neon-orange hover:text-black transition-all duration-200"
+              className="bg-black border-2 border-neon-orange text-cream font-bold text-xs px-3 py-2 h-auto hover:bg-neon-orange hover:text-black transition-all duration-200 truncate"
               disabled={!isComplete}
             >
-              <ExternalLink className="h-4 w-4 text-neon-orange mr-2" />
-              {exported ? "EXPORTED!" : "EXPORT"}
+              <ExternalLink className="h-3 w-3 text-neon-orange mr-1 shrink-0" />
+              <span className="truncate">
+                {exported ? "EXPORTED!" : "EXPORT"}
+              </span>
             </Button>
           </div>
 
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-2 gap-2">
             <Button
               onClick={handleFavorite}
-              className="bg-black border-2 border-neon-orange text-cream font-bold text-sm px-4 py-3 h-auto hover:bg-neon-orange hover:text-black transition-all duration-200"
+              className="bg-black border-2 border-neon-orange text-cream font-bold text-xs px-3 py-2 h-auto hover:bg-neon-orange hover:text-black transition-all duration-200 truncate"
               disabled={!isComplete}
             >
-              <Heart className="h-4 w-4 text-neon-orange mr-2" />
-              FAVORITE
+              <Heart className="h-3 w-3 text-neon-orange mr-1 shrink-0" />
+              <span className="truncate">FAVORITE</span>
             </Button>
             <Button
               onClick={handleOpenSora}
-              className="bg-black border-2 border-neon-orange text-cream font-bold text-sm px-4 py-3 h-auto hover:bg-neon-orange hover:text-black transition-all duration-200"
+              className="bg-black border-2 border-neon-orange text-cream font-bold text-xs px-3 py-2 h-auto hover:bg-neon-orange hover:text-black transition-all duration-200 truncate"
               disabled={!isComplete}
             >
-              <Download className="h-4 w-4 text-neon-orange mr-2" />
-              SORA
+              <Download className="h-3 w-3 text-neon-orange mr-1 shrink-0" />
+              <span className="truncate">SORA</span>
             </Button>
           </div>
         </div>
 
         {/* Tips */}
-        <div className="text-sm font-semibold text-cream space-y-2 border-t-2 border-black/50 pt-6">
-          <p>
-            💡 <strong className="text-neon-orange">PRO TIP:</strong> COMPLETE
-            4+ CATEGORIES FOR BEST RESULTS
+        <div className="text-xs font-medium text-cream space-y-1 border-t border-cream/20 pt-3">
+          <p className="leading-tight">
+            💡 <strong className="text-neon-orange">TIP:</strong> Complete 4+
+            categories for best results
           </p>
-          <p>
-            🎯 <strong className="text-neon-orange">QUALITY:</strong> MORE
-            SPECIFIC SELECTIONS = BETTER OUTPUT
+          <p className="leading-tight">
+            🎯 <strong className="text-neon-orange">QUALITY:</strong> Specific
+            selections = better output
           </p>
         </div>
       </CardContent>

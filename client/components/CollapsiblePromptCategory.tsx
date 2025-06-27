@@ -66,27 +66,30 @@ export function CollapsiblePromptCategory({
                     <div className="text-neon-orange">{icon}</div>
                   </div>
                 )}
-                <div className="text-left">
-                  <h3 className="text-2xl font-black text-cream tracking-tight">
+                <div className="text-left min-w-0 flex-1">
+                  <h3 className="text-lg font-black text-cream tracking-tight truncate">
                     {title}
                   </h3>
                   {selectedOption && (
-                    <p className="text-base font-bold text-neon-orange truncate max-w-64 mt-1">
+                    <p className="text-sm font-bold text-neon-orange truncate mt-1">
                       {selectedOption}
                     </p>
                   )}
                 </div>
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1 shrink-0">
                 {selectedOption && (
-                  <Badge variant="secondary" className="text-xs">
+                  <Badge
+                    variant="secondary"
+                    className="text-xs px-2 py-0.5 whitespace-nowrap"
+                  >
                     Selected
                   </Badge>
                 )}
                 {isExpanded ? (
-                  <ChevronDown className="h-4 w-4 text-muted-foreground" />
+                  <ChevronDown className="h-4 w-4 text-muted-foreground shrink-0" />
                 ) : (
-                  <ChevronRight className="h-4 w-4 text-muted-foreground" />
+                  <ChevronRight className="h-4 w-4 text-muted-foreground shrink-0" />
                 )}
               </div>
             </div>

@@ -60,13 +60,13 @@ export function Navigation({
           </div>
 
           {/* Menu Items */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1 overflow-x-auto">
             {menuItems.map((item) => (
               <Button
                 key={item.id}
                 onClick={() => onPageChange(item.id)}
                 className={`
-                  font-bold text-sm px-4 py-2 h-auto border-2 transition-all duration-200
+                  font-bold text-xs px-3 py-2 h-auto border-2 transition-all duration-200 whitespace-nowrap shrink-0
                   ${
                     currentPage === item.id
                       ? "bg-black border-black text-cream"
@@ -74,25 +74,25 @@ export function Navigation({
                   }
                 `}
               >
-                {item.icon}
-                {item.label}
+                <span className="mr-1 shrink-0">{item.icon}</span>
+                <span className="truncate">{item.label}</span>
               </Button>
             ))}
           </div>
 
           {/* Stats & Reset */}
-          <div className="flex items-center gap-4">
-            <Badge className="bg-black border-2 border-black text-cream font-bold text-sm px-3 py-1.5">
-              <Target className="h-4 w-4 text-neon-orange mr-1" />
-              {totalComponents}/8
+          <div className="flex items-center gap-2 shrink-0">
+            <Badge className="bg-black border-2 border-black text-cream font-bold text-xs px-2 py-1 whitespace-nowrap">
+              <Target className="h-3 w-3 text-neon-orange mr-1 shrink-0" />
+              <span>{totalComponents}/8</span>
             </Badge>
             <Button
               onClick={onReset}
-              className="bg-black border-2 border-black text-cream font-bold text-sm px-4 py-2 h-auto hover:bg-cream hover:text-black transition-all duration-200"
+              className="bg-black border-2 border-black text-cream font-bold text-xs px-3 py-1.5 h-auto hover:bg-cream hover:text-black transition-all duration-200 whitespace-nowrap"
               disabled={totalComponents === 0}
             >
-              <RefreshCw className="h-4 w-4 text-neon-orange mr-1" />
-              RESET
+              <RefreshCw className="h-3 w-3 text-neon-orange mr-1 shrink-0" />
+              <span>RESET</span>
             </Button>
           </div>
         </div>
