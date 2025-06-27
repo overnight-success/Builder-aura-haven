@@ -56,7 +56,7 @@ export function Generator({ type }: GeneratorProps) {
     if (state.currentGenerator !== type) {
       actions.setGenerator(type);
     }
-  }, [type, state.currentGenerator, actions]);
+  }, [type, state.currentGenerator, actions.setGenerator]);
 
   // Analyze prompt quality in real-time
   useEffect(() => {
