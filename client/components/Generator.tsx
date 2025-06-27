@@ -54,34 +54,44 @@ export function Generator({ type }: GeneratorProps) {
   };
 
   const handleCopy = async (text: string) => {
-    try {
-      // Try modern clipboard API first
-      if (navigator.clipboard && window.isSecureContext) {
+    // Try modern clipboard API first, catch any permission errors
+    let clipboardSuccess = false;
+
+    if (navigator.clipboard) {
+      try {
         await navigator.clipboard.writeText(text);
-      } else {
-        // Fallback for older browsers or non-secure contexts
+        clipboardSuccess = true;
+      } catch (clipboardError) {
+        console.warn(
+          "Modern clipboard failed, using fallback:",
+          clipboardError,
+        );
+      }
+    }
+
+    // If modern clipboard failed, use fallback method
+    if (!clipboardSuccess) {
+      try {
         const textArea = document.createElement("textarea");
         textArea.value = text;
         textArea.style.position = "fixed";
         textArea.style.left = "-999999px";
         textArea.style.top = "-999999px";
+        textArea.style.opacity = "0";
         document.body.appendChild(textArea);
         textArea.focus();
         textArea.select();
 
-        try {
-          document.execCommand("copy");
-        } catch (execError) {
-          console.error("Fallback copy failed:", execError);
-          alert(`Copy failed. Please manually copy this text:\n\n${text}`);
-          return;
-        } finally {
-          document.body.removeChild(textArea);
+        const success = document.execCommand("copy");
+        document.body.removeChild(textArea);
+
+        if (!success) {
+          throw new Error("execCommand copy failed");
         }
+      } catch (fallbackError) {
+        console.error("All copy methods failed:", fallbackError);
+        alert(`Copy failed. Please manually copy this text:\n\n${text}`);
       }
-    } catch (error) {
-      console.error("Failed to copy:", error);
-      alert(`Copy failed. Please manually copy this text:\n\n${text}`);
     }
   };
 

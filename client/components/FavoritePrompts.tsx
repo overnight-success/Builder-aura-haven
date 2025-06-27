@@ -48,34 +48,44 @@ export function FavoritePrompts({ onCopy }: FavoritePromptsProps) {
   };
 
   const handleCopyFavorite = async (formula: string) => {
-    try {
-      // Try modern clipboard API first
-      if (navigator.clipboard && window.isSecureContext) {
+    // Try modern clipboard API first, catch any permission errors
+    let clipboardSuccess = false;
+
+    if (navigator.clipboard) {
+      try {
         await navigator.clipboard.writeText(formula);
-      } else {
-        // Fallback for older browsers or non-secure contexts
+        clipboardSuccess = true;
+      } catch (clipboardError) {
+        console.warn(
+          "Modern clipboard failed, using fallback:",
+          clipboardError,
+        );
+      }
+    }
+
+    // If modern clipboard failed, use fallback method
+    if (!clipboardSuccess) {
+      try {
         const textArea = document.createElement("textarea");
         textArea.value = formula;
         textArea.style.position = "fixed";
         textArea.style.left = "-999999px";
         textArea.style.top = "-999999px";
+        textArea.style.opacity = "0";
         document.body.appendChild(textArea);
         textArea.focus();
         textArea.select();
 
-        try {
-          document.execCommand("copy");
-        } catch (execError) {
-          console.error("Fallback copy failed:", execError);
-          alert(`Copy failed. Please manually copy this text:\n\n${formula}`);
-          return;
-        } finally {
-          document.body.removeChild(textArea);
+        const success = document.execCommand("copy");
+        document.body.removeChild(textArea);
+
+        if (!success) {
+          throw new Error("execCommand copy failed");
         }
+      } catch (fallbackError) {
+        console.error("All copy methods failed:", fallbackError);
+        alert(`Copy failed. Please manually copy this text:\n\n${formula}`);
       }
-    } catch (error) {
-      console.error("Failed to copy:", error);
-      alert(`Copy failed. Please manually copy this text:\n\n${formula}`);
     }
   };
 

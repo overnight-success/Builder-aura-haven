@@ -153,104 +153,121 @@ export function PromptFormulaPreview({
     selectedCount + (hasCustomInstructions ? 1 : 0) + (hasFiles ? 1 : 0);
 
   const handleCopy = async () => {
-    try {
-      // Create comprehensive formula with all components
-      let fullFormula = formula;
+    // Create comprehensive formula with all components
+    let fullFormula = formula;
 
-      // Add professional cinematography terms if formula is complete
-      if (isComplete) {
-        fullFormula +=
-          ". Professional cinematography, 4K resolution, dynamic composition";
-      }
+    // Add professional cinematography terms if formula is complete
+    if (isComplete) {
+      fullFormula +=
+        ". Professional cinematography, 4K resolution, dynamic composition";
+    }
 
-      // Add file information for reference
-      if (uploadedFiles.length > 0) {
-        fullFormula += `\n\nReference files included: ${uploadedFiles.map((f) => f.name).join(", ")}`;
-      }
+    // Add file information for reference
+    if (uploadedFiles.length > 0) {
+      fullFormula += `\n\nReference files included: ${uploadedFiles.map((f) => f.name).join(", ")}`;
+    }
 
-      // Try modern clipboard API first
-      if (navigator.clipboard && window.isSecureContext) {
+    // Try modern clipboard API first, catch any permission errors
+    let clipboardSuccess = false;
+
+    if (navigator.clipboard) {
+      try {
         await navigator.clipboard.writeText(fullFormula);
-      } else {
-        // Fallback for older browsers or non-secure contexts
+        clipboardSuccess = true;
+      } catch (clipboardError) {
+        console.warn(
+          "Modern clipboard failed, using fallback:",
+          clipboardError,
+        );
+      }
+    }
+
+    // If modern clipboard failed, use fallback method
+    if (!clipboardSuccess) {
+      try {
         const textArea = document.createElement("textarea");
         textArea.value = fullFormula;
         textArea.style.position = "fixed";
         textArea.style.left = "-999999px";
         textArea.style.top = "-999999px";
+        textArea.style.opacity = "0";
         document.body.appendChild(textArea);
         textArea.focus();
         textArea.select();
 
-        try {
-          document.execCommand("copy");
-        } catch (execError) {
-          console.error("Fallback copy failed:", execError);
-          // Last resort: show the text for manual copy
-          alert(
-            `Copy failed. Please manually copy this text:\n\n${fullFormula}`,
-          );
-          return;
-        } finally {
-          document.body.removeChild(textArea);
-        }
-      }
+        const success = document.execCommand("copy");
+        document.body.removeChild(textArea);
 
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    } catch (error) {
-      console.error("Failed to copy:", error);
-      // Show fallback alert with the text
-      alert(`Copy failed. Please manually copy this text:\n\n${fullFormula}`);
+        if (!success) {
+          throw new Error("execCommand copy failed");
+        }
+      } catch (fallbackError) {
+        console.error("All copy methods failed:", fallbackError);
+        // Last resort: show the text for manual copy
+        alert(`Copy failed. Please manually copy this text:\n\n${fullFormula}`);
+        return;
+      }
     }
+
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
   };
 
   const handleExportToSora = async () => {
-    try {
-      // Create a more detailed prompt for Sora
-      let enhancedFormula = `${formula}. Professional cinematography, 4K resolution, dynamic composition, ultra-detailed, masterpiece quality`;
+    // Create a more detailed prompt for Sora
+    let enhancedFormula = `${formula}. Professional cinematography, 4K resolution, dynamic composition, ultra-detailed, masterpiece quality`;
 
-      // Add file information for reference
-      if (uploadedFiles.length > 0) {
-        enhancedFormula += `\n\nReference files included: ${uploadedFiles.map((f) => f.name).join(", ")}`;
-      }
+    // Add file information for reference
+    if (uploadedFiles.length > 0) {
+      enhancedFormula += `\n\nReference files included: ${uploadedFiles.map((f) => f.name).join(", ")}`;
+    }
 
-      // Try modern clipboard API first
-      if (navigator.clipboard && window.isSecureContext) {
+    // Try modern clipboard API first, catch any permission errors
+    let clipboardSuccess = false;
+
+    if (navigator.clipboard) {
+      try {
         await navigator.clipboard.writeText(enhancedFormula);
-      } else {
-        // Fallback for older browsers or non-secure contexts
+        clipboardSuccess = true;
+      } catch (clipboardError) {
+        console.warn(
+          "Modern clipboard failed, using fallback:",
+          clipboardError,
+        );
+      }
+    }
+
+    // If modern clipboard failed, use fallback method
+    if (!clipboardSuccess) {
+      try {
         const textArea = document.createElement("textarea");
         textArea.value = enhancedFormula;
         textArea.style.position = "fixed";
         textArea.style.left = "-999999px";
         textArea.style.top = "-999999px";
+        textArea.style.opacity = "0";
         document.body.appendChild(textArea);
         textArea.focus();
         textArea.select();
 
-        try {
-          document.execCommand("copy");
-        } catch (execError) {
-          console.error("Fallback export failed:", execError);
-          alert(
-            `Export failed. Please manually copy this enhanced text:\n\n${enhancedFormula}`,
-          );
-          return;
-        } finally {
-          document.body.removeChild(textArea);
-        }
-      }
+        const success = document.execCommand("copy");
+        document.body.removeChild(textArea);
 
-      setExported(true);
-      setTimeout(() => setExported(false), 2000);
-      onExport();
-    } catch (error) {
-      console.error("Failed to export:", error);
-      alert(
-        `Export failed. Please manually copy this enhanced text:\n\n${enhancedFormula}`,
-      );
+        if (!success) {
+          throw new Error("execCommand copy failed");
+        }
+      } catch (fallbackError) {
+        console.error("All export methods failed:", fallbackError);
+        alert(
+          `Export failed. Please manually copy this enhanced text:\n\n${enhancedFormula}`,
+        );
+        return;
+      }
     }
+
+    setExported(true);
+    setTimeout(() => setExported(false), 2000);
+    onExport();
   };
 
   const handleFavorite = () => {
