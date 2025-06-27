@@ -193,6 +193,7 @@ export function PromptGeneratorProvider({
   );
 
   const updateSelection = useCallback((category: string, option: string) => {
+    console.log("DEBUG updateSelection action called:", { category, option });
     dispatch({ type: "UPDATE_SELECTION", payload: { category, option } });
   }, []);
 
