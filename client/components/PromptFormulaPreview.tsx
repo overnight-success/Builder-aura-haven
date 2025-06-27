@@ -14,12 +14,16 @@ import { cn } from "@/lib/utils";
 
 interface PromptFormulaPreviewProps {
   selections: Record<string, string>;
+  customInstructions: string;
+  uploadedFiles: File[];
   onCopy: (text: string) => void;
   onExport: () => void;
 }
 
 export function PromptFormulaPreview({
   selections,
+  customInstructions,
+  uploadedFiles,
   onCopy,
   onExport,
 }: PromptFormulaPreviewProps) {
@@ -28,7 +32,10 @@ export function PromptFormulaPreview({
 
   const generatePromptFormula = () => {
     const parts = Object.entries(selections).filter(([_, value]) => value);
-    if (parts.length === 0) {
+    const hasCustomInstructions = customInstructions.trim().length > 0;
+    const hasFiles = uploadedFiles.length > 0;
+
+    if (parts.length === 0 && !hasCustomInstructions && !hasFiles) {
       return {
         formula:
           "Select from each category above to build your Sora AI prompt formula...",
@@ -37,7 +44,6 @@ export function PromptFormulaPreview({
     }
 
     // Build the base formula
-    let formula = "";
     const components: string[] = [];
 
     parts.forEach(([category, value]) => {
@@ -63,7 +69,22 @@ export function PromptFormulaPreview({
       }
     });
 
-    formula = components.join(", ");
+    // Add custom instructions if provided
+    if (hasCustomInstructions) {
+      components.push(customInstructions.trim());
+    }
+
+    // Add file references if provided
+    if (hasFiles) {
+      const fileTypes = uploadedFiles.map((file) => {
+        if (file.type.startsWith("image/")) return "reference image";
+        if (file.type.startsWith("video/")) return "reference video";
+        return "reference file";
+      });
+      components.push(`with ${fileTypes.join(", ")} for visual reference`);
+    }
+
+    const formula = components.join(", ");
     const isComplete = parts.length >= 4;
 
     return { formula, isComplete };
@@ -84,11 +105,14 @@ export function PromptFormulaPreview({
     if (selections.creative && selections.locations) {
       tweaks.push("🎬 Try: Specify '4K cinematic' for professional quality");
     }
-    if (currentSelections.length >= 3) {
-      tweaks.push("🔥 Try: Add time of day for mood enhancement");
+    if (currentSelections.length >= 3 && !hasCustomInstructions) {
+      tweaks.push("📝 Try: Add custom instructions for specific details");
     }
-    if (selections.textures && selections.lighting) {
-      tweaks.push("🌟 Try: 'hyperrealistic detail' for photorealism");
+    if (selections.textures && selections.lighting && !hasFiles) {
+      tweaks.push("📎 Try: Upload reference images for better results");
+    }
+    if (hasFiles && !customInstructions.includes("reference")) {
+      tweaks.push("🔗 Try: Mention how to use reference files in instructions");
     }
 
     return tweaks.slice(0, 3); // Show max 3 suggestions
@@ -100,6 +124,10 @@ export function PromptFormulaPreview({
 
   const { formula, isComplete } = generatePromptFormula();
   const selectedCount = Object.values(selections).filter(Boolean).length;
+  const hasCustomInstructions = customInstructions.trim().length > 0;
+  const hasFiles = uploadedFiles.length > 0;
+  const totalComponents =
+    selectedCount + (hasCustomInstructions ? 1 : 0) + (hasFiles ? 1 : 0);
 
   const handleCopy = async () => {
     await onCopy(formula);
@@ -109,7 +137,13 @@ export function PromptFormulaPreview({
 
   const handleExportToSora = () => {
     // Create a more detailed prompt for Sora
-    const enhancedFormula = `${formula}. Professional cinematography, 4K resolution, dynamic composition`;
+    let enhancedFormula = `${formula}. Professional cinematography, 4K resolution, dynamic composition`;
+
+    // Add file information for reference
+    if (uploadedFiles.length > 0) {
+      enhancedFormula += `\n\nReference files included: ${uploadedFiles.map((f) => f.name).join(", ")}`;
+    }
+
     onCopy(enhancedFormula);
     onExport();
   };
@@ -149,7 +183,7 @@ export function PromptFormulaPreview({
                 "animate-pulse bg-gradient-to-r from-primary to-cosmic",
             )}
           >
-            {selectedCount}/6 Components
+            {totalComponents}/8 Components
           </Badge>
         </CardTitle>
       </CardHeader>
