@@ -127,7 +127,10 @@ export function PromptPreview({
         </div>
 
         <div className="text-xs text-muted-foreground">
-          <p>💡 Tip: Select at least 3 categories for better results</p>
+          <p>
+            💡 Tip: Add custom instructions first, then select at least 3
+            categories
+          </p>
         </div>
       </CardContent>
     </Card>
