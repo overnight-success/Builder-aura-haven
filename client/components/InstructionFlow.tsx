@@ -50,7 +50,7 @@ export function InstructionFlow({
           HOW IT WORKS
         </span>
         <span className="text-neon-orange font-bold text-sm">
-          {totalComponents}/8 COMPONENTS
+          STEP {Math.min(currentStep, 5)}/5
         </span>
       </div>
 
