@@ -253,8 +253,8 @@ export function PromptFormulaPreview({
               </>
             ) : (
               <p className="text-cream/60 italic text-sm">
-                Select from categories above to build your Sora AI prompt
-                formula...
+                Add custom instructions and select from categories below to
+                build your Sora AI prompt formula...
               </p>
             )}
           </div>
