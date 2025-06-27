@@ -1,5 +1,16 @@
 import { generatorData } from "../data/generators";
 
+// Import ProcessedFile type
+export interface ProcessedFile {
+  id: string;
+  name: string;
+  size: number;
+  type: string;
+  originalFile: File;
+  jsonData?: string; // Base64 encoded JSON for images
+  processingStatus: "pending" | "processing" | "complete" | "error";
+}
+
 // Types
 export interface PromptAnalysis {
   quality: number;
@@ -31,7 +42,7 @@ export class PromptEngine {
     generatorType: "product" | "lifestyle" | "graphic",
     selections: Record<string, string>,
     customInstructions: string = "",
-    uploadedFiles: File[] = [],
+    uploadedFiles: ProcessedFile[] = [],
   ): string {
     const config = generatorData[generatorType];
     const components: string[] = [];
@@ -133,28 +144,57 @@ export class PromptEngine {
     return processed;
   }
 
-  // Generate smart file reference
-  private generateFileReference(files: File[]): string {
+  // Generate smart file reference with embedded JSON data
+  private generateFileReference(files: ProcessedFile[]): string {
     const imageFiles = files.filter((f) => f.type.startsWith("image/"));
     const videoFiles = files.filter((f) => f.type.startsWith("video/"));
 
     const references: string[] = [];
 
     if (imageFiles.length > 0) {
-      const imageMetadata = imageFiles.map((f) => ({
-        name: f.name.replace(/\.[^/.]+$/, ""), // Remove extension
-        size: this.formatFileSize(f.size),
-        type: f.type.split("/")[1].toUpperCase(),
-      }));
-
-      references.push(
-        `referencing ${imageFiles.length} image${imageFiles.length > 1 ? "s" : ""} (${imageMetadata.map((m) => m.name).join(", ")})`,
+      const processedImages = imageFiles.filter(
+        (f) => f.jsonData && f.processingStatus === "complete",
       );
+      const pendingImages = imageFiles.filter(
+        (f) => !f.jsonData || f.processingStatus !== "complete",
+      );
+
+      if (processedImages.length > 0) {
+        // Include JSON data directly in the prompt for SORA
+        const imageJsonData = processedImages.map((f) => {
+          try {
+            const jsonData = JSON.parse(f.jsonData!);
+            return {
+              name: jsonData.name,
+              type: jsonData.type,
+              data: jsonData.data, // Base64 image data
+              metadata: jsonData.metadata,
+            };
+          } catch {
+            return { name: f.name, error: "JSON parsing failed" };
+          }
+        });
+
+        references.push(
+          `[SORA_IMAGE_DATA]${JSON.stringify({
+            images: imageJsonData,
+            count: processedImages.length,
+            instruction:
+              "Process embedded image data with prompt for enhanced AI understanding",
+          })}[/SORA_IMAGE_DATA]`,
+        );
+      }
+
+      if (pendingImages.length > 0) {
+        references.push(
+          `referencing ${pendingImages.length} image${pendingImages.length > 1 ? "s" : ""} (${pendingImages.map((f) => f.name.replace(/\.[^/.]+$/, "")).join(", ")}) - processing`,
+        );
+      }
     }
 
     if (videoFiles.length > 0) {
       references.push(
-        `including ${videoFiles.length} video reference${videoFiles.length > 1 ? "s" : ""}`,
+        `including ${videoFiles.length} video reference${videoFiles.length > 1 ? "s" : ""} (${videoFiles.map((f) => f.name).join(", ")})`,
       );
     }
 
@@ -249,7 +289,7 @@ export class PromptEngine {
     generatorType: string,
     selections: Record<string, string>,
     customInstructions: string,
-    uploadedFiles: File[],
+    uploadedFiles: ProcessedFile[],
   ): PromptAnalysis {
     const selectedCount = Object.values(selections).filter(Boolean).length;
     const totalCategories = Object.keys(
@@ -260,11 +300,15 @@ export class PromptEngine {
     const completeness = (selectedCount / totalCategories) * 100;
     const hasCustom = customInstructions.trim().length > 0;
     const hasFiles = uploadedFiles.length > 0;
+    const processedImages = uploadedFiles.filter(
+      (f) => f.jsonData && f.processingStatus === "complete",
+    ).length;
 
     // Quality score calculation
     let quality = completeness * 0.6; // Base from completeness
     if (hasCustom) quality += 20; // Bonus for custom instructions
     if (hasFiles) quality += 15; // Bonus for reference files
+    if (processedImages > 0) quality += 10; // Extra bonus for processed JSON images
     if (selectedCount >= totalCategories) quality += 5; // Completeness bonus
 
     // Coherence analysis
@@ -350,7 +394,7 @@ export class PromptEngine {
     generatorType: string,
     selections: Record<string, string>,
     customInstructions: string,
-    uploadedFiles: File[],
+    uploadedFiles: ProcessedFile[],
   ): string[] {
     const recommendations: string[] = [];
     const selectedCount = Object.values(selections).filter(Boolean).length;
@@ -370,9 +414,24 @@ export class PromptEngine {
     }
 
     // File upload recommendations
+    const processedImages = uploadedFiles.filter(
+      (f) => f.jsonData && f.processingStatus === "complete",
+    ).length;
+    const pendingImages = uploadedFiles.filter(
+      (f) => f.type.startsWith("image/") && f.processingStatus !== "complete",
+    ).length;
+
     if (uploadedFiles.length === 0) {
       recommendations.push(
-        "Upload reference images or videos for better AI understanding",
+        "Upload reference images for JSON conversion and enhanced SORA AI understanding",
+      );
+    } else if (pendingImages > 0) {
+      recommendations.push(
+        "Some images are still processing - wait for JSON conversion to complete",
+      );
+    } else if (processedImages > 0) {
+      recommendations.push(
+        `${processedImages} image${processedImages > 1 ? "s" : ""} successfully converted to JSON for SORA`,
       );
     }
 
