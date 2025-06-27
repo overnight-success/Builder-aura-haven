@@ -2,7 +2,15 @@ import React, { useState, useRef } from "react";
 import { Card, CardContent, CardHeader } from "./ui/card";
 import { Button } from "./ui/button";
 import { Badge } from "./ui/badge";
-import { Upload, File, X, Check, Image, Video } from "lucide-react";
+import {
+  Upload,
+  File,
+  X,
+  Check,
+  Image,
+  Video,
+  ChevronRight,
+} from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface FileUploadProps {
