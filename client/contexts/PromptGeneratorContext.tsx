@@ -6,12 +6,23 @@ import React, {
   useMemo,
 } from "react";
 
+// Import ProcessedFile type
+export interface ProcessedFile {
+  id: string;
+  name: string;
+  size: number;
+  type: string;
+  originalFile: File;
+  jsonData?: string; // Base64 encoded JSON for images
+  processingStatus: "pending" | "processing" | "complete" | "error";
+}
+
 // Types
 export interface PromptState {
   currentGenerator: "product" | "lifestyle" | "graphic";
   selections: Record<string, string>;
   customInstructions: string;
-  uploadedFiles: File[];
+  uploadedFiles: ProcessedFile[];
   favorites: SavedPrompt[];
   history: PromptVersion[];
   isGenerating: boolean;
@@ -41,7 +52,7 @@ type PromptAction =
   | { type: "SET_GENERATOR"; payload: "product" | "lifestyle" | "graphic" }
   | { type: "UPDATE_SELECTION"; payload: { category: string; option: string } }
   | { type: "SET_CUSTOM_INSTRUCTIONS"; payload: string }
-  | { type: "SET_UPLOADED_FILES"; payload: File[] }
+  | { type: "SET_UPLOADED_FILES"; payload: ProcessedFile[] }
   | { type: "ADD_FAVORITE"; payload: SavedPrompt }
   | { type: "REMOVE_FAVORITE"; payload: string }
   | { type: "ADD_TO_HISTORY"; payload: PromptVersion }
@@ -147,7 +158,7 @@ const PromptGeneratorContext = createContext<{
     setGenerator: (generator: "product" | "lifestyle" | "graphic") => void;
     updateSelection: (category: string, option: string) => void;
     setCustomInstructions: (instructions: string) => void;
-    setUploadedFiles: (files: File[]) => void;
+    setUploadedFiles: (files: ProcessedFile[]) => void;
     addFavorite: (prompt: SavedPrompt) => void;
     removeFavorite: (id: string) => void;
     addToHistory: (version: PromptVersion) => void;
@@ -188,7 +199,7 @@ export function PromptGeneratorProvider({
         dispatch({ type: "SET_CUSTOM_INSTRUCTIONS", payload: instructions });
       },
 
-      setUploadedFiles: (files: File[]) => {
+      setUploadedFiles: (files: ProcessedFile[]) => {
         dispatch({ type: "SET_UPLOADED_FILES", payload: files });
       },
 
