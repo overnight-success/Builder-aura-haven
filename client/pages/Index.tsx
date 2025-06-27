@@ -190,11 +190,11 @@ export default function Index() {
                     />
                   </div>
                   <div>
-                    <h1 className="text-3xl font-black text-cream drop-shadow-[3px_3px_0px_#000000] tracking-tight">
+                    <h1 className="text-4xl font-black text-cream drop-shadow-[4px_4px_0px_#000000] tracking-tight leading-none mb-2">
                       AI PROMPT GENERATOR
                     </h1>
-                    <p className="text-sm font-semibold text-black">
-                      Build your perfect Sora prompt formula step by step
+                    <p className="text-lg font-bold text-black tracking-wide">
+                      BUILD YOUR PERFECT SORA PROMPT FORMULA
                     </p>
                   </div>
                 </div>
@@ -206,12 +206,11 @@ export default function Index() {
                 </Badge>
                 <Button
                   onClick={handleReset}
-                  variant="outline"
-                  size="sm"
-                  disabled={selectedCount === 0}
+                  className="btn-shiny-black text-cream font-bold text-base px-6 py-3 h-auto"
+                  disabled={totalComponents === 0}
                 >
-                  <RefreshCw className="h-4 w-4" />
-                  Reset
+                  <RefreshCw className="h-5 w-5 text-neon-orange" />
+                  RESET
                 </Button>
               </div>
             </div>
@@ -219,22 +218,22 @@ export default function Index() {
         </header>
 
         {/* Instructions */}
-        <div className="container mx-auto px-6 py-8">
-          <div className="text-center mb-8">
-            <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-black/80 border border-black text-cream text-sm font-bold tracking-wide">
-              <Target className="h-4 w-4" />
-              Click each category header to expand and select options
-              <ArrowDown className="h-4 w-4 animate-bounce" />
+        <div className="container mx-auto px-8 py-12">
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center gap-4 px-8 py-4 rounded-full btn-shiny-black text-cream text-lg font-black tracking-wider">
+              <Target className="h-6 w-6 text-neon-orange" />
+              CLICK EACH CATEGORY TO EXPAND AND SELECT OPTIONS
+              <ArrowDown className="h-6 w-6 text-neon-orange animate-bounce" />
             </div>
           </div>
         </div>
 
         {/* Main Content */}
-        <main className="container mx-auto px-6 pb-8">
+        <main className="container mx-auto px-8 pb-12">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Categories Flow */}
             <div className="lg:col-span-2">
-              <div className="space-y-8">
+              <div className="space-y-12">
                 {Object.entries(promptCategories).map(
                   ([key, category], index) => (
                     <CollapsiblePromptCategory
@@ -269,22 +268,29 @@ export default function Index() {
                 />
 
                 {/* Final Step Indicator */}
-                <div className="flex justify-center">
+                <div className="flex justify-center mt-16">
                   <div
                     className={cn(
-                      "flex items-center gap-3 px-6 py-3 rounded-full border-2 border-dashed transition-all duration-300",
+                      "flex items-center gap-4 px-8 py-4 rounded-full border-3 border-dashed transition-all duration-300",
                       isComplete
-                        ? "border-black bg-black/20 text-cream font-bold"
-                        : "border-black/40 text-black font-semibold",
+                        ? "btn-shiny-black border-black text-cream font-black text-xl"
+                        : "border-black/50 bg-black/30 text-black font-bold text-lg",
                     )}
                   >
-                    <Target className="h-5 w-5" />
-                    <span className="font-medium">
+                    <Target
+                      className={cn(
+                        "h-6 w-6",
+                        isComplete ? "text-neon-orange" : "",
+                      )}
+                    />
+                    <span>
                       {isComplete
-                        ? "Formula Ready!"
-                        : "Complete 4+ base categories to generate"}
+                        ? "FORMULA READY!"
+                        : "COMPLETE 4+ CATEGORIES TO GENERATE"}
                     </span>
-                    {isComplete && <Sparkles className="h-5 w-5" />}
+                    {isComplete && (
+                      <Sparkles className="h-6 w-6 text-neon-orange" />
+                    )}
                   </div>
                 </div>
               </div>
@@ -304,12 +310,12 @@ export default function Index() {
         </main>
 
         {/* Footer */}
-        <footer className="border-t border-black/20 backdrop-blur-sm bg-black/10 mt-16">
-          <div className="container mx-auto px-6 py-6">
-            <div className="text-center text-sm font-semibold text-black">
+        <footer className="border-t-4 border-black backdrop-blur-sm bg-black/20 mt-24">
+          <div className="container mx-auto px-8 py-8">
+            <div className="text-center text-lg font-black text-black tracking-wider">
               <p>
                 ✨ POWERED BY AI • OPTIMIZED FOR SORA GENERATION • BUILT FOR
-                CREATIVE EXCELLENCE
+                CREATIVE EXCELLENCE ✨
               </p>
             </div>
           </div>
