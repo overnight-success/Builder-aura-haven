@@ -62,22 +62,24 @@ export class PromptEngine {
       if (naturalText) promptParts.push(naturalText);
     });
 
-    // 3. Add basic SORA specifications
+    // 3. Add image reference if available (just names, not data)
+    const processedImages = uploadedFiles.filter(
+      (f) => f.type.startsWith("image/") && f.processingStatus === "complete",
+    );
+    if (processedImages.length > 0) {
+      const imageNames = processedImages.map((f) =>
+        f.name.replace(/\.[^/.]+$/, ""),
+      );
+      promptParts.push(`referencing ${imageNames.join(", ")}`);
+    }
+
+    // 4. Add basic SORA specifications
     promptParts.push(
       "cinematic quality, 4K resolution, professional video production",
     );
 
-    // 4. Create main prompt
-    const mainPrompt = promptParts.join(", ");
-
-    // 5. Add image JSON data if available
-    const imageData = this.getImageJSONData(uploadedFiles);
-    if (imageData.length > 0) {
-      const jsonData = this.createCleanJSONSection(imageData);
-      return `${mainPrompt} ${jsonData}`;
-    }
-
-    return mainPrompt;
+    // Return clean, readable prompt
+    return promptParts.join(", ");
   }
 
   // Convert category selections to natural language
@@ -121,15 +123,7 @@ export class PromptEngine {
     return converter ? converter(value) : value.toLowerCase();
   }
 
-  // Create clean JSON section for SORA
-  private createCleanJSONSection(imageData: any[]): string {
-    const cleanData = imageData.map((img) => ({
-      name: img.name,
-      data: img.data,
-    }));
-
-    return `[REFERENCE_IMAGES:${JSON.stringify(cleanData)}]`;
-  }
+  // Method removed - no longer embedding JSON data in main prompt
 
   // Old method removed - using simpler convertToNaturalLanguage instead
   // Old complex methods removed - using simpler approach
