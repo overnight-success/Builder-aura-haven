@@ -167,30 +167,30 @@ export default function Index() {
   const isComplete = selectedCount >= 4;
 
   return (
-    <div className="min-h-screen" style={{ background: "#ff3120" }}>
+    <div className="min-h-screen bg-neon-orange font-sans">
       <div className="relative z-10">
         {/* Header */}
         <header className="border-b-4 border-black bg-black sticky top-0 z-20">
-          <div className="container mx-auto px-8 py-8">
+          <div className="container mx-auto px-8 py-6">
             <div className="flex items-center justify-between">
               <div className="flex-1 flex justify-center">
                 <img
                   src="https://cdn.builder.io/api/v1/image/assets%2F326314a2e8634f90977b83f81df01501%2Fec00ceaef5524675ba25aca88f5d5cec?format=webp&width=400"
                   alt="Overnight Success"
-                  className="h-16 w-auto"
+                  className="h-14 w-auto"
                 />
               </div>
               <div className="flex items-center gap-4">
-                <Badge className="bg-black border-2 border-neon-orange text-cream font-black text-base px-4 py-2">
-                  <Target className="h-5 w-5 text-neon-orange mr-2" />
+                <Badge className="bg-black border-2 border-neon-orange text-cream font-bold text-sm px-3 py-1.5">
+                  <Target className="h-4 w-4 text-neon-orange mr-1" />
                   {totalComponents}/8
                 </Badge>
                 <Button
                   onClick={handleReset}
-                  className="btn-shiny-black text-cream font-black text-base px-6 py-3 h-auto"
+                  className="btn-shiny-black text-cream font-bold text-sm px-4 py-2 h-auto"
                   disabled={totalComponents === 0}
                 >
-                  <RefreshCw className="h-5 w-5 text-neon-orange mr-2" />
+                  <RefreshCw className="h-4 w-4 text-neon-orange mr-1" />
                   RESET
                 </Button>
               </div>
@@ -202,10 +202,18 @@ export default function Index() {
 
         {/* Main Content */}
         <main className="container mx-auto px-8 py-8">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          {/* Instruction Flow */}
+          <InstructionFlow
+            currentStep={
+              totalComponents > 0 ? Math.min(totalComponents + 1, 5) : 1
+            }
+            totalComponents={totalComponents}
+          />
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Categories Flow */}
             <div className="lg:col-span-2">
-              <div className="space-y-6">
+              <div className="space-y-4">
                 {Object.entries(promptCategories).map(
                   ([key, category], index) => (
                     <CollapsiblePromptCategory

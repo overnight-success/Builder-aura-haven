@@ -49,10 +49,10 @@ export function CollapsiblePromptCategory({
               <div className="flex items-center gap-3">
                 <div
                   className={cn(
-                    "flex items-center justify-center w-10 h-10 rounded-full border-3 transition-all duration-300",
+                    "flex items-center justify-center w-10 h-10 rounded-full border-2 transition-all duration-300",
                     isCompleted
                       ? "bg-neon-orange border-neon-orange text-black"
-                      : "border-cream/50 bg-black text-cream group-hover:border-neon-orange",
+                      : "border-cream bg-black text-cream group-hover:border-neon-orange",
                   )}
                 >
                   {isCompleted ? (
@@ -106,8 +106,8 @@ export function CollapsiblePromptCategory({
                   className={cn(
                     "w-full text-left p-4 rounded-lg border-2 transition-all duration-200 hover:scale-[1.01]",
                     selectedOption === option
-                      ? "bg-neon-orange border-neon-orange text-black font-black shadow-md shadow-neon-orange/20"
-                      : "bg-black border-cream/30 text-cream hover:bg-black hover:border-neon-orange hover:text-neon-orange font-bold",
+                      ? "bg-neon-orange border-neon-orange text-black font-black shadow-md"
+                      : "bg-black border-cream text-cream hover:bg-black hover:border-neon-orange hover:text-neon-orange font-bold",
                   )}
                 >
                   <div className="flex items-center justify-between">
