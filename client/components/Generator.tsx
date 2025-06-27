@@ -154,12 +154,22 @@ export function Generator({ type }: GeneratorProps) {
     // Could integrate with external services here
   }, [type, state.selections]);
 
-  // Memoized current step calculation
+  // Memoized current step calculation based on new flow
   const currentStep = useMemo(() => {
-    return computed.totalComponents > 0
-      ? Math.min(computed.totalComponents + 1, 8)
-      : 1;
-  }, [computed.totalComponents]);
+    let step = 1; // Always start at step 1 (Custom Instructions)
+
+    if (computed.hasCustomInstructions) step = 2; // Move to categories
+    if (computed.selectedCount > 0) step = 3; // Move to file upload
+    if (computed.hasFiles) step = 4; // Move to quality review
+    if (computed.isComplete) step = 5; // Ready to copy
+
+    return step;
+  }, [
+    computed.hasCustomInstructions,
+    computed.selectedCount,
+    computed.hasFiles,
+    computed.isComplete,
+  ]);
 
   // Generate smart suggestions based on current selections
   const smartSuggestions = useMemo(() => {
