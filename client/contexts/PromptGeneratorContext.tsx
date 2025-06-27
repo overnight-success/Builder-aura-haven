@@ -184,70 +184,93 @@ export function PromptGeneratorProvider({
 }) {
   const [state, dispatch] = useReducer(promptReducer, initialState);
 
-  // Memoized actions
+  // Memoized actions - using useCallback for individual actions to avoid recreating the entire object
+  const setGenerator = useCallback(
+    (generator: "product" | "lifestyle" | "graphic") => {
+      dispatch({ type: "SET_GENERATOR", payload: generator });
+    },
+    [],
+  );
+
+  const updateSelection = useCallback((category: string, option: string) => {
+    dispatch({ type: "UPDATE_SELECTION", payload: { category, option } });
+  }, []);
+
+  const setCustomInstructions = useCallback((instructions: string) => {
+    dispatch({ type: "SET_CUSTOM_INSTRUCTIONS", payload: instructions });
+  }, []);
+
+  const setUploadedFiles = useCallback((files: ProcessedFile[]) => {
+    dispatch({ type: "SET_UPLOADED_FILES", payload: files });
+  }, []);
+
+  const addFavorite = useCallback((prompt: SavedPrompt) => {
+    dispatch({ type: "ADD_FAVORITE", payload: prompt });
+  }, []);
+
+  const removeFavorite = useCallback((id: string) => {
+    dispatch({ type: "REMOVE_FAVORITE", payload: id });
+  }, []);
+
+  const addToHistory = useCallback((version: PromptVersion) => {
+    dispatch({ type: "ADD_TO_HISTORY", payload: version });
+  }, []);
+
+  const resetAll = useCallback(() => {
+    dispatch({ type: "RESET_ALL" });
+  }, []);
+
+  const saveState = useCallback(() => {
+    try {
+      const stateToSave = {
+        favorites: state.favorites,
+        history: state.history,
+        lastSaved: Date.now(),
+      };
+      localStorage.setItem("promptGeneratorState", JSON.stringify(stateToSave));
+    } catch (error) {
+      console.error("Failed to save state:", error);
+    }
+  }, [state.favorites, state.history]);
+
+  const loadState = useCallback(() => {
+    try {
+      const saved = localStorage.getItem("promptGeneratorState");
+      if (saved) {
+        const parsedState = JSON.parse(saved);
+        dispatch({ type: "LOAD_STATE", payload: parsedState });
+      }
+    } catch (error) {
+      console.error("Failed to load state:", error);
+    }
+  }, []);
+
+  // Actions object that remains stable
   const actions = useMemo(
     () => ({
-      setGenerator: (generator: "product" | "lifestyle" | "graphic") => {
-        dispatch({ type: "SET_GENERATOR", payload: generator });
-      },
-
-      updateSelection: (category: string, option: string) => {
-        dispatch({ type: "UPDATE_SELECTION", payload: { category, option } });
-      },
-
-      setCustomInstructions: (instructions: string) => {
-        dispatch({ type: "SET_CUSTOM_INSTRUCTIONS", payload: instructions });
-      },
-
-      setUploadedFiles: (files: ProcessedFile[]) => {
-        dispatch({ type: "SET_UPLOADED_FILES", payload: files });
-      },
-
-      addFavorite: (prompt: SavedPrompt) => {
-        dispatch({ type: "ADD_FAVORITE", payload: prompt });
-      },
-
-      removeFavorite: (id: string) => {
-        dispatch({ type: "REMOVE_FAVORITE", payload: id });
-      },
-
-      addToHistory: (version: PromptVersion) => {
-        dispatch({ type: "ADD_TO_HISTORY", payload: version });
-      },
-
-      resetAll: () => {
-        dispatch({ type: "RESET_ALL" });
-      },
-
-      saveState: () => {
-        try {
-          const stateToSave = {
-            favorites: state.favorites,
-            history: state.history,
-            lastSaved: Date.now(),
-          };
-          localStorage.setItem(
-            "promptGeneratorState",
-            JSON.stringify(stateToSave),
-          );
-        } catch (error) {
-          console.error("Failed to save state:", error);
-        }
-      },
-
-      loadState: () => {
-        try {
-          const saved = localStorage.getItem("promptGeneratorState");
-          if (saved) {
-            const parsedState = JSON.parse(saved);
-            dispatch({ type: "LOAD_STATE", payload: parsedState });
-          }
-        } catch (error) {
-          console.error("Failed to load state:", error);
-        }
-      },
+      setGenerator,
+      updateSelection,
+      setCustomInstructions,
+      setUploadedFiles,
+      addFavorite,
+      removeFavorite,
+      addToHistory,
+      resetAll,
+      saveState,
+      loadState,
     }),
-    [state.favorites, state.history],
+    [
+      setGenerator,
+      updateSelection,
+      setCustomInstructions,
+      setUploadedFiles,
+      addFavorite,
+      removeFavorite,
+      addToHistory,
+      resetAll,
+      saveState,
+      loadState,
+    ],
   );
 
   // Memoized computed values
