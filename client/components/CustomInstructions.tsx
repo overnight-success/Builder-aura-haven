@@ -101,7 +101,7 @@ export function CustomInstructions({
           <CardContent className="pt-0 space-y-4">
             <div className="space-y-2">
               <label className="text-sm font-medium text-foreground">
-                Additional Instructions
+                Your Creative Vision & Requirements
               </label>
               <Textarea
                 placeholder="Start with your specific instructions, creative vision, or requirements that will guide the AI generation..."
