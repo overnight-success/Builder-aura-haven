@@ -10,12 +10,23 @@ import {
   Image,
   Video,
   ChevronRight,
+  Loader2,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
+export interface ProcessedFile {
+  id: string;
+  name: string;
+  size: number;
+  type: string;
+  originalFile: File;
+  jsonData?: string; // Base64 encoded JSON for images
+  processingStatus: "pending" | "processing" | "complete" | "error";
+}
+
 interface FileUploadProps {
-  files: File[];
-  onFilesChange: (files: File[]) => void;
+  files: ProcessedFile[];
+  onFilesChange: (files: ProcessedFile[]) => void;
   stepNumber: number;
   isCompleted: boolean;
 }
@@ -28,7 +39,80 @@ export function FileUpload({
 }: FileUploadProps) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isDragOver, setIsDragOver] = useState(false);
+  const [isProcessing, setIsProcessing] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  // Convert image file to base64 JSON format
+  const processImageToJSON = async (file: File): Promise<string> => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => {
+        try {
+          const base64 = reader.result as string;
+          const imageData = {
+            name: file.name.replace(/\.[^/.]+$/, ""), // Remove extension
+            type: file.type,
+            size: file.size,
+            data: base64,
+            metadata: {
+              lastModified: file.lastModified,
+              uploadTimestamp: Date.now(),
+              optimizedForSora: true,
+            },
+          };
+          resolve(JSON.stringify(imageData));
+        } catch (error) {
+          reject(error);
+        }
+      };
+      reader.onerror = () => reject(new Error("Failed to read file"));
+      reader.readAsDataURL(file);
+    });
+  };
+
+  // Process a single file
+  const processSingleFile = async (file: File): Promise<ProcessedFile> => {
+    const processedFile: ProcessedFile = {
+      id: `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+      name: file.name,
+      size: file.size,
+      type: file.type,
+      originalFile: file,
+      processingStatus: "pending",
+    };
+
+    // Start processing for images
+    if (file.type.startsWith("image/")) {
+      processedFile.processingStatus = "processing";
+      try {
+        processedFile.jsonData = await processImageToJSON(file);
+        processedFile.processingStatus = "complete";
+      } catch (error) {
+        console.error("Failed to process image:", error);
+        processedFile.processingStatus = "error";
+      }
+    } else {
+      // For videos, mark as complete without JSON processing
+      processedFile.processingStatus = "complete";
+    }
+
+    return processedFile;
+  };
+
+  // Process multiple files
+  const processFiles = async (newFiles: File[]) => {
+    setIsProcessing(true);
+    try {
+      const processedNewFiles = await Promise.all(
+        newFiles.map(processSingleFile),
+      );
+      onFilesChange([...files, ...processedNewFiles]);
+    } catch (error) {
+      console.error("Failed to process files:", error);
+    } finally {
+      setIsProcessing(false);
+    }
+  };
 
   const handleDragOver = (e: React.DragEvent) => {
     e.preventDefault();
@@ -50,7 +134,7 @@ export function FileUpload({
     );
 
     if (droppedFiles.length > 0) {
-      onFilesChange([...files, ...droppedFiles]);
+      processFiles(droppedFiles);
     }
   };
 
@@ -61,7 +145,7 @@ export function FileUpload({
     );
 
     if (selectedFiles.length > 0) {
-      onFilesChange([...files, ...selectedFiles]);
+      processFiles(selectedFiles);
     }
   };
 
@@ -70,14 +154,37 @@ export function FileUpload({
     onFilesChange(newFiles);
   };
 
-  const getFileIcon = (file: File) => {
+  const getFileIcon = (file: ProcessedFile) => {
+    if (file.processingStatus === "processing") {
+      return <Loader2 className="h-4 w-4 animate-spin text-neon-orange" />;
+    }
     if (file.type.startsWith("image/")) {
-      return <Image className="h-4 w-4" />;
+      return (
+        <div className="relative">
+          <Image className="h-4 w-4" />
+          {file.jsonData && (
+            <div className="absolute -top-1 -right-1 w-2 h-2 bg-green-500 rounded-full" />
+          )}
+        </div>
+      );
     }
     if (file.type.startsWith("video/")) {
       return <Video className="h-4 w-4" />;
     }
     return <File className="h-4 w-4" />;
+  };
+
+  const getProcessingStatus = (file: ProcessedFile) => {
+    switch (file.processingStatus) {
+      case "processing":
+        return "Converting to JSON...";
+      case "complete":
+        return file.jsonData ? "JSON Ready for SORA" : "Ready";
+      case "error":
+        return "Processing Failed";
+      default:
+        return "Pending";
+    }
   };
 
   const formatFileSize = (bytes: number) => {
@@ -160,20 +267,37 @@ export function FileUpload({
               onDragLeave={handleDragLeave}
               onDrop={handleDrop}
               className={cn(
-                "border-2 border-dashed rounded-lg p-6 text-center transition-all duration-300 cursor-pointer",
-                isDragOver
-                  ? "border-primary bg-primary/5"
-                  : "border-border/30 hover:border-border/50 hover:bg-muted/20",
+                "border-2 border-dashed rounded-lg p-6 text-center transition-all duration-300",
+                isProcessing
+                  ? "border-neon-orange bg-neon-orange/5 cursor-wait"
+                  : isDragOver
+                    ? "border-primary bg-primary/5 cursor-pointer"
+                    : "border-border/30 hover:border-border/50 hover:bg-muted/20 cursor-pointer",
               )}
-              onClick={() => fileInputRef.current?.click()}
+              onClick={() => !isProcessing && fileInputRef.current?.click()}
             >
-              <Upload className="h-8 w-8 mx-auto mb-2 text-muted-foreground" />
-              <p className="text-sm font-medium text-foreground mb-1">
-                Upload reference images or videos
-              </p>
-              <p className="text-xs text-muted-foreground">
-                Drag & drop or click to browse • Images & Videos only
-              </p>
+              {isProcessing ? (
+                <>
+                  <Loader2 className="h-8 w-8 mx-auto mb-2 text-neon-orange animate-spin" />
+                  <p className="text-sm font-medium text-neon-orange mb-1">
+                    Converting images to JSON for SORA...
+                  </p>
+                  <p className="text-xs text-muted-foreground">
+                    Please wait while we optimize your files
+                  </p>
+                </>
+              ) : (
+                <>
+                  <Upload className="h-8 w-8 mx-auto mb-2 text-muted-foreground" />
+                  <p className="text-sm font-medium text-foreground mb-1">
+                    Upload reference images or videos
+                  </p>
+                  <p className="text-xs text-muted-foreground">
+                    Images will be converted to JSON • Drag & drop or click to
+                    browse
+                  </p>
+                </>
+              )}
               <input
                 ref={fileInputRef}
                 type="file"
@@ -181,6 +305,7 @@ export function FileUpload({
                 accept="image/*,video/*"
                 onChange={handleFileSelect}
                 className="hidden"
+                disabled={isProcessing}
               />
             </div>
 
@@ -189,8 +314,15 @@ export function FileUpload({
               <div className="space-y-2 max-h-40 overflow-y-auto">
                 {files.map((file, index) => (
                   <div
-                    key={index}
-                    className="flex items-center justify-between p-2 rounded-md bg-muted/30 border border-border/30"
+                    key={file.id}
+                    className={cn(
+                      "flex items-center justify-between p-2 rounded-md border transition-all duration-200",
+                      file.processingStatus === "complete" && file.jsonData
+                        ? "bg-green-500/10 border-green-500/30"
+                        : file.processingStatus === "error"
+                          ? "bg-red-500/10 border-red-500/30"
+                          : "bg-muted/30 border-border/30",
+                    )}
                   >
                     <div className="flex items-center gap-2 flex-1 min-w-0">
                       {getFileIcon(file)}
@@ -198,9 +330,24 @@ export function FileUpload({
                         <p className="text-sm font-medium truncate">
                           {file.name}
                         </p>
-                        <p className="text-xs text-muted-foreground">
-                          {formatFileSize(file.size)}
-                        </p>
+                        <div className="flex items-center justify-between">
+                          <p className="text-xs text-muted-foreground">
+                            {formatFileSize(file.size)}
+                          </p>
+                          <p
+                            className={cn(
+                              "text-xs font-medium",
+                              file.processingStatus === "complete" &&
+                                file.jsonData
+                                ? "text-green-400"
+                                : file.processingStatus === "error"
+                                  ? "text-red-400"
+                                  : "text-neon-orange",
+                            )}
+                          >
+                            {getProcessingStatus(file)}
+                          </p>
+                        </div>
                       </div>
                     </div>
                     <Button
@@ -208,6 +355,7 @@ export function FileUpload({
                       variant="ghost"
                       size="sm"
                       className="h-6 w-6 p-0 hover:bg-destructive/20 hover:text-destructive"
+                      disabled={file.processingStatus === "processing"}
                     >
                       <X className="h-3 w-3" />
                     </Button>
@@ -216,9 +364,12 @@ export function FileUpload({
               </div>
             )}
 
-            <div className="text-xs text-muted-foreground">
-              <p>💡 Reference files help AI understand your vision better</p>
+            <div className="text-xs text-muted-foreground space-y-1">
+              <p>
+                💡 Images are automatically converted to JSON format for SORA AI
+              </p>
               <p>🎯 Supported: JPG, PNG, GIF, MP4, MOV, WebM</p>
+              <p>⚡ JSON data is embedded directly in your prompt formula</p>
             </div>
           </CardContent>
         )}
