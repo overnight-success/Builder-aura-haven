@@ -44,6 +44,13 @@ export class PromptEngine {
     customInstructions: string = "",
     uploadedFiles: ProcessedFile[] = [],
   ): string {
+    console.log("DEBUG generateFormula called with:", {
+      generatorType,
+      selections,
+      customInstructions,
+      uploadedFiles,
+    });
+
     try {
       const parts: string[] = [];
 
