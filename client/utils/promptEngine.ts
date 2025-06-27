@@ -44,68 +44,82 @@ export class PromptEngine {
     customInstructions: string = "",
     uploadedFiles: ProcessedFile[] = [],
   ): string {
-    // Build the main SORA prompt (clean, natural language)
-    const mainPrompt = this.buildMainPrompt(
-      generatorType,
-      selections,
-      customInstructions,
-    );
+    const promptParts: string[] = [];
 
-    // Add image references if available (separate from main prompt)
-    const imageReferences = this.buildImageReferences(uploadedFiles);
+    // 1. Start with custom instructions if provided
+    if (customInstructions.trim()) {
+      promptParts.push(customInstructions.trim());
+    }
 
-    // Get JSON data for SORA processing
+    // 2. Add category selections in natural language
+    const categories = Object.entries(selections).filter(([_, value]) => value);
+    categories.forEach(([category, value]) => {
+      const naturalText = this.convertToNaturalLanguage(generatorType, category, value);
+      if (naturalText) promptParts.push(naturalText);
+    });
+
+    // 3. Add basic SORA specifications
+    promptParts.push("cinematic quality, 4K resolution, professional video production");
+
+    // 4. Create main prompt
+    const mainPrompt = promptParts.join(", ");
+
+    // 5. Add image JSON data if available
     const imageData = this.getImageJSONData(uploadedFiles);
-
-    // If we have image data, include JSON, otherwise use basic formatting
     if (imageData.length > 0) {
-      return this.formatCompleteSORAPrompt(
-        mainPrompt,
-        imageData,
-        generatorType,
-      );
+      const jsonData = this.createCleanJSONSection(imageData);
+      return `${mainPrompt} ${jsonData}`;
+    }
+
+    return mainPrompt;
+  }
     } else {
       return this.formatForSORA(mainPrompt, imageReferences, generatorType);
     }
   }
 
-  // Build clean, natural language main prompt
-  private buildMainPrompt(
-    generatorType: string,
-    selections: Record<string, string>,
-    customInstructions: string,
-  ): string {
-    const parts: string[] = [];
-
-    // Start with custom vision (if provided)
-    if (customInstructions.trim()) {
-      const cleanInstructions = customInstructions.trim();
-      parts.push(cleanInstructions);
-    }
-
-    // Add generator-specific base description
-    const baseDescriptions = {
-      product: "Professional product showcase",
-      lifestyle: "Authentic lifestyle scene",
-      graphic: "Modern graphic design composition",
+  // Convert category selections to natural language
+  private convertToNaturalLanguage(generatorType: string, category: string, value: string): string {
+    const conversions: Record<string, Record<string, (val: string) => string>> = {
+      product: {
+        style: (val) => `styled as ${val.toLowerCase()}`,
+        background: (val) => `with ${val.toLowerCase()} background`,
+        lighting: (val) => `using ${val.toLowerCase()}`,
+        angle: (val) => `shot from ${val.toLowerCase()}`,
+        mood: (val) => `${val.toLowerCase()} aesthetic`,
+        enhancement: (val) => `enhanced with ${val.toLowerCase()}`
+      },
+      lifestyle: {
+        scene: (val) => `${val.toLowerCase()} scene`,
+        people: (val) => `featuring ${val.toLowerCase()}`,
+        environment: (val) => `in ${val.toLowerCase()}`,
+        mood: (val) => `${val.toLowerCase()} mood`,
+        lighting: (val) => `${val.toLowerCase()} lighting`,
+        style: (val) => `${val.toLowerCase()} style`
+      },
+      graphic: {
+        style: (val) => `${val.toLowerCase()} design`,
+        layout: (val) => `${val.toLowerCase()} layout`,
+        color: (val) => `${val.toLowerCase()} colors`,
+        typography: (val) => `${val.toLowerCase()} typography`,
+        elements: (val) => `with ${val.toLowerCase()}`,
+        purpose: (val) => `for ${val.toLowerCase()}`
+      }
     };
 
-    if (!customInstructions.trim()) {
-      parts.push(
-        baseDescriptions[generatorType as keyof typeof baseDescriptions],
-      );
-    }
+    const typeConversions = conversions[generatorType];
+    const converter = typeConversions?.[category];
+    return converter ? converter(value) : value.toLowerCase();
+  }
 
-    // Process selections into natural language
-    const processedSelections = this.processSelectionsForSORA(
-      generatorType,
-      selections,
-    );
-    if (processedSelections.length > 0) {
-      parts.push(...processedSelections);
-    }
+  // Create clean JSON section for SORA
+  private createCleanJSONSection(imageData: any[]): string {
+    const cleanData = imageData.map(img => ({
+      name: img.name,
+      data: img.data
+    }));
 
-    return parts.join(", ");
+    return `[REFERENCE_IMAGES:${JSON.stringify(cleanData)}]`;
   }
 
   // Process selections into SORA-friendly natural language
