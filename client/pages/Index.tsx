@@ -12,7 +12,7 @@ function AppContent() {
   // Load saved state on mount
   useEffect(() => {
     actions.loadState();
-  }, [actions]);
+  }, [actions.loadState]);
 
   // Auto-save state changes (debounced)
   useEffect(() => {
