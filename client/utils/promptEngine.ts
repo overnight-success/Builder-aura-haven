@@ -132,76 +132,7 @@ export class PromptEngine {
   }
 
   // Old method removed - using simpler convertToNaturalLanguage instead
-  // Build clean image references for SORA
-  private buildImageReferences(files: ProcessedFile[]): string {
-    const processedImages = files.filter(
-      (f) =>
-        f.type.startsWith("image/") &&
-        f.jsonData &&
-        f.processingStatus === "complete",
-    );
-
-    if (processedImages.length === 0) return "";
-
-    const imageNames = processedImages.map((f) =>
-      f.name.replace(/\.[^/.]+$/, ""),
-    );
-    return `using reference image${processedImages.length > 1 ? "s" : ""}: ${imageNames.join(", ")}`;
-  }
-
-  // Format final prompt for SORA with proper structure
-  private formatForSORA(
-    mainPrompt: string,
-    imageReferences: string,
-    generatorType: string,
-  ): string {
-    const parts: string[] = [mainPrompt];
-
-    // Add image references if available
-    if (imageReferences) {
-      parts.push(imageReferences);
-    }
-
-    // Add SORA-specific technical requirements
-    const soraSpecs = this.getSORASpecs(generatorType);
-    parts.push(soraSpecs);
-
-    return parts.join(", ");
-  }
-
-  // Format complete SORA prompt with JSON data
-  private formatCompleteSORAPrompt(
-    mainPrompt: string,
-    imageData: any[],
-    generatorType: string,
-  ): string {
-    const parts: string[] = [mainPrompt];
-
-    // Add JSON data if images are available
-    if (imageData.length > 0) {
-      const jsonSection = this.formatJSONForSORA(imageData);
-      parts.push(jsonSection);
-    }
-
-    return parts.join(" ");
-  }
-
-  // Format JSON data in SORA-friendly structure
-  private formatJSONForSORA(imageData: any[]): string {
-    const soraData = {
-      type: "SORA_REFERENCE_DATA",
-      images: imageData.map((img) => ({
-        name: img.name,
-        format: img.type,
-        data: img.data,
-        sora_optimized: true,
-      })),
-      instruction:
-        "Process these reference images alongside the text prompt for enhanced visual generation",
-    };
-
-    return `[SORA_DATA:${JSON.stringify(soraData)}]`;
-  }
+  // Old complex methods removed - using simpler approach
 
   // Get SORA-specific technical specifications
   private getSORASpecs(generatorType: string): string {
