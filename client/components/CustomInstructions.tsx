@@ -33,7 +33,7 @@ export function CustomInstructions({
     <div className="relative">
       <Card
         className={cn(
-          "backdrop-blur-sm bg-card/50 border-border/50 transition-all duration-300",
+          "bg-black border-2 transition-all duration-300",
           isCompleted
             ? "border-primary/50 shadow-lg shadow-primary/10"
             : "hover:border-border/70",

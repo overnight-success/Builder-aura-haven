@@ -34,8 +34,8 @@ export function CollapsiblePromptCategory({
         className={cn(
           "bg-black border-2 transition-all duration-300",
           isCompleted
-            ? "border-neon-orange shadow-lg shadow-neon-orange/20"
-            : "border-black hover:border-cream/50",
+            ? "border-neon-orange shadow-lg"
+            : "border-cream hover:border-neon-orange",
           isExpanded && "border-neon-orange",
         )}
       >

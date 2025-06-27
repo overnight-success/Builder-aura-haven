@@ -185,7 +185,7 @@ export function PromptFormulaPreview({
   };
 
   return (
-    <Card className="backdrop-blur-sm bg-black/80 border-black/50 sticky top-6">
+    <Card className="bg-black border-2 border-cream sticky top-6">
       <CardHeader className="pb-4">
         <CardTitle className="flex items-center justify-between">
           <div className="flex items-center gap-4">
@@ -214,8 +214,8 @@ export function PromptFormulaPreview({
             className={cn(
               "p-6 rounded-lg border-2 min-h-32 transition-all duration-300",
               isComplete
-                ? "bg-black/60 border-neon-orange"
-                : "bg-black/40 border-black/60",
+                ? "bg-black border-neon-orange"
+                : "bg-black border-cream",
             )}
           >
             <p
@@ -249,7 +249,7 @@ export function PromptFormulaPreview({
               {suggestedTweaks.map((tweak, index) => (
                 <div
                   key={index}
-                  className="text-sm font-semibold p-4 rounded-lg bg-black/50 border-2 border-black/80 text-cream"
+                  className="text-sm font-semibold p-4 rounded-lg bg-black border-2 border-cream text-cream"
                 >
                   {tweak}
                 </div>

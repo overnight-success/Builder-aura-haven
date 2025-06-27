@@ -3,6 +3,7 @@ import { CollapsiblePromptCategory } from "../components/CollapsiblePromptCatego
 import { PromptFormulaPreview } from "../components/PromptFormulaPreview";
 import { CustomInstructions } from "../components/CustomInstructions";
 import { FileUpload } from "../components/FileUpload";
+import { InstructionFlow } from "../components/InstructionFlow";
 import { Button } from "../components/ui/button";
 import { Badge } from "../components/ui/badge";
 import { cn } from "../lib/utils";
@@ -15,7 +16,6 @@ import {
   Heart,
   Layers3,
   RefreshCw,
-  ArrowDown,
   Target,
 } from "lucide-react";
 
@@ -168,13 +168,6 @@ export default function Index() {
 
   return (
     <div className="min-h-screen" style={{ background: "#ff3120" }}>
-      {/* Background Effects */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 left-20 w-72 h-72 bg-black/10 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-20 right-20 w-96 h-96 bg-black/5 rounded-full blur-3xl animate-pulse delay-1000" />
-        <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-black/8 rounded-full blur-3xl animate-pulse delay-500" />
-      </div>
-
       <div className="relative z-10">
         {/* Header */}
         <header className="border-b-4 border-black bg-black sticky top-0 z-20">
@@ -247,29 +240,15 @@ export default function Index() {
                 />
 
                 {/* Final Step Indicator */}
-                <div className="flex justify-center mt-8">
-                  <div
-                    className={cn(
-                      "flex items-center gap-4 px-8 py-4 rounded-full border-4 border-dashed transition-all duration-300",
-                      isComplete
-                        ? "bg-black border-neon-orange text-cream font-black text-xl"
-                        : "bg-black border-cream/50 text-cream font-bold text-lg",
-                    )}
-                  >
-                    <Target
-                      className={cn(
-                        "h-6 w-6",
-                        isComplete ? "text-neon-orange" : "text-cream",
-                      )}
-                    />
-                    <span>
-                      {isComplete ? "FORMULA READY!" : "COMPLETE 4+ CATEGORIES"}
-                    </span>
-                    {isComplete && (
-                      <Sparkles className="h-6 w-6 text-neon-orange" />
-                    )}
+                {totalComponents >= 4 && (
+                  <div className="flex justify-center mt-6">
+                    <div className="flex items-center gap-3 px-6 py-3 rounded-lg bg-black border-2 border-neon-orange text-cream font-bold text-lg">
+                      <Sparkles className="h-5 w-5 text-neon-orange" />
+                      <span>FORMULA READY TO COPY!</span>
+                      <Sparkles className="h-5 w-5 text-neon-orange" />
+                    </div>
                   </div>
-                </div>
+                )}
               </div>
             </div>
 
@@ -287,12 +266,12 @@ export default function Index() {
         </main>
 
         {/* Footer */}
-        <footer className="border-t-4 border-black bg-black mt-16">
-          <div className="container mx-auto px-8 py-6">
-            <div className="text-center text-base font-black text-cream tracking-wide">
+        <footer className="border-t-2 border-black bg-black mt-12">
+          <div className="container mx-auto px-8 py-4">
+            <div className="text-center text-sm font-medium text-cream">
               <p>
-                ✨ POWERED BY AI • OPTIMIZED FOR SORA • BUILT FOR CREATIVE
-                EXCELLENCE ✨
+                POWERED BY AI • OPTIMIZED FOR SORA • BUILT FOR CREATIVE
+                EXCELLENCE
               </p>
             </div>
           </div>
