@@ -1,20 +1,20 @@
 import React, { useState } from "react";
-import { PromptCategory } from "../components/PromptCategory";
-import { PromptPreview } from "../components/PromptPreview";
+import { CollapsiblePromptCategory } from "../components/CollapsiblePromptCategory";
+import { PromptFormulaPreview } from "../components/PromptFormulaPreview";
 import { Button } from "../components/ui/button";
 import { Badge } from "../components/ui/badge";
 import { cn } from "../lib/utils";
 import {
   Camera,
   Palette,
-  Clock,
-  Cloud,
-  Heart,
-  Volume2,
-  Clapperboard,
-  Sparkles,
   Zap,
+  Sparkles,
+  MapPin,
+  Heart,
+  Layers3,
   RefreshCw,
+  ArrowDown,
+  Target,
 } from "lucide-react";
 
 const promptCategories = {
@@ -76,24 +76,9 @@ const promptCategories = {
       "arctic blue tone",
     ],
   },
-  enhancers: {
-    title: "Enhancers",
-    icon: <Sparkles className="h-5 w-5" />,
-    options: [
-      "Shift texture layer: Velvet → Glass → Chrome → Plastic",
-      "Change lighting mood: Golden hour → Neon glow → Paparazzi",
-      "Apply time-based logic: Day → Night → Rainy → Overcast",
-      "Swap camera angle: Top-down → Orbit → Over-the-shoulder",
-      "floating dust particles",
-      "lens flare streak",
-      "reflections on lens",
-      "rain droplets on lens",
-      "reflective shine",
-    ],
-  },
   locations: {
     title: "Locations",
-    icon: <Clapperboard className="h-5 w-5" />,
+    icon: <MapPin className="h-5 w-5" />,
     options: [
       "foggy Tokyo street",
       "marble-floored Parisian hallway",
@@ -128,6 +113,21 @@ const promptCategories = {
       "Gucci in a cyber slum",
     ],
   },
+  enhancers: {
+    title: "Enhancers",
+    icon: <Layers3 className="h-5 w-5" />,
+    options: [
+      "Shift texture layer: Velvet → Glass → Chrome → Plastic",
+      "Change lighting mood: Golden hour → Neon glow → Paparazzi",
+      "Apply time-based logic: Day → Night → Rainy → Overcast",
+      "Swap camera angle: Top-down → Orbit → Over-the-shoulder",
+      "floating dust particles",
+      "lens flare streak",
+      "reflections on lens",
+      "rain droplets on lens",
+      "reflective shine",
+    ],
+  },
 };
 
 export default function Index() {
@@ -144,9 +144,9 @@ export default function Index() {
     await navigator.clipboard.writeText(text);
   };
 
-  const handleGenerate = () => {
-    // Future: Could integrate with Sora API or download functionality
-    console.log("Generate/Export prompt:", selections);
+  const handleExport = () => {
+    console.log("Export prompt for Sora:", selections);
+    // Future: Could open Sora platform or download file
   };
 
   const handleReset = () => {
@@ -154,7 +154,7 @@ export default function Index() {
   };
 
   const selectedCount = Object.values(selections).filter(Boolean).length;
-  const isComplete = selectedCount >= 3;
+  const isComplete = selectedCount >= 4;
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-midnight">
@@ -180,14 +180,14 @@ export default function Index() {
                       Sora AI Prompt Generator
                     </h1>
                     <p className="text-sm text-muted-foreground">
-                      Create perfect prompts for AI video generation
+                      Build your perfect prompt formula step by step
                     </p>
                   </div>
                 </div>
               </div>
               <div className="flex items-center gap-4">
                 <Badge variant="secondary" className="text-sm">
-                  <Zap className="h-4 w-4 mr-1" />
+                  <Target className="h-4 w-4 mr-1" />
                   {selectedCount}/6 Categories
                 </Badge>
                 <Button
@@ -204,31 +204,69 @@ export default function Index() {
           </div>
         </header>
 
+        {/* Instructions */}
+        <div className="container mx-auto px-6 py-8">
+          <div className="text-center mb-8">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium">
+              <Target className="h-4 w-4" />
+              Click each category header to expand and select options
+              <ArrowDown className="h-4 w-4 animate-bounce" />
+            </div>
+          </div>
+        </div>
+
         {/* Main Content */}
-        <main className="container mx-auto px-6 py-8">
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
-            {/* Categories Grid */}
-            <div className="lg:col-span-3">
-              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-                {Object.entries(promptCategories).map(([key, category]) => (
-                  <PromptCategory
-                    key={key}
-                    title={category.title}
-                    icon={category.icon}
-                    options={category.options}
-                    selectedOption={selections[key]}
-                    onSelect={(option) => handleCategorySelect(key, option)}
-                  />
-                ))}
+        <main className="container mx-auto px-6 pb-8">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {/* Categories Flow */}
+            <div className="lg:col-span-2">
+              <div className="space-y-8">
+                {Object.entries(promptCategories).map(
+                  ([key, category], index) => (
+                    <CollapsiblePromptCategory
+                      key={key}
+                      title={category.title}
+                      icon={category.icon}
+                      options={category.options}
+                      selectedOption={selections[key]}
+                      onSelect={(option) => handleCategorySelect(key, option)}
+                      stepNumber={index + 1}
+                      isCompleted={!!selections[key]}
+                      showFlow={
+                        index < Object.keys(promptCategories).length - 1
+                      }
+                    />
+                  ),
+                )}
+
+                {/* Final Step Indicator */}
+                <div className="flex justify-center">
+                  <div
+                    className={cn(
+                      "flex items-center gap-3 px-6 py-3 rounded-full border-2 border-dashed transition-all duration-300",
+                      isComplete
+                        ? "border-primary bg-primary/5 text-primary"
+                        : "border-border/30 text-muted-foreground",
+                    )}
+                  >
+                    <Target className="h-5 w-5" />
+                    <span className="font-medium">
+                      {isComplete
+                        ? "Formula Ready!"
+                        : "Complete 4+ categories to generate"}
+                    </span>
+                    {isComplete && <Sparkles className="h-5 w-5" />}
+                  </div>
+                </div>
               </div>
             </div>
 
-            {/* Prompt Preview */}
+            {/* Formula Preview */}
             <div className="lg:col-span-1">
-              <PromptPreview
+              <PromptFormulaPreview
                 selections={selections}
                 onCopy={handleCopy}
-                onGenerate={handleGenerate}
+                onExport={handleExport}
               />
             </div>
           </div>
@@ -238,7 +276,10 @@ export default function Index() {
         <footer className="border-t border-border/50 backdrop-blur-sm bg-background/80 mt-16">
           <div className="container mx-auto px-6 py-6">
             <div className="text-center text-sm text-muted-foreground">
-              <p>Powered by AI • Built for Creative Excellence</p>
+              <p>
+                ✨ Powered by AI • Optimized for Sora Generation • Built for
+                Creative Excellence
+              </p>
             </div>
           </div>
         </footer>
