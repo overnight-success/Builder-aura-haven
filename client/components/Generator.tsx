@@ -284,22 +284,24 @@ export function Generator({ type }: GeneratorProps) {
               isCompleted={computed.hasFiles}
             />
 
-            {/* Completion Indicator with Quality Analysis */}
+            {/* Completion Indicator with Quality Analysis - Mobile Optimized */}
             {computed.isComplete && (
-              <div className="flex items-center justify-center gap-6 mt-6">
-                <div className="flex items-center gap-3 px-6 py-3 rounded-lg bg-black border-2 border-neon-orange text-cream font-bold text-lg animate-pulse">
-                  <Sparkles className="h-5 w-5 text-neon-orange" />
-                  <span>FORMULA READY TO COPY!</span>
-                  <TrendingUp className="h-5 w-5 text-neon-orange" />
+              <div className="flex flex-col lg:flex-row items-center justify-center gap-4 lg:gap-6 mt-6">
+                <div className="flex items-center gap-2 lg:gap-3 px-4 lg:px-6 py-2 lg:py-3 rounded-lg bg-black border-2 border-neon-orange text-cream font-bold text-sm lg:text-lg animate-pulse w-full lg:w-auto justify-center">
+                  <Sparkles className="h-4 w-4 lg:h-5 lg:w-5 text-neon-orange shrink-0" />
+                  <span className="text-center">FORMULA READY TO COPY!</span>
+                  <TrendingUp className="h-4 w-4 lg:h-5 lg:w-5 text-neon-orange shrink-0" />
                 </div>
                 {promptAnalysis && (
-                  <PromptQualityIndicator
-                    quality={promptAnalysis.quality}
-                    completeness={promptAnalysis.completeness}
-                    coherence={promptAnalysis.coherence}
-                    creativity={promptAnalysis.creativity}
-                    isAnalyzing={isAnalyzing}
-                  />
+                  <div className="w-full lg:w-auto">
+                    <PromptQualityIndicator
+                      quality={promptAnalysis.quality}
+                      completeness={promptAnalysis.completeness}
+                      coherence={promptAnalysis.coherence}
+                      creativity={promptAnalysis.creativity}
+                      isAnalyzing={isAnalyzing}
+                    />
+                  </div>
                 )}
               </div>
             )}
