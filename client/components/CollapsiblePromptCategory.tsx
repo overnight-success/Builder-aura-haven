@@ -32,11 +32,11 @@ export function CollapsiblePromptCategory({
     <div className="relative">
       <Card
         className={cn(
-          "backdrop-blur-sm bg-card/50 border-border/50 transition-all duration-300",
+          "bg-black border-2 transition-all duration-300",
           isCompleted
-            ? "border-primary/50 shadow-lg shadow-primary/10"
-            : "hover:border-border/70",
-          isExpanded && "border-primary/30",
+            ? "border-neon-orange shadow-lg shadow-neon-orange/20"
+            : "border-black hover:border-cream/50",
+          isExpanded && "border-neon-orange",
         )}
       >
         <CardHeader className="pb-3">
@@ -49,43 +49,29 @@ export function CollapsiblePromptCategory({
               <div className="flex items-center gap-3">
                 <div
                   className={cn(
-                    "flex items-center justify-center w-8 h-8 rounded-full border-2 transition-all duration-300",
+                    "flex items-center justify-center w-10 h-10 rounded-full border-3 transition-all duration-300",
                     isCompleted
-                      ? "bg-primary border-primary text-primary-foreground"
-                      : "border-border/50 group-hover:border-primary/50",
+                      ? "bg-neon-orange border-neon-orange text-black"
+                      : "border-cream/50 bg-black text-cream group-hover:border-neon-orange",
                   )}
                 >
                   {isCompleted ? (
-                    <Check className="h-4 w-4" />
+                    <Check className="h-5 w-5" />
                   ) : (
-                    <span className="text-sm font-semibold">{stepNumber}</span>
+                    <span className="text-lg font-black">{stepNumber}</span>
                   )}
                 </div>
                 {icon && (
-                  <div
-                    className={cn(
-                      "p-2 rounded-lg transition-all duration-300",
-                      isCompleted
-                        ? "bg-primary/20 text-primary"
-                        : "bg-muted/50 text-muted-foreground group-hover:bg-primary/10 group-hover:text-primary",
-                    )}
-                  >
-                    {icon}
+                  <div className="p-3 rounded-lg bg-black border-2 border-neon-orange">
+                    <div className="text-neon-orange">{icon}</div>
                   </div>
                 )}
                 <div className="text-left">
-                  <h3
-                    className={cn(
-                      "font-semibold transition-colors duration-300",
-                      isCompleted
-                        ? "text-primary"
-                        : "text-foreground group-hover:text-primary",
-                    )}
-                  >
+                  <h3 className="text-2xl font-black text-cream tracking-tight">
                     {title}
                   </h3>
                   {selectedOption && (
-                    <p className="text-sm text-muted-foreground truncate max-w-48">
+                    <p className="text-base font-bold text-neon-orange truncate max-w-64 mt-1">
                       {selectedOption}
                     </p>
                   )}
@@ -118,16 +104,16 @@ export function CollapsiblePromptCategory({
                     setIsExpanded(false);
                   }}
                   className={cn(
-                    "w-full text-left p-3 rounded-lg border transition-all duration-200 hover:scale-[1.01]",
+                    "w-full text-left p-4 rounded-lg border-2 transition-all duration-200 hover:scale-[1.01]",
                     selectedOption === option
-                      ? "bg-primary/20 border-primary text-primary font-medium shadow-md shadow-primary/20"
-                      : "bg-muted/30 border-border/30 text-muted-foreground hover:bg-muted/50 hover:border-border/50 hover:text-foreground",
+                      ? "bg-neon-orange border-neon-orange text-black font-black shadow-md shadow-neon-orange/20"
+                      : "bg-black border-cream/30 text-cream hover:bg-black hover:border-neon-orange hover:text-neon-orange font-bold",
                   )}
                 >
                   <div className="flex items-center justify-between">
-                    <span className="text-sm">{option}</span>
+                    <span className="text-base">{option}</span>
                     {selectedOption === option && (
-                      <Check className="h-4 w-4 text-primary" />
+                      <Check className="h-5 w-5 text-black" />
                     )}
                   </div>
                 </button>

@@ -177,39 +177,27 @@ export default function Index() {
 
       <div className="relative z-10">
         {/* Header */}
-        <header className="border-b border-black/20 backdrop-blur-sm bg-black/10 sticky top-0 z-20">
-          <div className="container mx-auto px-6 py-6">
+        <header className="border-b-4 border-black bg-black sticky top-0 z-20">
+          <div className="container mx-auto px-8 py-8">
             <div className="flex items-center justify-between">
-              <div className="flex items-center gap-4">
-                <div className="flex items-center gap-3">
-                  <div className="relative">
-                    <img
-                      src="https://cdn.builder.io/api/v1/image/assets%2F326314a2e8634f90977b83f81df01501%2Fec00ceaef5524675ba25aca88f5d5cec?format=webp&width=200"
-                      alt="Overnight Success"
-                      className="h-12 w-auto"
-                    />
-                  </div>
-                  <div>
-                    <h1 className="text-4xl font-black text-cream drop-shadow-[4px_4px_0px_#000000] tracking-tight leading-none mb-2">
-                      AI PROMPT GENERATOR
-                    </h1>
-                    <p className="text-lg font-bold text-black tracking-wide">
-                      BUILD YOUR PERFECT SORA PROMPT FORMULA
-                    </p>
-                  </div>
-                </div>
+              <div className="flex-1 flex justify-center">
+                <img
+                  src="https://cdn.builder.io/api/v1/image/assets%2F326314a2e8634f90977b83f81df01501%2Fec00ceaef5524675ba25aca88f5d5cec?format=webp&width=400"
+                  alt="Overnight Success"
+                  className="h-16 w-auto"
+                />
               </div>
               <div className="flex items-center gap-4">
-                <Badge variant="secondary" className="text-sm">
-                  <Target className="h-4 w-4 mr-1" />
-                  {totalComponents}/8 Components
+                <Badge className="bg-black border-2 border-neon-orange text-cream font-black text-base px-4 py-2">
+                  <Target className="h-5 w-5 text-neon-orange mr-2" />
+                  {totalComponents}/8
                 </Badge>
                 <Button
                   onClick={handleReset}
-                  className="btn-shiny-black text-cream font-bold text-base px-6 py-3 h-auto"
+                  className="btn-shiny-black text-cream font-black text-base px-6 py-3 h-auto"
                   disabled={totalComponents === 0}
                 >
-                  <RefreshCw className="h-5 w-5 text-neon-orange" />
+                  <RefreshCw className="h-5 w-5 text-neon-orange mr-2" />
                   RESET
                 </Button>
               </div>
@@ -218,22 +206,13 @@ export default function Index() {
         </header>
 
         {/* Instructions */}
-        <div className="container mx-auto px-8 py-12">
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-4 px-8 py-4 rounded-full btn-shiny-black text-cream text-lg font-black tracking-wider">
-              <Target className="h-6 w-6 text-neon-orange" />
-              CLICK EACH CATEGORY TO EXPAND AND SELECT OPTIONS
-              <ArrowDown className="h-6 w-6 text-neon-orange animate-bounce" />
-            </div>
-          </div>
-        </div>
 
         {/* Main Content */}
-        <main className="container mx-auto px-8 pb-12">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <main className="container mx-auto px-8 py-8">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {/* Categories Flow */}
             <div className="lg:col-span-2">
-              <div className="space-y-12">
+              <div className="space-y-6">
                 {Object.entries(promptCategories).map(
                   ([key, category], index) => (
                     <CollapsiblePromptCategory
@@ -268,25 +247,23 @@ export default function Index() {
                 />
 
                 {/* Final Step Indicator */}
-                <div className="flex justify-center mt-16">
+                <div className="flex justify-center mt-8">
                   <div
                     className={cn(
-                      "flex items-center gap-4 px-8 py-4 rounded-full border-3 border-dashed transition-all duration-300",
+                      "flex items-center gap-4 px-8 py-4 rounded-full border-4 border-dashed transition-all duration-300",
                       isComplete
-                        ? "btn-shiny-black border-black text-cream font-black text-xl"
-                        : "border-black/50 bg-black/30 text-black font-bold text-lg",
+                        ? "bg-black border-neon-orange text-cream font-black text-xl"
+                        : "bg-black border-cream/50 text-cream font-bold text-lg",
                     )}
                   >
                     <Target
                       className={cn(
                         "h-6 w-6",
-                        isComplete ? "text-neon-orange" : "",
+                        isComplete ? "text-neon-orange" : "text-cream",
                       )}
                     />
                     <span>
-                      {isComplete
-                        ? "FORMULA READY!"
-                        : "COMPLETE 4+ CATEGORIES TO GENERATE"}
+                      {isComplete ? "FORMULA READY!" : "COMPLETE 4+ CATEGORIES"}
                     </span>
                     {isComplete && (
                       <Sparkles className="h-6 w-6 text-neon-orange" />
@@ -310,12 +287,12 @@ export default function Index() {
         </main>
 
         {/* Footer */}
-        <footer className="border-t-4 border-black backdrop-blur-sm bg-black/20 mt-24">
-          <div className="container mx-auto px-8 py-8">
-            <div className="text-center text-lg font-black text-black tracking-wider">
+        <footer className="border-t-4 border-black bg-black mt-16">
+          <div className="container mx-auto px-8 py-6">
+            <div className="text-center text-base font-black text-cream tracking-wide">
               <p>
-                ✨ POWERED BY AI • OPTIMIZED FOR SORA GENERATION • BUILT FOR
-                CREATIVE EXCELLENCE ✨
+                ✨ POWERED BY AI • OPTIMIZED FOR SORA • BUILT FOR CREATIVE
+                EXCELLENCE ✨
               </p>
             </div>
           </div>

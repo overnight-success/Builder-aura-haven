@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { Button } from "./ui/button";
 import { Badge } from "./ui/badge";
+import { FavoritePrompts } from "./FavoritePrompts";
 import {
   Copy,
   Download,
@@ -9,6 +10,7 @@ import {
   Sparkles,
   RefreshCw,
   ExternalLink,
+  Heart,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -74,14 +76,34 @@ export function PromptFormulaPreview({
       components.push(customInstructions.trim());
     }
 
-    // Add file references if provided
+    // Add file references with JSON conversion for images
     if (hasFiles) {
-      const fileTypes = uploadedFiles.map((file) => {
-        if (file.type.startsWith("image/")) return "reference image";
-        if (file.type.startsWith("video/")) return "reference video";
-        return "reference file";
-      });
-      components.push(`with ${fileTypes.join(", ")} for visual reference`);
+      const imageFiles = uploadedFiles.filter((file) =>
+        file.type.startsWith("image/"),
+      );
+      const videoFiles = uploadedFiles.filter((file) =>
+        file.type.startsWith("video/"),
+      );
+
+      const fileRefs = [];
+      if (imageFiles.length > 0) {
+        // Convert images to JSON metadata
+        const imageData = imageFiles.map((file) => ({
+          name: file.name,
+          type: file.type,
+          size: file.size,
+          lastModified: file.lastModified,
+        }));
+        fileRefs.push(
+          `${imageFiles.length} reference image${imageFiles.length > 1 ? "s" : ""} (metadata: ${JSON.stringify(imageData)})`,
+        );
+      }
+      if (videoFiles.length > 0) {
+        fileRefs.push(
+          `${videoFiles.length} reference video${videoFiles.length > 1 ? "s" : ""}`,
+        );
+      }
+      components.push(`with ${fileRefs.join(", ")} for visual reference`);
     }
 
     const formula = components.join(", ");
@@ -238,34 +260,52 @@ export function PromptFormulaPreview({
 
         {/* Action Buttons */}
         <div className="space-y-4">
-          <div className="flex gap-4">
+          <div className="grid grid-cols-2 gap-3">
             <Button
               onClick={handleCopy}
-              className="flex-1 btn-shiny-black text-cream font-bold text-base px-6 py-4 h-auto"
+              className="btn-shiny-black text-cream font-black text-sm px-4 py-4 h-auto"
               disabled={!isComplete}
             >
-              <Copy className="h-5 w-5 text-neon-orange mr-2" />
-              {copied ? "COPIED!" : "COPY FORMULA"}
+              <Copy className="h-4 w-4 text-neon-orange mr-2" />
+              {copied ? "COPIED!" : "COPY"}
             </Button>
             <Button
               onClick={handleExportToSora}
-              className="flex-1 btn-shiny-black text-cream font-bold text-base px-6 py-4 h-auto"
+              className="btn-shiny-black text-cream font-black text-sm px-4 py-4 h-auto"
               disabled={!isComplete}
             >
-              <ExternalLink className="h-5 w-5 text-neon-orange mr-2" />
-              EXPORT TO SORA
+              <ExternalLink className="h-4 w-4 text-neon-orange mr-2" />
+              EXPORT
             </Button>
           </div>
 
-          {isComplete && (
+          <div className="grid grid-cols-2 gap-3">
+            <Button
+              onClick={() => {
+                if (isComplete && window.saveFavoritePrompt) {
+                  window.saveFavoritePrompt({
+                    formula,
+                    components: selections,
+                    customInstructions,
+                    files: uploadedFiles.map((f) => f.name),
+                  });
+                }
+              }}
+              className="btn-shiny-black text-cream font-black text-sm px-4 py-3 h-auto"
+              disabled={!isComplete}
+            >
+              <Heart className="h-4 w-4 text-neon-orange mr-2" />
+              FAVORITE
+            </Button>
             <Button
               onClick={() => window.open("https://openai.com/sora", "_blank")}
-              className="w-full btn-shiny-black text-cream font-bold text-sm px-4 py-3 h-auto"
+              className="btn-shiny-black text-cream font-black text-sm px-4 py-3 h-auto"
+              disabled={!isComplete}
             >
               <Download className="h-4 w-4 text-neon-orange mr-2" />
-              OPEN SORA AI PLATFORM
+              SORA
             </Button>
-          )}
+          </div>
         </div>
 
         {/* Tips */}
@@ -280,6 +320,8 @@ export function PromptFormulaPreview({
           </p>
         </div>
       </CardContent>
+
+      <FavoritePrompts onCopy={onCopy} />
     </Card>
   );
 }

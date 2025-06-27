@@ -23,33 +23,33 @@
   --color-dark-gray: #1a1a1a;
 
   /* Theme and design tokens */
-  --color-background: hsl(8 100% 56%);
-  --color-foreground: hsl(32 46% 90%);
+  --color-background: #ff3120;
+  --color-foreground: #f5e6d3;
 
-  --color-card: rgba(0, 0, 0, 0.8);
-  --color-card-foreground: hsl(32 46% 90%);
+  --color-card: #000000;
+  --color-card-foreground: #f5e6d3;
 
-  --color-popover: rgba(0, 0, 0, 0.9);
-  --color-popover-foreground: hsl(32 46% 90%);
+  --color-popover: #000000;
+  --color-popover-foreground: #f5e6d3;
 
-  --color-primary: hsl(0 0% 0%);
-  --color-primary-foreground: hsl(32 46% 90%);
+  --color-primary: #000000;
+  --color-primary-foreground: #f5e6d3;
 
-  --color-secondary: hsl(0 0% 0%);
-  --color-secondary-foreground: hsl(32 46% 90%);
+  --color-secondary: #000000;
+  --color-secondary-foreground: #f5e6d3;
 
-  --color-muted: rgba(0, 0, 0, 0.6);
-  --color-muted-foreground: hsl(32 46% 80%);
+  --color-muted: #000000;
+  --color-muted-foreground: #f5e6d3;
 
-  --color-accent: rgba(0, 0, 0, 0.8);
-  --color-accent-foreground: hsl(32 46% 90%);
+  --color-accent: #000000;
+  --color-accent-foreground: #f5e6d3;
 
-  --color-destructive: hsl(0 84.2% 60.2%);
-  --color-destructive-foreground: hsl(32 46% 90%);
+  --color-destructive: #ff3120;
+  --color-destructive-foreground: #f5e6d3;
 
-  --color-border: rgba(0, 0, 0, 0.3);
-  --color-input: rgba(0, 0, 0, 0.8);
-  --color-ring: hsl(0 0% 0%);
+  --color-border: #000000;
+  --color-input: #000000;
+  --color-ring: #ff3120;
 
   --color-sidebar-background: hsl(0 0% 98%);
 
