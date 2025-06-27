@@ -156,20 +156,7 @@ export class PromptEngine {
     customInstructions: string = "",
     uploadedFiles: ProcessedFile[] = [],
   ): { mainPrompt: string; imageData: any[]; combinedPrompt: string } {
-    const cleanMainPrompt = this.buildMainPrompt(
-      generatorType,
-      selections,
-      customInstructions,
-    );
-    const imageReferences = this.buildImageReferences(uploadedFiles);
     const imageData = this.getImageJSONData(uploadedFiles);
-
-    // Create clean version and full version with JSON
-    const cleanPrompt = this.formatForSORA(
-      cleanMainPrompt,
-      imageReferences,
-      generatorType,
-    );
     const fullPrompt = this.generateFormula(
       generatorType,
       selections,
@@ -178,9 +165,9 @@ export class PromptEngine {
     );
 
     return {
-      mainPrompt: cleanPrompt,
+      mainPrompt: fullPrompt.split("[REFERENCE_IMAGES:")[0].trim(), // Clean version without JSON
       imageData,
-      combinedPrompt: fullPrompt, // This includes JSON data for SORA
+      combinedPrompt: fullPrompt, // Full version with JSON data
     };
   }
 
