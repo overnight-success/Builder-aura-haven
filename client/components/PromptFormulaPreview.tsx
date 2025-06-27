@@ -193,7 +193,9 @@ export function PromptFormulaPreview({
 
           <div className="flex items-center justify-between">
             <Badge className="bg-black border-2 border-neon-orange text-cream font-bold text-xs px-3 py-1">
-              {computed.totalComponents}/8 COMPONENTS
+              {computed.selectedCount} CATEGORIES +{" "}
+              {computed.hasCustomInstructions ? 1 : 0} CUSTOM +{" "}
+              {computed.hasFiles ? 1 : 0} FILES
             </Badge>
 
             {promptAnalysis && (
