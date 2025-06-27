@@ -26,7 +26,7 @@ function AppContent() {
     state.history,
     state.selections,
     state.customInstructions,
-    actions,
+    actions.saveState, // Only depend on the specific action, not the entire actions object
   ]);
 
   const handlePageChange = (page: string) => {
