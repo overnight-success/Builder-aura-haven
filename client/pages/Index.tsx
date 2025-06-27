@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { CollapsiblePromptCategory } from "../components/CollapsiblePromptCategory";
 import { PromptFormulaPreview } from "../components/PromptFormulaPreview";
+import { CustomInstructions } from "../components/CustomInstructions";
+import { FileUpload } from "../components/FileUpload";
 import { Button } from "../components/ui/button";
 import { Badge } from "../components/ui/badge";
 import { cn } from "../lib/utils";
@@ -132,6 +134,8 @@ const promptCategories = {
 
 export default function Index() {
   const [selections, setSelections] = useState<Record<string, string>>({});
+  const [customInstructions, setCustomInstructions] = useState<string>("");
+  const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
 
   const handleCategorySelect = (category: string, option: string) => {
     setSelections((prev) => ({
@@ -151,9 +155,15 @@ export default function Index() {
 
   const handleReset = () => {
     setSelections({});
+    setCustomInstructions("");
+    setUploadedFiles([]);
   };
 
   const selectedCount = Object.values(selections).filter(Boolean).length;
+  const hasCustomInstructions = customInstructions.trim().length > 0;
+  const hasFiles = uploadedFiles.length > 0;
+  const totalComponents =
+    selectedCount + (hasCustomInstructions ? 1 : 0) + (hasFiles ? 1 : 0);
   const isComplete = selectedCount >= 4;
 
   return (
@@ -188,7 +198,7 @@ export default function Index() {
               <div className="flex items-center gap-4">
                 <Badge variant="secondary" className="text-sm">
                   <Target className="h-4 w-4 mr-1" />
-                  {selectedCount}/6 Categories
+                  {totalComponents}/8 Components
                 </Badge>
                 <Button
                   onClick={handleReset}
@@ -232,12 +242,27 @@ export default function Index() {
                       onSelect={(option) => handleCategorySelect(key, option)}
                       stepNumber={index + 1}
                       isCompleted={!!selections[key]}
-                      showFlow={
-                        index < Object.keys(promptCategories).length - 1
-                      }
+                      showFlow={true}
                     />
                   ),
                 )}
+
+                {/* Custom Instructions */}
+                <CustomInstructions
+                  value={customInstructions}
+                  onChange={setCustomInstructions}
+                  stepNumber={7}
+                  isCompleted={hasCustomInstructions}
+                  showFlow={true}
+                />
+
+                {/* File Upload */}
+                <FileUpload
+                  files={uploadedFiles}
+                  onFilesChange={setUploadedFiles}
+                  stepNumber={8}
+                  isCompleted={hasFiles}
+                />
 
                 {/* Final Step Indicator */}
                 <div className="flex justify-center">
@@ -253,7 +278,7 @@ export default function Index() {
                     <span className="font-medium">
                       {isComplete
                         ? "Formula Ready!"
-                        : "Complete 4+ categories to generate"}
+                        : "Complete 4+ base categories to generate"}
                     </span>
                     {isComplete && <Sparkles className="h-5 w-5" />}
                   </div>
@@ -265,6 +290,8 @@ export default function Index() {
             <div className="lg:col-span-1">
               <PromptFormulaPreview
                 selections={selections}
+                customInstructions={customInstructions}
+                uploadedFiles={uploadedFiles}
                 onCopy={handleCopy}
                 onExport={handleExport}
               />
