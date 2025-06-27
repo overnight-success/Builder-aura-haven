@@ -322,7 +322,7 @@ export function PromptFormulaPreview({
             </Button>
             <Button
               onClick={handleExportToSora}
-              className="bg-black border-2 border-neon-orange text-cream font-bold text-xs px-3 py-2 h-auto hover:bg-neon-orange hover:text-black transition-all duration-200 truncate"
+              className="bg-black border-2 border-neon-orange text-cream font-bold text-xs lg:text-sm px-2 lg:px-3 py-2 h-auto hover:bg-neon-orange hover:text-black transition-all duration-200 truncate"
               disabled={!hasContent}
             >
               <ExternalLink className="h-3 w-3 text-neon-orange mr-1 shrink-0" />
@@ -332,10 +332,10 @@ export function PromptFormulaPreview({
             </Button>
           </div>
 
-          <div className="grid grid-cols-2 gap-2">
+          <div className="grid grid-cols-2 gap-1 lg:gap-2">
             <Button
               onClick={handleFavorite}
-              className="bg-black border-2 border-neon-orange text-cream font-bold text-xs px-3 py-2 h-auto hover:bg-neon-orange hover:text-black transition-all duration-200 truncate"
+              className="bg-black border-2 border-neon-orange text-cream font-bold text-xs lg:text-sm px-2 lg:px-3 py-2 h-auto hover:bg-neon-orange hover:text-black transition-all duration-200 truncate"
               disabled={!computed.isComplete}
             >
               <Heart className="h-3 w-3 text-neon-orange mr-1 shrink-0" />
@@ -343,7 +343,7 @@ export function PromptFormulaPreview({
             </Button>
             <Button
               onClick={handleOpenSora}
-              className="bg-black border-2 border-neon-orange text-cream font-bold text-xs px-3 py-2 h-auto hover:bg-neon-orange hover:text-black transition-all duration-200 truncate"
+              className="bg-black border-2 border-neon-orange text-cream font-bold text-xs lg:text-sm px-2 lg:px-3 py-2 h-auto hover:bg-neon-orange hover:text-black transition-all duration-200 truncate"
               disabled={!computed.isComplete}
             >
               <Download className="h-3 w-3 text-neon-orange mr-1 shrink-0" />
