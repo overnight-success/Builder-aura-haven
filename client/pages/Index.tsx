@@ -3,6 +3,7 @@ import { PromptCategory } from "../components/PromptCategory";
 import { PromptPreview } from "../components/PromptPreview";
 import { Button } from "../components/ui/button";
 import { Badge } from "../components/ui/badge";
+import { cn } from "../lib/utils";
 import {
   Camera,
   Palette,
@@ -153,6 +154,7 @@ export default function Index() {
   };
 
   const selectedCount = Object.values(selections).filter(Boolean).length;
+  const isComplete = selectedCount >= 3;
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-midnight">
@@ -184,16 +186,16 @@ export default function Index() {
                 </div>
               </div>
               <div className="flex items-center gap-4">
-            <Badge
-              variant={isComplete ? "default" : "secondary"}
-              className={cn(
-                "transition-all duration-300",
-                isComplete &&
-                  "animate-pulse bg-gradient-to-r from-primary to-cosmic",
-              )}
-            >
-              {Object.values(selections).filter(Boolean).length}/6 Selected
-            </Badge>
+                <Badge variant="secondary" className="text-sm">
+                  <Zap className="h-4 w-4 mr-1" />
+                  {selectedCount}/6 Categories
+                </Badge>
+                <Button
+                  onClick={handleReset}
+                  variant="outline"
+                  size="sm"
+                  disabled={selectedCount === 0}
+                >
                   <RefreshCw className="h-4 w-4" />
                   Reset
                 </Button>
