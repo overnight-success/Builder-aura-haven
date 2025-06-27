@@ -17,114 +17,114 @@ import {
 } from "lucide-react";
 
 const promptCategories = {
-  scene: {
-    title: "Scene Description",
-    icon: <Clapperboard className="h-5 w-5" />,
-    options: [
-      "A majestic dragon soaring through clouds",
-      "A bustling cyberpunk street market",
-      "A serene forest waterfall",
-      "A spacecraft landing on an alien planet",
-      "A medieval castle on a cliff",
-      "A submarine exploring ocean depths",
-      "A time traveler in Victorian London",
-      "A robot working in a garden",
-      "A magical library with floating books",
-      "A race car speeding through neon tunnels",
-    ],
-  },
-  style: {
-    title: "Visual Style",
+  textures: {
+    title: "Textures",
     icon: <Palette className="h-5 w-5" />,
     options: [
-      "Cyberpunk",
-      "Photorealistic",
-      "Cartoonish",
-      "Watercolor Painting",
-      "Vintage Film",
-      "Film Noir",
-      "Futuristic",
-      "Abstract Art",
-      "Anime Style",
-      "Oil Painting",
+      "matte",
+      "semi-gloss",
+      "high-gloss polish",
+      "chrome mirror",
+      "brushed metal",
+      "satin sheen",
+      "frosted matte",
+      "lacquered",
+      "metallic powder finish",
+      "velvet",
+      "ceramic",
+      "gritty raw surface",
+      "pixelated finish",
+      "glitch",
+      "screenprint texture",
     ],
   },
-  camera: {
-    title: "Camera Movement",
+  framing: {
+    title: "Framing",
     icon: <Camera className="h-5 w-5" />,
     options: [
-      "Static Shot",
-      "Tracking Shot",
-      "Zoom In",
-      "Zoom Out",
-      "Bird's Eye View",
-      "360° Pan",
-      "Dolly Zoom",
-      "Handheld Camera",
-      "Crane Shot",
-      "Steadicam Follow",
+      "24mm: Wide landscapes, high energy",
+      "35mm: Editorial and lifestyle portraits",
+      "50mm: Clean product or natural portraits",
+      "85mm: Intimate close-up, emotional storytelling",
+      "Low Angle: Power, presence",
+      "Macro: Detail shots, textures",
+      "extreme close-up on texture",
+      "wide establishing shot",
+      "symmetrical center crop",
+      "over-the-shoulder POV",
+      "profile view portrait",
+      "tight crop on eyes",
     ],
   },
-  time: {
-    title: "Time of Day",
-    icon: <Clock className="h-5 w-5" />,
+  lighting: {
+    title: "Lighting",
+    icon: <Zap className="h-5 w-5" />,
     options: [
-      "Sunrise",
-      "Morning",
-      "Noon",
-      "Golden Hour",
-      "Sunset",
-      "Twilight",
-      "Midnight",
-      "Blue Hour",
+      "Golden Hour: Warm, cinematic",
+      "Backlit: Rim lighting for shape",
+      "Soft Ambient: Beauty shots, lifestyle",
+      "Hard Flash: Edgy streetwear",
+      "Neon: Retro-future, saturated",
+      "Flicker: Great for dynamic transitions in video",
+      "golden hour with long shadows",
+      "overcast softness",
+      "neon nightclub hues",
+      "dramatic chiaroscuro",
+      "candlelit intimacy",
+      "tungsten indoor warmth",
+      "arctic blue tone",
     ],
   },
-  weather: {
-    title: "Weather Conditions",
-    icon: <Cloud className="h-5 w-5" />,
+  enhancers: {
+    title: "Enhancers",
+    icon: <Sparkles className="h-5 w-5" />,
     options: [
-      "Clear Skies",
-      "Rainy",
-      "Thunderstorm",
-      "Snowfall",
-      "Foggy",
-      "Overcast",
-      "Hazy",
-      "Drizzle",
-      "Blizzard",
-      "Aurora Borealis",
+      "Shift texture layer: Velvet → Glass → Chrome → Plastic",
+      "Change lighting mood: Golden hour → Neon glow → Paparazzi",
+      "Apply time-based logic: Day → Night → Rainy → Overcast",
+      "Swap camera angle: Top-down → Orbit → Over-the-shoulder",
+      "floating dust particles",
+      "lens flare streak",
+      "reflections on lens",
+      "rain droplets on lens",
+      "reflective shine",
     ],
   },
-  mood: {
-    title: "Mood Setting",
+  locations: {
+    title: "Locations",
+    icon: <Clapperboard className="h-5 w-5" />,
+    options: [
+      "foggy Tokyo street",
+      "marble-floored Parisian hallway",
+      "neon-lit cyberpunk alley",
+      "desert salt flats",
+      "concrete parking garage",
+      "luxury hotel rooftop",
+      "brutalist city center",
+      "beach at low tide",
+      "Arctic ice cave",
+      "abandoned church interior",
+      "luxury retail space",
+      "moss-covered forest ruins",
+      "jungle helipad",
+    ],
+  },
+  creative: {
+    title: "Creative Direction",
     icon: <Heart className="h-5 w-5" />,
     options: [
-      "Dramatic",
-      "Romantic",
-      "Joyful",
-      "Mysterious",
-      "Eerie",
-      "Tense",
-      "Uplifting",
-      "Melancholic",
-      "Whimsical",
-      "Inspirational",
-    ],
-  },
-  sound: {
-    title: "Sound Atmosphere",
-    icon: <Volume2 className="h-5 w-5" />,
-    options: [
-      "Gentle Piano Music",
-      "Ambient City Sounds",
-      "Dramatic Orchestral Score",
-      "Eerie Whispers and Wind",
-      "Jungle Sounds",
-      "Thunderstorm with Heavy Rain",
-      "Sci-fi Hums and Electronic Beeps",
-      "Ocean Waves Crashing",
-      "Quiet Snowfall",
-      "Explosive Action Sounds",
+      "Wes Anderson meets Balenciaga",
+      "Apple ad directed by Kubrick",
+      "Old Money vibes",
+      "Virgil Abloh x Eames visual tension",
+      "Yeezy drop in a NASA lab",
+      "Hypebeast Tokyo fantasy",
+      "AI-generated art deco dream",
+      "Wes meets Warhol",
+      "Quiet luxury meets glitchcore",
+      "High fashion in a war zone",
+      "Edward Hopper moodboard",
+      "Gucci in a cyber slum",
     ],
   },
 };
@@ -184,16 +184,16 @@ export default function Index() {
                 </div>
               </div>
               <div className="flex items-center gap-4">
-                <Badge variant="secondary" className="text-sm">
-                  <Zap className="h-4 w-4 mr-1" />
-                  {selectedCount}/7 Categories
-                </Badge>
-                <Button
-                  onClick={handleReset}
-                  variant="outline"
-                  size="sm"
-                  disabled={selectedCount === 0}
-                >
+            <Badge
+              variant={isComplete ? "default" : "secondary"}
+              className={cn(
+                "transition-all duration-300",
+                isComplete &&
+                  "animate-pulse bg-gradient-to-r from-primary to-cosmic",
+              )}
+            >
+              {Object.values(selections).filter(Boolean).length}/6 Selected
+            </Badge>
                   <RefreshCw className="h-4 w-4" />
                   Reset
                 </Button>

@@ -25,20 +25,18 @@ export function PromptPreview({
 
     const promptParts = parts.map(([category, value]) => {
       switch (category) {
-        case "scene":
-          return value;
-        case "style":
-          return `in ${value.toLowerCase()} style`;
-        case "camera":
-          return `with ${value.toLowerCase()}`;
-        case "time":
-          return `during ${value.toLowerCase()}`;
-        case "weather":
-          return `in ${value.toLowerCase()} weather`;
-        case "mood":
-          return `with a ${value.toLowerCase()} mood`;
-        case "sound":
-          return `featuring ${value.toLowerCase()}`;
+        case "textures":
+          return `with ${value} texture`;
+        case "framing":
+          return `shot with ${value}`;
+        case "lighting":
+          return `lit with ${value}`;
+        case "enhancers":
+          return `enhanced by ${value}`;
+        case "locations":
+          return `in ${value}`;
+        case "creative":
+          return `styled as ${value}`;
         default:
           return value;
       }
