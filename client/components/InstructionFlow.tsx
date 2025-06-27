@@ -13,32 +13,32 @@ export function InstructionFlow({
   const steps = [
     {
       number: 1,
-      title: "Select Categories",
-      description: "Click each category header to expand options",
+      title: "Add Custom Instructions",
+      description: "Start with your specific requirements",
       icon: <MousePointer className="h-4 w-4" />,
     },
     {
       number: 2,
-      title: "Choose Options",
-      description: "Pick the best option from each category",
+      title: "Select Categories",
+      description: "Choose options from each category",
       icon: <Check className="h-4 w-4" />,
     },
     {
       number: 3,
-      title: "Add Custom Text",
-      description: "Include specific instructions (optional)",
+      title: "Upload Reference Files",
+      description: "Add images for JSON conversion (optional)",
       icon: <MousePointer className="h-4 w-4" />,
     },
     {
       number: 4,
-      title: "Upload Files",
-      description: "Add reference images/videos (optional)",
+      title: "Review Quality",
+      description: "Check AI analysis and suggestions",
       icon: <MousePointer className="h-4 w-4" />,
     },
     {
       number: 5,
-      title: "Copy Formula",
-      description: "Get your optimized Sora prompt",
+      title: "Copy for SORA",
+      description: "Get your optimized prompt with JSON data",
       icon: <Copy className="h-4 w-4" />,
     },
   ];
