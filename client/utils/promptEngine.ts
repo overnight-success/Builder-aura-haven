@@ -123,7 +123,22 @@ export class PromptEngine {
     return converter ? converter(value) : value.toLowerCase();
   }
 
-  // Method removed - no longer embedding JSON data in main prompt
+  // Get full JSON data for SORA processing (separate from main prompt)
+  getFullSORAData(uploadedFiles: ProcessedFile[]): string {
+    const imageData = this.getImageJSONData(uploadedFiles);
+    if (imageData.length === 0) return "";
+
+    const cleanData = imageData.map((img) => ({
+      name: img.name,
+      data: img.data,
+    }));
+
+    return JSON.stringify({
+      type: "SORA_REFERENCE_DATA",
+      images: cleanData,
+      instruction: "Process these reference images with the text prompt",
+    });
+  }
 
   // Old method removed - using simpler convertToNaturalLanguage instead
   // Old complex methods removed - using simpler approach
