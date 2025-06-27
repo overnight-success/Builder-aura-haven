@@ -167,17 +167,17 @@ export default function Index() {
   const isComplete = selectedCount >= 4;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-flame/20 to-ember/30">
+    <div className="min-h-screen" style={{ background: "#ff3120" }}>
       {/* Background Effects */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 left-20 w-72 h-72 bg-flame/25 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-20 right-20 w-96 h-96 bg-ember/20 rounded-full blur-3xl animate-pulse delay-1000" />
-        <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-sunset/15 rounded-full blur-3xl animate-pulse delay-500" />
+        <div className="absolute top-20 left-20 w-72 h-72 bg-black/10 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-20 right-20 w-96 h-96 bg-black/5 rounded-full blur-3xl animate-pulse delay-1000" />
+        <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-black/8 rounded-full blur-3xl animate-pulse delay-500" />
       </div>
 
       <div className="relative z-10">
         {/* Header */}
-        <header className="border-b border-border/50 backdrop-blur-sm bg-background/80 sticky top-0 z-20">
+        <header className="border-b border-black/20 backdrop-blur-sm bg-black/10 sticky top-0 z-20">
           <div className="container mx-auto px-6 py-6">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-4">
@@ -190,10 +190,10 @@ export default function Index() {
                     />
                   </div>
                   <div>
-                    <h1 className="text-2xl font-bold text-cream drop-shadow-[2px_2px_0px_#000000]">
-                      AI Prompt Generator
+                    <h1 className="text-3xl font-black text-cream drop-shadow-[3px_3px_0px_#000000] tracking-tight">
+                      AI PROMPT GENERATOR
                     </h1>
-                    <p className="text-sm text-cream/80">
+                    <p className="text-sm font-semibold text-black">
                       Build your perfect Sora prompt formula step by step
                     </p>
                   </div>
@@ -221,7 +221,7 @@ export default function Index() {
         {/* Instructions */}
         <div className="container mx-auto px-6 py-8">
           <div className="text-center mb-8">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium">
+            <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-black/80 border border-black text-cream text-sm font-bold tracking-wide">
               <Target className="h-4 w-4" />
               Click each category header to expand and select options
               <ArrowDown className="h-4 w-4 animate-bounce" />
@@ -274,8 +274,8 @@ export default function Index() {
                     className={cn(
                       "flex items-center gap-3 px-6 py-3 rounded-full border-2 border-dashed transition-all duration-300",
                       isComplete
-                        ? "border-primary bg-primary/5 text-primary"
-                        : "border-border/30 text-muted-foreground",
+                        ? "border-black bg-black/20 text-cream font-bold"
+                        : "border-black/40 text-black font-semibold",
                     )}
                   >
                     <Target className="h-5 w-5" />
@@ -304,12 +304,12 @@ export default function Index() {
         </main>
 
         {/* Footer */}
-        <footer className="border-t border-border/50 backdrop-blur-sm bg-background/80 mt-16">
+        <footer className="border-t border-black/20 backdrop-blur-sm bg-black/10 mt-16">
           <div className="container mx-auto px-6 py-6">
-            <div className="text-center text-sm text-muted-foreground">
+            <div className="text-center text-sm font-semibold text-black">
               <p>
-                ✨ Powered by AI • Optimized for Sora Generation • Built for
-                Creative Excellence
+                ✨ POWERED BY AI • OPTIMIZED FOR SORA GENERATION • BUILT FOR
+                CREATIVE EXCELLENCE
               </p>
             </div>
           </div>
