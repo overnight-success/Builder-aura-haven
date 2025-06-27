@@ -2,7 +2,7 @@ import React, { useEffect, useState, useCallback, useMemo } from "react";
 import { CollapsiblePromptCategory } from "./CollapsiblePromptCategory";
 import { PromptFormulaPreview } from "./PromptFormulaPreview";
 import { CustomInstructions } from "./CustomInstructions";
-import { FileUpload } from "./FileUpload";
+import { FileUpload, ProcessedFile } from "./FileUpload";
 import { InstructionFlow } from "./InstructionFlow";
 import { PromptQualityIndicator } from "./PromptQualityIndicator";
 import { SmartSuggestions } from "./SmartSuggestions";
