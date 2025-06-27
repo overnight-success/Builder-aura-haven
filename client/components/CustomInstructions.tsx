@@ -110,7 +110,10 @@ export function CustomInstructions({
                 className="min-h-24 resize-none bg-black border-2 border-cream text-cream focus:border-neon-orange focus:bg-black placeholder:text-cream"
               />
               <div className="flex justify-between items-center text-xs text-muted-foreground">
-                <span>💡 Be specific for better AI interpretation</span>
+                <span>
+                  💡 Start here: Describe your vision to guide category
+                  selections
+                </span>
                 <span>{value.length}/500</span>
               </div>
             </div>
