@@ -199,7 +199,27 @@ export class PromptEngine {
     return `${baseSpecs}, ${specificSpecs}`;
   }
 
-  // Custom instructions are now handled directly in buildMainPrompt method
+  // Get complete SORA prompt data (main prompt + separate JSON data)
+  getCompleteSORAData(
+    generatorType: "product" | "lifestyle" | "graphic",
+    selections: Record<string, string>,
+    customInstructions: string = "",
+    uploadedFiles: ProcessedFile[] = [],
+  ): { mainPrompt: string; imageData: any[]; combinedPrompt: string } {
+    const mainPrompt = this.generateFormula(
+      generatorType,
+      selections,
+      customInstructions,
+      uploadedFiles,
+    );
+    const imageData = this.getImageJSONData(uploadedFiles);
+
+    return {
+      mainPrompt,
+      imageData,
+      combinedPrompt: mainPrompt, // For now, keep them the same since main prompt is clean
+    };
+  }
 
   // Get JSON data separately for technical processing (not mixed in main prompt)
   getImageJSONData(files: ProcessedFile[]): any[] {
