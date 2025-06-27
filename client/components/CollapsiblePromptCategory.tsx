@@ -43,10 +43,10 @@ export function CollapsiblePromptCategory({
           <Button
             variant="ghost"
             onClick={() => setIsExpanded(!isExpanded)}
-            className="w-full h-auto p-0 hover:bg-transparent group"
+            className="w-full h-auto p-4 hover:bg-transparent group"
           >
             <div className="flex items-center justify-between w-full">
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-4">
                 <div
                   className={cn(
                     "flex items-center justify-center w-10 h-10 rounded-full border-2 transition-all duration-300",
@@ -128,22 +128,13 @@ export function CollapsiblePromptCategory({
 
       {/* Flow Indicator */}
       {showFlow && (
-        <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2">
+        <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2">
           <div
             className={cn(
-              "w-8 h-8 rounded-full border-2 border-dashed flex items-center justify-center transition-all duration-300",
-              isCompleted
-                ? "border-primary/50 bg-primary/10"
-                : "border-border/30 bg-background/50",
+              "w-1 h-4 transition-all duration-300",
+              isCompleted ? "bg-neon-orange" : "bg-cream/30",
             )}
-          >
-            <Plus
-              className={cn(
-                "h-4 w-4 transition-colors duration-300",
-                isCompleted ? "text-primary" : "text-muted-foreground",
-              )}
-            />
-          </div>
+          />
         </div>
       )}
     </div>

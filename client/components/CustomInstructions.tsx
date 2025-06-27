@@ -35,71 +35,62 @@ export function CustomInstructions({
         className={cn(
           "bg-black border-2 transition-all duration-300",
           isCompleted
-            ? "border-primary/50 shadow-lg shadow-primary/10"
-            : "hover:border-border/70",
-          isExpanded && "border-primary/30",
+            ? "border-neon-orange shadow-lg"
+            : "border-cream hover:border-neon-orange",
+          isExpanded && "border-neon-orange",
         )}
       >
         <CardHeader className="pb-3">
           <Button
             variant="ghost"
             onClick={() => setIsExpanded(!isExpanded)}
-            className="w-full h-auto p-0 hover:bg-transparent group"
+            className="w-full h-auto p-4 hover:bg-transparent group"
           >
             <div className="flex items-center justify-between w-full">
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-4">
                 <div
                   className={cn(
-                    "flex items-center justify-center w-8 h-8 rounded-full border-2 transition-all duration-300",
+                    "flex items-center justify-center w-10 h-10 rounded-full border-2 transition-all duration-300",
                     isCompleted
-                      ? "bg-primary border-primary text-primary-foreground"
-                      : "border-border/50 group-hover:border-primary/50",
+                      ? "bg-neon-orange border-neon-orange text-black"
+                      : "border-cream bg-black text-cream group-hover:border-neon-orange",
                   )}
                 >
                   {isCompleted ? (
-                    <Check className="h-4 w-4" />
+                    <Check className="h-5 w-5" />
                   ) : (
-                    <span className="text-sm font-semibold">{stepNumber}</span>
+                    <span className="text-lg font-black">{stepNumber}</span>
                   )}
                 </div>
-                <div
-                  className={cn(
-                    "p-2 rounded-lg transition-all duration-300",
-                    isCompleted
-                      ? "bg-primary/20 text-primary"
-                      : "bg-muted/50 text-muted-foreground group-hover:bg-primary/10 group-hover:text-primary",
-                  )}
-                >
-                  <MessageSquare className="h-5 w-5" />
+                <div className="p-3 rounded-lg bg-black border-2 border-neon-orange">
+                  <div className="text-neon-orange">
+                    <MessageSquare className="h-5 w-5" />
+                  </div>
                 </div>
-                <div className="text-left">
-                  <h3
-                    className={cn(
-                      "font-semibold transition-colors duration-300",
-                      isCompleted
-                        ? "text-primary"
-                        : "text-foreground group-hover:text-primary",
-                    )}
-                  >
+                <div className="text-left min-w-0 flex-1">
+                  <h3 className="text-lg font-black text-cream tracking-tight truncate">
                     Custom Instructions
                   </h3>
                   {value && (
-                    <p className="text-sm text-muted-foreground truncate max-w-48">
+                    <p className="text-sm font-bold text-neon-orange truncate mt-1">
                       {value.slice(0, 50)}...
                     </p>
                   )}
                 </div>
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1 shrink-0">
                 {value && (
-                  <Badge variant="secondary" className="text-xs">
+                  <Badge
+                    variant="secondary"
+                    className="text-xs px-2 py-0.5 whitespace-nowrap"
+                  >
                     {value.length} chars
                   </Badge>
                 )}
                 {isExpanded ? (
-                  <ChevronDown className="h-4 w-4 text-muted-foreground" />
+                  <ChevronDown className="h-4 w-4 text-muted-foreground shrink-0" />
                 ) : (
-                  <ChevronRight className="h-4 w-4 text-muted-foreground" />
+                  <ChevronRight className="h-4 w-4 text-muted-foreground shrink-0" />
                 )}
               </div>
             </div>
@@ -149,22 +140,13 @@ export function CustomInstructions({
 
       {/* Flow Indicator */}
       {showFlow && (
-        <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2">
+        <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2">
           <div
             className={cn(
-              "w-8 h-8 rounded-full border-2 border-dashed flex items-center justify-center transition-all duration-300",
-              isCompleted
-                ? "border-primary/50 bg-primary/10"
-                : "border-border/30 bg-background/50",
+              "w-1 h-4 transition-all duration-300",
+              isCompleted ? "bg-neon-orange" : "bg-cream/30",
             )}
-          >
-            <Plus
-              className={cn(
-                "h-4 w-4 transition-colors duration-300",
-                isCompleted ? "text-primary" : "text-muted-foreground",
-              )}
-            />
-          </div>
+          />
         </div>
       )}
     </div>
