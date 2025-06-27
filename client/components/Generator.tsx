@@ -257,7 +257,7 @@ export function Generator({ type }: GeneratorProps) {
   }, [promptAnalysis, generatorConfig.categories, state.selections]);
 
   return (
-    <div className="container mx-auto px-8 py-8">
+    <div className="container mx-auto px-4 lg:px-8 py-4 lg:py-8">
       {/* Generator Header */}
       <div className="mb-8">
         <div className="mb-4">
