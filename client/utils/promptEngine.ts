@@ -122,23 +122,28 @@ export class PromptEngine {
     return optimizer ? optimizer(value) : value.toLowerCase();
   }
 
-  // Process custom instructions for better integration
+  // Process custom instructions for better integration as opening statement
   private processCustomInstructions(instructions: string): string {
     // Clean and optimize custom instructions
     let processed = instructions.trim();
 
-    // Add connecting words if needed
+    // Since custom instructions come first now, format as opening statement
+    // Ensure it starts properly without unnecessary connectors
     if (
-      !processed.startsWith("with") &&
-      !processed.startsWith("featuring") &&
-      !processed.startsWith("including")
+      processed.toLowerCase().startsWith("with ") ||
+      processed.toLowerCase().startsWith("featuring ") ||
+      processed.toLowerCase().startsWith("including ")
     ) {
-      processed = `with ${processed}`;
+      // Remove unnecessary starting words when it's the opening statement
+      processed = processed.replace(/^(with |featuring |including )/i, "");
     }
 
-    // Ensure proper sentence flow
-    if (!processed.endsWith(".") && !processed.endsWith(",")) {
-      processed = `${processed}`;
+    // Capitalize first letter for opening statement
+    processed = processed.charAt(0).toUpperCase() + processed.slice(1);
+
+    // Ensure proper flow into the rest of the prompt
+    if (!processed.endsWith(",") && !processed.endsWith(".")) {
+      processed = `${processed},`;
     }
 
     return processed;
