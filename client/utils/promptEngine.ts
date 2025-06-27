@@ -47,7 +47,14 @@ export class PromptEngine {
     const config = generatorData[generatorType];
     const components: string[] = [];
 
-    // Process selections with contextual optimization
+    // Start with custom instructions (Step 1 in new flow)
+    if (customInstructions.trim()) {
+      const processedInstructions =
+        this.processCustomInstructions(customInstructions);
+      components.push(processedInstructions);
+    }
+
+    // Process category selections (Step 2 in new flow)
     Object.entries(selections).forEach(([category, value]) => {
       if (!value) return;
 
@@ -59,14 +66,7 @@ export class PromptEngine {
       components.push(optimizedComponent);
     });
 
-    // Add custom instructions with smart integration
-    if (customInstructions.trim()) {
-      const processedInstructions =
-        this.processCustomInstructions(customInstructions);
-      components.push(processedInstructions);
-    }
-
-    // Add file references with metadata
+    // Add file references with metadata (Step 3 in new flow)
     if (uploadedFiles.length > 0) {
       const fileReference = this.generateFileReference(uploadedFiles);
       components.push(fileReference);
