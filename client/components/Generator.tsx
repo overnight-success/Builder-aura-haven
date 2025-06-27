@@ -207,9 +207,9 @@ export function Generator({ type }: GeneratorProps) {
 
   return (
     <div className="container mx-auto px-8 py-8">
-      {/* Generator Header with Quality Indicator */}
+      {/* Generator Header */}
       <div className="mb-8">
-        <div className="flex items-start justify-between mb-4">
+        <div className="mb-4">
           <div>
             <h1 className="text-4xl font-black text-black mb-2">
               {generatorConfig.title}
@@ -218,16 +218,6 @@ export function Generator({ type }: GeneratorProps) {
               {generatorConfig.description}
             </p>
           </div>
-
-          {promptAnalysis && (
-            <PromptQualityIndicator
-              quality={promptAnalysis.quality}
-              completeness={promptAnalysis.completeness}
-              coherence={promptAnalysis.coherence}
-              creativity={promptAnalysis.creativity}
-              isAnalyzing={isAnalyzing}
-            />
-          )}
         </div>
 
         {/* Smart Suggestions */}
@@ -283,14 +273,23 @@ export function Generator({ type }: GeneratorProps) {
               isCompleted={computed.hasFiles}
             />
 
-            {/* Completion Indicator */}
+            {/* Completion Indicator with Quality Analysis */}
             {computed.isComplete && (
-              <div className="flex justify-center mt-6">
+              <div className="flex items-center justify-center gap-6 mt-6">
                 <div className="flex items-center gap-3 px-6 py-3 rounded-lg bg-black border-2 border-neon-orange text-cream font-bold text-lg animate-pulse">
                   <Sparkles className="h-5 w-5 text-neon-orange" />
                   <span>FORMULA READY TO COPY!</span>
                   <TrendingUp className="h-5 w-5 text-neon-orange" />
                 </div>
+                {promptAnalysis && (
+                  <PromptQualityIndicator
+                    quality={promptAnalysis.quality}
+                    completeness={promptAnalysis.completeness}
+                    coherence={promptAnalysis.coherence}
+                    creativity={promptAnalysis.creativity}
+                    isAnalyzing={isAnalyzing}
+                  />
+                )}
               </div>
             )}
           </div>
