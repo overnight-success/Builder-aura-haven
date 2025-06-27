@@ -1,10 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState, useCallback, useMemo } from "react";
 import { CollapsiblePromptCategory } from "./CollapsiblePromptCategory";
 import { PromptFormulaPreview } from "./PromptFormulaPreview";
 import { CustomInstructions } from "./CustomInstructions";
 import { FileUpload } from "./FileUpload";
 import { InstructionFlow } from "./InstructionFlow";
+import { PromptQualityIndicator } from "./PromptQualityIndicator";
+import { SmartSuggestions } from "./SmartSuggestions";
 import { generatorData } from "../data/generators";
+import { usePromptGenerator } from "../contexts/PromptGeneratorContext";
+import { promptEngine } from "../utils/promptEngine";
 import { cn } from "@/lib/utils";
 import {
   Camera,
@@ -16,6 +20,7 @@ import {
   Layers3,
   Package,
   Target,
+  TrendingUp,
 } from "lucide-react";
 
 interface GeneratorProps {
@@ -40,88 +45,201 @@ const iconMap = {
 };
 
 export function Generator({ type }: GeneratorProps) {
-  const [selections, setSelections] = useState<Record<string, string>>({});
-  const [customInstructions, setCustomInstructions] = useState<string>("");
-  const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
+  const { state, actions, computed } = usePromptGenerator();
+  const [promptAnalysis, setPromptAnalysis] = useState<any>(null);
+  const [isAnalyzing, setIsAnalyzing] = useState(false);
 
   const generatorConfig = generatorData[type];
 
-  const handleCategorySelect = (category: string, option: string) => {
-    setSelections((prev) => ({
-      ...prev,
-      [category]: prev[category] === option ? "" : option,
-    }));
-  };
+  // Sync generator type with context
+  useEffect(() => {
+    if (state.currentGenerator !== type) {
+      actions.setGenerator(type);
+    }
+  }, [type, state.currentGenerator, actions]);
 
-  const handleCopy = async (text: string) => {
-    // Try modern clipboard API first, catch any permission errors
-    let clipboardSuccess = false;
+  // Analyze prompt quality in real-time
+  useEffect(() => {
+    const analyzePrompt = async () => {
+      setIsAnalyzing(true);
 
-    if (navigator.clipboard) {
-      try {
-        await navigator.clipboard.writeText(text);
-        clipboardSuccess = true;
-      } catch (clipboardError) {
-        console.warn(
-          "Modern clipboard failed, using fallback:",
-          clipboardError,
+      // Debounce analysis
+      const timer = setTimeout(() => {
+        const analysis = promptEngine.analyzePrompt(
+          type,
+          state.selections,
+          state.customInstructions,
+          state.uploadedFiles,
         );
-      }
-    }
+        setPromptAnalysis(analysis);
+        setIsAnalyzing(false);
+      }, 500);
 
-    // If modern clipboard failed, use fallback method
-    if (!clipboardSuccess) {
+      return () => clearTimeout(timer);
+    };
+
+    analyzePrompt();
+  }, [type, state.selections, state.customInstructions, state.uploadedFiles]);
+
+  const handleCategorySelect = useCallback(
+    (category: string, option: string) => {
+      actions.updateSelection(category, option);
+    },
+    [actions],
+  );
+
+  const handleCopy = useCallback(
+    async (text: string) => {
+      // Enhanced copy with analytics
       try {
-        const textArea = document.createElement("textarea");
-        textArea.value = text;
-        textArea.style.position = "fixed";
-        textArea.style.left = "-999999px";
-        textArea.style.top = "-999999px";
-        textArea.style.opacity = "0";
-        document.body.appendChild(textArea);
-        textArea.focus();
-        textArea.select();
+        // Try modern clipboard API first
+        let clipboardSuccess = false;
 
-        const success = document.execCommand("copy");
-        document.body.removeChild(textArea);
-
-        if (!success) {
-          throw new Error("execCommand copy failed");
+        if (navigator.clipboard) {
+          try {
+            await navigator.clipboard.writeText(text);
+            clipboardSuccess = true;
+          } catch (clipboardError) {
+            console.warn(
+              "Modern clipboard failed, using fallback:",
+              clipboardError,
+            );
+          }
         }
-      } catch (fallbackError) {
-        console.error("All copy methods failed:", fallbackError);
-        alert(`Copy failed. Please manually copy this text:\n\n${text}`);
+
+        // Fallback method
+        if (!clipboardSuccess) {
+          try {
+            const textArea = document.createElement("textarea");
+            textArea.value = text;
+            textArea.style.position = "fixed";
+            textArea.style.left = "-999999px";
+            textArea.style.top = "-999999px";
+            textArea.style.opacity = "0";
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+
+            const success = document.execCommand("copy");
+            document.body.removeChild(textArea);
+
+            if (!success) {
+              throw new Error("execCommand copy failed");
+            }
+          } catch (fallbackError) {
+            console.error("All copy methods failed:", fallbackError);
+            alert(`Copy failed. Please manually copy this text:\n\n${text}`);
+          }
+        }
+
+        // Add to history if successful
+        if (clipboardSuccess || true) {
+          const promptVersion = {
+            id: Date.now().toString(),
+            formula: text,
+            timestamp: Date.now(),
+            quality: promptAnalysis?.quality || 0,
+          };
+          actions.addToHistory(promptVersion);
+        }
+      } catch (error) {
+        console.error("Copy operation failed:", error);
+      }
+    },
+    [actions, promptAnalysis],
+  );
+
+  const handleExport = useCallback(() => {
+    console.log("Export prompt for", type, ":", state.selections);
+    // Could integrate with external services here
+  }, [type, state.selections]);
+
+  // Memoized current step calculation
+  const currentStep = useMemo(() => {
+    return computed.totalComponents > 0
+      ? Math.min(computed.totalComponents + 1, 8)
+      : 1;
+  }, [computed.totalComponents]);
+
+  // Generate smart suggestions based on current selections
+  const smartSuggestions = useMemo(() => {
+    if (!promptAnalysis) return [];
+
+    const suggestions = [];
+
+    // Quality-based suggestions
+    if (promptAnalysis.quality < 60) {
+      suggestions.push({
+        type: "quality",
+        title: "Improve Quality",
+        description: "Add more category selections for better results",
+        action: "Select more options",
+      });
+    }
+
+    // Completeness suggestions
+    if (promptAnalysis.completeness < 80) {
+      const missingCategories = Object.keys(generatorConfig.categories).filter(
+        (cat) => !state.selections[cat],
+      );
+      if (missingCategories.length > 0) {
+        suggestions.push({
+          type: "completeness",
+          title: "Complete Your Prompt",
+          description: `Consider adding ${missingCategories[0]} for better results`,
+          action: `Add ${missingCategories[0]}`,
+        });
       }
     }
-  };
 
-  const handleExport = () => {
-    console.log("Export prompt for", type, ":", selections);
-  };
+    // Coherence suggestions
+    if (promptAnalysis.coherence < 70) {
+      suggestions.push({
+        type: "coherence",
+        title: "Improve Coherence",
+        description: "Choose options that work well together",
+        action: "Review selections",
+      });
+    }
 
-  const selectedCount = Object.values(selections).filter(Boolean).length;
-  const hasCustomInstructions = customInstructions.trim().length > 0;
-  const hasFiles = uploadedFiles.length > 0;
-  const totalComponents =
-    selectedCount + (hasCustomInstructions ? 1 : 0) + (hasFiles ? 1 : 0);
-  const isComplete = selectedCount >= 4;
+    return suggestions.slice(0, 3);
+  }, [promptAnalysis, generatorConfig.categories, state.selections]);
 
   return (
     <div className="container mx-auto px-8 py-8">
-      {/* Generator Header */}
+      {/* Generator Header with Quality Indicator */}
       <div className="mb-8">
-        <h1 className="text-4xl font-black text-black mb-4">
-          {generatorConfig.title}
-        </h1>
-        <p className="text-xl font-bold text-black">
-          {generatorConfig.description}
-        </p>
+        <div className="flex items-start justify-between mb-4">
+          <div>
+            <h1 className="text-4xl font-black text-black mb-2">
+              {generatorConfig.title}
+            </h1>
+            <p className="text-xl font-bold text-black">
+              {generatorConfig.description}
+            </p>
+          </div>
+
+          {promptAnalysis && (
+            <PromptQualityIndicator
+              quality={promptAnalysis.quality}
+              completeness={promptAnalysis.completeness}
+              coherence={promptAnalysis.coherence}
+              creativity={promptAnalysis.creativity}
+              isAnalyzing={isAnalyzing}
+            />
+          )}
+        </div>
+
+        {/* Smart Suggestions */}
+        {smartSuggestions.length > 0 && (
+          <SmartSuggestions suggestions={smartSuggestions} />
+        )}
       </div>
 
       {/* Instruction Flow */}
       <InstructionFlow
-        currentStep={totalComponents > 0 ? Math.min(totalComponents + 1, 5) : 1}
-        totalComponents={totalComponents}
+        currentStep={currentStep}
+        totalComponents={computed.totalComponents}
       />
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -139,10 +257,10 @@ export function Generator({ type }: GeneratorProps) {
                     )
                   }
                   options={category.options}
-                  selectedOption={selections[key]}
+                  selectedOption={state.selections[key]}
                   onSelect={(option) => handleCategorySelect(key, option)}
                   stepNumber={index + 1}
-                  isCompleted={!!selections[key]}
+                  isCompleted={!!state.selections[key]}
                   showFlow={true}
                 />
               ),
@@ -150,28 +268,28 @@ export function Generator({ type }: GeneratorProps) {
 
             {/* Custom Instructions */}
             <CustomInstructions
-              value={customInstructions}
-              onChange={setCustomInstructions}
+              value={state.customInstructions}
+              onChange={actions.setCustomInstructions}
               stepNumber={Object.keys(generatorConfig.categories).length + 1}
-              isCompleted={hasCustomInstructions}
+              isCompleted={computed.hasCustomInstructions}
               showFlow={true}
             />
 
             {/* File Upload */}
             <FileUpload
-              files={uploadedFiles}
-              onFilesChange={setUploadedFiles}
+              files={state.uploadedFiles}
+              onFilesChange={actions.setUploadedFiles}
               stepNumber={Object.keys(generatorConfig.categories).length + 2}
-              isCompleted={hasFiles}
+              isCompleted={computed.hasFiles}
             />
 
             {/* Completion Indicator */}
-            {totalComponents >= 4 && (
+            {computed.isComplete && (
               <div className="flex justify-center mt-6">
-                <div className="flex items-center gap-3 px-6 py-3 rounded-lg bg-black border-2 border-neon-orange text-cream font-bold text-lg">
+                <div className="flex items-center gap-3 px-6 py-3 rounded-lg bg-black border-2 border-neon-orange text-cream font-bold text-lg animate-pulse">
                   <Sparkles className="h-5 w-5 text-neon-orange" />
                   <span>FORMULA READY TO COPY!</span>
-                  <Sparkles className="h-5 w-5 text-neon-orange" />
+                  <TrendingUp className="h-5 w-5 text-neon-orange" />
                 </div>
               </div>
             )}
@@ -181,11 +299,10 @@ export function Generator({ type }: GeneratorProps) {
         {/* Formula Preview */}
         <div className="lg:col-span-1">
           <PromptFormulaPreview
-            selections={selections}
-            customInstructions={customInstructions}
-            uploadedFiles={uploadedFiles}
+            generatorType={type}
             onCopy={handleCopy}
             onExport={handleExport}
+            promptAnalysis={promptAnalysis}
           />
         </div>
       </div>
