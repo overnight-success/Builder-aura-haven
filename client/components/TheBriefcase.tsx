@@ -80,8 +80,8 @@ ${samplePrompts.map((prompt, i) => `${i + 1}. ${prompt}`).join("\n")}
 ${category.tags.map((tag: string) => `- ${tag}`).join("\n")}
 
 ## Usage:
-Copy any prompt above and customize it for your specific needs.
-Add details like lighting, camera angles, and style preferences.
+Copy any prompt from this collection and customize it for your specific needs.
+Add details like lighting, camera angles, and style preferences to your custom instructions.
 
 ## Pro Tips:
 - Be specific with your requirements
