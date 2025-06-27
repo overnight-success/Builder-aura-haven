@@ -226,107 +226,36 @@ export class PromptEngine {
     return processed;
   }
 
-  // Generate smart file reference with embedded JSON data
-  private generateFileReference(files: ProcessedFile[]): string {
-    const imageFiles = files.filter((f) => f.type.startsWith("image/"));
-    const videoFiles = files.filter((f) => f.type.startsWith("video/"));
-
-    const references: string[] = [];
-
-    if (imageFiles.length > 0) {
-      const processedImages = imageFiles.filter(
-        (f) => f.jsonData && f.processingStatus === "complete",
-      );
-      const pendingImages = imageFiles.filter(
-        (f) => !f.jsonData || f.processingStatus !== "complete",
-      );
-
-      if (processedImages.length > 0) {
-        // Include JSON data directly in the prompt for SORA
-        const imageJsonData = processedImages.map((f) => {
-          try {
-            const jsonData = JSON.parse(f.jsonData!);
-            return {
-              name: jsonData.name,
-              type: jsonData.type,
-              data: jsonData.data, // Base64 image data
-              metadata: jsonData.metadata,
-            };
-          } catch {
-            return { name: f.name, error: "JSON parsing failed" };
-          }
-        });
-
-        references.push(
-          `[SORA_REFERENCE_IMAGES: ${JSON.stringify({
-            images: imageJsonData,
-            count: processedImages.length,
-            format: "base64_embedded",
-            ai_instruction:
-              "Use these reference images to enhance visual understanding and generation accuracy for SORA AI",
-            processing_metadata: {
-              converted_at: Date.now(),
-              optimized_for: ["sora", "chatgpt", "midjourney"],
-              quality: "high_resolution",
-            },
-          })}]`,
-        );
-      }
-
-      if (pendingImages.length > 0) {
-        references.push(
-          `referencing ${pendingImages.length} image${pendingImages.length > 1 ? "s" : ""} (${pendingImages.map((f) => f.name.replace(/\.[^/.]+$/, "")).join(", ")}) - processing`,
-        );
-      }
-    }
-
-    if (videoFiles.length > 0) {
-      references.push(
-        `including ${videoFiles.length} video reference${videoFiles.length > 1 ? "s" : ""} (${videoFiles.map((f) => f.name).join(", ")})`,
-      );
-    }
-
-    return references.join(" and ");
-  }
-
-  // Apply contextual enhancements based on generator type
-  private applyContextualEnhancements(
-    generatorType: string,
-    baseFormula: string,
-    selections: Record<string, string>,
-  ): string {
-    let enhanced = baseFormula;
-
-    // Add quality modifiers optimized for SORA and ChatGPT
-    const qualityModifiers = {
-      product:
-        "professional product photography, commercial quality, sharp focus, high resolution, studio lighting",
-      lifestyle:
-        "authentic lifestyle photography, natural lighting, genuine moments, high quality, cinematic composition",
-      graphic:
-        "professional graphic design, modern aesthetics, balanced composition, print-ready quality, brand-focused",
-    };
-
-    enhanced += `, ${qualityModifiers[generatorType as keyof typeof qualityModifiers]}`;
-
-    // Add SORA-specific technical specifications
-    enhanced +=
-      ", 4K ultra-high resolution, professional grade, optimized for SORA AI video generation, cinematic quality, 16:9 aspect ratio suitable for video";
-
-    // Add AI optimization markers
-    enhanced += ", [AI_OPTIMIZATION: enhanced_for_sora_chatgpt_generation]";
-
-    // Add contextual improvements based on combinations
-    const improvementSuggestions = this.generateImprovementSuggestions(
-      generatorType,
-      selections,
+  // Get JSON data separately for technical processing (not mixed in main prompt)
+  getImageJSONData(files: ProcessedFile[]): any[] {
+    const processedImages = files.filter(
+      (f) =>
+        f.type.startsWith("image/") &&
+        f.jsonData &&
+        f.processingStatus === "complete",
     );
-    if (improvementSuggestions.length > 0) {
-      enhanced += `, ${improvementSuggestions.join(", ")}`;
-    }
 
-    return enhanced;
+    return processedImages.map((f) => {
+      try {
+        const jsonData = JSON.parse(f.jsonData!);
+        return {
+          name: jsonData.name,
+          type: jsonData.type,
+          data: jsonData.data,
+          metadata: {
+            ...jsonData.metadata,
+            sora_optimized: true,
+            processing_timestamp: Date.now(),
+          },
+        };
+      } catch {
+        return { name: f.name, error: "JSON parsing failed" };
+      }
+    });
   }
+
+  // This method is no longer needed as formatting is handled in formatForSORA
+  // Keeping for compatibility but not used in new flow
 
   // Generate smart improvement suggestions
   private generateImprovementSuggestions(
