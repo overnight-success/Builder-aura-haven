@@ -54,12 +54,18 @@ export class PromptEngine {
     // 2. Add category selections in natural language
     const categories = Object.entries(selections).filter(([_, value]) => value);
     categories.forEach(([category, value]) => {
-      const naturalText = this.convertToNaturalLanguage(generatorType, category, value);
+      const naturalText = this.convertToNaturalLanguage(
+        generatorType,
+        category,
+        value,
+      );
       if (naturalText) promptParts.push(naturalText);
     });
 
     // 3. Add basic SORA specifications
-    promptParts.push("cinematic quality, 4K resolution, professional video production");
+    promptParts.push(
+      "cinematic quality, 4K resolution, professional video production",
+    );
 
     // 4. Create main prompt
     const mainPrompt = promptParts.join(", ");
@@ -73,21 +79,24 @@ export class PromptEngine {
 
     return mainPrompt;
   }
-    } else {
-      return this.formatForSORA(mainPrompt, imageReferences, generatorType);
-    }
-  }
 
   // Convert category selections to natural language
-  private convertToNaturalLanguage(generatorType: string, category: string, value: string): string {
-    const conversions: Record<string, Record<string, (val: string) => string>> = {
+  private convertToNaturalLanguage(
+    generatorType: string,
+    category: string,
+    value: string,
+  ): string {
+    const conversions: Record<
+      string,
+      Record<string, (val: string) => string>
+    > = {
       product: {
         style: (val) => `styled as ${val.toLowerCase()}`,
         background: (val) => `with ${val.toLowerCase()} background`,
         lighting: (val) => `using ${val.toLowerCase()}`,
         angle: (val) => `shot from ${val.toLowerCase()}`,
         mood: (val) => `${val.toLowerCase()} aesthetic`,
-        enhancement: (val) => `enhanced with ${val.toLowerCase()}`
+        enhancement: (val) => `enhanced with ${val.toLowerCase()}`,
       },
       lifestyle: {
         scene: (val) => `${val.toLowerCase()} scene`,
@@ -95,7 +104,7 @@ export class PromptEngine {
         environment: (val) => `in ${val.toLowerCase()}`,
         mood: (val) => `${val.toLowerCase()} mood`,
         lighting: (val) => `${val.toLowerCase()} lighting`,
-        style: (val) => `${val.toLowerCase()} style`
+        style: (val) => `${val.toLowerCase()} style`,
       },
       graphic: {
         style: (val) => `${val.toLowerCase()} design`,
@@ -103,8 +112,8 @@ export class PromptEngine {
         color: (val) => `${val.toLowerCase()} colors`,
         typography: (val) => `${val.toLowerCase()} typography`,
         elements: (val) => `with ${val.toLowerCase()}`,
-        purpose: (val) => `for ${val.toLowerCase()}`
-      }
+        purpose: (val) => `for ${val.toLowerCase()}`,
+      },
     };
 
     const typeConversions = conversions[generatorType];
@@ -114,9 +123,9 @@ export class PromptEngine {
 
   // Create clean JSON section for SORA
   private createCleanJSONSection(imageData: any[]): string {
-    const cleanData = imageData.map(img => ({
+    const cleanData = imageData.map((img) => ({
       name: img.name,
-      data: img.data
+      data: img.data,
     }));
 
     return `[REFERENCE_IMAGES:${JSON.stringify(cleanData)}]`;
