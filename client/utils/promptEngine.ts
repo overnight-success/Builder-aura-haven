@@ -131,56 +131,7 @@ export class PromptEngine {
     return `[REFERENCE_IMAGES:${JSON.stringify(cleanData)}]`;
   }
 
-  // Process selections into SORA-friendly natural language
-  private processSelectionsForSORA(
-    generatorType: string,
-    selections: Record<string, string>,
-  ): string[] {
-    const parts: string[] = [];
-
-    // SORA-optimized category processing
-    const soraOptimizations = {
-      product: {
-        style: (val: string) => `styled as ${val.toLowerCase()}`,
-        background: (val: string) => `against ${val.toLowerCase()}`,
-        lighting: (val: string) => `lit with ${val.toLowerCase()}`,
-        angle: (val: string) => `shot from ${val.toLowerCase()}`,
-        mood: (val: string) => `with ${val.toLowerCase()} aesthetic`,
-        enhancement: (val: string) => `enhanced with ${val.toLowerCase()}`,
-      },
-      lifestyle: {
-        scene: (val: string) => `${val.toLowerCase()} scene`,
-        people: (val: string) => `featuring ${val.toLowerCase()}`,
-        environment: (val: string) => `in ${val.toLowerCase()}`,
-        mood: (val: string) => `${val.toLowerCase()} atmosphere`,
-        lighting: (val: string) => `${val.toLowerCase()} lighting`,
-        style: (val: string) => `${val.toLowerCase()} cinematography`,
-      },
-      graphic: {
-        style: (val: string) => `${val.toLowerCase()} design style`,
-        layout: (val: string) => `${val.toLowerCase()} composition`,
-        color: (val: string) => `${val.toLowerCase()} color palette`,
-        typography: (val: string) => `with ${val.toLowerCase()} typography`,
-        elements: (val: string) => `featuring ${val.toLowerCase()}`,
-        purpose: (val: string) => `for ${val.toLowerCase()}`,
-      },
-    };
-
-    const categoryOptimizations =
-      soraOptimizations[generatorType as keyof typeof soraOptimizations];
-
-    Object.entries(selections).forEach(([category, value]) => {
-      if (!value) return;
-
-      const optimizer =
-        categoryOptimizations?.[category as keyof typeof categoryOptimizations];
-      const processed = optimizer ? optimizer(value) : value.toLowerCase();
-      parts.push(processed);
-    });
-
-    return parts;
-  }
-
+  // Old method removed - using simpler convertToNaturalLanguage instead
   // Build clean image references for SORA
   private buildImageReferences(files: ProcessedFile[]): string {
     const processedImages = files.filter(
