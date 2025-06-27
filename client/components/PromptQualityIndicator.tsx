@@ -62,7 +62,7 @@ export function PromptQualityIndicator({
   ];
 
   return (
-    <Card className="bg-black border-2 border-cream w-80">
+    <Card className="bg-black border-2 border-cream w-full max-w-80 mx-auto lg:mx-0">
       <CardHeader className="pb-3">
         <CardTitle className="flex items-center gap-2">
           {isAnalyzing ? (
