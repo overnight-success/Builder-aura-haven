@@ -152,36 +152,67 @@ export function PromptFormulaPreview({
     selectedCount + (hasCustomInstructions ? 1 : 0) + (hasFiles ? 1 : 0);
 
   const handleCopy = async () => {
-    // Create comprehensive formula with all components
-    let fullFormula = formula;
+    try {
+      // Create comprehensive formula with all components
+      let fullFormula = formula;
 
-    // Add professional cinematography terms if formula is complete
-    if (isComplete) {
-      fullFormula +=
-        ". Professional cinematography, 4K resolution, dynamic composition";
+      // Add professional cinematography terms if formula is complete
+      if (isComplete) {
+        fullFormula +=
+          ". Professional cinematography, 4K resolution, dynamic composition";
+      }
+
+      // Add file information for reference
+      if (uploadedFiles.length > 0) {
+        fullFormula += `\n\nReference files included: ${uploadedFiles.map((f) => f.name).join(", ")}`;
+      }
+
+      await navigator.clipboard.writeText(fullFormula);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch (error) {
+      console.error("Failed to copy:", error);
     }
-
-    // Add file information for reference
-    if (uploadedFiles.length > 0) {
-      fullFormula += `\n\nReference files included: ${uploadedFiles.map((f) => f.name).join(", ")}`;
-    }
-
-    await onCopy(fullFormula);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
   };
 
   const handleExportToSora = async () => {
-    // Create a more detailed prompt for Sora
-    let enhancedFormula = `${formula}. Professional cinematography, 4K resolution, dynamic composition, ultra-detailed, masterpiece quality`;
+    try {
+      // Create a more detailed prompt for Sora
+      let enhancedFormula = `${formula}. Professional cinematography, 4K resolution, dynamic composition, ultra-detailed, masterpiece quality`;
 
-    // Add file information for reference
-    if (uploadedFiles.length > 0) {
-      enhancedFormula += `\n\nReference files included: ${uploadedFiles.map((f) => f.name).join(", ")}`;
+      // Add file information for reference
+      if (uploadedFiles.length > 0) {
+        enhancedFormula += `\n\nReference files included: ${uploadedFiles.map((f) => f.name).join(", ")}`;
+      }
+
+      await navigator.clipboard.writeText(enhancedFormula);
+      onExport();
+    } catch (error) {
+      console.error("Failed to export:", error);
     }
+  };
 
-    await onCopy(enhancedFormula);
-    onExport();
+  const handleFavorite = () => {
+    if (isComplete && window.saveFavoritePrompt) {
+      try {
+        window.saveFavoritePrompt({
+          formula,
+          components: selections,
+          customInstructions,
+          files: uploadedFiles.map((f) => f.name),
+        });
+      } catch (error) {
+        console.error("Failed to save favorite:", error);
+      }
+    }
+  };
+
+  const handleOpenSora = () => {
+    try {
+      window.open("https://openai.com/sora", "_blank");
+    } catch (error) {
+      console.error("Failed to open Sora:", error);
+    }
   };
 
   return (
@@ -220,10 +251,10 @@ export function PromptFormulaPreview({
           >
             <p
               className={cn(
-                "text-lg leading-relaxed",
+                "text-sm leading-relaxed",
                 isComplete
-                  ? "text-cream font-bold"
-                  : "text-cream/60 italic font-medium",
+                  ? "text-cream font-semibold"
+                  : "text-cream italic font-normal",
               )}
             >
               {formula}
@@ -259,11 +290,11 @@ export function PromptFormulaPreview({
         )}
 
         {/* Action Buttons */}
-        <div className="space-y-4">
+        <div className="space-y-3">
           <div className="grid grid-cols-2 gap-3">
             <Button
               onClick={handleCopy}
-              className="btn-shiny-black text-cream font-black text-sm px-4 py-4 h-auto"
+              className="bg-black border-2 border-neon-orange text-cream font-bold text-sm px-4 py-3 h-auto hover:bg-neon-orange hover:text-black transition-all duration-200"
               disabled={!isComplete}
             >
               <Copy className="h-4 w-4 text-neon-orange mr-2" />
@@ -271,7 +302,7 @@ export function PromptFormulaPreview({
             </Button>
             <Button
               onClick={handleExportToSora}
-              className="btn-shiny-black text-cream font-black text-sm px-4 py-4 h-auto"
+              className="bg-black border-2 border-neon-orange text-cream font-bold text-sm px-4 py-3 h-auto hover:bg-neon-orange hover:text-black transition-all duration-200"
               disabled={!isComplete}
             >
               <ExternalLink className="h-4 w-4 text-neon-orange mr-2" />
@@ -281,25 +312,16 @@ export function PromptFormulaPreview({
 
           <div className="grid grid-cols-2 gap-3">
             <Button
-              onClick={() => {
-                if (isComplete && window.saveFavoritePrompt) {
-                  window.saveFavoritePrompt({
-                    formula,
-                    components: selections,
-                    customInstructions,
-                    files: uploadedFiles.map((f) => f.name),
-                  });
-                }
-              }}
-              className="btn-shiny-black text-cream font-black text-sm px-4 py-3 h-auto"
+              onClick={handleFavorite}
+              className="bg-black border-2 border-neon-orange text-cream font-bold text-sm px-4 py-3 h-auto hover:bg-neon-orange hover:text-black transition-all duration-200"
               disabled={!isComplete}
             >
               <Heart className="h-4 w-4 text-neon-orange mr-2" />
               FAVORITE
             </Button>
             <Button
-              onClick={() => window.open("https://openai.com/sora", "_blank")}
-              className="btn-shiny-black text-cream font-black text-sm px-4 py-3 h-auto"
+              onClick={handleOpenSora}
+              className="bg-black border-2 border-neon-orange text-cream font-bold text-sm px-4 py-3 h-auto hover:bg-neon-orange hover:text-black transition-all duration-200"
               disabled={!isComplete}
             >
               <Download className="h-4 w-4 text-neon-orange mr-2" />
