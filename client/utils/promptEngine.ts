@@ -54,8 +54,19 @@ export class PromptEngine {
     // Add image references if available (separate from main prompt)
     const imageReferences = this.buildImageReferences(uploadedFiles);
 
-    // Combine with proper SORA formatting
-    return this.formatForSORA(mainPrompt, imageReferences, generatorType);
+    // Get JSON data for SORA processing
+    const imageData = this.getImageJSONData(uploadedFiles);
+
+    // If we have image data, include JSON, otherwise use basic formatting
+    if (imageData.length > 0) {
+      return this.formatCompleteSORAPrompt(
+        mainPrompt,
+        imageData,
+        generatorType,
+      );
+    } else {
+      return this.formatForSORA(mainPrompt, imageReferences, generatorType);
+    }
   }
 
   // Build clean, natural language main prompt
