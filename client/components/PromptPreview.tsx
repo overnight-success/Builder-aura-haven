@@ -21,7 +21,7 @@ export function PromptPreview({
   const generatePromptText = () => {
     const parts = Object.entries(selections).filter(([_, value]) => value);
     if (parts.length === 0)
-      return "Select options from the categories above to generate your Sora AI prompt...";
+      return "Add custom instructions and select from categories to generate your Sora AI prompt...";
 
     const promptParts = parts.map(([category, value]) => {
       switch (category) {
