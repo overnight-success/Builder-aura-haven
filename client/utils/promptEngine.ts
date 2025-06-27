@@ -199,32 +199,7 @@ export class PromptEngine {
     return `${baseSpecs}, ${specificSpecs}`;
   }
 
-  // Process custom instructions for better integration as opening statement
-  private processCustomInstructions(instructions: string): string {
-    // Clean and optimize custom instructions
-    let processed = instructions.trim();
-
-    // Since custom instructions come first now, format as opening statement
-    // Ensure it starts properly without unnecessary connectors
-    if (
-      processed.toLowerCase().startsWith("with ") ||
-      processed.toLowerCase().startsWith("featuring ") ||
-      processed.toLowerCase().startsWith("including ")
-    ) {
-      // Remove unnecessary starting words when it's the opening statement
-      processed = processed.replace(/^(with |featuring |including )/i, "");
-    }
-
-    // Capitalize first letter for opening statement
-    processed = processed.charAt(0).toUpperCase() + processed.slice(1);
-
-    // Ensure proper flow into the rest of the prompt
-    if (!processed.endsWith(",") && !processed.endsWith(".")) {
-      processed = `${processed},`;
-    }
-
-    return processed;
-  }
+  // Custom instructions are now handled directly in buildMainPrompt method
 
   // Get JSON data separately for technical processing (not mixed in main prompt)
   getImageJSONData(files: ProcessedFile[]): any[] {
