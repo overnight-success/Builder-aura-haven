@@ -3,240 +3,392 @@ import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { Button } from "./ui/button";
 import { Badge } from "./ui/badge";
 import {
+  X,
   BookOpen,
   Archive,
+  Bell,
   Wrench,
-  Clock,
-  Star,
+  Image,
+  Play,
   Download,
   ExternalLink,
-  Play,
+  Copy,
+  Star,
+  Zap,
+  Target,
+  Palette,
+  Camera,
+  Package,
 } from "lucide-react";
 
-export function TheBriefcase() {
-  const [activeTab, setActiveTab] = useState("guides");
+interface TheBriefcaseProps {
+  onClose: () => void;
+}
 
-  const downloadGuide = (guide: any) => {
-    // Create a mock PDF download
-    const content = `
-# ${guide.title}
+export function TheBriefcase({ onClose }: TheBriefcaseProps) {
+  const [activeTab, setActiveTab] = useState("playbook");
 
-## Overview
-${guide.description}
-
-## Duration: ${guide.duration}
-## Difficulty: ${guide.difficulty}
-
-## Content
-This guide covers advanced techniques for AI content generation.
-
-### Key Topics:
-- Prompt optimization strategies
-- Quality enhancement techniques
-- Professional workflow integration
-- Best practices and tips
-
-### Getting Started:
-1. Understand your content goals
-2. Choose appropriate style parameters
-3. Iterate and refine your prompts
-4. Apply professional enhancement techniques
-
-For more detailed information, visit our full documentation.
-    `;
-
-    const blob = new Blob([content], { type: "text/plain" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = `${guide.title.replace(/\s+/g, "-").toLowerCase()}.txt`;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-  };
-
-  const accessVault = (category: any) => {
-    // Generate sample prompts for the category
-    const samplePrompts = [
-      `Create professional ${category.category.toLowerCase()} with modern ${category.tags[0].toLowerCase()} style`,
-      `Generate high-quality ${category.category.toLowerCase()} featuring ${category.tags[1].toLowerCase()} aesthetic`,
-      `Design ${category.category.toLowerCase()} with ${category.tags[2].toLowerCase()} approach and premium quality`,
-      `Produce ${category.category.toLowerCase()} content using ${category.tags[3].toLowerCase()} methodology`,
-    ];
-
-    const content = `
-# ${category.category} Prompt Vault
-
-## Category: ${category.category}
-## Total Prompts: ${category.count}
-## Description: ${category.description}
-
-## Sample Prompts:
-
-${samplePrompts.map((prompt, i) => `${i + 1}. ${prompt}`).join("\n")}
-
-## Tags Available:
-${category.tags.map((tag: string) => `- ${tag}`).join("\n")}
-
-## Usage:
-Copy any prompt from this collection and customize it for your specific needs.
-Add details like lighting, camera angles, and style preferences to your custom instructions.
-
-## Pro Tips:
-- Be specific with your requirements
-- Include quality indicators (4K, professional, etc.)
-- Mention style preferences clearly
-- Add technical details when needed
-    `;
-
-    const blob = new Blob([content], { type: "text/plain" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = `${category.category.replace(/\s+/g, "-").toLowerCase()}-prompts.txt`;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-  };
-
-  const getToolkit = (toolkit: any) => {
-    if (toolkit.price === "Free") {
-      // Download free toolkit info
-      const content = `
-# ${toolkit.name} - FREE TOOLKIT
-
-## Description
-${toolkit.description}
-
-## Included Tools:
-${toolkit.tools.map((tool: string) => `- ${tool}`).join("\n")}
-
-## Getting Started:
-1. Download this toolkit information
-2. Access the free resources
-3. Follow the included guides
-4. Start creating amazing content!
-
-## Free Resources Include:
-- Basic prompt templates
-- Quick start guide
-- Community access
-- Email support
-
-## Upgrade Options:
-Consider our premium toolkits for advanced features and priority support.
-      `;
-
-      const blob = new Blob([content], { type: "text/plain" });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = `${toolkit.name.replace(/\s+/g, "-").toLowerCase()}-free.txt`;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
-    } else {
-      // Open pricing page
-      alert(
-        `${toolkit.name} - ${toolkit.price}\n\n${toolkit.description}\n\nIn a real app, this would redirect to the pricing/checkout page.`,
-      );
-    }
-  };
-
-  const howToGuides = [
+  // THE PLAYBOOK - How to use everything
+  const playbookSections = [
     {
-      title: "Mastering Sora AI Video Generation",
-      description: "Complete guide to creating professional video content",
-      duration: "15 min read",
-      difficulty: "Beginner",
-      updated: "2 days ago",
+      title: "Getting Started with SORA AI Prompts",
+      description: "Master the fundamentals of prompt generation",
+      duration: "5 min read",
+      content: `
+# Getting Started with SORA AI Prompts
+
+## Step 1: Choose Your Generator
+- **Product Generator**: For e-commerce and product photography
+- **Lifestyle Generator**: For authentic lifestyle and brand content  
+- **Graphic Generator**: For logos, graphics, and visual design
+
+## Step 2: Start with Custom Instructions
+Begin every prompt with your specific vision and requirements. This sets the foundation for everything else.
+
+## Step 3: Select Categories
+Choose 4+ categories for optimal results. Each selection adds important details to your prompt.
+
+## Step 4: Upload Reference Images
+Add images to be converted to JSON format for enhanced AI understanding.
+
+## Step 5: Review Quality Analysis
+Check your prompt quality score and follow AI recommendations.
+
+## Step 6: Copy & Use in SORA
+Export your optimized prompt and use it directly in SORA AI for best results.
+      `,
     },
     {
-      title: "Advanced Prompt Engineering Techniques",
-      description: "Pro tips for getting better results from AI generators",
-      duration: "20 min read",
-      difficulty: "Advanced",
-      updated: "1 week ago",
+      title: "Advanced Prompt Engineering",
+      description: "Pro techniques for better AI results",
+      duration: "10 min read",
+      content: `
+# Advanced Prompt Engineering for SORA
+
+## Specificity is Key
+The more specific your instructions, the better your results. Use concrete descriptors rather than vague terms.
+
+## Layer Your Descriptions
+Build your prompts in layers:
+1. Subject/Object
+2. Style and Aesthetic  
+3. Technical Specifications
+4. Mood and Atmosphere
+
+## Use Visual References
+Always upload reference images when possible. Our JSON conversion optimizes them for SORA processing.
+
+## Quality Optimization
+- Aim for 80%+ quality score
+- Complete 4+ categories minimum
+- Include custom instructions
+- Add reference materials
+
+## Common Mistakes to Avoid
+- Being too vague or generic
+- Conflicting style choices
+- Ignoring technical specifications
+- Not using reference images
+      `,
     },
     {
-      title: "Building Product Photography Prompts",
-      description: "Step-by-step guide for e-commerce visuals",
-      duration: "12 min read",
-      difficulty: "Intermediate",
-      updated: "3 days ago",
+      title: "SORA-Specific Best Practices",
+      description: "Optimize specifically for SORA AI video generation",
+      duration: "8 min read",
+      content: `
+# SORA-Specific Best Practices
+
+## Video-First Thinking
+Remember that SORA generates video, so think about:
+- Motion and movement
+- Temporal consistency
+- Cinematic composition
+- Lighting that works in motion
+
+## Technical Specifications
+Always include:
+- Resolution (4K recommended)
+- Aspect ratio (16:9 for video)
+- Quality markers (cinematic, professional)
+- Frame rate considerations
+
+## Prompt Structure for Video
+1. **Opening Statement**: What the video shows
+2. **Visual Style**: How it should look
+3. **Motion Description**: How things move
+4. **Technical Specs**: Quality and format
+5. **Reference Data**: JSON image data
+
+## Best Results Tips
+- Use our quality analysis to optimize
+- Include movement descriptors
+- Specify camera angles and shots
+- Add lighting and mood details
+      `,
     },
   ];
 
-  const promptVault = [
-    {
-      category: "Product Photography",
-      count: 147,
-      description: "Professional product shots and e-commerce visuals",
-      tags: ["Studio", "Lifestyle", "Minimal", "Luxury"],
+  // PROMPT VAULT - Organized collection of keywords, descriptors and prompts
+  const promptVault = {
+    keywords: {
+      Lighting: [
+        "soft studio lighting",
+        "dramatic side lighting",
+        "golden hour",
+        "neon lighting",
+        "cinematic lighting",
+        "natural window light",
+        "rim lighting",
+        "three-point lighting",
+      ],
+      "Camera Angles": [
+        "low angle shot",
+        "high angle shot",
+        "dutch angle",
+        "overhead shot",
+        "close-up",
+        "medium shot",
+        "wide shot",
+        "macro photography",
+      ],
+      Styles: [
+        "minimalist",
+        "maximalist",
+        "vintage",
+        "modern",
+        "futuristic",
+        "retro",
+        "industrial",
+        "organic",
+        "luxury",
+        "gritty",
+      ],
+      Moods: [
+        "energetic",
+        "calm",
+        "dramatic",
+        "playful",
+        "sophisticated",
+        "mysterious",
+        "bright",
+        "moody",
+        "elegant",
+        "bold",
+      ],
+      "Quality Modifiers": [
+        "4K resolution",
+        "cinematic quality",
+        "professional grade",
+        "award-winning",
+        "ultra-high resolution",
+        "masterpiece",
+        "commercial ready",
+        "studio quality",
+      ],
     },
-    {
-      category: "Lifestyle Content",
-      count: 89,
-      description: "Authentic lifestyle scenes and brand storytelling",
-      tags: ["Authentic", "Natural", "Candid", "Emotional"],
-    },
-    {
-      category: "Graphic Design",
-      count: 203,
-      description: "Modern graphics, logos, and visual identities",
-      tags: ["Minimal", "Bold", "Abstract", "Corporate"],
-    },
-  ];
+    prebuiltPrompts: [
+      {
+        category: "Product Photography",
+        title: "Luxury Watch Commercial",
+        prompt:
+          "Luxury watch showcase, styled as premium lifestyle placement, against marble surface luxury, lit with dramatic side lighting, shot from straight-on product shot, premium luxury feel aesthetic, enhanced with perfect color grading, cinematic quality, 4K resolution, professional video production",
+        tags: ["luxury", "product", "commercial"],
+      },
+      {
+        category: "Lifestyle Content",
+        title: "Morning Coffee Routine",
+        prompt:
+          "Authentic morning routine scene, featuring candid family breakfast, in modern kitchen environment, natural lighting cinematography, warm authentic mood, documentary style approach, cinematic quality, 4K resolution, professional video production",
+        tags: ["lifestyle", "authentic", "morning"],
+      },
+      {
+        category: "Graphic Design",
+        title: "Tech Startup Logo",
+        prompt:
+          "Modern tech logo design, minimalist design style, clean geometric composition, vibrant blue color palette, with sans-serif typography, for startup branding purpose, cinematic quality, 4K resolution, professional video production",
+        tags: ["logo", "tech", "minimalist"],
+      },
+    ],
+  };
 
-  const toolkits = [
+  // UPDATES - Running feed of new updates
+  const updates = [
     {
-      name: "E-commerce Essentials",
-      description: "Complete toolkit for online store visuals",
-      tools: ["Product Generator", "Lifestyle Shots", "Brand Guidelines"],
-      price: "Free",
+      date: "Dec 20, 2024",
+      title: "Enhanced JSON Image Processing",
+      type: "Feature Update",
+      description:
+        "Improved image-to-JSON conversion for better SORA compatibility with optimized metadata",
+      isNew: true,
     },
     {
-      name: "Content Creator Pro",
-      description: "Advanced tools for social media and marketing",
-      tools: ["Video Templates", "Graphic Presets", "Trend Analysis"],
-      price: "$29/month",
+      date: "Dec 19, 2024",
+      title: "Mobile Interface Optimization",
+      type: "UI Update",
+      description:
+        "Complete mobile responsive design with touch-optimized controls and improved navigation",
+      isNew: true,
     },
-    {
-      name: "Agency Premium",
-      description: "Professional suite for creative agencies",
-      tools: ["Client Tools", "Team Collaboration", "White Label"],
-      price: "$99/month",
-    },
-  ];
-
-  const weeklyUpdates = [
     {
       date: "Dec 18, 2024",
       title: "New Sora AI Features Integration",
       type: "Feature Update",
-      description: "Enhanced video generation with better motion control",
+      description:
+        "Enhanced video generation with better motion control and temporal consistency",
+      isNew: false,
     },
     {
       date: "Dec 15, 2024",
-      title: "50+ New Product Photography Prompts",
+      title: "100+ New Prompt Templates",
       type: "Content Update",
-      description: "Premium product shots for luxury brands and electronics",
+      description:
+        "Premium product shots, lifestyle scenes, and graphic design prompts added to vault",
+      isNew: false,
     },
     {
       date: "Dec 12, 2024",
-      title: "Advanced Lighting Techniques Guide",
-      type: "Tutorial",
-      description: "Master professional lighting in your AI generations",
+      title: "Advanced Quality Analysis",
+      type: "Feature Update",
+      description:
+        "AI-powered prompt analysis with real-time quality scoring and suggestions",
+      isNew: false,
+    },
+  ];
+
+  // AI TOOLKIT - Database of tools, resources and links
+  const aiToolkit = [
+    {
+      category: "AI Video Generation",
+      tools: [
+        {
+          name: "SORA by OpenAI",
+          description: "Advanced AI video generation",
+          url: "https://openai.com/sora",
+          type: "external",
+        },
+        {
+          name: "Runway ML",
+          description: "Creative AI video tools",
+          url: "https://runwayml.com",
+          type: "external",
+        },
+        {
+          name: "Pika Labs",
+          description: "AI video creation platform",
+          url: "https://pika.art",
+          type: "external",
+        },
+      ],
+    },
+    {
+      category: "Image Generation",
+      tools: [
+        {
+          name: "Midjourney",
+          description: "High-quality AI image generation",
+          url: "https://midjourney.com",
+          type: "external",
+        },
+        {
+          name: "DALL-E 3",
+          description: "OpenAI's image generation model",
+          url: "https://openai.com/dall-e-3",
+          type: "external",
+        },
+        {
+          name: "Stable Diffusion",
+          description: "Open-source image generation",
+          url: "https://stability.ai",
+          type: "external",
+        },
+      ],
+    },
+    {
+      category: "Prompt Engineering",
+      tools: [
+        {
+          name: "PromptBase",
+          description: "Marketplace for AI prompts",
+          url: "https://promptbase.com",
+          type: "external",
+        },
+        {
+          name: "Prompt Perfect",
+          description: "Prompt optimization tool",
+          url: "https://promptperfect.jina.ai",
+          type: "external",
+        },
+        {
+          name: "ChatGPT",
+          description: "AI assistant for prompt writing",
+          url: "https://chat.openai.com",
+          type: "external",
+        },
+      ],
+    },
+    {
+      category: "Design Resources",
+      tools: [
+        {
+          name: "Unsplash",
+          description: "Free high-quality images",
+          url: "https://unsplash.com",
+          type: "external",
+        },
+        {
+          name: "Adobe Creative Suite",
+          description: "Professional design tools",
+          url: "https://adobe.com",
+          type: "external",
+        },
+        {
+          name: "Figma",
+          description: "Collaborative design platform",
+          url: "https://figma.com",
+          type: "external",
+        },
+      ],
+    },
+  ];
+
+  // EXAMPLES - Finished outputs next to prompts
+  const examples = [
+    {
+      category: "Product",
+      title: "Luxury Perfume Bottle",
+      prompt:
+        "Elegant perfume bottle showcase, styled as luxury lifestyle placement, against gradient color fade background, lit with soft studio lighting, shot from dramatic angle, conveying premium luxury feel, enhanced with perfect color grading, cinematic quality, 4K resolution, professional video production",
+      outputDescription:
+        "Stunning video of crystal perfume bottle with elegant lighting, smooth camera movement revealing the bottle's details, soft background bokeh, and premium feel throughout the 10-second sequence.",
+      tags: ["luxury", "product", "perfume"],
+      quality: 94,
+    },
+    {
+      category: "Lifestyle",
+      title: "Coffee Shop Morning",
+      prompt:
+        "Cozy coffee shop morning scene, featuring authentic customers and baristas, in warm café environment, natural window light cinematography, comfortable authentic mood, documentary style approach, cinematic quality, 4K resolution, professional video production",
+      outputDescription:
+        "Warm, inviting video capturing the essence of a busy morning café with natural interactions, steam rising from cups, golden lighting, and authentic human moments.",
+      tags: ["lifestyle", "coffee", "morning"],
+      quality: 87,
+    },
+    {
+      category: "Graphic",
+      title: "Tech Brand Animation",
+      prompt:
+        "Modern tech logo animation, minimalist design style, clean geometric composition, electric blue color palette, with modern typography, for technology branding purpose, cinematic quality, 4K resolution, professional video production",
+      outputDescription:
+        "Sleek logo animation with smooth geometric transitions, modern typography reveals, electric blue accent colors, and professional motion graphics feel.",
+      tags: ["logo", "tech", "animation"],
+      quality: 91,
     },
   ];
 
   const tabs = [
     {
-      id: "guides",
-      label: "HOW-TO GUIDES",
+      id: "playbook",
+      label: "THE PLAYBOOK",
       icon: <BookOpen className="h-4 w-4" />,
     },
     {
@@ -244,203 +396,412 @@ Consider our premium toolkits for advanced features and priority support.
       label: "PROMPT VAULT",
       icon: <Archive className="h-4 w-4" />,
     },
-    { id: "toolkits", label: "TOOLKITS", icon: <Wrench className="h-4 w-4" /> },
+    { id: "updates", label: "UPDATES", icon: <Bell className="h-4 w-4" /> },
     {
-      id: "updates",
-      label: "WEEKLY FEED",
-      icon: <Clock className="h-4 w-4" />,
+      id: "toolkit",
+      label: "AI TOOLKIT",
+      icon: <Wrench className="h-4 w-4" />,
     },
+    { id: "examples", label: "EXAMPLES", icon: <Image className="h-4 w-4" /> },
   ];
 
+  const downloadGuide = (section: any) => {
+    const content = `# ${section.title}\n\n${section.content}`;
+    const blob = new Blob([content], { type: "text/markdown" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `${section.title.replace(/\s+/g, "-").toLowerCase()}.md`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  };
+
+  const copyPrompt = async (prompt: string) => {
+    try {
+      await navigator.clipboard.writeText(prompt);
+    } catch (error) {
+      alert(`Prompt copied: ${prompt}`);
+    }
+  };
+
+  const openTool = (url: string) => {
+    window.open(url, "_blank");
+  };
+
   return (
-    <div className="container mx-auto px-8 py-8">
-      <div className="mb-8">
-        <h1 className="text-4xl font-black text-black mb-4">THE BRIEFCASE</h1>
-        <p className="text-xl font-bold text-black">
-          Your complete resource hub for AI content creation mastery
-        </p>
-      </div>
-
-      {/* Tab Navigation */}
-      <div className="flex gap-2 mb-8">
-        {tabs.map((tab) => (
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
+      <div className="bg-neon-orange rounded-lg max-w-6xl w-full max-h-[90vh] overflow-hidden">
+        {/* Header */}
+        <div className="flex items-center justify-between p-6 border-b-4 border-black">
+          <div className="flex items-center gap-3">
+            <div className="p-2 rounded-lg bg-black">
+              <Archive className="h-6 w-6 text-neon-orange" />
+            </div>
+            <h2 className="text-2xl font-black text-black">THE BRIEFCASE</h2>
+          </div>
           <Button
-            key={tab.id}
-            onClick={() => setActiveTab(tab.id)}
-            className={`
-              font-bold text-sm px-6 py-3 h-auto border-2 transition-all duration-200
-              ${
-                activeTab === tab.id
-                  ? "bg-black border-black text-cream"
-                  : "bg-neon-orange border-black text-black hover:bg-black hover:text-cream"
-              }
-            `}
+            onClick={onClose}
+            className="bg-black border-2 border-black text-cream hover:bg-cream hover:text-black"
+            size="sm"
           >
-            {tab.icon}
-            {tab.label}
+            <X className="h-5 w-5" />
           </Button>
-        ))}
-      </div>
-
-      {/* Content Sections */}
-      {activeTab === "guides" && (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {howToGuides.map((guide, index) => (
-            <Card key={index} className="bg-black border-2 border-cream">
-              <CardHeader>
-                <CardTitle className="text-lg font-black text-cream">
-                  {guide.title}
-                </CardTitle>
-                <div className="flex gap-2">
-                  <Badge className="bg-neon-orange text-black font-bold text-xs">
-                    {guide.difficulty}
-                  </Badge>
-                  <Badge className="bg-cream text-black font-bold text-xs">
-                    {guide.duration}
-                  </Badge>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <p className="text-cream mb-4">{guide.description}</p>
-                <div className="flex justify-between items-center">
-                  <span className="text-sm text-cream">
-                    Updated {guide.updated}
-                  </span>
-                  <Button
-                    onClick={() => downloadGuide(guide)}
-                    className="bg-neon-orange border-2 border-neon-orange text-black font-bold text-sm px-4 py-2 h-auto hover:bg-black hover:text-neon-orange transition-all duration-200"
-                  >
-                    <Play className="h-4 w-4 mr-1" />
-                    DOWNLOAD
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
         </div>
-      )}
 
-      {activeTab === "vault" && (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {promptVault.map((category, index) => (
-            <Card key={index} className="bg-black border-2 border-cream">
-              <CardHeader>
-                <CardTitle className="text-lg font-black text-cream">
-                  {category.category}
-                </CardTitle>
-                <Badge className="bg-neon-orange text-black font-bold text-sm w-fit">
-                  {category.count} PROMPTS
-                </Badge>
-              </CardHeader>
-              <CardContent>
-                <p className="text-cream mb-4">{category.description}</p>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {category.tags.map((tag) => (
-                    <Badge
-                      key={tag}
-                      onClick={() => {
-                        const samplePrompt = `Create ${category.category.toLowerCase()} content with ${tag.toLowerCase()} style, professional quality, 4K resolution`;
-                        navigator.clipboard
-                          .writeText(samplePrompt)
-                          .catch(() => {
-                            alert(`Sample prompt: ${samplePrompt}`);
-                          });
-                      }}
-                      className="bg-cream text-black font-bold text-xs cursor-pointer hover:bg-neon-orange transition-all duration-200"
-                    >
-                      {tag}
-                    </Badge>
-                  ))}
-                </div>
-                <Button
-                  onClick={() => accessVault(category)}
-                  className="w-full bg-neon-orange border-2 border-neon-orange text-black font-bold text-sm py-2 h-auto hover:bg-black hover:text-neon-orange transition-all duration-200"
-                >
-                  <Download className="h-4 w-4 mr-1" />
-                  DOWNLOAD VAULT
-                </Button>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-      )}
-
-      {activeTab === "toolkits" && (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {toolkits.map((toolkit, index) => (
-            <Card key={index} className="bg-black border-2 border-cream">
-              <CardHeader>
-                <CardTitle className="text-lg font-black text-cream">
-                  {toolkit.name}
-                </CardTitle>
-                <Badge
-                  className={`font-bold text-sm w-fit ${
-                    toolkit.price === "Free"
+        {/* Tabs */}
+        <div className="border-b-2 border-black bg-black">
+          <div className="flex overflow-x-auto">
+            {tabs.map((tab) => (
+              <Button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id)}
+                className={`
+                  font-bold text-xs px-4 py-3 border-0 rounded-none whitespace-nowrap
+                  ${
+                    activeTab === tab.id
                       ? "bg-neon-orange text-black"
-                      : "bg-cream text-black"
-                  }`}
-                >
-                  {toolkit.price}
-                </Badge>
-              </CardHeader>
-              <CardContent>
-                <p className="text-cream mb-4">{toolkit.description}</p>
-                <div className="space-y-2 mb-4">
-                  {toolkit.tools.map((tool) => (
-                    <div key={tool} className="flex items-center gap-2">
-                      <Star className="h-4 w-4 text-neon-orange" />
-                      <span className="text-cream text-sm">{tool}</span>
-                    </div>
+                      : "bg-black text-cream hover:bg-neon-orange hover:text-black"
+                  }
+                `}
+              >
+                <span className="mr-2">{tab.icon}</span>
+                {tab.label}
+              </Button>
+            ))}
+          </div>
+        </div>
+
+        {/* Content */}
+        <div className="p-6 overflow-y-auto max-h-[60vh] bg-black">
+          {/* THE PLAYBOOK */}
+          {activeTab === "playbook" && (
+            <div className="space-y-6">
+              <div className="text-center mb-8">
+                <h3 className="text-2xl font-black text-cream mb-2">
+                  Master SORA AI Prompt Generation
+                </h3>
+                <p className="text-cream/80">
+                  Complete guides to get the best results from our platform
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                {playbookSections.map((section, index) => (
+                  <Card key={index} className="bg-black border-2 border-cream">
+                    <CardHeader>
+                      <CardTitle className="text-lg font-black text-cream flex items-center gap-2">
+                        <BookOpen className="h-5 w-5 text-neon-orange" />
+                        {section.title}
+                      </CardTitle>
+                      <Badge className="bg-neon-orange text-black font-bold text-xs w-fit">
+                        {section.duration}
+                      </Badge>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-cream mb-4">{section.description}</p>
+                      <Button
+                        onClick={() => downloadGuide(section)}
+                        className="bg-neon-orange border-2 border-neon-orange text-black font-bold text-sm px-4 py-2 h-auto hover:bg-black hover:text-neon-orange transition-all duration-200"
+                      >
+                        <Download className="h-4 w-4 mr-2" />
+                        DOWNLOAD GUIDE
+                      </Button>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* PROMPT VAULT */}
+          {activeTab === "vault" && (
+            <div className="space-y-6">
+              <div className="text-center mb-8">
+                <h3 className="text-2xl font-black text-cream mb-2">
+                  Prompt Vault
+                </h3>
+                <p className="text-cream/80">
+                  Organized collection of keywords, descriptors, and
+                  ready-to-use prompts
+                </p>
+              </div>
+
+              {/* Keywords Section */}
+              <div className="mb-8">
+                <h4 className="text-xl font-black text-cream mb-4 flex items-center gap-2">
+                  <Target className="h-5 w-5 text-neon-orange" />
+                  Keywords & Descriptors
+                </h4>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                  {Object.entries(promptVault.keywords).map(
+                    ([category, keywords]) => (
+                      <Card
+                        key={category}
+                        className="bg-black border-2 border-cream"
+                      >
+                        <CardHeader className="pb-3">
+                          <CardTitle className="text-lg font-black text-cream">
+                            {category}
+                          </CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                          <div className="flex flex-wrap gap-2">
+                            {keywords.map((keyword) => (
+                              <Badge
+                                key={keyword}
+                                onClick={() => copyPrompt(keyword)}
+                                className="bg-cream text-black font-bold text-xs cursor-pointer hover:bg-neon-orange transition-all duration-200"
+                              >
+                                {keyword}
+                              </Badge>
+                            ))}
+                          </div>
+                        </CardContent>
+                      </Card>
+                    ),
+                  )}
+                </div>
+              </div>
+
+              {/* Prebuilt Prompts Section */}
+              <div>
+                <h4 className="text-xl font-black text-cream mb-4 flex items-center gap-2">
+                  <Zap className="h-5 w-5 text-neon-orange" />
+                  Ready-to-Use Prompts
+                </h4>
+                <div className="grid grid-cols-1 gap-4">
+                  {promptVault.prebuiltPrompts.map((prompt, index) => (
+                    <Card
+                      key={index}
+                      className="bg-black border-2 border-cream"
+                    >
+                      <CardHeader>
+                        <div className="flex justify-between items-start">
+                          <div>
+                            <CardTitle className="text-lg font-black text-cream">
+                              {prompt.title}
+                            </CardTitle>
+                            <Badge className="bg-neon-orange text-black font-bold text-xs">
+                              {prompt.category}
+                            </Badge>
+                          </div>
+                          <Button
+                            onClick={() => copyPrompt(prompt.prompt)}
+                            className="bg-cream text-black hover:bg-neon-orange"
+                            size="sm"
+                          >
+                            <Copy className="h-4 w-4" />
+                          </Button>
+                        </div>
+                      </CardHeader>
+                      <CardContent>
+                        <p className="text-cream text-sm mb-3 font-mono bg-cream/10 p-3 rounded">
+                          {prompt.prompt}
+                        </p>
+                        <div className="flex flex-wrap gap-2">
+                          {prompt.tags.map((tag) => (
+                            <Badge
+                              key={tag}
+                              className="bg-cream/20 text-cream text-xs"
+                            >
+                              {tag}
+                            </Badge>
+                          ))}
+                        </div>
+                      </CardContent>
+                    </Card>
                   ))}
                 </div>
-                <Button
-                  onClick={() => getToolkit(toolkit)}
-                  className="w-full bg-neon-orange border-2 border-neon-orange text-black font-bold text-sm py-2 h-auto hover:bg-black hover:text-neon-orange transition-all duration-200"
-                >
-                  <ExternalLink className="h-4 w-4 mr-1" />
-                  {toolkit.price === "Free" ? "GET FREE" : "SUBSCRIBE"}
-                </Button>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-      )}
+              </div>
+            </div>
+          )}
 
-      {activeTab === "updates" && (
-        <div className="space-y-4">
-          {weeklyUpdates.map((update, index) => (
-            <Card key={index} className="bg-black border-2 border-cream">
-              <CardContent className="p-6">
-                <div className="flex justify-between items-start mb-4">
-                  <div>
-                    <h3 className="text-xl font-black text-cream mb-2">
-                      {update.title}
-                    </h3>
-                    <p className="text-cream">{update.description}</p>
+          {/* UPDATES */}
+          {activeTab === "updates" && (
+            <div className="space-y-6">
+              <div className="text-center mb-8">
+                <h3 className="text-2xl font-black text-cream mb-2">
+                  Latest Updates
+                </h3>
+                <p className="text-cream/80">
+                  Stay up to date with new features, content, and improvements
+                </p>
+              </div>
+
+              <div className="space-y-4">
+                {updates.map((update, index) => (
+                  <Card key={index} className="bg-black border-2 border-cream">
+                    <CardContent className="p-6">
+                      <div className="flex justify-between items-start mb-4">
+                        <div>
+                          <div className="flex items-center gap-2 mb-2">
+                            <h3 className="text-xl font-black text-cream">
+                              {update.title}
+                            </h3>
+                            {update.isNew && (
+                              <Badge className="bg-neon-orange text-black font-bold text-xs">
+                                NEW
+                              </Badge>
+                            )}
+                          </div>
+                          <p className="text-cream">{update.description}</p>
+                        </div>
+                        <div className="text-right">
+                          <Badge className="bg-cream text-black font-bold text-xs mb-2">
+                            {update.type}
+                          </Badge>
+                          <p className="text-sm text-cream">{update.date}</p>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* AI TOOLKIT */}
+          {activeTab === "toolkit" && (
+            <div className="space-y-6">
+              <div className="text-center mb-8">
+                <h3 className="text-2xl font-black text-cream mb-2">
+                  AI Toolkit
+                </h3>
+                <p className="text-cream/80">
+                  Curated database of AI tools, resources, and links
+                </p>
+              </div>
+
+              <div className="space-y-8">
+                {aiToolkit.map((category, index) => (
+                  <div key={index}>
+                    <h4 className="text-xl font-black text-cream mb-4 flex items-center gap-2">
+                      <Wrench className="h-5 w-5 text-neon-orange" />
+                      {category.category}
+                    </h4>
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                      {category.tools.map((tool, toolIndex) => (
+                        <Card
+                          key={toolIndex}
+                          className="bg-black border-2 border-cream"
+                        >
+                          <CardContent className="p-4">
+                            <div className="flex justify-between items-start">
+                              <div>
+                                <h5 className="text-lg font-black text-cream mb-1">
+                                  {tool.name}
+                                </h5>
+                                <p className="text-cream/80 text-sm">
+                                  {tool.description}
+                                </p>
+                              </div>
+                              <Button
+                                onClick={() => openTool(tool.url)}
+                                className="bg-neon-orange text-black hover:bg-cream"
+                                size="sm"
+                              >
+                                <ExternalLink className="h-4 w-4" />
+                              </Button>
+                            </div>
+                          </CardContent>
+                        </Card>
+                      ))}
+                    </div>
                   </div>
-                  <div className="text-right">
-                    <Badge className="bg-neon-orange text-black font-bold text-xs mb-2">
-                      {update.type}
-                    </Badge>
-                    <p className="text-sm text-cream">{update.date}</p>
-                  </div>
-                </div>
-                <Button
-                  onClick={() => {
-                    alert(
-                      `${update.title}\n\nDate: ${update.date}\nType: ${update.type}\n\n${update.description}\n\nIn a real app, this would open the full update details.`,
-                    );
-                  }}
-                  className="bg-neon-orange border-2 border-neon-orange text-black font-bold text-sm px-4 py-2 h-auto hover:bg-black hover:text-neon-orange transition-all duration-200"
-                >
-                  <ExternalLink className="h-4 w-4 mr-1" />
-                  VIEW UPDATE
-                </Button>
-              </CardContent>
-            </Card>
-          ))}
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* EXAMPLES */}
+          {activeTab === "examples" && (
+            <div className="space-y-6">
+              <div className="text-center mb-8">
+                <h3 className="text-2xl font-black text-cream mb-2">
+                  Examples Gallery
+                </h3>
+                <p className="text-cream/80">
+                  See finished outputs alongside the prompts that generated them
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                {examples.map((example, index) => (
+                  <Card key={index} className="bg-black border-2 border-cream">
+                    <CardHeader>
+                      <div className="flex justify-between items-start">
+                        <div>
+                          <CardTitle className="text-lg font-black text-cream flex items-center gap-2">
+                            {example.category === "Product" && (
+                              <Package className="h-5 w-5 text-neon-orange" />
+                            )}
+                            {example.category === "Lifestyle" && (
+                              <Camera className="h-5 w-5 text-neon-orange" />
+                            )}
+                            {example.category === "Graphic" && (
+                              <Palette className="h-5 w-5 text-neon-orange" />
+                            )}
+                            {example.title}
+                          </CardTitle>
+                          <div className="flex items-center gap-2 mt-2">
+                            <Badge className="bg-neon-orange text-black font-bold text-xs">
+                              {example.category}
+                            </Badge>
+                            <Badge className="bg-green-500 text-black font-bold text-xs">
+                              {example.quality}% Quality
+                            </Badge>
+                          </div>
+                        </div>
+                        <Button
+                          onClick={() => copyPrompt(example.prompt)}
+                          className="bg-cream text-black hover:bg-neon-orange"
+                          size="sm"
+                        >
+                          <Copy className="h-4 w-4" />
+                        </Button>
+                      </div>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="space-y-4">
+                        <div>
+                          <h6 className="text-sm font-black text-neon-orange mb-2">
+                            PROMPT USED:
+                          </h6>
+                          <p className="text-cream text-xs font-mono bg-cream/10 p-3 rounded">
+                            {example.prompt}
+                          </p>
+                        </div>
+
+                        <div>
+                          <h6 className="text-sm font-black text-neon-orange mb-2">
+                            OUTPUT RESULT:
+                          </h6>
+                          <p className="text-cream text-sm">
+                            {example.outputDescription}
+                          </p>
+                        </div>
+
+                        <div className="flex flex-wrap gap-2">
+                          {example.tags.map((tag) => (
+                            <Badge
+                              key={tag}
+                              className="bg-cream/20 text-cream text-xs"
+                            >
+                              {tag}
+                            </Badge>
+                          ))}
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
-      )}
+      </div>
     </div>
   );
 }
