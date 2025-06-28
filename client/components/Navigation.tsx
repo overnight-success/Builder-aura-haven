@@ -29,6 +29,11 @@ export function Navigation({
 
   const menuItems = [
     {
+      id: "briefcase",
+      label: "THE BRIEFCASE",
+      icon: <Briefcase className="h-5 w-5" />,
+    },
+    {
       id: "product",
       label: "PRODUCT GENERATOR",
       icon: <Package className="h-5 w-5" />,
@@ -42,11 +47,6 @@ export function Navigation({
       id: "graphic",
       label: "GRAPHIC GENERATOR",
       icon: <Palette className="h-5 w-5" />,
-    },
-    {
-      id: "briefcase",
-      label: "THE BRIEFCASE",
-      icon: <Briefcase className="h-5 w-5" />,
     },
   ];
 
