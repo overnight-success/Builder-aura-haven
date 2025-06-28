@@ -524,11 +524,45 @@ Always include:
 
   const copyFormula = async () => {
     const formula = getFormulaText();
+    if (selectedKeywords.length === 0) return;
+
     try {
       await navigator.clipboard.writeText(formula);
+      // Visual feedback could be added here
     } catch (error) {
-      alert(`Formula copied: ${formula}`);
+      // Fallback for browsers that don't support clipboard API
+      const textArea = document.createElement("textarea");
+      textArea.value = formula;
+      document.body.appendChild(textArea);
+      textArea.select();
+      document.execCommand("copy");
+      document.body.removeChild(textArea);
     }
+  };
+
+  const getPromptQualityScore = () => {
+    const keywordCount = selectedKeywords.length;
+    if (keywordCount === 0) return 0;
+    if (keywordCount < 3) return 25;
+    if (keywordCount < 5) return 50;
+    if (keywordCount < 8) return 75;
+    return 100;
+  };
+
+  const getQualityMessage = () => {
+    const score = getPromptQualityScore();
+    if (score === 0) return "Start by typing your vision, then select keywords";
+    if (score < 50) return "Add more keywords for better results";
+    if (score < 75) return "Good foundation - add a few more keywords";
+    return "Excellent prompt structure - ready for SORA!";
+  };
+
+  const getQualityColor = () => {
+    const score = getPromptQualityScore();
+    if (score < 25) return "bg-red-500";
+    if (score < 50) return "bg-yellow-500";
+    if (score < 75) return "bg-blue-500";
+    return "bg-green-500";
   };
 
   const copyPrompt = async (prompt: string) => {
