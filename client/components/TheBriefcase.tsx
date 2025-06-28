@@ -39,7 +39,7 @@ export function TheBriefcase({ onClose }: TheBriefcaseProps) {
 
 ## Step 1: Choose Your Generator
 - **Product Generator**: For e-commerce and product photography
-- **Lifestyle Generator**: For authentic lifestyle and brand content  
+- **Lifestyle Generator**: For authentic lifestyle and brand content
 - **Graphic Generator**: For logos, graphics, and visual design
 
 ## Step 2: Start with Custom Instructions
@@ -71,7 +71,7 @@ The more specific your instructions, the better your results. Use concrete descr
 ## Layer Your Descriptions
 Build your prompts in layers:
 1. Subject/Object
-2. Style and Aesthetic  
+2. Style and Aesthetic
 3. Technical Specifications
 4. Mood and Atmosphere
 
@@ -128,52 +128,92 @@ Always include:
     },
   ];
 
-  // PROMPT VAULT - Organized collection of keywords, descriptors and prompts
+  // PROMPT VAULT - Complete keyword library from screenshots
+  const [selectedKeywords, setSelectedKeywords] = useState<string[]>([]);
+
   const promptVault = {
     keywords: {
       Lighting: [
-        "soft studio lighting",
-        "dramatic side lighting",
-        "golden hour",
-        "neon lighting",
-        "cinematic lighting",
-        "natural window light",
-        "rim lighting",
-        "three-point lighting",
+        "Golden Hour: Warm, cinematic",
+        "Backlit: Rim lighting for shape",
+        "Soft Ambient: Beauty shots, lifestyle",
+        "Hard Flash: Edgy streetwear",
+        "Neon: Retro-future, saturated",
+        "Flicker: Great for dynamic transitions in video",
+        "golden hour with long shadows",
+        "overcast softness",
+        "neon nightclub hues",
+        "dramatic chiaroscuro",
+        "candlelit intimacy",
+        "tungsten indoor warmth",
+        "arctic blue tone",
+        "sunrise haze",
+        "twilight ambient wash",
+        "stormy weather gloom",
+        "moonlight and metallic reflections",
+        "light leaks through blinds",
+        "gradient sunset cast",
+        "studio flash with softbox",
+        "high-contrast film noir",
       ],
-      "Camera Angles": [
-        "low angle shot",
-        "high angle shot",
-        "dutch angle",
-        "overhead shot",
-        "close-up",
-        "medium shot",
-        "wide shot",
-        "macro photography",
+      Framing: [
+        "24mm: Wide landscapes, high energy",
+        "35mm: Editorial and lifestyle portraits",
+        "50mm: Clean product or natural portraits",
+        "85mm: Intimate close-up, emotional storytelling",
+        "Low Angle: Power, presence",
+        "Macro: Detail shots, textures",
+        "extreme close-up on texture",
+        "wide establishing shot",
+        "symmetrical center crop",
+        "over-the-shoulder POV",
+        "profile view portrait",
+        "tight crop on eyes",
+        "subject entering frame",
+        "bird's eye view",
+        "rule-of-thirds precision",
+        "macro product angle",
+        "reflection-in-mirror shot",
+        "rear-view mirror framing",
       ],
-      Styles: [
-        "minimalist",
-        "maximalist",
-        "vintage",
-        "modern",
-        "futuristic",
-        "retro",
-        "industrial",
-        "organic",
-        "luxury",
-        "gritty",
+      Enhancers: [
+        "Shift texture layer: Velvet → Glass → Chrome → Plastic",
+        "Change lighting mood: Golden hour → Neon glow → Paparazzi",
+        "Apply time-based logic: Day → Night → Rainy → Overcast",
+        "Swap camera angle: Top-down → Orbit → Over-the-shoulder",
+        "floating dust particles",
+        "lens flare streak",
+        "reflections on lens",
+        "rain droplets on lens",
+        "reflective shine",
       ],
-      Moods: [
-        "energetic",
-        "calm",
-        "dramatic",
-        "playful",
-        "sophisticated",
-        "mysterious",
-        "bright",
-        "moody",
-        "elegant",
-        "bold",
+      Locations: [
+        "foggy Tokyo street",
+        "marble-floored Parisian hallway",
+        "neon-lit cyberpunk alley",
+        "desert salt flats",
+        "concrete parking garage",
+        "luxury hotel rooftop",
+        "brutalist city center",
+        "beach at low tide",
+        "Arctic ice cave",
+        "abandoned church interior",
+        "luxury retail space",
+        "moss-covered forest ruins",
+        "jungle helipad",
+      ],
+      "Creative Direction": [
+        "Wes Anderson meets Balenciaga",
+        "Apple ad directed by Kubrick",
+        "Old Money vibes",
+        "Virgil Abloh x Eames visual tension",
+        "Yeezy drop in a NASA lab",
+        "Hypebeast Tokyo fantasy",
+        "AI-generated art deco dream",
+        "Wes meets Warhol",
+        "Quiet luxury meets glitchcore",
+        "High fashion in a war zone",
+        "Edward Hopper moodboard",
       ],
       "Quality Modifiers": [
         "4K resolution",
@@ -418,6 +458,39 @@ Always include:
     URL.revokeObjectURL(url);
   };
 
+  const addKeywordToFormula = (keyword: string) => {
+    if (!selectedKeywords.includes(keyword)) {
+      setSelectedKeywords([...selectedKeywords, keyword]);
+    }
+  };
+
+  const removeKeywordFromFormula = (keyword: string) => {
+    setSelectedKeywords(selectedKeywords.filter((k) => k !== keyword));
+  };
+
+  const clearFormula = () => {
+    setSelectedKeywords([]);
+  };
+
+  const getFormulaText = () => {
+    if (selectedKeywords.length === 0) {
+      return "Click keywords below to build your custom formula...";
+    }
+    return (
+      selectedKeywords.join(", ") +
+      ", cinematic quality, 4K resolution, professional video production"
+    );
+  };
+
+  const copyFormula = async () => {
+    const formula = getFormulaText();
+    try {
+      await navigator.clipboard.writeText(formula);
+    } catch (error) {
+      alert(`Formula copied: ${formula}`);
+    }
+  };
+
   const copyPrompt = async (prompt: string) => {
     try {
       await navigator.clipboard.writeText(prompt);
@@ -522,19 +595,70 @@ Always include:
                 <h3 className="text-2xl font-black text-cream mb-2">
                   Prompt Vault
                 </h3>
-                <p className="text-cream/80">
-                  Organized collection of keywords, descriptors, and
-                  ready-to-use prompts
-                </p>
               </div>
+
+              {/* Formula Builder */}
+              <Card className="bg-black border-2 border-neon-orange mb-8">
+                <CardHeader>
+                  <CardTitle className="text-xl font-black text-cream flex items-center gap-2">
+                    <Zap className="h-5 w-5 text-neon-orange" />
+                    Custom Formula Builder
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div className="min-h-24 p-4 border-2 border-cream rounded-lg bg-black">
+                    <p className="text-cream text-sm font-mono leading-relaxed">
+                      {getFormulaText()}
+                    </p>
+                  </div>
+
+                  {/* Selected Keywords */}
+                  {selectedKeywords.length > 0 && (
+                    <div className="space-y-2">
+                      <h5 className="text-sm font-black text-neon-orange">
+                        SELECTED KEYWORDS:
+                      </h5>
+                      <div className="flex flex-wrap gap-2">
+                        {selectedKeywords.map((keyword) => (
+                          <Badge
+                            key={keyword}
+                            onClick={() => removeKeywordFromFormula(keyword)}
+                            className="bg-neon-orange text-black font-bold text-xs cursor-pointer hover:bg-red-500 transition-all duration-200"
+                          >
+                            {keyword} ×
+                          </Badge>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  <div className="flex gap-2">
+                    <Button
+                      onClick={copyFormula}
+                      className="bg-neon-orange text-black hover:bg-cream font-bold"
+                      disabled={selectedKeywords.length === 0}
+                    >
+                      <Copy className="h-4 w-4 mr-2" />
+                      COPY FORMULA
+                    </Button>
+                    <Button
+                      onClick={clearFormula}
+                      className="bg-cream text-black hover:bg-red-500 hover:text-white font-bold"
+                      disabled={selectedKeywords.length === 0}
+                    >
+                      CLEAR ALL
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
 
               {/* Keywords Section */}
               <div className="mb-8">
                 <h4 className="text-xl font-black text-cream mb-4 flex items-center gap-2">
                   <Target className="h-5 w-5 text-neon-orange" />
-                  Keywords & Descriptors
+                  Keyword Library
                 </h4>
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 gap-4">
                   {Object.entries(promptVault.keywords).map(
                     ([category, keywords]) => (
                       <Card
@@ -551,8 +675,12 @@ Always include:
                             {keywords.map((keyword) => (
                               <Badge
                                 key={keyword}
-                                onClick={() => copyPrompt(keyword)}
-                                className="bg-cream text-black font-bold text-xs cursor-pointer hover:bg-neon-orange transition-all duration-200"
+                                onClick={() => addKeywordToFormula(keyword)}
+                                className={`font-bold text-xs cursor-pointer transition-all duration-200 ${
+                                  selectedKeywords.includes(keyword)
+                                    ? "bg-neon-orange text-black"
+                                    : "bg-cream text-black hover:bg-neon-orange"
+                                }`}
                               >
                                 {keyword}
                               </Badge>
