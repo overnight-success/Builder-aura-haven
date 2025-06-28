@@ -26,7 +26,7 @@ interface TheBriefcaseProps {
 }
 
 export function TheBriefcase({ onClose }: TheBriefcaseProps) {
-  const [activeTab, setActiveTab] = useState("playbook");
+  const [activeTab, setActiveTab] = useState("updates");
 
   // THE PLAYBOOK - How to use everything
   const playbookSections = [
