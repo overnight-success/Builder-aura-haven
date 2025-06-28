@@ -669,6 +669,17 @@ Always include:
                 <h3 className="text-2xl font-black text-cream mb-2">
                   Prompt Vault
                 </h3>
+                <div className="max-w-2xl mx-auto">
+                  <p className="text-cream/80 mb-4">
+                    <strong className="text-neon-orange">Step 1:</strong> Type
+                    out your specific vision and request below
+                  </p>
+                  <p className="text-cream/80">
+                    <strong className="text-neon-orange">Step 2:</strong> Use
+                    the keyword selector to enhance and build the ultimate
+                    optimized prompt
+                  </p>
+                </div>
               </div>
 
               {/* Formula Builder */}
