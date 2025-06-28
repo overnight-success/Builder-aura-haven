@@ -214,6 +214,7 @@ Always include:
         "Quiet luxury meets glitchcore",
         "High fashion in a war zone",
         "Edward Hopper moodboard",
+        "Gucci in a cyber slum",
       ],
       "Quality Modifiers": [
         "4K resolution",
@@ -224,6 +225,8 @@ Always include:
         "masterpiece",
         "commercial ready",
         "studio quality",
+        "professional video production",
+        "optimized for SORA AI",
       ],
     },
     prebuiltPrompts: [
