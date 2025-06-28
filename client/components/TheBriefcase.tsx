@@ -682,6 +682,45 @@ Always include:
                 </div>
               </div>
 
+              {/* Suggestions Meter */}
+              <Card className="bg-black border-2 border-cream mb-4">
+                <CardContent className="p-4">
+                  <div className="space-y-3">
+                    <div className="flex items-center justify-between">
+                      <h5 className="text-sm font-black text-cream">
+                        PROMPT QUALITY METER
+                      </h5>
+                      <span className="text-xs font-bold text-neon-orange">
+                        {getPromptQualityScore()}%
+                      </span>
+                    </div>
+
+                    <div className="w-full bg-cream/20 rounded-full h-3">
+                      <div
+                        className={`h-3 rounded-full transition-all duration-300 ${getQualityColor()}`}
+                        style={{ width: `${getPromptQualityScore()}%` }}
+                      ></div>
+                    </div>
+
+                    <p className="text-cream/80 text-sm">
+                      💡 {getQualityMessage()}
+                    </p>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-2 text-xs">
+                      <div className="text-cream/60">
+                        ✓ Add lighting keywords
+                      </div>
+                      <div className="text-cream/60">
+                        ✓ Choose camera framing
+                      </div>
+                      <div className="text-cream/60">
+                        ✓ Select creative direction
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
               {/* Formula Builder */}
               <Card className="bg-black border-2 border-neon-orange mb-8">
                 <CardHeader>
