@@ -466,6 +466,7 @@ Always include:
   ];
 
   const tabs = [
+    { id: "updates", label: "UPDATES", icon: <Bell className="h-4 w-4" /> },
     {
       id: "playbook",
       label: "THE PLAYBOOK",
@@ -476,13 +477,11 @@ Always include:
       label: "PROMPT VAULT",
       icon: <Archive className="h-4 w-4" />,
     },
-    { id: "updates", label: "UPDATES", icon: <Bell className="h-4 w-4" /> },
     {
       id: "toolkit",
       label: "AI TOOLKIT",
       icon: <Wrench className="h-4 w-4" />,
     },
-    { id: "examples", label: "EXAMPLES", icon: <Image className="h-4 w-4" /> },
   ];
 
   const downloadGuide = (section: any) => {
