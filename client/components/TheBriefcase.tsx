@@ -732,57 +732,6 @@ Always include:
                   )}
                 </div>
               </div>
-
-              {/* Prebuilt Prompts Section */}
-              <div>
-                <h4 className="text-xl font-black text-cream mb-4 flex items-center gap-2">
-                  <Zap className="h-5 w-5 text-neon-orange" />
-                  Ready-to-Use Prompts
-                </h4>
-                <div className="grid grid-cols-1 gap-4">
-                  {promptVault.prebuiltPrompts.map((prompt, index) => (
-                    <Card
-                      key={index}
-                      className="bg-black border-2 border-cream"
-                    >
-                      <CardHeader>
-                        <div className="flex justify-between items-start">
-                          <div>
-                            <CardTitle className="text-lg font-black text-cream">
-                              {prompt.title}
-                            </CardTitle>
-                            <Badge className="bg-neon-orange text-black font-bold text-xs">
-                              {prompt.category}
-                            </Badge>
-                          </div>
-                          <Button
-                            onClick={() => copyPrompt(prompt.prompt)}
-                            className="bg-cream text-black hover:bg-neon-orange"
-                            size="sm"
-                          >
-                            <Copy className="h-4 w-4" />
-                          </Button>
-                        </div>
-                      </CardHeader>
-                      <CardContent>
-                        <p className="text-cream text-sm mb-3 font-mono bg-cream/10 p-3 rounded">
-                          {prompt.prompt}
-                        </p>
-                        <div className="flex flex-wrap gap-2">
-                          {prompt.tags.map((tag) => (
-                            <Badge
-                              key={tag}
-                              className="bg-cream/20 text-cream text-xs"
-                            >
-                              {tag}
-                            </Badge>
-                          ))}
-                        </div>
-                      </CardContent>
-                    </Card>
-                  ))}
-                </div>
-              </div>
             </div>
           )}
 
