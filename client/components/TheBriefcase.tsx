@@ -140,7 +140,7 @@ Always include:
     "brand's secondary color": "",
     material: "",
     "Your Motto": "",
-    "Your Quote": "",
+    "Your Quote": ""
   });
 
   const promptVault = {
@@ -614,7 +614,7 @@ Always include:
     let replacedPrompt = prompt;
     Object.entries(placeholders).forEach(([key, value]) => {
       if (value.trim()) {
-        const regex = new RegExp(`\\[${key}\\]`, "gi");
+        const regex = new RegExp(`\\[${key}\\]`, 'gi');
         replacedPrompt = replacedPrompt.replace(regex, value);
       }
     });
@@ -627,11 +627,11 @@ Always include:
       await navigator.clipboard.writeText(finalPrompt);
     } catch (error) {
       // Fallback for browsers that don't support clipboard API
-      const textArea = document.createElement("textarea");
+      const textArea = document.createElement('textarea');
       textArea.value = finalPrompt;
       document.body.appendChild(textArea);
       textArea.select();
-      document.execCommand("copy");
+      document.execCommand('copy');
       document.body.removeChild(textArea);
     }
   };
@@ -753,15 +753,48 @@ Always include:
               {/* Suggestions Meter */}
               <Card className="bg-black border-2 border-cream mb-4">
                 <CardContent className="p-4">
-                  <div className="space-y-3">
-                    <div className="flex items-center justify-between">
-                      <h5 className="text-sm font-black text-cream">
-                        PROMPT QUALITY METER
-                      </h5>
-                      <span className="text-xs font-bold text-neon-orange">
-                        {getPromptQualityScore()}%
-                      </span>
-                    </div>
+                <div className="bg-cream/10 border border-cream/20 rounded-lg p-4 max-w-4xl mx-auto">
+                  <p className="text-cream/90 text-sm mb-4">
+                    <strong className="text-neon-orange">Instructions:</strong> Fill in your details below, then copy any template. The placeholders will be automatically replaced with your information.
+                  </p>
+
+                  {/* Placeholder Input Fields */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
+                    {Object.entries(placeholders).map(([key, value]) => (
+                      <div key={key}>
+                        <label className="block text-xs font-bold text-neon-orange mb-1 uppercase">
+                          [{key}]
+                        </label>
+                        <input
+                          type="text"
+                          value={value}
+                          onChange={(e) => setPlaceholders(prev => ({ ...prev, [key]: e.target.value }))}
+                          placeholder={`Enter your ${key}`}
+                          className="w-full px-2 py-1 text-xs bg-black border border-cream/30 rounded text-cream placeholder-cream/50 focus:border-neon-orange focus:outline-none"
+                        />
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="mt-3 flex justify-center">
+                    <Button
+                      onClick={() => setPlaceholders({
+                        product: "",
+                        brand: "",
+                        "brand color": "",
+                        "brand's primary color": "",
+                        "brand's secondary color": "",
+                        material: "",
+                        "Your Motto": "",
+                        "Your Quote": ""
+                      })}
+                      className="bg-cream/20 text-cream hover:bg-cream/30 text-xs font-bold"
+                      size="sm"
+                    >
+                      CLEAR ALL FIELDS
+                    </Button>
+                  </div>
+                </div>
 
                     <div className="w-full bg-cream/20 rounded-full h-3">
                       <div
