@@ -61,8 +61,13 @@ export function Navigation({
   const handlePageChange = (pageId: string) => {
     if (pageId === "briefcase") {
       setShowBriefcase(true);
+      setShowCreativeLibrary(false);
+    } else if (pageId === "creative-library") {
+      setShowCreativeLibrary(true);
+      setShowBriefcase(false);
     } else {
       setShowBriefcase(false);
+      setShowCreativeLibrary(false);
       onPageChange(pageId);
     }
   };
