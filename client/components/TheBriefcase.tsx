@@ -510,6 +510,11 @@ Always include:
       icon: <Archive className="h-4 w-4" />,
     },
     {
+      id: "templates",
+      label: "TEMPLATES",
+      icon: <Package className="h-4 w-4" />,
+    },
+    {
       id: "toolkit",
       label: "AI TOOLKIT",
       icon: <Wrench className="h-4 w-4" />,
