@@ -1358,7 +1358,7 @@ Always include:
                             {prompt}
                           </p>
                           <Button
-                            onClick={() => copyPrompt(prompt)}
+                            onClick={(e) => copyPrompt(prompt, e)}
                             className="bg-neon-orange text-black hover:bg-cream opacity-0 group-hover:opacity-100 transition-opacity"
                             size="sm"
                           >
