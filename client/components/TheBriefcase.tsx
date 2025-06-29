@@ -966,43 +966,617 @@ Always include:
             <div className="space-y-6">
               <div className="text-center mb-8">
                 <h3 className="text-2xl font-black text-cream mb-2">
-                  Access The Complete Playbook
+                  Image Generation with Sora & ChatGPT: Official Guide
                 </h3>
                 <p className="text-cream/80">
-                  Comprehensive guides and tutorials for mastering SORA AI
+                  Complete guide for mastering AI image generation from beginner
+                  to expert
                 </p>
               </div>
 
-              <div className="flex justify-center">
-                <Card className="bg-black border-2 border-neon-orange max-w-lg">
-                  <CardContent className="p-8 text-center">
-                    <div className="mb-6">
-                      <BookOpen className="h-16 w-16 text-neon-orange mx-auto mb-4" />
-                      <h4 className="text-xl font-black text-cream mb-2">
-                        The Complete SORA Playbook
+              {/* Table of Contents */}
+              <Card className="bg-black border-2 border-cream mb-8">
+                <CardHeader>
+                  <CardTitle className="text-xl font-black text-cream flex items-center gap-2">
+                    <BookOpen className="h-5 w-5 text-neon-orange" />
+                    Table of Contents
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    {[
+                      "1. Introduction to Sora Image Generation",
+                      "2. Basics of Prompting (for Beginners)",
+                      "3. Key Prompt Components & Variables",
+                      "4. Lifestyle Photography Prompts",
+                      "5. Product & Studio Photography Prompts",
+                      "6. Custom Graphics & Design Prompts",
+                      "7. Scene Regeneration & Object Placement",
+                      "8. Using Modular Prompt Formulas",
+                      "9. Tips, Best Practices, and Warnings",
+                    ].map((item, index) => (
+                      <div
+                        key={index}
+                        className="text-cream/90 text-sm py-1 border-b border-cream/20"
+                      >
+                        {item}
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Section 1: Introduction */}
+              <Card className="bg-black border-2 border-cream mb-6">
+                <CardHeader>
+                  <CardTitle className="text-lg font-black text-cream">
+                    1. Introduction to Sora Image Generation
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="text-cream/90 text-sm space-y-3">
+                    <p>
+                      Sora is OpenAI's advanced platform that extends ChatGPT's
+                      capabilities to{" "}
+                      <strong>create images from text prompts</strong>. It
+                      leverages the latest image generation model (GPT-4o) which
+                      excels at following detailed instructions and even
+                      rendering text within images.
+                    </p>
+                    <p>
+                      <strong>How it Works:</strong> In Sora (or ChatGPT's image
+                      mode), you simply describe the image you want. The AI
+                      interprets your description and generates an image to
+                      match. You can specify visual details like style,
+                      lighting, composition, and more.
+                    </p>
+                    <p>
+                      <strong>Who This Guide is For:</strong> Anyone looking to
+                      create images – from beginners who have never written an
+                      image prompt, to advanced users seeking to fine-tune their
+                      results, up to experts who want to automate prompt
+                      generation.
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Section 2: Basics of Prompting */}
+              <Card className="bg-black border-2 border-cream mb-6">
+                <CardHeader>
+                  <CardTitle className="text-lg font-black text-cream">
+                    2. Basics of Prompting (Prompting 101)
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="text-cream/90 text-sm space-y-4">
+                    <div>
+                      <h4 className="text-neon-orange font-bold mb-2">
+                        Core Principles:
                       </h4>
-                      <p className="text-cream/80 mb-6">
-                        Access our comprehensive guide with step-by-step
-                        tutorials, advanced techniques, and best practices for
-                        SORA AI video generation.
+                      <ul className="space-y-2 ml-4">
+                        <li>
+                          <strong>• Be Specific and Clear:</strong> Provide
+                          concrete details about the subject and scene. "A young
+                          woman in a red coat walking through a snowy forest" vs
+                          "a person in a city"
+                        </li>
+                        <li>
+                          <strong>• Mention the Style or Mood:</strong> "Shot in
+                          a natural, casual style" or "photorealistic, 4K
+                          detail, ultra-realistic"
+                        </li>
+                        <li>
+                          <strong>• Keep It Simple (at first):</strong> Start
+                          with single sentences focusing on one scene
+                        </li>
+                        <li>
+                          <strong>• Use Natural Language:</strong> Write as if
+                          describing an image to a person
+                        </li>
+                        <li>
+                          <strong>• Check Output and Iterate:</strong> Treat
+                          first image as a draft and refine
+                        </li>
+                      </ul>
+                    </div>
+                    <div className="bg-cream/10 p-3 rounded">
+                      <p className="text-neon-orange font-bold mb-2">
+                        Example Progression:
+                      </p>
+                      <p>
+                        <strong>Beginner:</strong> "Photo of a cat sitting on a
+                        windowsill."
+                      </p>
+                      <p>
+                        <strong>Advanced:</strong> "A tabby cat lounging on a
+                        sunny windowsill with soft morning light filtering
+                        through lace curtains, looking outside at birds."
+                      </p>
+                      <p>
+                        <strong>Expert:</strong> "Candid pet photography,
+                        close-up shot of a green-eyed tabby cat lounging on a
+                        sunlit Victorian bay window, rays of golden morning
+                        light patterning its fur through ornate lace curtains.
+                        Shot with shallow depth of field (85mm f/1.8)."
                       </p>
                     </div>
+                  </div>
+                </CardContent>
+              </Card>
 
-                    <Button
-                      onClick={() =>
-                        window.open(
-                          "https://b78aaa611b6f477e9114624029707554-main.projects.builder.my/",
-                          "_blank",
-                        )
-                      }
-                      className="bg-neon-orange border-2 border-neon-orange text-black font-bold text-lg px-8 py-4 h-auto hover:bg-black hover:text-neon-orange transition-all duration-200"
-                    >
-                      <ExternalLink className="h-5 w-5 mr-2" />
-                      OPEN PLAYBOOK
-                    </Button>
-                  </CardContent>
-                </Card>
-              </div>
+              {/* Section 3: Key Components */}
+              <Card className="bg-black border-2 border-cream mb-6">
+                <CardHeader>
+                  <CardTitle className="text-lg font-black text-cream">
+                    3. Key Prompt Components & Variables
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="text-cream/90 text-sm space-y-4">
+                    <div className="bg-cream/10 p-3 rounded font-mono text-xs">
+                      <strong>Prompt Structure Formula:</strong>
+                      <br />
+                      [Subject] + [Action/Pose] + [Environment/Setting] +
+                      [Lighting] + [Camera Details] + [Style/Mood] + [Quality
+                      Parameters]
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div>
+                        <h4 className="text-neon-orange font-bold mb-2">
+                          Subject Description
+                        </h4>
+                        <p className="text-xs">
+                          Who or what is the focus. Be specific about color,
+                          size, distinctive features.
+                        </p>
+                      </div>
+                      <div>
+                        <h4 className="text-neon-orange font-bold mb-2">
+                          Action/Pose
+                        </h4>
+                        <p className="text-xs">
+                          What the subject is doing. Adds dynamism and context.
+                        </p>
+                      </div>
+                      <div>
+                        <h4 className="text-neon-orange font-bold mb-2">
+                          Environment/Setting
+                        </h4>
+                        <p className="text-xs">
+                          Surroundings, background. Include time of day or
+                          weather if relevant.
+                        </p>
+                      </div>
+                      <div>
+                        <h4 className="text-neon-orange font-bold mb-2">
+                          Lighting
+                        </h4>
+                        <p className="text-xs">
+                          Quality and direction of light. Most powerful mood
+                          setter.
+                        </p>
+                      </div>
+                      <div>
+                        <h4 className="text-neon-orange font-bold mb-2">
+                          Camera Details
+                        </h4>
+                        <p className="text-xs">
+                          Angle, framing, lens type, depth of field, composition
+                          terms.
+                        </p>
+                      </div>
+                      <div>
+                        <h4 className="text-neon-orange font-bold mb-2">
+                          Style/Mood
+                        </h4>
+                        <p className="text-xs">
+                          Artistic style, genre, overall vibe, color palette.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Section 4: Lifestyle Photography */}
+              <Card className="bg-black border-2 border-cream mb-6">
+                <CardHeader>
+                  <CardTitle className="text-lg font-black text-cream">
+                    4. Lifestyle Photography Prompts
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="text-cream/90 text-sm space-y-3">
+                    <p>
+                      Lifestyle images capture people in everyday, real-life
+                      contexts. They feel candid, authentic, and relatable.
+                    </p>
+                    <div>
+                      <h4 className="text-neon-orange font-bold mb-2">
+                        Characteristics:
+                      </h4>
+                      <ul className="space-y-1 ml-4 text-xs">
+                        <li>
+                          • <strong>Everyday Scenarios:</strong> Focus on common
+                          activities - friends at cafe, family cooking, person
+                          jogging
+                        </li>
+                        <li>
+                          • <strong>Natural Styling:</strong> Use "candid",
+                          "unposed", "in the moment" descriptors
+                        </li>
+                        <li>
+                          • <strong>Environmental Context:</strong> Include
+                          background details, props, decor for realism
+                        </li>
+                        <li>
+                          • <strong>Lighting for Mood:</strong> Daylight and
+                          ambient lighting are common
+                        </li>
+                      </ul>
+                    </div>
+                    <div className="bg-cream/10 p-3 rounded">
+                      <p className="text-neon-orange font-bold mb-1">
+                        Expert Example:
+                      </p>
+                      <p className="text-xs">
+                        "Candid outdoor lifestyle shot, golden-hour sun flare. A
+                        group of diverse friends in hiking gear reach the summit
+                        of a hill, cheering with exhilaration. Camera positioned
+                        low looking up at triumphant poses against vibrant sky,
+                        emphasizing achievement. Lens flare and long shadows add
+                        drama while faces glow with warm sunset light."
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Section 5: Product & Studio Photography */}
+              <Card className="bg-black border-2 border-cream mb-6">
+                <CardHeader>
+                  <CardTitle className="text-lg font-black text-cream">
+                    5. Product & Studio Photography Prompts
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="text-cream/90 text-sm space-y-3">
+                    <p>
+                      Product photography focuses on highlighting item features
+                      in a clear, visually appealing way.
+                    </p>
+                    <div>
+                      <h4 className="text-neon-orange font-bold mb-2">
+                        Key Elements:
+                      </h4>
+                      <ul className="space-y-1 ml-4 text-xs">
+                        <li>
+                          • <strong>Isolate the Product:</strong> Clean
+                          background, good lighting, product centered
+                        </li>
+                        <li>
+                          • <strong>Lighting & Reflections:</strong> Match
+                          lighting to material - softbox for shiny objects
+                        </li>
+                        <li>
+                          • <strong>Camera and Focus:</strong> Sharp focus, high
+                          resolution, consider angle
+                        </li>
+                        <li>
+                          • <strong>Contextual vs. Isolated:</strong> Decide on
+                          props or plain background
+                        </li>
+                      </ul>
+                    </div>
+                    <div className="bg-cream/10 p-3 rounded">
+                      <p className="text-neon-orange font-bold mb-1">
+                        Expert Example:
+                      </p>
+                      <p className="text-xs">
+                        "Hero shot of new smartphone levitating above matte
+                        black pedestal, against dimly lit studio with two-point
+                        lighting (cool blue fill from left, soft white key from
+                        right). Phone screen displays faint home screen glow.
+                        Detailed reflections on phone edges highlight metallic
+                        frame. Background in deep shadow with bokeh city lights.
+                        Shot in 4K, ultra-sharp."
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Section 6: Custom Graphics & Design */}
+              <Card className="bg-black border-2 border-cream mb-6">
+                <CardHeader>
+                  <CardTitle className="text-lg font-black text-cream">
+                    6. Custom Graphics & Design Prompts
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="text-cream/90 text-sm space-y-3">
+                    <p>
+                      Sora can generate graphic designs: logos, icons, banners
+                      with text, illustrations for branding.
+                    </p>
+                    <div>
+                      <h4 className="text-neon-orange font-bold mb-2">
+                        Logo Creation Tips:
+                      </h4>
+                      <ul className="space-y-1 ml-4 text-xs">
+                        <li>
+                          • <strong>Keep it Simple:</strong> "Minimalist logo"
+                          or "bold emblem-style logo"
+                        </li>
+                        <li>
+                          • <strong>Specify Style:</strong> "Modern flat
+                          design", "vintage retro style"
+                        </li>
+                        <li>
+                          • <strong>Colors and Fonts:</strong> Include color
+                          schemes and font style descriptions
+                        </li>
+                        <li>
+                          • <strong>Background:</strong> Usually "plain white
+                          background" or transparent
+                        </li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h4 className="text-neon-orange font-bold mb-2">
+                        Text Rendering (GPT-4o):
+                      </h4>
+                      <ul className="space-y-1 ml-4 text-xs">
+                        <li>
+                          • <strong>Be Concise:</strong> Short phrases work
+                          better than paragraphs
+                        </li>
+                        <li>
+                          • <strong>Use Quotes:</strong> "A poster with title
+                          'Summer Festival 2025'"
+                        </li>
+                        <li>
+                          • <strong>Specify Style:</strong> "In red bold font"
+                          or "handwritten style text"
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Section 7: Scene Regeneration */}
+              <Card className="bg-black border-2 border-cream mb-6">
+                <CardHeader>
+                  <CardTitle className="text-lg font-black text-cream">
+                    7. Scene Regeneration & Object Placement (Editing Images)
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="text-cream/90 text-sm space-y-3">
+                    <p>
+                      Sora's powerful editing feature lets you modify generated
+                      images by describing changes.
+                    </p>
+                    <div>
+                      <h4 className="text-neon-orange font-bold mb-2">
+                        Editing Tips:
+                      </h4>
+                      <ul className="space-y-1 ml-4 text-xs">
+                        <li>
+                          • <strong>Identify Elements:</strong> Describe what
+                          you want changed as you see it
+                        </li>
+                        <li>
+                          • <strong>Be Spatially Specific:</strong> Use "left",
+                          "right", "foreground", "background"
+                        </li>
+                        <li>
+                          • <strong>Maintain Consistency:</strong> Consider
+                          overall scene coherence
+                        </li>
+                        <li>
+                          • <strong>One Change at a Time:</strong> For big
+                          edits, work stepwise
+                        </li>
+                        <li>
+                          • <strong>Object Removal:</strong> "Remove" or "erase"
+                          usually works
+                        </li>
+                      </ul>
+                    </div>
+                    <div className="bg-cream/10 p-3 rounded">
+                      <p className="text-neon-orange font-bold mb-1">
+                        Example Edit:
+                      </p>
+                      <p className="text-xs">
+                        Initial: Outdoor picnic scene on sunny day
+                        <br />
+                        Remix: "Make it look like evening, with sunset sky. Add
+                        string lights hanging between trees to create cozy
+                        atmosphere."
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Section 8: Modular Formulas */}
+              <Card className="bg-black border-2 border-cream mb-6">
+                <CardHeader>
+                  <CardTitle className="text-lg font-black text-cream">
+                    8. Using Modular Prompt Formulas
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="text-cream/90 text-sm space-y-3">
+                    <p>
+                      Create template-based prompts for consistency and
+                      efficiency, especially useful for brand style guides.
+                    </p>
+                    <div>
+                      <h4 className="text-neon-orange font-bold mb-2">
+                        Setting Up in Notion:
+                      </h4>
+                      <ul className="space-y-1 ml-4 text-xs">
+                        <li>
+                          • Create table with columns: Subject, Action, Setting,
+                          Lighting, Style, Colors
+                        </li>
+                        <li>
+                          • Use Formula property to concatenate fields into
+                          prompt string
+                        </li>
+                        <li>• Include conditional parts (omit empty fields)</li>
+                      </ul>
+                    </div>
+                    <div className="bg-cream/10 p-3 rounded">
+                      <p className="text-neon-orange font-bold mb-1">
+                        Benefits:
+                      </p>
+                      <p className="text-xs">
+                        <strong>Consistency:</strong> Follow preferred structure
+                        <br />
+                        <strong>Brainstorming:</strong> Quickly swap variables
+                        <br />
+                        <strong>Scaling:</strong> Generate dozens of prompts
+                        efficiently
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Section 9: Tips & Best Practices */}
+              <Card className="bg-black border-2 border-cream mb-6">
+                <CardHeader>
+                  <CardTitle className="text-lg font-black text-cream">
+                    9. Tips, Best Practices, and Warnings
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="text-cream/90 text-sm space-y-4">
+                    <div>
+                      <h4 className="text-neon-orange font-bold mb-2">
+                        General Tips:
+                      </h4>
+                      <ul className="space-y-1 ml-4 text-xs">
+                        <li>
+                          • <strong>Be Specific, Avoid Redundancy:</strong> "Red
+                          ball on wooden table" not "nice pretty red ball
+                          sitting on wooden table that is brown"
+                        </li>
+                        <li>
+                          • <strong>Avoid Ambiguity:</strong> Clarify words with
+                          multiple meanings
+                        </li>
+                        <li>
+                          • <strong>Test in Parts:</strong> Try mini-prompts
+                          first for complex concepts
+                        </li>
+                        <li>
+                          • <strong>Use ChatGPT to Improve:</strong> Ask for
+                          prompt refinements conversationally
+                        </li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h4 className="text-neon-orange font-bold mb-2">
+                        Content Warnings:
+                      </h4>
+                      <ul className="space-y-1 ml-4 text-xs">
+                        <li>
+                          • <strong>No Disallowed Content:</strong> Violence,
+                          gore, sexual, hate content
+                        </li>
+                        <li>
+                          • <strong>Avoid Real Person Likeness:</strong> No
+                          named celebrities or individuals
+                        </li>
+                        <li>
+                          • <strong>No Trademark Violations:</strong> Don't
+                          request copyrighted logos
+                        </li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h4 className="text-neon-orange font-bold mb-2">
+                        When Things Go Wrong:
+                      </h4>
+                      <ul className="space-y-1 ml-4 text-xs">
+                        <li>
+                          • <strong>Conflicting Elements:</strong> Resolve
+                          contradictions
+                        </li>
+                        <li>
+                          • <strong>Too Complex:</strong> Break into simpler
+                          scenes
+                        </li>
+                        <li>
+                          • <strong>Obscure Terms:</strong> Use simpler
+                          descriptions
+                        </li>
+                        <li>
+                          • <strong>Use Variations:</strong> Re-run same prompt
+                          for different results
+                        </li>
+                      </ul>
+                    </div>
+                    <div className="bg-cream/10 p-3 rounded">
+                      <p className="text-neon-orange font-bold mb-1">
+                        Final Advice:
+                      </p>
+                      <p className="text-xs">
+                        Great images may not come on first try. Use Remix
+                        feature to refine. Treat each generation as a prototype.
+                        "Iterate and Refine" is key - even professional artists
+                        make many sketches!
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Quick Reference Card */}
+              <Card className="bg-black border-2 border-neon-orange">
+                <CardHeader>
+                  <CardTitle className="text-lg font-black text-cream">
+                    Quick Reference: Variable Examples
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+                    <div>
+                      <h4 className="text-neon-orange font-bold mb-2">
+                        Lighting
+                      </h4>
+                      <p className="text-cream/80">
+                        Soft diffused light, Golden hour sunlight, Neon glow,
+                        Candlelight, Dramatic rim lighting
+                      </p>
+                    </div>
+                    <div>
+                      <h4 className="text-neon-orange font-bold mb-2">
+                        Camera Angles
+                      </h4>
+                      <p className="text-cream/80">
+                        Eye-level, Low-angle, Bird's-eye, First-person POV,
+                        Close-up, Wide shot
+                      </p>
+                    </div>
+                    <div>
+                      <h4 className="text-neon-orange font-bold mb-2">
+                        Mood/Tone
+                      </h4>
+                      <p className="text-cream/80">
+                        Cheerful and bright, Moody and dark, Tranquil,
+                        Whimsical, Cinematic
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
             </div>
           )}
 
