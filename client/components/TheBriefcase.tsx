@@ -1024,7 +1024,7 @@ Always include:
               {/* Collapsible Template Sections */}
               <div className="space-y-4">
                 {/* Studio Templates */}
-                <div className="bg-black border-2 border-cream rounded-lg">
+                <div className="bg-black max-h-[550px] overflow-y-auto mt-5 p-5">
                   <Button
                     onClick={() => toggleTemplateSection("studio")}
                     className="w-full bg-black border-0 hover:bg-cream/10 text-cream p-6 rounded-lg flex items-center justify-between"
