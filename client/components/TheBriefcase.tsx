@@ -1026,20 +1026,27 @@ Always include:
                 {/* Studio Templates */}
                 <div className="bg-black border-2 border-cream rounded-lg">
                   <Button
-                    onClick={() => toggleTemplateSection('studio')}
+                    onClick={() => toggleTemplateSection("studio")}
                     className="w-full bg-black border-0 hover:bg-cream/10 text-cream p-6 rounded-lg flex items-center justify-between"
                   >
                     <div className="flex items-center gap-3">
                       <Package className="h-6 w-6 text-neon-orange" />
                       <div className="text-left">
-                        <h4 className="text-lg font-black text-cream">Studio Templates (100 Prompts)</h4>
-                        <p className="text-cream/80 text-sm">Clean, product-centered visuals without a photoshoot, crew, or big budget</p>
+                        <h4 className="text-lg font-black text-cream">
+                          Studio Templates (100 Prompts)
+                        </h4>
+                        <p className="text-cream/80 text-sm">
+                          Clean, product-centered visuals without a photoshoot,
+                          crew, or big budget
+                        </p>
                       </div>
                     </div>
-                    <ChevronDown className={`h-5 w-5 text-neon-orange transition-transform ${expandedTemplateSection === 'studio' ? 'rotate-180' : ''}`} />
+                    <ChevronDown
+                      className={`h-5 w-5 text-neon-orange transition-transform ${expandedTemplateSection === "studio" ? "rotate-180" : ""}`}
+                    />
                   </Button>
 
-                  {expandedTemplateSection === 'studio' && (
+                  {expandedTemplateSection === "studio" && (
                     <div className="px-6 pb-6">
                       <div className="grid grid-cols-1 gap-3 max-h-96 overflow-y-auto">
                         {[
@@ -1170,20 +1177,27 @@ Always include:
                 {/* Lifestyle Templates */}
                 <div className="bg-black border-2 border-cream rounded-lg">
                   <Button
-                    onClick={() => toggleTemplateSection('lifestyle')}
+                    onClick={() => toggleTemplateSection("lifestyle")}
                     className="w-full bg-black border-0 hover:bg-cream/10 text-cream p-6 rounded-lg flex items-center justify-between"
                   >
                     <div className="flex items-center gap-3">
                       <Camera className="h-6 w-6 text-neon-orange" />
                       <div className="text-left">
-                        <h4 className="text-lg font-black text-cream">Lifestyle Templates (100 Prompts)</h4>
-                        <p className="text-cream/80 text-sm">Authentic, personality-driven images showing your brand in real life</p>
+                        <h4 className="text-lg font-black text-cream">
+                          Lifestyle Templates (100 Prompts)
+                        </h4>
+                        <p className="text-cream/80 text-sm">
+                          Authentic, personality-driven images showing your
+                          brand in real life
+                        </p>
                       </div>
                     </div>
-                    <ChevronDown className={`h-5 w-5 text-neon-orange transition-transform ${expandedTemplateSection === 'lifestyle' ? 'rotate-180' : ''}`} />
+                    <ChevronDown
+                      className={`h-5 w-5 text-neon-orange transition-transform ${expandedTemplateSection === "lifestyle" ? "rotate-180" : ""}`}
+                    />
                   </Button>
 
-                  {expandedTemplateSection === 'lifestyle' && (
+                  {expandedTemplateSection === "lifestyle" && (
                     <div className="px-6 pb-6">
                       <div className="grid grid-cols-1 gap-3 max-h-96 overflow-y-auto">
                         {[
@@ -1262,20 +1276,26 @@ Always include:
                 {/* Graphics Templates */}
                 <div className="bg-black border-2 border-cream rounded-lg">
                   <Button
-                    onClick={() => toggleTemplateSection('graphics')}
+                    onClick={() => toggleTemplateSection("graphics")}
                     className="w-full bg-black border-0 hover:bg-cream/10 text-cream p-6 rounded-lg flex items-center justify-between"
                   >
                     <div className="flex items-center gap-3">
                       <Palette className="h-6 w-6 text-neon-orange" />
                       <div className="text-left">
-                        <h4 className="text-lg font-black text-cream">Graphics Templates (100 Prompts)</h4>
-                        <p className="text-cream/80 text-sm">Text-based visuals, memes, and viral graphic concepts</p>
+                        <h4 className="text-lg font-black text-cream">
+                          Graphics Templates (100 Prompts)
+                        </h4>
+                        <p className="text-cream/80 text-sm">
+                          Text-based visuals, memes, and viral graphic concepts
+                        </p>
                       </div>
                     </div>
-                    <ChevronDown className={`h-5 w-5 text-neon-orange transition-transform ${expandedTemplateSection === 'graphics' ? 'rotate-180' : ''}`} />
+                    <ChevronDown
+                      className={`h-5 w-5 text-neon-orange transition-transform ${expandedTemplateSection === "graphics" ? "rotate-180" : ""}`}
+                    />
                   </Button>
 
-                  {expandedTemplateSection === 'graphics' && (
+                  {expandedTemplateSection === "graphics" && (
                     <div className="px-6 pb-6">
                       <div className="grid grid-cols-1 gap-3 max-h-96 overflow-y-auto">
                         {[
@@ -1410,6 +1430,9 @@ Always include:
                   )}
                 </div>
               </div>
+            </div>
+          )}
+
           {/* EXAMPLES */}
           {activeTab === "examples" && (
             <div className="space-y-6">
