@@ -35,6 +35,11 @@ export function Navigation({
       icon: <Briefcase className="h-5 w-5" />,
     },
     {
+      id: "creative-library",
+      label: "CREATIVE LIBRARY",
+      icon: <BookOpen className="h-5 w-5" />,
+    },
+    {
       id: "product",
       label: "PRODUCT GENERATOR",
       icon: <Package className="h-5 w-5" />,
