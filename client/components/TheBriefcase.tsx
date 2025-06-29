@@ -970,10 +970,10 @@ Always include:
               {/* Collapsible Template Sections */}
               <div className="flex flex-col space-y-4">
                 {/* Studio Templates */}
-                <div className="bg-black max-h-[550px] overflow-y-auto mt-5 p-5">
+                <div className="bg-black border-2 border-cream rounded-lg mb-5 py-5">
                   <Button
                     onClick={() => toggleTemplateSection("studio")}
-                    className="w-full bg-black border-0 hover:bg-cream/10 text-cream p-6 rounded-lg flex items-center justify-between"
+                    className="w-full bg-black border-0 hover:bg-cream/10 text-cream py-5 px-6 rounded-lg flex items-center justify-between"
                   >
                     <div className="flex items-center gap-3">
                       <Package className="h-6 w-6 text-neon-orange" />
