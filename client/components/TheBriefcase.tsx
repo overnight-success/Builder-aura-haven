@@ -313,7 +313,7 @@ Always include:
       ],
       Enhancers: [
         "Shift texture layer: Velvet → Glass → Chrome → Plastic",
-        "Change lighting mood: Golden hour ��� Neon glow → Paparazzi",
+        "Change lighting mood: Golden hour → Neon glow → Paparazzi",
         "Apply time-based logic: Day → Night → Rainy → Overcast",
         "Swap camera angle: Top-down → Orbit → Over-the-shoulder",
         "floating dust particles",
@@ -1270,7 +1270,7 @@ Always include:
                             {prompt}
                           </p>
                           <Button
-                            onClick={() => copyPrompt(prompt)}
+                            onClick={(e) => copyPrompt(prompt, e)}
                             className="bg-neon-orange text-black hover:bg-cream opacity-0 group-hover:opacity-100 transition-opacity"
                             size="sm"
                           >
