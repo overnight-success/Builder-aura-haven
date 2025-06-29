@@ -1432,26 +1432,14 @@ Always include:
                   <Card key={index} className="bg-black border-2 border-cream">
                     <CardHeader>
                       <div className="flex justify-between items-start">
-                        <div>
-                          <CardTitle className="text-lg font-black text-cream flex items-center gap-2">
-                            {example.category === "Product" && (
-                              <Package className="h-5 w-5 text-neon-orange" />
-                            )}
-                            {example.category === "Lifestyle" && (
-                              <Camera className="h-5 w-5 text-neon-orange" />
-                            )}
-                            {example.category === "Graphic" && (
-                              <Palette className="h-5 w-5 text-neon-orange" />
-                            )}
-                            {example.title}
-                          </CardTitle>
-                          <div className="flex items-center gap-2 mt-2">
-                            <Badge className="bg-neon-orange text-black font-bold text-xs">
-                              {example.category}
-                            </Badge>
-                            <Badge className="bg-green-500 text-black font-bold text-xs">
-                              {example.quality}% Quality
-                            </Badge>
+                        <Button
+                          onClick={(e) => copyPrompt(example.prompt, e)}
+                          className="bg-cream text-black hover:bg-neon-orange"
+                          size="sm"
+                        >
+                          <Copy className="h-3 w-3 mr-1" />
+                          Copy
+                        </Button>
                           </div>
                         </div>
                         <Button
