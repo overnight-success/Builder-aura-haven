@@ -626,37 +626,42 @@ Always include:
             <div className="space-y-6">
               <div className="text-center mb-8">
                 <h3 className="text-2xl font-black text-cream mb-2">
-                  Master SORA AI Prompt Generation
+                  Access The Complete Playbook
                 </h3>
                 <p className="text-cream/80">
-                  Complete guides to get the best results from our platform
+                  Comprehensive guides and tutorials for mastering SORA AI
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                {playbookSections.map((section, index) => (
-                  <Card key={index} className="bg-black border-2 border-cream">
-                    <CardHeader>
-                      <CardTitle className="text-lg font-black text-cream flex items-center gap-2">
-                        <BookOpen className="h-5 w-5 text-neon-orange" />
-                        {section.title}
-                      </CardTitle>
-                      <Badge className="bg-neon-orange text-black font-bold text-xs w-fit">
-                        {section.duration}
-                      </Badge>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-cream mb-4">{section.description}</p>
-                      <Button
-                        onClick={() => downloadGuide(section)}
-                        className="bg-neon-orange border-2 border-neon-orange text-black font-bold text-sm px-4 py-2 h-auto hover:bg-black hover:text-neon-orange transition-all duration-200"
-                      >
-                        <Download className="h-4 w-4 mr-2" />
-                        DOWNLOAD GUIDE
-                      </Button>
-                    </CardContent>
-                  </Card>
-                ))}
+              <div className="flex justify-center">
+                <Card className="bg-black border-2 border-neon-orange max-w-lg">
+                  <CardContent className="p-8 text-center">
+                    <div className="mb-6">
+                      <BookOpen className="h-16 w-16 text-neon-orange mx-auto mb-4" />
+                      <h4 className="text-xl font-black text-cream mb-2">
+                        The Complete SORA Playbook
+                      </h4>
+                      <p className="text-cream/80 mb-6">
+                        Access our comprehensive guide with step-by-step
+                        tutorials, advanced techniques, and best practices for
+                        SORA AI video generation.
+                      </p>
+                    </div>
+
+                    <Button
+                      onClick={() =>
+                        window.open(
+                          "https://b78aaa611b6f477e9114624029707554-main.projects.builder.my/",
+                          "_blank",
+                        )
+                      }
+                      className="bg-neon-orange border-2 border-neon-orange text-black font-bold text-lg px-8 py-4 h-auto hover:bg-black hover:text-neon-orange transition-all duration-200"
+                    >
+                      <ExternalLink className="h-5 w-5 mr-2" />
+                      OPEN PLAYBOOK
+                    </Button>
+                  </CardContent>
+                </Card>
               </div>
             </div>
           )}
