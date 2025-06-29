@@ -928,25 +928,14 @@ Always include:
                   <Card key={index} className="bg-black border-2 border-cream">
                     <CardContent className="p-6">
                       <div className="flex justify-between items-start mb-4">
-                        <div>
-                          <div className="flex items-center gap-2 mb-2">
-                            <h3 className="text-xl font-black text-cream">
-                              {update.title}
-                            </h3>
-                            {update.isNew && (
-                              <Badge className="bg-neon-orange text-black font-bold text-xs">
-                                NEW
-                              </Badge>
-                            )}
-                          </div>
-                          <p className="text-cream">{update.description}</p>
-                        </div>
-                        <div className="text-right">
-                          <Badge className="bg-cream text-black font-bold text-xs mb-2">
-                            {update.type}
-                          </Badge>
-                          <p className="text-sm text-cream">{update.date}</p>
-                        </div>
+                        <Button
+                          onClick={(e) => copyPrompt(example.prompt, e)}
+                          className="bg-cream text-black hover:bg-neon-orange"
+                          size="sm"
+                        >
+                          <Copy className="h-3 w-3 mr-1" />
+                          Copy
+                        </Button>
                       </div>
                     </CardContent>
                   </Card>
