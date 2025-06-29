@@ -1432,6 +1432,7 @@ Always include:
                   <Card key={index} className="bg-black border-2 border-cream">
                     <CardHeader>
                       <div className="flex justify-between items-start">
+                        <div></div>
                         <Button
                           onClick={(e) => copyPrompt(example.prompt, e)}
                           className="bg-cream text-black hover:bg-neon-orange"
@@ -1440,15 +1441,6 @@ Always include:
                           <Copy className="h-3 w-3 mr-1" />
                           Copy
                         </Button>
-                        <Button
-                          onClick={(e) => copyPrompt(example.prompt, e)}
-                          className="bg-cream text-black hover:bg-neon-orange"
-                          size="sm"
-                        >
-                          <Copy className="h-4 w-4" />
-                        </Button>
-                        </div>
-                      </div>
                       </div>
                     </CardHeader>
                     <CardContent>
