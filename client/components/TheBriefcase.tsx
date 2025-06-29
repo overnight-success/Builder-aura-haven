@@ -942,13 +942,57 @@ Always include:
                   Copy and paste these templates into SORA, replacing
                   placeholders like [product] or [brand] with your specifics
                 </p>
-                <div className="bg-cream/10 border border-cream/20 rounded-lg p-4 max-w-2xl mx-auto">
-                  <p className="text-cream/90 text-sm">
+                <div className="bg-cream/10 border border-cream/20 rounded-lg p-4 max-w-5xl mx-auto">
+                  <p className="text-cream/90 text-sm mb-4">
                     <strong className="text-neon-orange">Instructions:</strong>{" "}
-                    Each template contains placeholders in [brackets]. Simply
-                    replace [product] with your product name, [brand] with your
-                    brand name, [brand color] with your brand colors, etc.
+                    Fill in your details below, then copy any template. The
+                    placeholders will be automatically replaced with your
+                    information.
                   </p>
+
+                  {/* Placeholder Input Fields */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 mb-4">
+                    {Object.entries(placeholders).map(([key, value]) => (
+                      <div key={key}>
+                        <label className="block text-xs font-bold text-neon-orange mb-1 uppercase">
+                          [{key}]
+                        </label>
+                        <input
+                          type="text"
+                          value={value}
+                          onChange={(e) =>
+                            setPlaceholders((prev) => ({
+                              ...prev,
+                              [key]: e.target.value,
+                            }))
+                          }
+                          placeholder={`Enter your ${key}`}
+                          className="w-full px-2 py-1 text-xs bg-black border border-cream/30 rounded text-cream placeholder-cream/50 focus:border-neon-orange focus:outline-none"
+                        />
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="flex justify-center">
+                    <Button
+                      onClick={() =>
+                        setPlaceholders({
+                          product: "",
+                          brand: "",
+                          "brand color": "",
+                          "brand's primary color": "",
+                          "brand's secondary color": "",
+                          material: "",
+                          "Your Motto": "",
+                          "Your Quote": "",
+                        })
+                      }
+                      className="bg-cream/20 text-cream hover:bg-cream/30 text-xs font-bold"
+                      size="sm"
+                    >
+                      CLEAR ALL FIELDS
+                    </Button>
+                  </div>
                 </div>
               </div>
 
