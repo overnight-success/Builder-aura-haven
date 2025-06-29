@@ -131,6 +131,18 @@ Always include:
   // PROMPT VAULT - Complete keyword library from screenshots
   const [selectedKeywords, setSelectedKeywords] = useState<string[]>([]);
 
+  // TEMPLATES - Placeholder replacement values
+  const [placeholders, setPlaceholders] = useState({
+    product: "",
+    brand: "",
+    "brand color": "",
+    "brand's primary color": "",
+    "brand's secondary color": "",
+    material: "",
+    "Your Motto": "",
+    "Your Quote": "",
+  });
+
   const promptVault = {
     keywords: {
       Lighting: [
