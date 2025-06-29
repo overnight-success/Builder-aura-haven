@@ -754,6 +754,15 @@ Always include:
               <Card className="bg-black border-2 border-cream mb-4">
                 <CardContent className="p-4">
                   <div className="space-y-3">
+                    <div className="flex items-center justify-between">
+                      <h5 className="text-sm font-black text-cream">
+                        PROMPT QUALITY METER
+                      </h5>
+                      <span className="text-xs font-bold text-neon-orange">
+                        {getPromptQualityScore()}%
+                      </span>
+                    </div>
+
                     <div className="w-full bg-cream/20 rounded-full h-3">
                       <div
                         className={`h-3 rounded-full transition-all duration-300 ${getQualityColor()}`}
