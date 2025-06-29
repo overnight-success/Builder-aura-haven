@@ -28,6 +28,7 @@ export function Navigation({
   onReset,
 }: NavigationProps) {
   const [showBriefcase, setShowBriefcase] = useState(false);
+  const [showCreativeLibrary, setShowCreativeLibrary] = useState(false);
 
   const menuItems = [
     {
