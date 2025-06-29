@@ -610,11 +610,29 @@ Always include:
     return "bg-green-500";
   };
 
+  const replacePlaceholders = (prompt: string) => {
+    let replacedPrompt = prompt;
+    Object.entries(placeholders).forEach(([key, value]) => {
+      if (value.trim()) {
+        const regex = new RegExp(`\\[${key}\\]`, "gi");
+        replacedPrompt = replacedPrompt.replace(regex, value);
+      }
+    });
+    return replacedPrompt;
+  };
+
   const copyPrompt = async (prompt: string) => {
+    const finalPrompt = replacePlaceholders(prompt);
     try {
-      await navigator.clipboard.writeText(prompt);
+      await navigator.clipboard.writeText(finalPrompt);
     } catch (error) {
-      alert(`Prompt copied: ${prompt}`);
+      // Fallback for browsers that don't support clipboard API
+      const textArea = document.createElement("textarea");
+      textArea.value = finalPrompt;
+      document.body.appendChild(textArea);
+      textArea.select();
+      document.execCommand("copy");
+      document.body.removeChild(textArea);
     }
   };
 
