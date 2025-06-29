@@ -962,16 +962,16 @@ Always include:
                 </Card>
               </div>
 
-              {/* Product Templates */}
+              {/* Studio Templates */}
               <Card className="bg-black border-2 border-cream mb-8">
                 <CardHeader>
                   <CardTitle className="text-xl font-black text-cream flex items-center gap-2">
                     <Package className="h-5 w-5 text-neon-orange" />
-                    Product Templates (100 Prompts)
+                    Studio Templates (100 Prompts)
                   </CardTitle>
                   <p className="text-cream/80 text-sm">
-                    Studio-quality product images without a photoshoot, crew, or
-                    big budget
+                    Clean, product-centered visuals without a photoshoot, crew,
+                    or big budget
                   </p>
                 </CardHeader>
                 <CardContent>
@@ -1028,6 +1028,55 @@ Always include:
                       "Compose a playful shot of [product] on a bed of [material] (like petals or fabric), with soft, diffused lighting for a whimsical feel.",
                       "Shoot a dramatic studio shot of [product] surrounded by smoke on a dark background, under harsh strobe lighting.",
                       "Craft a futuristic studio shot of [product] on a simple backdrop with [brand]'s logo faintly visible in the background, under soft, diffused lighting.",
+                      "Generate a high-contrast studio shot of [product] on a simple backdrop with smoke swirling around, under soft, diffused lighting.",
+                      "Produce a bold studio shot of [product] on a simple backdrop with splashes of water frozen in motion around it, under a spotlight from above.",
+                      "Create a vibrant studio shot of [product] on a simple backdrop with a colorful paint splash frozen in mid-air, under moody, low-key lighting.",
+                      "Craft an ultra-detailed studio shot of [product] on a simple backdrop with a complementary prop (like a matching accessory) beside it, under harsh strobe lighting.",
+                      "Shoot a dreamy studio shot of [product] on a simple backdrop with a subtle reflection below it, under dramatic studio lighting with sharp shadows.",
+                      "Design a playful studio shot of [product] on a simple backdrop with a colorful paint splash frozen in mid-air, under bright, even lighting.",
+                      "Generate a monochromatic studio shot of [product] on a simple backdrop with a subtle reflection below it, under soft, diffused lighting.",
+                      "Craft a futuristic studio shot of [product] on a simple backdrop with [brand]'s logo faintly visible in the background, under soft, diffused lighting.",
+                      "Produce an edgy studio shot of [product] on a simple backdrop with a subtle reflection below it, under soft, diffused lighting.",
+                      "Design a luxury product hero shot for [brand]: [product] on a reflective black surface with golden backlighting and a smoky ambiance.",
+                      "Generate a futuristic product showcase featuring [product] levitating above a glowing platform, surrounded by holographic neon effects in a dark studio.",
+                      "Produce a playful composition of multiple [product] units arranged in a colorful geometric pattern on a flat surface, with bright, even lighting.",
+                      "Create an edgy studio image of [product] with splashes of liquid frozen mid-air around it, lit by high-contrast strobe lighting.",
+                      "Illustrate [product] against a backdrop of swirling [brand color] smoke, with a spotlight from above casting a dramatic shadow.",
+                      "Compose a surreal product scene: [product] emerging from a misty fog on a pedestal, under moody, low-key lighting.",
+                      "Design an ultra-modern shot for [brand] featuring [product] in an infinity mirror room, with endless reflections and cool blue studio lighting.",
+                      "Imagine an artistic studio shot of [product] cracked open to reveal its inner components, arranged neatly beside it, photographed with crisp, high-key lighting.",
+                      "Capture [product] being gently held by a model's hands in studio – focus on the product with soft, diffused rim lighting for an intimate feel.",
+                      "Generate a high-contrast silhouette of [product] against a brightly lit background, revealing its shape in dramatic form.",
+                      "Shoot [product] alongside a small accent prop (like a flower or tool) on a textured surface, with warm, soft studio lighting for a lifestyle-meets-studio vibe.",
+                      "Create a season-themed product photo of [product] surrounded by seasonal elements (e.g. autumn leaves, holiday lights), with balanced studio lighting.",
+                      "Design a sleek product shot of [product] bathed in [brand's secondary color] light against a dark background, for a bold contrast.",
+                      "Capture a top-down flat lay of [product] and complementary items arranged neatly on a matching background, with soft, diffused lighting.",
+                      "Shoot a macro photograph focusing on [product]'s intricate details, with dramatic lighting emphasizing its texture and design.",
+                      "Design a creative studio image featuring [product] with splashes of water frozen in motion around it, lit by a high-speed flash to capture every droplet.",
+                      "Generate a fashion magazine-style product shot of [product] with dramatic high-contrast lighting and glossy reflections (high-end editorial vibe).",
+                      "Produce a product group shot: multiple [product] variations lined up in gradient order on a reflective surface, with even, bright lighting across them.",
+                      "Create a dynamic studio image of [product] surrounded by mirror fragments for a shattered reflection effect, under bold, edgy lighting.",
+                      "Shoot [product] with smoke swirling around it on a dark background, a single spotlight from above highlighting the product through the haze.",
+                      "Capture a scroll-stopping image of [product] for social feeds: bold contrast, a vibrant [brand color] background, and dramatic lighting to make it pop.",
+                      "Design an Instagram-worthy flat lay of [product] with trendy props (coffee, notebook, phone) arranged aesthetically, shot under soft, natural-looking lighting.",
+                      "Generate a lifestyle-meets-studio shot: [product] in use by a silhouetted figure against a colored backdrop, with motion blur trails and sharp focus on the product.",
+                      "Produce an ad-friendly product photo of [product] on a clean background with ample negative space on one side for overlay text, evenly lit for versatility.",
+                      "Create a Pinterest-style collage image featuring [product] from multiple angles, on a light backdrop with pastel lighting and decorative scrapbooking elements.",
+                      "Imagine [product] displayed in a creative monochrome setup where everything except the product is tinted in [brand color], under bright studio lights (product really stands out).",
+                      "Shoot [product] from an extreme low angle against a sweeping backdrop, making it appear larger-than-life, with high-contrast dramatic lighting.",
+                      "Capture a teaser shot of [product] half in shadow and half illuminated on a dark background – a mysterious, high-drama look to intrigue viewers.",
+                      "Compose a vibrant product shot of [product] bursting through a paper backdrop as if breaking through, freeze-framed with high-speed flash.",
+                      "Generate a split-tone lighting effect on [product] (one side warm golden light, one side cool blue light) against a neutral backdrop, for a striking dual-color contrast.",
+                      "Design a creative mirror image of [product] by placing two units symmetrically on a reflective surface, captured with perfect symmetry and soft studio lighting.",
+                      "Produce an artistic shot of [product] with colored shadows cast onto the backdrop (using gel lights), giving a modern graphic art effect.",
+                      "Create an aspirational product scene: [product] perched atop a 'mountain' of similar items (metaphorically conquering competition), shot with a wide-angle lens for epic scale.",
+                      "Shoot a minimalist black-and-white photo of [product] where only the product itself is in color, highlighting it amid a grayscale scene, under moody lighting.",
+                      "Imagine a vibrant product lineup – multiple [product] in different colors lined up diagonally, with dynamic studio lighting and a gradient background for a viral visual.",
+                      "Design a magazine-quality product still for [brand], inspired by GQ style: [product] on an elegant set with rich colors and dramatic shadows.",
+                      "Generate a cinematic product image reminiscent of a movie poster, making [product] the 'hero' under epic, contrasty lighting and a dark vignette background.",
+                      "Produce a tech-inspired composition of [product] with neon accents and holographic elements, channeling a Blade Runner-esque futuristic aesthetic in studio.",
+                      "Imagine a commercial product photo in Apple-like minimalism: [product] on a pristine white background with soft shadows and a clean, sleek look.",
+                      "Design a creative product shot blending streetwear and tech vibes (Complex style): [product] on an urban-themed set (spray-painted backdrop, neon highlights) with edgy lighting for culture-meets-tech appeal.",
                     ].map((prompt, index) => (
                       <div
                         key={index}
