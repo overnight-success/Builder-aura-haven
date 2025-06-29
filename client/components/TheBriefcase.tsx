@@ -19,6 +19,7 @@ import {
   Palette,
   Camera,
   Package,
+  ChevronDown,
 } from "lucide-react";
 
 interface TheBriefcaseProps {
