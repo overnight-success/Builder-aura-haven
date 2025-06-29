@@ -1440,15 +1440,15 @@ Always include:
                           <Copy className="h-3 w-3 mr-1" />
                           Copy
                         </Button>
-                          </div>
-                        </div>
                         <Button
-                          onClick={() => copyPrompt(example.prompt)}
+                          onClick={(e) => copyPrompt(example.prompt, e)}
                           className="bg-cream text-black hover:bg-neon-orange"
                           size="sm"
                         >
                           <Copy className="h-4 w-4" />
                         </Button>
+                        </div>
+                      </div>
                       </div>
                     </CardHeader>
                     <CardContent>
