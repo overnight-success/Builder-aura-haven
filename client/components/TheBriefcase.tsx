@@ -621,12 +621,11 @@ Always include:
     return replacedPrompt;
   };
 
-  const copyPrompt = async (prompt: string) => {
+  const copyPrompt = async (prompt: string, event?: any) => {
     const finalPrompt = replacePlaceholders(prompt);
     try {
       await navigator.clipboard.writeText(finalPrompt);
       // Show success feedback
-      const originalButtons = document.querySelectorAll("button");
       const clickedButton = event?.target?.closest("button");
       if (clickedButton) {
         const originalText = clickedButton.innerHTML;
