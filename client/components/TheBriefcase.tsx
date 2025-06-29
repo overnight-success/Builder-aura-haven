@@ -1284,6 +1284,62 @@ Always include:
               </div>
             </div>
           )}
+
+          {/* AI TOOLKIT */}
+          {activeTab === "toolkit" && (
+            <div className="space-y-6">
+              <div className="text-center mb-8">
+                <h3 className="text-2xl font-black text-cream mb-2">
+                  AI Toolkit
+                </h3>
+                <p className="text-cream/80">
+                  Essential tools and resources for AI-powered creative work
+                </p>
+              </div>
+
+              <div className="space-y-8">
+                {aiToolkit.map((category, categoryIndex) => (
+                  <Card
+                    key={categoryIndex}
+                    className="bg-black border-2 border-cream"
+                  >
+                    <CardHeader>
+                      <CardTitle className="text-xl font-black text-cream flex items-center gap-2">
+                        <Wrench className="h-5 w-5 text-neon-orange" />
+                        {category.category}
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        {category.tools.map((tool, toolIndex) => (
+                          <div
+                            key={toolIndex}
+                            className="bg-cream/5 border border-cream/20 rounded-lg p-4 group hover:bg-cream/10 transition-all duration-200"
+                          >
+                            <div className="flex justify-between items-start mb-3">
+                              <h4 className="text-cream font-bold text-sm">
+                                {tool.name}
+                              </h4>
+                              <Button
+                                onClick={() => window.open(tool.url, "_blank")}
+                                className="bg-neon-orange text-black hover:bg-cream opacity-0 group-hover:opacity-100 transition-opacity"
+                                size="sm"
+                              >
+                                <ExternalLink className="h-3 w-3" />
+                              </Button>
+                            </div>
+                            <p className="text-cream/80 text-xs leading-relaxed">
+                              {tool.description}
+                            </p>
+                          </div>
+                        ))}
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>
