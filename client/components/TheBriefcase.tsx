@@ -931,10 +931,10 @@ Always include:
                   <CardContent className="p-6">
                     <Package className="h-12 w-12 text-neon-orange mx-auto mb-4" />
                     <h4 className="text-lg font-black text-cream mb-2">
-                      Product Templates
+                      Studio Templates
                     </h4>
                     <p className="text-cream/80 text-sm">
-                      100 studio-quality product photography prompts
+                      100 clean, product-centered studio photography prompts
                     </p>
                   </CardContent>
                 </Card>
