@@ -1021,410 +1021,395 @@ Always include:
                 </div>
               </div>
 
-              {/* Template Categories */}
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
-                <Card className="bg-black border-2 border-cream text-center">
-                  <CardContent className="p-6">
-                    <Package className="h-12 w-12 text-neon-orange mx-auto mb-4" />
-                    <h4 className="text-lg font-black text-cream mb-2">
-                      Studio Templates
-                    </h4>
-                    <p className="text-cream/80 text-sm">
-                      100 clean, product-centered studio photography prompts
-                    </p>
-                  </CardContent>
-                </Card>
-                <Card className="bg-black border-2 border-cream text-center">
-                  <CardContent className="p-6">
-                    <Camera className="h-12 w-12 text-neon-orange mx-auto mb-4" />
-                    <h4 className="text-lg font-black text-cream mb-2">
-                      Lifestyle Templates
-                    </h4>
-                    <p className="text-cream/80 text-sm">
-                      100 authentic lifestyle and community visuals
-                    </p>
-                  </CardContent>
-                </Card>
-                <Card className="bg-black border-2 border-cream text-center">
-                  <CardContent className="p-6">
-                    <Palette className="h-12 w-12 text-neon-orange mx-auto mb-4" />
-                    <h4 className="text-lg font-black text-cream mb-2">
-                      Graphics Templates
-                    </h4>
-                    <p className="text-cream/80 text-sm">
-                      100 text-based visuals, memes, and viral concepts
-                    </p>
-                  </CardContent>
-                </Card>
-              </div>
-
-              {/* Studio Templates */}
-              <Card className="bg-black border-2 border-cream mb-8">
-                <CardHeader>
-                  <CardTitle className="text-xl font-black text-cream flex items-center gap-2">
-                    <Package className="h-5 w-5 text-neon-orange" />
-                    Studio Templates (100 Prompts)
-                  </CardTitle>
-                  <p className="text-cream/80 text-sm">
-                    Clean, product-centered visuals without a photoshoot, crew,
-                    or big budget
-                  </p>
-                </CardHeader>
-                <CardContent>
-                  <div className="grid grid-cols-1 gap-3 max-h-96 overflow-y-auto">
-                    {[
-                      "Capture an industrial studio photograph of [product] against a solid [brand color] backdrop with dramatic studio lighting and sharp shadows.",
-                      "Generate a playful studio photograph of [product] on a mirror for a reflection effect, with colorful gel lighting.",
-                      "Capture a high-contrast studio photograph of [product] on a mirror for a reflection effect, with neon rim lighting in [brand's primary color].",
-                      "Compose an industrial studio photograph of [product] on a mirror for a reflection effect, with dramatic studio lighting and sharp shadows.",
-                      "Shoot a surreal product shot of [product] against a solid [brand color] backdrop under harsh strobe lighting.",
-                      "Generate an elegant product shot of [product] against a pure white background under neon rim lighting in [brand's primary color].",
-                      "Design an industrial product shot of [product] against a pure white background under dramatic studio lighting with sharp shadows.",
-                      "Create a surreal product shot of [product] on a glossy black surface under golden backlighting.",
-                      "Illustrate a futuristic still-life image of [product] on a glossy black surface with golden backlighting.",
-                      "Design an ultra-detailed still-life image of [product] on a mirror for a reflection effect, with golden backlighting.",
-                      "Generate a minimalist still-life image of [product] on a marble pedestal, with soft, diffused lighting.",
-                      "Compose a vibrant still-life image of [product] on a mirror for a reflection effect, with harsh strobe lighting.",
-                      "Capture an elegant studio photograph of [product] on a marble pedestal with soft, diffused lighting.",
-                      "Generate a bold studio photograph of [product] against a solid [brand color] backdrop with dramatic studio lighting and sharp shadows.",
-                      "Capture a sleek studio photograph of [product] on a glossy black surface with moody, low-key lighting.",
-                      "Shoot a minimalist studio photograph of [product] against a pure white background with bright, even lighting.",
-                      "Craft a modern studio photograph of [product] against a solid [brand color] backdrop with neon rim lighting in [brand's primary color].",
-                      "Design a clean studio photograph of [product] on a pure white background with high-key lighting that eliminates shadows.",
-                      "Create a luxurious studio photograph of [product] on a marble pedestal with soft, diffused lighting and gentle shadows.",
-                      "Generate a colorful studio photograph of [product] against a gradient backdrop from [brand color] to black, with bright, even lighting.",
-                      "Capture a monochromatic studio photograph of [product] against a solid [brand color] backdrop with soft, diffused lighting.",
-                      "Generate a sleek product shot of [product] on a glossy black surface under dramatic studio lighting with sharp shadows.",
-                      "Compose a futuristic product shot of [product] on a glossy black surface under neon rim lighting in [brand's primary color].",
-                      "Capture a moody product shot of [product] on a marble pedestal with harsh strobe lighting creating bold shadows.",
-                      "Design a vibrant product shot of [product] on a mirror for a reflection effect under colorful gel lighting.",
-                      "Produce an elegant product shot of [product] on a pure white background with bright, even lighting highlighting its form.",
-                      "Create a bold product shot of [product] against a gradient backdrop from [brand color] to black, lit by a spotlight from above.",
-                      "Generate an artistic product shot of [product] on a bed of [material] in studio, with soft, diffused lighting for a creative touch.",
-                      "Capture a dreamy product shot of [product] floating in mid-air against a studio backdrop, with soft, diffused lighting.",
-                      "Imagine a clean product shot for [brand] featuring [product] against a pure white background, with bright, even lighting (e-commerce style).",
-                      "Design a minimalist studio shot for [brand] featuring [product] against a solid [brand color] backdrop, softly lit with diffused light.",
-                      "Generate a high-contrast studio shot for [brand] featuring [product] on a glossy black surface, with dramatic lighting and sharp shadows.",
-                      "Create a monochromatic studio shot for [brand] featuring [product] with geometric shapes in the background and soft, diffused lighting.",
-                      "Produce a modern studio shot for [brand] featuring [product] on a gradient backdrop from [brand color] to black, under moody, low-key lighting.",
-                      "Capture an elegant arrangement featuring [product] on a bed of [material] in studio, with soft, diffused lighting.",
-                      "Generate a luxurious arrangement featuring [product] on a marble pedestal, bathed in golden backlighting for a high-end look.",
-                      "Compose a minimalist arrangement featuring [product] on a pure white surface, with high-key lighting eliminating shadows.",
-                      "Design an artistic composition of [product] on a glossy black surface, with neon rim lighting in [brand's primary color].",
-                      "Create an edgy composition of [product] surrounded by smoke on a dark background, under dramatic studio lighting.",
-                      "Capture a vibrant composition of [product] with geometric shapes in the background, lit by bright, even lighting.",
-                      "Generate a surreal composition of [product] floating in mid-air against a studio backdrop, under soft, diffused lighting.",
-                      "Imagine a futuristic composition of [product] surrounded by swirling neon data streams, lit with colorful gel lighting.",
-                      "Shoot a minimalist shot of [product] against a pure white backdrop, using soft, diffused lighting to highlight its details.",
-                      "Capture a professional shot of [product] against a neutral gray background, using high-key lighting to eliminate harsh shadows.",
-                      "Produce an ultra-detailed shot of [product] on a mirror, capturing a perfect reflection with bright, even lighting.",
-                      "Generate a bold shot of [product] on a marble pedestal, with a spotlight from above creating dramatic focus.",
-                      "Create a sleek shot of [product] on a glossy black surface, with moody, low-key studio lighting.",
-                      "Design a colorful shot of [product] against a solid [brand color] backdrop, using a spotlight from above to create depth.",
-                      "Compose a playful shot of [product] on a bed of [material] (like petals or fabric), with soft, diffused lighting for a whimsical feel.",
-                      "Shoot a dramatic studio shot of [product] surrounded by smoke on a dark background, under harsh strobe lighting.",
-                      "Craft a futuristic studio shot of [product] on a simple backdrop with [brand]'s logo faintly visible in the background, under soft, diffused lighting.",
-                      "Generate a high-contrast studio shot of [product] on a simple backdrop with smoke swirling around, under soft, diffused lighting.",
-                      "Produce a bold studio shot of [product] on a simple backdrop with splashes of water frozen in motion around it, under a spotlight from above.",
-                      "Create a vibrant studio shot of [product] on a simple backdrop with a colorful paint splash frozen in mid-air, under moody, low-key lighting.",
-                      "Craft an ultra-detailed studio shot of [product] on a simple backdrop with a complementary prop (like a matching accessory) beside it, under harsh strobe lighting.",
-                      "Shoot a dreamy studio shot of [product] on a simple backdrop with a subtle reflection below it, under dramatic studio lighting with sharp shadows.",
-                      "Design a playful studio shot of [product] on a simple backdrop with a colorful paint splash frozen in mid-air, under bright, even lighting.",
-                      "Generate a monochromatic studio shot of [product] on a simple backdrop with a subtle reflection below it, under soft, diffused lighting.",
-                      "Craft a futuristic studio shot of [product] on a simple backdrop with [brand]'s logo faintly visible in the background, under soft, diffused lighting.",
-                      "Produce an edgy studio shot of [product] on a simple backdrop with a subtle reflection below it, under soft, diffused lighting.",
-                      "Design a luxury product hero shot for [brand]: [product] on a reflective black surface with golden backlighting and a smoky ambiance.",
-                      "Generate a futuristic product showcase featuring [product] levitating above a glowing platform, surrounded by holographic neon effects in a dark studio.",
-                      "Produce a playful composition of multiple [product] units arranged in a colorful geometric pattern on a flat surface, with bright, even lighting.",
-                      "Create an edgy studio image of [product] with splashes of liquid frozen mid-air around it, lit by high-contrast strobe lighting.",
-                      "Illustrate [product] against a backdrop of swirling [brand color] smoke, with a spotlight from above casting a dramatic shadow.",
-                      "Compose a surreal product scene: [product] emerging from a misty fog on a pedestal, under moody, low-key lighting.",
-                      "Design an ultra-modern shot for [brand] featuring [product] in an infinity mirror room, with endless reflections and cool blue studio lighting.",
-                      "Imagine an artistic studio shot of [product] cracked open to reveal its inner components, arranged neatly beside it, photographed with crisp, high-key lighting.",
-                      "Capture [product] being gently held by a model's hands in studio – focus on the product with soft, diffused rim lighting for an intimate feel.",
-                      "Generate a high-contrast silhouette of [product] against a brightly lit background, revealing its shape in dramatic form.",
-                      "Shoot [product] alongside a small accent prop (like a flower or tool) on a textured surface, with warm, soft studio lighting for a lifestyle-meets-studio vibe.",
-                      "Create a season-themed product photo of [product] surrounded by seasonal elements (e.g. autumn leaves, holiday lights), with balanced studio lighting.",
-                      "Design a sleek product shot of [product] bathed in [brand's secondary color] light against a dark background, for a bold contrast.",
-                      "Capture a top-down flat lay of [product] and complementary items arranged neatly on a matching background, with soft, diffused lighting.",
-                      "Shoot a macro photograph focusing on [product]'s intricate details, with dramatic lighting emphasizing its texture and design.",
-                      "Design a creative studio image featuring [product] with splashes of water frozen in motion around it, lit by a high-speed flash to capture every droplet.",
-                      "Generate a fashion magazine-style product shot of [product] with dramatic high-contrast lighting and glossy reflections (high-end editorial vibe).",
-                      "Produce a product group shot: multiple [product] variations lined up in gradient order on a reflective surface, with even, bright lighting across them.",
-                      "Create a dynamic studio image of [product] surrounded by mirror fragments for a shattered reflection effect, under bold, edgy lighting.",
-                      "Shoot [product] with smoke swirling around it on a dark background, a single spotlight from above highlighting the product through the haze.",
-                      "Capture a scroll-stopping image of [product] for social feeds: bold contrast, a vibrant [brand color] background, and dramatic lighting to make it pop.",
-                      "Design an Instagram-worthy flat lay of [product] with trendy props (coffee, notebook, phone) arranged aesthetically, shot under soft, natural-looking lighting.",
-                      "Generate a lifestyle-meets-studio shot: [product] in use by a silhouetted figure against a colored backdrop, with motion blur trails and sharp focus on the product.",
-                      "Produce an ad-friendly product photo of [product] on a clean background with ample negative space on one side for overlay text, evenly lit for versatility.",
-                      "Create a Pinterest-style collage image featuring [product] from multiple angles, on a light backdrop with pastel lighting and decorative scrapbooking elements.",
-                      "Imagine [product] displayed in a creative monochrome setup where everything except the product is tinted in [brand color], under bright studio lights (product really stands out).",
-                      "Shoot [product] from an extreme low angle against a sweeping backdrop, making it appear larger-than-life, with high-contrast dramatic lighting.",
-                      "Capture a teaser shot of [product] half in shadow and half illuminated on a dark background – a mysterious, high-drama look to intrigue viewers.",
-                      "Compose a vibrant product shot of [product] bursting through a paper backdrop as if breaking through, freeze-framed with high-speed flash.",
-                      "Generate a split-tone lighting effect on [product] (one side warm golden light, one side cool blue light) against a neutral backdrop, for a striking dual-color contrast.",
-                      "Design a creative mirror image of [product] by placing two units symmetrically on a reflective surface, captured with perfect symmetry and soft studio lighting.",
-                      "Produce an artistic shot of [product] with colored shadows cast onto the backdrop (using gel lights), giving a modern graphic art effect.",
-                      "Create an aspirational product scene: [product] perched atop a 'mountain' of similar items (metaphorically conquering competition), shot with a wide-angle lens for epic scale.",
-                      "Shoot a minimalist black-and-white photo of [product] where only the product itself is in color, highlighting it amid a grayscale scene, under moody lighting.",
-                      "Imagine a vibrant product lineup – multiple [product] in different colors lined up diagonally, with dynamic studio lighting and a gradient background for a viral visual.",
-                      "Design a magazine-quality product still for [brand], inspired by GQ style: [product] on an elegant set with rich colors and dramatic shadows.",
-                      "Generate a cinematic product image reminiscent of a movie poster, making [product] the 'hero' under epic, contrasty lighting and a dark vignette background.",
-                      "Produce a tech-inspired composition of [product] with neon accents and holographic elements, channeling a Blade Runner-esque futuristic aesthetic in studio.",
-                      "Imagine a commercial product photo in Apple-like minimalism: [product] on a pristine white background with soft shadows and a clean, sleek look.",
-                      "Design a creative product shot blending streetwear and tech vibes (Complex style): [product] on an urban-themed set (spray-painted backdrop, neon highlights) with edgy lighting for culture-meets-tech appeal.",
-                    ].map((prompt, index) => (
-                      <div
-                        key={index}
-                        className="bg-cream/5 border border-cream/20 rounded p-3 group hover:bg-cream/10 transition-all duration-200"
-                      >
-                        <div className="flex justify-between items-start gap-3">
-                          <p className="text-cream text-sm font-mono leading-relaxed flex-1">
-                            {prompt}
-                          </p>
-                          <Button
-                            onClick={(e) => copyPrompt(prompt, e)}
-                            className="bg-neon-orange text-black hover:bg-cream opacity-0 group-hover:opacity-100 transition-opacity"
-                            size="sm"
-                          >
-                            <Copy className="h-3 w-3" />
-                          </Button>
-                        </div>
+              {/* Collapsible Template Sections */}
+              <div className="space-y-4">
+                {/* Studio Templates */}
+                <div className="bg-black border-2 border-cream rounded-lg">
+                  <Button
+                    onClick={() => toggleTemplateSection('studio')}
+                    className="w-full bg-black border-0 hover:bg-cream/10 text-cream p-6 rounded-lg flex items-center justify-between"
+                  >
+                    <div className="flex items-center gap-3">
+                      <Package className="h-6 w-6 text-neon-orange" />
+                      <div className="text-left">
+                        <h4 className="text-lg font-black text-cream">Studio Templates (100 Prompts)</h4>
+                        <p className="text-cream/80 text-sm">Clean, product-centered visuals without a photoshoot, crew, or big budget</p>
                       </div>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
+                    </div>
+                    <ChevronDown className={`h-5 w-5 text-neon-orange transition-transform ${expandedTemplateSection === 'studio' ? 'rotate-180' : ''}`} />
+                  </Button>
 
-              {/* Lifestyle Templates */}
-              <Card className="bg-black border-2 border-cream mb-8">
-                <CardHeader>
-                  <CardTitle className="text-xl font-black text-cream flex items-center gap-2">
-                    <Camera className="h-5 w-5 text-neon-orange" />
-                    Lifestyle Templates (100 Prompts)
-                  </CardTitle>
-                  <p className="text-cream/80 text-sm">
-                    Authentic, personality-driven images showing your brand in
-                    real life
-                  </p>
-                </CardHeader>
-                <CardContent>
-                  <div className="grid grid-cols-1 gap-3 max-h-96 overflow-y-auto">
-                    {[
-                      "Photograph a chill weekend vibe: an entrepreneur relaxing in a park hammock reading about [product] on a tablet, [product] itself nearby, with dappled sunlight through trees.",
-                      "Capture a spontaneous cafe moment where an influencer is live-streaming about [product] on their phone, other patrons in soft focus – ambient cafe lighting for authenticity.",
-                      "Snap an 'in the field' photo of a professional using [product] on a job site (e.g., an architect with a model, a photographer with gear), midday sun lighting the real-world context.",
-                      "Generate an edgy lifestyle shot of an artist in streetwear painting a mural that incorporates [product] imagery, urban wall backdrop and late-day sunlight for dramatic effect.",
-                      "Capture a heartwarming image of a charity event where volunteers are handing out [product] (if applicable) to people, genuine emotions and natural outdoor lighting showcasing community impact.",
-                      "Photograph a creative flatlay from a first-person perspective: hands of a creator working with [product] on a desk, surrounded by coffee, notebook, and phone (POV style, well-lit).",
-                      "Snap a relatable WFH moment: a person on a video call demoing [product], dressed in a nice shirt but PJ pants (visible feet up on chair), with home office lighting – a bit of humor.",
-                      "Capture a day-in-the-life collage-style image: multiple smaller scenes (in one image) of [creator] using [product] morning, noon, and night, giving a sense of constant integration (could be a quadrant or sequential layout).",
-                      "Photograph a loyal customer at a 'testimonials wall' holding [product] and signing a note of thanks on a board (even if text unreadable), event lighting capturing the positivity.",
-                      "Generate a friendly meetup photo: a group of creators from different brands all holding or wearing [product] (like merch swap) and posing together for a group pic, bright outdoor lighting and lots of personality.",
-                      "Capture an on-the-go image of a startup founder using [product] while in the backseat of a car (rideshare), city lights outside at night and laptop glow inside, showing hustle in transit.",
-                      "Snap a picnic scene where friends are using [product] in a park, laughing and candid – golden hour sun, lens flare, very approachable and lifestyle-oriented.",
-                      "Photograph a reaction moment: a person's delighted face as they open [product] packaging at home, with ambient indoor lighting capturing that genuine excitement of unboxing.",
-                      "Capture a community-building snapshot: a circle of people sitting in a casual setting (like a coworking lounge), each sharing their experience with [product] one by one – one person is mid-story, others listening, warm evening light.",
-                      "Generate an aspirational travel image: [product] being used by a digital nomad on a balcony overlooking the ocean, morning light and a cup of coffee next to them – the freedom lifestyle vibe.",
-                      "Photograph a mentor moment: an older entrepreneur showing a younger creator how to leverage [product] on a laptop at a workshop, both focused – fluorescent conference room lighting making it real.",
-                      "Snap a workshop graduation scene: participants holding certificates in one hand and [product] in the other, group photo style, big smiles – bright indoor event lighting.",
-                      "Capture a nightlife scenario: a DJ or event host using [product] on stage at a club event, neon lights and crowd in background, conveying that [product] is part of fun experiences.",
-                      "Generate a gritty hustle scene: a late-night city rooftop where a solo founder is working on [product] under a single work lamp, city skyline blurred behind – showing dedication in off hours.",
-                      "Photograph an 'office pets' fun shot: a dog or cat curiously interacting with [product] on a desk next to a smiling employee, daylight from a window adding to the playful, candid feel.",
-                      "Capture a customer appreciation moment: a [brand] representative handing over [product] to a contest winner or loyal customer at a small event, both smiling, casual venue lighting.",
-                      "Snap a team brainstorming session where [product] prototypes or printouts are scattered on a table and team members are pointing/discussing – overhead shot, natural light, creative chaos vibe.",
-                      "Photograph a 'first customer' celebration: the first buyer of [product] taking a photo with [brand founder] in front of a small shop or booth, ribbon-cutting energy, bright daylight.",
-                      "Capture a friendly competition image: two people using [product] side by side at a hackathon or contest, slight motion blur to show intensity, fluorescent hall lighting, and smiles at the end.",
-                      "Generate a lifestyle image of a content creator at home filming a TikTok about [product] – phone on a tripod, [product] in hand, colorful LED lights in the room giving it a creator vibe.",
-                      "Snap a mentorship program scene: a circle of diverse young entrepreneurs sitting with [brand founder], all interacting with [product] or related material – morning light in a modern coworking space.",
-                      "Photograph an influencer collab moment: two well-known creators high-fiving each other with [product] visible on the table between them, cafe setting, lots of natural light and onlookers in the background.",
-                      "Capture a festival-style photo booth moment: a group of users taking a fun photo with [product] against a branded backdrop at an event, props in hand, camera flash effect for realism.",
-                      "Generate a community support image: a line of people passing [product] boxes hand-to-hand (like volunteers), symbolizing community and support, daylight outdoors for authenticity.",
-                      "Snap a throwback style photo: a Polaroid-like shot of [brand founder] in early days working on [product] in a garage or dorm, slightly desaturated filter for nostalgia, genuine candid moment.",
-                      "Capture a gritty yet hopeful photo of an entrepreneur in workout gear using [product] at dawn on empty city streets (metaphor for early grind), sunrise light and city skyline visible.",
-                      "Photograph a user-generated content style image: a smartphone screenshot aesthetic where a user has taken a photo of themselves with [product], including the phone UI (likes, comments) around it, showing community engagement (text not legible but concept clear).",
-                      "Generate a chill scene of a creator unwinding: [product] on a coffee table while the person relaxes nearby playing guitar or reading, warm lamp light – subtle message that [product] enables free time.",
-                      "Capture a lively office culture moment: a candid of coworkers at [brand] HQ laughing in a common area, one tossing [product] box playfully to another, bright office lighting and brand colors in decor.",
-                      "Snap a holiday themed lifestyle image: a family or friends group using [product] during a holiday gathering (e.g., around a Christmas tree or at a New Year's party), cozy evening lighting and festive atmosphere.",
-                      "Photograph a customer feedback moment: a user at a pop-up 'review station' recording a video testimonial about [product], with a small sign or backdrop behind them (text not crucial), decent event lighting capturing their enthusiasm.",
-                      "Capture a morning hustle scene: an entrepreneur at dawn in a quiet home office, sipping coffee and using [product] on a laptop while everyone else sleeps – soft early morning light conveys calm determination.",
-                      "Generate a lifestyle image of a traveler using [product] in an airport lounge, luggage by their side, plane visible through the window – showing [product] goes wherever they go (global, mobile lifestyle).",
-                      "Snap a candid picture of a happy client shaking hands with [brand founder] after experiencing [product] results, both smiling in an office setting – midday light from windows, genuine connection captured.",
-                      "Photograph a creative co-working vibe: multiple creators each on their laptops with [product] open (if digital) or in use, sitting on couches and beanbags, modern loft lighting, showing community and collaboration in using [product].",
-                      "Capture a blogger's desk flatlay: coffee mug, planner, camera, and [product] laid out neatly with a laptop showing a blog site – bright overhead lighting, ready for an Instagram post about a 'morning grind with [product].'",
-                      "Generate an event excitement shot: crowd of attendees at a [brand] workshop raising [product] (or notebooks if [product] intangible) in the air in excitement, presenter on stage blurred in background, vibrant stage lighting.",
-                      "Snap a quiet late-night grind moment: a person sitting on the floor with [product] and a laptop, back against a wall covered in brainstorming post-its, only the laptop and a neon sign provide lighting – creative insomnia mood.",
-                      "Capture an 'aha moment' photo: a close-up on a creator's face lighting up while using [product] on a laptop in a dim room, the screen's glow on their face and maybe a lightbulb prop in scene to symbolize the idea.",
-                      "Photograph a supportive community visual: a group video call screenshot-like image (gallery view) with various creators holding their [product] or giving thumbs up – showcasing an online community of practice (the content can be abstract).",
-                      "Generate a sporty lifestyle image: a person at a gym or track using a fitness-related [product], sweat on brow, determined expression, bright daytime light – showing dedication and how [product] fits into an active lifestyle.",
-                      "Capture a learning in action scene: students or young entrepreneurs in a classroom setting using [product] during a hands-on lab or demo, overhead classroom lighting, candid focus on their faces and [product].",
-                      "Photograph a coffee shop co-creation moment: two strangers meet over a shared table (coworking cafe) and end up discussing [product], one showing it on their device to the other – hip cafe lighting and",
-                    ].map((prompt, index) => (
-                      <div
-                        key={index}
-                        className="bg-cream/5 border border-cream/20 rounded p-3 group hover:bg-cream/10 transition-all duration-200"
-                      >
-                        <div className="flex justify-between items-start gap-3">
-                          <p className="text-cream text-sm font-mono leading-relaxed flex-1">
-                            {prompt}
-                          </p>
-                          <Button
-                            onClick={(e) => copyPrompt(prompt, e)}
-                            className="bg-neon-orange text-black hover:bg-cream opacity-0 group-hover:opacity-100 transition-opacity"
-                            size="sm"
+                  {expandedTemplateSection === 'studio' && (
+                    <div className="px-6 pb-6">
+                      <div className="grid grid-cols-1 gap-3 max-h-96 overflow-y-auto">
+                        {[
+                          "Capture an industrial studio photograph of [product] against a solid [brand color] backdrop with dramatic studio lighting and sharp shadows.",
+                          "Generate a playful studio photograph of [product] on a mirror for a reflection effect, with colorful gel lighting.",
+                          "Capture a high-contrast studio photograph of [product] on a mirror for a reflection effect, with neon rim lighting in [brand's primary color].",
+                          "Compose an industrial studio photograph of [product] on a mirror for a reflection effect, with dramatic studio lighting and sharp shadows.",
+                          "Shoot a surreal product shot of [product] against a solid [brand color] backdrop under harsh strobe lighting.",
+                          "Generate an elegant product shot of [product] against a pure white background under neon rim lighting in [brand's primary color].",
+                          "Design an industrial product shot of [product] against a pure white background under dramatic studio lighting with sharp shadows.",
+                          "Create a surreal product shot of [product] on a glossy black surface under golden backlighting.",
+                          "Illustrate a futuristic still-life image of [product] on a glossy black surface with golden backlighting.",
+                          "Design an ultra-detailed still-life image of [product] on a mirror for a reflection effect, with golden backlighting.",
+                          "Generate a minimalist still-life image of [product] on a marble pedestal, with soft, diffused lighting.",
+                          "Compose a vibrant still-life image of [product] on a mirror for a reflection effect, with harsh strobe lighting.",
+                          "Capture an elegant studio photograph of [product] on a marble pedestal with soft, diffused lighting.",
+                          "Generate a bold studio photograph of [product] against a solid [brand color] backdrop with dramatic studio lighting and sharp shadows.",
+                          "Capture a sleek studio photograph of [product] on a glossy black surface with moody, low-key lighting.",
+                          "Shoot a minimalist studio photograph of [product] against a pure white background with bright, even lighting.",
+                          "Craft a modern studio photograph of [product] against a solid [brand color] backdrop with neon rim lighting in [brand's primary color].",
+                          "Design a clean studio photograph of [product] on a pure white background with high-key lighting that eliminates shadows.",
+                          "Create a luxurious studio photograph of [product] on a marble pedestal with soft, diffused lighting and gentle shadows.",
+                          "Generate a colorful studio photograph of [product] against a gradient backdrop from [brand color] to black, with bright, even lighting.",
+                          "Capture a monochromatic studio photograph of [product] against a solid [brand color] backdrop with soft, diffused lighting.",
+                          "Generate a sleek product shot of [product] on a glossy black surface under dramatic studio lighting with sharp shadows.",
+                          "Compose a futuristic product shot of [product] on a glossy black surface under neon rim lighting in [brand's primary color].",
+                          "Capture a moody product shot of [product] on a marble pedestal with harsh strobe lighting creating bold shadows.",
+                          "Design a vibrant product shot of [product] on a mirror for a reflection effect under colorful gel lighting.",
+                          "Produce an elegant product shot of [product] on a pure white background with bright, even lighting highlighting its form.",
+                          "Create a bold product shot of [product] against a gradient backdrop from [brand color] to black, lit by a spotlight from above.",
+                          "Generate an artistic product shot of [product] on a bed of [material] in studio, with soft, diffused lighting for a creative touch.",
+                          "Capture a dreamy product shot of [product] floating in mid-air against a studio backdrop, with soft, diffused lighting.",
+                          "Imagine a clean product shot for [brand] featuring [product] against a pure white background, with bright, even lighting (e-commerce style).",
+                          "Design a minimalist studio shot for [brand] featuring [product] against a solid [brand color] backdrop, softly lit with diffused light.",
+                          "Generate a high-contrast studio shot for [brand] featuring [product] on a glossy black surface, with dramatic lighting and sharp shadows.",
+                          "Create a monochromatic studio shot for [brand] featuring [product] with geometric shapes in the background and soft, diffused lighting.",
+                          "Produce a modern studio shot for [brand] featuring [product] on a gradient backdrop from [brand color] to black, under moody, low-key lighting.",
+                          "Capture an elegant arrangement featuring [product] on a bed of [material] in studio, with soft, diffused lighting.",
+                          "Generate a luxurious arrangement featuring [product] on a marble pedestal, bathed in golden backlighting for a high-end look.",
+                          "Compose a minimalist arrangement featuring [product] on a pure white surface, with high-key lighting eliminating shadows.",
+                          "Design an artistic composition of [product] on a glossy black surface, with neon rim lighting in [brand's primary color].",
+                          "Create an edgy composition of [product] surrounded by smoke on a dark background, under dramatic studio lighting.",
+                          "Capture a vibrant composition of [product] with geometric shapes in the background, lit by bright, even lighting.",
+                          "Generate a surreal composition of [product] floating in mid-air against a studio backdrop, under soft, diffused lighting.",
+                          "Imagine a futuristic composition of [product] surrounded by swirling neon data streams, lit with colorful gel lighting.",
+                          "Shoot a minimalist shot of [product] against a pure white backdrop, using soft, diffused lighting to highlight its details.",
+                          "Capture a professional shot of [product] against a neutral gray background, using high-key lighting to eliminate harsh shadows.",
+                          "Produce an ultra-detailed shot of [product] on a mirror, capturing a perfect reflection with bright, even lighting.",
+                          "Generate a bold shot of [product] on a marble pedestal, with a spotlight from above creating dramatic focus.",
+                          "Create a sleek shot of [product] on a glossy black surface, with moody, low-key studio lighting.",
+                          "Design a colorful shot of [product] against a solid [brand color] backdrop, using a spotlight from above to create depth.",
+                          "Compose a playful shot of [product] on a bed of [material] (like petals or fabric), with soft, diffused lighting for a whimsical feel.",
+                          "Shoot a dramatic studio shot of [product] surrounded by smoke on a dark background, under harsh strobe lighting.",
+                          "Craft a futuristic studio shot of [product] on a simple backdrop with [brand]'s logo faintly visible in the background, under soft, diffused lighting.",
+                          "Generate a high-contrast studio shot of [product] on a simple backdrop with smoke swirling around, under soft, diffused lighting.",
+                          "Produce a bold studio shot of [product] on a simple backdrop with splashes of water frozen in motion around it, under a spotlight from above.",
+                          "Create a vibrant studio shot of [product] on a simple backdrop with a colorful paint splash frozen in mid-air, under moody, low-key lighting.",
+                          "Craft an ultra-detailed studio shot of [product] on a simple backdrop with a complementary prop (like a matching accessory) beside it, under harsh strobe lighting.",
+                          "Shoot a dreamy studio shot of [product] on a simple backdrop with a subtle reflection below it, under dramatic studio lighting with sharp shadows.",
+                          "Design a playful studio shot of [product] on a simple backdrop with a colorful paint splash frozen in mid-air, under bright, even lighting.",
+                          "Generate a monochromatic studio shot of [product] on a simple backdrop with a subtle reflection below it, under soft, diffused lighting.",
+                          "Craft a futuristic studio shot of [product] on a simple backdrop with [brand]'s logo faintly visible in the background, under soft, diffused lighting.",
+                          "Produce an edgy studio shot of [product] on a simple backdrop with a subtle reflection below it, under soft, diffused lighting.",
+                          "Design a luxury product hero shot for [brand]: [product] on a reflective black surface with golden backlighting and a smoky ambiance.",
+                          "Generate a futuristic product showcase featuring [product] levitating above a glowing platform, surrounded by holographic neon effects in a dark studio.",
+                          "Produce a playful composition of multiple [product] units arranged in a colorful geometric pattern on a flat surface, with bright, even lighting.",
+                          "Create an edgy studio image of [product] with splashes of liquid frozen mid-air around it, lit by high-contrast strobe lighting.",
+                          "Illustrate [product] against a backdrop of swirling [brand color] smoke, with a spotlight from above casting a dramatic shadow.",
+                          "Compose a surreal product scene: [product] emerging from a misty fog on a pedestal, under moody, low-key lighting.",
+                          "Design an ultra-modern shot for [brand] featuring [product] in an infinity mirror room, with endless reflections and cool blue studio lighting.",
+                          "Imagine an artistic studio shot of [product] cracked open to reveal its inner components, arranged neatly beside it, photographed with crisp, high-key lighting.",
+                          "Capture [product] being gently held by a model's hands in studio – focus on the product with soft, diffused rim lighting for an intimate feel.",
+                          "Generate a high-contrast silhouette of [product] against a brightly lit background, revealing its shape in dramatic form.",
+                          "Shoot [product] alongside a small accent prop (like a flower or tool) on a textured surface, with warm, soft studio lighting for a lifestyle-meets-studio vibe.",
+                          "Create a season-themed product photo of [product] surrounded by seasonal elements (e.g. autumn leaves, holiday lights), with balanced studio lighting.",
+                          "Design a sleek product shot of [product] bathed in [brand's secondary color] light against a dark background, for a bold contrast.",
+                          "Capture a top-down flat lay of [product] and complementary items arranged neatly on a matching background, with soft, diffused lighting.",
+                          "Shoot a macro photograph focusing on [product]'s intricate details, with dramatic lighting emphasizing its texture and design.",
+                          "Design a creative studio image featuring [product] with splashes of water frozen in motion around it, lit by a high-speed flash to capture every droplet.",
+                          "Generate a fashion magazine-style product shot of [product] with dramatic high-contrast lighting and glossy reflections (high-end editorial vibe).",
+                          "Produce a product group shot: multiple [product] variations lined up in gradient order on a reflective surface, with even, bright lighting across them.",
+                          "Create a dynamic studio image of [product] surrounded by mirror fragments for a shattered reflection effect, under bold, edgy lighting.",
+                          "Shoot [product] with smoke swirling around it on a dark background, a single spotlight from above highlighting the product through the haze.",
+                          "Capture a scroll-stopping image of [product] for social feeds: bold contrast, a vibrant [brand color] background, and dramatic lighting to make it pop.",
+                          "Design an Instagram-worthy flat lay of [product] with trendy props (coffee, notebook, phone) arranged aesthetically, shot under soft, natural-looking lighting.",
+                          "Generate a lifestyle-meets-studio shot: [product] in use by a silhouetted figure against a colored backdrop, with motion blur trails and sharp focus on the product.",
+                          "Produce an ad-friendly product photo of [product] on a clean background with ample negative space on one side for overlay text, evenly lit for versatility.",
+                          "Create a Pinterest-style collage image featuring [product] from multiple angles, on a light backdrop with pastel lighting and decorative scrapbooking elements.",
+                          "Imagine [product] displayed in a creative monochrome setup where everything except the product is tinted in [brand color], under bright studio lights (product really stands out).",
+                          "Shoot [product] from an extreme low angle against a sweeping backdrop, making it appear larger-than-life, with high-contrast dramatic lighting.",
+                          "Capture a teaser shot of [product] half in shadow and half illuminated on a dark background – a mysterious, high-drama look to intrigue viewers.",
+                          "Compose a vibrant product shot of [product] bursting through a paper backdrop as if breaking through, freeze-framed with high-speed flash.",
+                          "Generate a split-tone lighting effect on [product] (one side warm golden light, one side cool blue light) against a neutral backdrop, for a striking dual-color contrast.",
+                          "Design a creative mirror image of [product] by placing two units symmetrically on a reflective surface, captured with perfect symmetry and soft studio lighting.",
+                          "Produce an artistic shot of [product] with colored shadows cast onto the backdrop (using gel lights), giving a modern graphic art effect.",
+                          "Create an aspirational product scene: [product] perched atop a 'mountain' of similar items (metaphorically conquering competition), shot with a wide-angle lens for epic scale.",
+                          "Shoot a minimalist black-and-white photo of [product] where only the product itself is in color, highlighting it amid a grayscale scene, under moody lighting.",
+                          "Imagine a vibrant product lineup – multiple [product] in different colors lined up diagonally, with dynamic studio lighting and a gradient background for a viral visual.",
+                          "Design a magazine-quality product still for [brand], inspired by GQ style: [product] on an elegant set with rich colors and dramatic shadows.",
+                          "Generate a cinematic product image reminiscent of a movie poster, making [product] the 'hero' under epic, contrasty lighting and a dark vignette background.",
+                          "Produce a tech-inspired composition of [product] with neon accents and holographic elements, channeling a Blade Runner-esque futuristic aesthetic in studio.",
+                          "Imagine a commercial product photo in Apple-like minimalism: [product] on a pristine white background with soft shadows and a clean, sleek look.",
+                          "Design a creative product shot blending streetwear and tech vibes (Complex style): [product] on an urban-themed set (spray-painted backdrop, neon highlights) with edgy lighting for culture-meets-tech appeal.",
+                        ].map((prompt, index) => (
+                          <div
+                            key={index}
+                            className="bg-cream/5 border border-cream/20 rounded p-3 group hover:bg-cream/10 transition-all duration-200"
                           >
-                            <Copy className="h-3 w-3" />
-                          </Button>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Graphics Templates */}
-              <Card className="bg-black border-2 border-cream mb-8">
-                <CardHeader>
-                  <CardTitle className="text-xl font-black text-cream flex items-center gap-2">
-                    <Palette className="h-5 w-5 text-neon-orange" />
-                    Graphics Templates (100 Prompts)
-                  </CardTitle>
-                  <p className="text-cream/80 text-sm">
-                    Text-based visuals, memes, and viral graphic concepts
-                  </p>
-                </CardHeader>
-                <CardContent>
-                  <div className="grid grid-cols-1 gap-3 max-h-96 overflow-y-auto">
-                    {[
-                      "Design a bold typographic poster featuring the phrase 'No big team needed' in neon orange on a sleek black background, with an edgy modern font.",
-                      "Create a neon sign art with the word 'SUCCESS' glowing in bright orange on a brick wall backdrop, giving off a retro-cool vibe.",
-                      "Generate an inspirational quote image: a silhouette of a mountain climber at sunrise with the text 'Dream Big, Hustle Hard' in bold across the sky.",
-                      "Illustrate a motivational quote in chalk on a blackboard-style background – e.g. 'Never Not Working' – with realistic chalk dust and hand-drawn typography.",
-                      "Design a graffiti-style mural graphic with your slogan [Your Motto] spray-painted in bold letters on an urban concrete wall, featuring vibrant colors and drip effects.",
-                      "Produce a minimal quote graphic: a simple [brand color] background with the quote '[Your Quote]' in large white bold text centered (clean Instagram aesthetic).",
-                      "Craft a dynamic 3D text illustration of the word 'Inspire' exploding outward, with dramatic lighting and deep shadows for dimensional impact.",
-                      "Create a retro marquee sign look with marquee lights spelling out 'HUSTLE', as if on an old theater sign, against a moody dark background.",
-                      "Design a social media quote template featuring a faint image of a busy city street in the background and an overlay of large bold text 'Grind and Shine' in front (high contrast, scroll-stopping).",
-                      "Generate an artistic word cloud in the shape of a lightbulb, composed of positive terms (Create, Innovate, Succeed, etc.) floating on a transparent or white background.",
-                      "Illustrate a humorous scene of a cat in a business suit typing on a laptop at a boardroom table (the 'CEO cat' meme vibe).",
-                      "Generate a funny image of a dog wearing a headset and sitting at a desk as if on a support call, looking confused (relatable customer service meme).",
-                      "Create a cartoon of an entrepreneur literally juggling multiple items – a laptop, phone, coffee, clock – representing balancing many tasks at once (hustle meme).",
-                      "Produce a comedic image of a person in office attire frantically trying to put out small fires burning on their desk (the 'everything is fine' chaos meme embodied).",
-                      "Design a meme-style image of a snail with a jet pack strapped on, racing a rabbit – symbolizing a slow start that accelerates rapidly (fun twist on the tortoise and hare).",
-                      "Illustrate a tired office worker buried in a huge pile of coffee cups and papers, with wild eyes (over-caffeinated hustle culture humor).",
-                      "Generate a funny graphic of a brain character arm-wrestling a bicep muscle character, representing brains vs. brawn in business decision-making.",
-                      "Create a parody image of a superhero in a suit holding a briefcase, ripping open their shirt to reveal a t-shirt that says '#Boss' underneath (business superhero meme).",
-                      "Illustrate an 'idea' as a cartoon lightbulb character literally dragging a person out of bed in the morning – a humorous take on inspiration striking.",
-                      "Produce a meme image of a person at a desk with a low battery icon above their head, while coffee is being poured into them like a charging cable (tired but recharging meme).",
-                      "Design a quirky image of a businessman riding a rocket like a cowboy, launching upward (startup success taking off meme).",
-                      "Generate a comical scene of multiple identical office workers in gray, except one in full color and unique outfit (standing out from the crowd concept).",
-                      "Create a whimsical visual of a money bag and a clock holding hands and dancing together – a personification of 'time is money' in a fun way.",
-                      "Illustrate a split-screen meme: left side a caveman with a square wheel, right side a modern person with a race car – evolution of innovation in a single image (no text needed).",
-                      "Produce a lighthearted image of a person asleep on their keyboard while their on-screen avatar is still working (the grind never stops meme).",
-                      "Design a meme-style graphic of a tombstone engraved with 'R.I.P. 9-5', with celebratory flowers and maybe a party hat on it (humorous farewell to the traditional job).",
-                      "Illustrate a chaotic office cartoon where everyone is running around in panic except one calm person in the center meditating with [product] in hand (zen amidst chaos meme).",
-                      "Create a funny 'upgrade' meme frame: an old broken lightbulb in the top part, and a bright LED bulb in the bottom part, indicating a brilliant upgrade idea (two-panel format merged).",
-                      "Generate a playful image of an angry printer shooting out papers at a panicked user (tech frustration embodied as a meme character).",
-                      "Design a comical signpost at a crossroads: one arrow says 'Comfort Zone' and another says 'Success', with a traveler hesitating towards the Success path (visual metaphor of tough choices).",
-                      "Illustrate an over-the-top Rube Goldberg machine performing a simple task (like clicking a button) through absurd convolutions, poking fun at overengineering.",
-                      "Produce a cartoon of a person literally carrying the world (globe) on their shoulders while still checking their phone and laptop – a modern Atlas meme about heavy responsibilities.",
-                      "Create a meme-worthy image of an employee on a video call dressed professionally on top and in pajama pants below, giving a thumbs-up (the WFH video call joke).",
-                      "Generate a humorous scene of a race where a small startup (person on a rocket skateboard) zooms past a giant slow corporation (person riding a turtle).",
-                      "Design a playful image of a genie coming out of a laptop granting a wish, and the user asking for 'more followers' (social media wish fulfillment meme).",
-                      "Illustrate the 'galaxy brain' meme progression: four panels of a human brain or head increasing in glow/size from normal to cosmic, representing escalating insight (no text labels needed).",
-                      "Create a visual joke of two identical characters in office attire pointing at each other in confusion (homage to the Spider-Man pointing meme, but with generic office workers).",
-                      "Generate a funny image of a person with an angel on one shoulder and a smartphone on the other, where the phone is tempting them – procrastination vs. productivity battle.",
-                      "Produce a comedic before-and-after split: left side shows a messy desk and tired person labeled 'Monday' vibe, right side a tidy desk and happy person labeled 'Friday' vibe (contrasting tones in one image).",
-                      "Design a playful meme-style image where a progress bar at 99% is above a person who looks exasperated, waiting for their video to render or project to finish (so close yet so far).",
-                      "Illustrate the classic success metaphor: an iceberg with a small tip (success) visible above water and a huge submerged base below (hard work, failures).",
-                      "Design a visual of a person climbing a staircase into the clouds toward a trophy at the top – each step representing progress, perseverance, and small wins.",
-                      "Generate an image of a fork in the road at sunset: one path is smooth and labeled 'Easy', the other steep and rocky labeled 'Challenge', with a determined person choosing the hard path.",
-                      "Create a depiction of time and money together: a clock face merging into a gold coin, symbolizing that time is money, on a clean white or transparent background.",
-                      "Illustrate a human brain sprouting leaves and flowers like a garden, representing creative ideas and learning blossoming from the mind.",
-                      "Produce an image of two figures on a seesaw: one side piled with work items (papers, laptop) and the other side with family or hobby items, showing the balance (or imbalance) of work and life.",
-                      "Design a concept image of a lightbulb launching like a rocket from a launchpad, symbolizing a big idea taking off (lightbulb rocket metaphor).",
-                      "Generate a surreal visual of a person standing on a ladder that reaches up to the stars, representing reaching for ambitious goals beyond the earth.",
-                      "Illustrate teamwork as a bridge: a group of people forming a human bridge across a gap between two cliffs, allowing others to cross – visualizing collective effort.",
-                      "Create a symbolic image of a puzzle piece being placed into a nearly complete puzzle that forms a logo or picture, representing the last piece of success clicking in.",
-                      "Produce an imaginative graphic where the silhouette of a head is filled with interlocking cogs and one of the cogs is glowing gold (a brilliant idea amid ordinary thoughts).",
-                    ].map((prompt, index) => (
-                      <div
-                        key={index}
-                        className="bg-cream/5 border border-cream/20 rounded p-3 group hover:bg-cream/10 transition-all duration-200"
-                      >
-                        <div className="flex justify-between items-start gap-3">
-                          <p className="text-cream text-sm font-mono leading-relaxed flex-1">
-                            {prompt}
-                          </p>
-                          <Button
-                            onClick={(e) => copyPrompt(prompt, e)}
-                            className="bg-neon-orange text-black hover:bg-cream opacity-0 group-hover:opacity-100 transition-opacity"
-                            size="sm"
-                          >
-                            <Copy className="h-3 w-3" />
-                          </Button>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-          )}
-
-          {/* AI TOOLKIT */}
-          {activeTab === "toolkit" && (
-            <div className="space-y-6">
-              <div className="text-center mb-8">
-                <h3 className="text-2xl font-black text-cream mb-2">
-                  AI Toolkit
-                </h3>
-                <p className="text-cream/80">
-                  Curated database of AI tools, resources, and links
-                </p>
-              </div>
-
-              <div className="space-y-8">
-                {aiToolkit.map((category, index) => (
-                  <div key={index}>
-                    <h4 className="text-xl font-black text-cream mb-4 flex items-center gap-2">
-                      <Wrench className="h-5 w-5 text-neon-orange" />
-                      {category.category}
-                    </h4>
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-                      {category.tools.map((tool, toolIndex) => (
-                        <Card
-                          key={toolIndex}
-                          className="bg-black border-2 border-cream"
-                        >
-                          <CardContent className="p-4">
-                            <div className="flex justify-between items-start">
-                              <div>
-                                <h5 className="text-lg font-black text-cream mb-1">
-                                  {tool.name}
-                                </h5>
-                                <p className="text-cream/80 text-sm">
-                                  {tool.description}
-                                </p>
-                              </div>
+                            <div className="flex justify-between items-start gap-3">
+                              <p className="text-cream text-sm font-mono leading-relaxed flex-1">
+                                {prompt}
+                              </p>
                               <Button
-                                onClick={() => openTool(tool.url)}
-                                className="bg-neon-orange text-black hover:bg-cream"
+                                onClick={(e) => copyPrompt(prompt, e)}
+                                className="bg-neon-orange text-black hover:bg-cream opacity-0 group-hover:opacity-100 transition-opacity"
                                 size="sm"
                               >
-                                <ExternalLink className="h-4 w-4" />
+                                <Copy className="h-3 w-3" />
                               </Button>
                             </div>
-                          </CardContent>
-                        </Card>
-                      ))}
+                          </div>
+                        ))}
+                      </div>
                     </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
+                  )}
+                </div>
 
+                {/* Lifestyle Templates */}
+                <div className="bg-black border-2 border-cream rounded-lg">
+                  <Button
+                    onClick={() => toggleTemplateSection('lifestyle')}
+                    className="w-full bg-black border-0 hover:bg-cream/10 text-cream p-6 rounded-lg flex items-center justify-between"
+                  >
+                    <div className="flex items-center gap-3">
+                      <Camera className="h-6 w-6 text-neon-orange" />
+                      <div className="text-left">
+                        <h4 className="text-lg font-black text-cream">Lifestyle Templates (100 Prompts)</h4>
+                        <p className="text-cream/80 text-sm">Authentic, personality-driven images showing your brand in real life</p>
+                      </div>
+                    </div>
+                    <ChevronDown className={`h-5 w-5 text-neon-orange transition-transform ${expandedTemplateSection === 'lifestyle' ? 'rotate-180' : ''}`} />
+                  </Button>
+
+                  {expandedTemplateSection === 'lifestyle' && (
+                    <div className="px-6 pb-6">
+                      <div className="grid grid-cols-1 gap-3 max-h-96 overflow-y-auto">
+                        {[
+                          "Photograph a chill weekend vibe: an entrepreneur relaxing in a park hammock reading about [product] on a tablet, [product] itself nearby, with dappled sunlight through trees.",
+                          "Capture a spontaneous cafe moment where an influencer is live-streaming about [product] on their phone, other patrons in soft focus – ambient cafe lighting for authenticity.",
+                          "Snap an 'in the field' photo of a professional using [product] on a job site (e.g., an architect with a model, a photographer with gear), midday sun lighting the real-world context.",
+                          "Generate an edgy lifestyle shot of an artist in streetwear painting a mural that incorporates [product] imagery, urban wall backdrop and late-day sunlight for dramatic effect.",
+                          "Capture a heartwarming image of a charity event where volunteers are handing out [product] (if applicable) to people, genuine emotions and natural outdoor lighting showcasing community impact.",
+                          "Photograph a creative flatlay from a first-person perspective: hands of a creator working with [product] on a desk, surrounded by coffee, notebook, and phone (POV style, well-lit).",
+                          "Snap a relatable WFH moment: a person on a video call demoing [product], dressed in a nice shirt but PJ pants (visible feet up on chair), with home office lighting – a bit of humor.",
+                          "Capture a day-in-the-life collage-style image: multiple smaller scenes (in one image) of [creator] using [product] morning, noon, and night, giving a sense of constant integration (could be a quadrant or sequential layout).",
+                          "Photograph a loyal customer at a 'testimonials wall' holding [product] and signing a note of thanks on a board (even if text unreadable), event lighting capturing the positivity.",
+                          "Generate a friendly meetup photo: a group of creators from different brands all holding or wearing [product] (like merch swap) and posing together for a group pic, bright outdoor lighting and lots of personality.",
+                          "Capture an on-the-go image of a startup founder using [product] while in the backseat of a car (rideshare), city lights outside at night and laptop glow inside, showing hustle in transit.",
+                          "Snap a picnic scene where friends are using [product] in a park, laughing and candid – golden hour sun, lens flare, very approachable and lifestyle-oriented.",
+                          "Photograph a reaction moment: a person's delighted face as they open [product] packaging at home, with ambient indoor lighting capturing that genuine excitement of unboxing.",
+                          "Capture a community-building snapshot: a circle of people sitting in a casual setting (like a coworking lounge), each sharing their experience with [product] one by one – one person is mid-story, others listening, warm evening light.",
+                          "Generate an aspirational travel image: [product] being used by a digital nomad on a balcony overlooking the ocean, morning light and a cup of coffee next to them – the freedom lifestyle vibe.",
+                          "Photograph a mentor moment: an older entrepreneur showing a younger creator how to leverage [product] on a laptop at a workshop, both focused – fluorescent conference room lighting making it real.",
+                          "Snap a workshop graduation scene: participants holding certificates in one hand and [product] in the other, group photo style, big smiles – bright indoor event lighting.",
+                          "Capture a nightlife scenario: a DJ or event host using [product] on stage at a club event, neon lights and crowd in background, conveying that [product] is part of fun experiences.",
+                          "Generate a gritty hustle scene: a late-night city rooftop where a solo founder is working on [product] under a single work lamp, city skyline blurred behind – showing dedication in off hours.",
+                          "Photograph an 'office pets' fun shot: a dog or cat curiously interacting with [product] on a desk next to a smiling employee, daylight from a window adding to the playful, candid feel.",
+                          "Capture a customer appreciation moment: a [brand] representative handing over [product] to a contest winner or loyal customer at a small event, both smiling, casual venue lighting.",
+                          "Snap a team brainstorming session where [product] prototypes or printouts are scattered on a table and team members are pointing/discussing – overhead shot, natural light, creative chaos vibe.",
+                          "Photograph a 'first customer' celebration: the first buyer of [product] taking a photo with [brand founder] in front of a small shop or booth, ribbon-cutting energy, bright daylight.",
+                          "Capture a friendly competition image: two people using [product] side by side at a hackathon or contest, slight motion blur to show intensity, fluorescent hall lighting, and smiles at the end.",
+                          "Generate a lifestyle image of a content creator at home filming a TikTok about [product] – phone on a tripod, [product] in hand, colorful LED lights in the room giving it a creator vibe.",
+                          "Snap a mentorship program scene: a circle of diverse young entrepreneurs sitting with [brand founder], all interacting with [product] or related material – morning light in a modern coworking space.",
+                          "Photograph an influencer collab moment: two well-known creators high-fiving each other with [product] visible on the table between them, cafe setting, lots of natural light and onlookers in the background.",
+                          "Capture a festival-style photo booth moment: a group of users taking a fun photo with [product] against a branded backdrop at an event, props in hand, camera flash effect for realism.",
+                          "Generate a community support image: a line of people passing [product] boxes hand-to-hand (like volunteers), symbolizing community and support, daylight outdoors for authenticity.",
+                          "Snap a throwback style photo: a Polaroid-like shot of [brand founder] in early days working on [product] in a garage or dorm, slightly desaturated filter for nostalgia, genuine candid moment.",
+                          "Capture a gritty yet hopeful photo of an entrepreneur in workout gear using [product] at dawn on empty city streets (metaphor for early grind), sunrise light and city skyline visible.",
+                          "Photograph a user-generated content style image: a smartphone screenshot aesthetic where a user has taken a photo of themselves with [product], including the phone UI (likes, comments) around it, showing community engagement (text not legible but concept clear).",
+                          "Generate a chill scene of a creator unwinding: [product] on a coffee table while the person relaxes nearby playing guitar or reading, warm lamp light – subtle message that [product] enables free time.",
+                          "Capture a lively office culture moment: a candid of coworkers at [brand] HQ laughing in a common area, one tossing [product] box playfully to another, bright office lighting and brand colors in decor.",
+                          "Snap a holiday themed lifestyle image: a family or friends group using [product] during a holiday gathering (e.g., around a Christmas tree or at a New Year's party), cozy evening lighting and festive atmosphere.",
+                          "Photograph a customer feedback moment: a user at a pop-up 'review station' recording a video testimonial about [product], with a small sign or backdrop behind them (text not crucial), decent event lighting capturing their enthusiasm.",
+                          "Capture a morning hustle scene: an entrepreneur at dawn in a quiet home office, sipping coffee and using [product] on a laptop while everyone else sleeps – soft early morning light conveys calm determination.",
+                          "Generate a lifestyle image of a traveler using [product] in an airport lounge, luggage by their side, plane visible through the window – showing [product] goes wherever they go (global, mobile lifestyle).",
+                          "Snap a candid picture of a happy client shaking hands with [brand founder] after experiencing [product] results, both smiling in an office setting – midday light from windows, genuine connection captured.",
+                          "Photograph a creative co-working vibe: multiple creators each on their laptops with [product] open (if digital) or in use, sitting on couches and beanbags, modern loft lighting, showing community and collaboration in using [product].",
+                          "Capture a blogger's desk flatlay: coffee mug, planner, camera, and [product] laid out neatly with a laptop showing a blog site – bright overhead lighting, ready for an Instagram post about a 'morning grind with [product].'",
+                          "Generate an event excitement shot: crowd of attendees at a [brand] workshop raising [product] (or notebooks if [product] intangible) in the air in excitement, presenter on stage blurred in background, vibrant stage lighting.",
+                          "Snap a quiet late-night grind moment: a person sitting on the floor with [product] and a laptop, back against a wall covered in brainstorming post-its, only the laptop and a neon sign provide lighting – creative insomnia mood.",
+                          "Capture an 'aha moment' photo: a close-up on a creator's face lighting up while using [product] on a laptop in a dim room, the screen's glow on their face and maybe a lightbulb prop in scene to symbolize the idea.",
+                          "Photograph a supportive community visual: a group video call screenshot-like image (gallery view) with various creators holding their [product] or giving thumbs up – showcasing an online community of practice (the content can be abstract).",
+                          "Generate a sporty lifestyle image: a person at a gym or track using a fitness-related [product], sweat on brow, determined expression, bright daytime light – showing dedication and how [product] fits into an active lifestyle.",
+                          "Capture a learning in action scene: students or young entrepreneurs in a classroom setting using [product] during a hands-on lab or demo, overhead classroom lighting, candid focus on their faces and [product].",
+                          "Photograph a coffee shop co-creation moment: two strangers meet over a shared table (coworking cafe) and end up discussing [product], one showing it on their device to the other – hip cafe lighting and",
+                        ].map((prompt, index) => (
+                          <div
+                            key={index}
+                            className="bg-cream/5 border border-cream/20 rounded p-3 group hover:bg-cream/10 transition-all duration-200"
+                          >
+                            <div className="flex justify-between items-start gap-3">
+                              <p className="text-cream text-sm font-mono leading-relaxed flex-1">
+                                {prompt}
+                              </p>
+                              <Button
+                                onClick={(e) => copyPrompt(prompt, e)}
+                                className="bg-neon-orange text-black hover:bg-cream opacity-0 group-hover:opacity-100 transition-opacity"
+                                size="sm"
+                              >
+                                <Copy className="h-3 w-3" />
+                              </Button>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                {/* Graphics Templates */}
+                <div className="bg-black border-2 border-cream rounded-lg">
+                  <Button
+                    onClick={() => toggleTemplateSection('graphics')}
+                    className="w-full bg-black border-0 hover:bg-cream/10 text-cream p-6 rounded-lg flex items-center justify-between"
+                  >
+                    <div className="flex items-center gap-3">
+                      <Palette className="h-6 w-6 text-neon-orange" />
+                      <div className="text-left">
+                        <h4 className="text-lg font-black text-cream">Graphics Templates (100 Prompts)</h4>
+                        <p className="text-cream/80 text-sm">Text-based visuals, memes, and viral graphic concepts</p>
+                      </div>
+                    </div>
+                    <ChevronDown className={`h-5 w-5 text-neon-orange transition-transform ${expandedTemplateSection === 'graphics' ? 'rotate-180' : ''}`} />
+                  </Button>
+
+                  {expandedTemplateSection === 'graphics' && (
+                    <div className="px-6 pb-6">
+                      <div className="grid grid-cols-1 gap-3 max-h-96 overflow-y-auto">
+                        {[
+                          "Design a text-based image saying '[Your Motto]' in bold, modern typography on a gradient background from [brand color] to black.",
+                          "Create a minimalist quote graphic with '[Your Quote]' in elegant serif font on a clean white background with subtle [brand color] accents.",
+                          "Generate a motivational poster featuring '[Your Motto]' with dynamic brush stroke effects and [brand's primary color] highlights.",
+                          "Design a social media graphic with '[Your Quote]' overlaid on an abstract geometric pattern in [brand's secondary color].",
+                          "Create a vintage-style badge with '[Your Motto]' in classic typography, surrounded by decorative elements in [brand color].",
+                          "Generate a neon sign effect with '[Your Quote]' glowing in [brand's primary color] against a dark brick wall background.",
+                          "Design a hand-lettered style graphic featuring '[Your Motto]' with organic, flowing letterforms in [brand color].",
+                          "Create a bold typographic hierarchy with '[Your Quote]' as the main focus, using complementary fonts in [brand's secondary color].",
+                          "Generate a graffiti-style text design with '[Your Motto]' in urban lettering on a concrete wall background.",
+                          "Design a watercolor text effect with '[Your Quote]' in flowing script, with [brand color] paint splashes.",
+                          "Create a retro 80s style graphic with '[Your Motto]' in chrome text effect with neon [brand's primary color] outlines.",
+                          "Generate a minimalist line art design incorporating '[Your Quote]' with geometric shapes in [brand color].",
+                          "Design a chalkboard-style graphic with '[Your Motto]' in hand-drawn chalk lettering on a black background.",
+                          "Create a futuristic holographic text effect with '[Your Quote]' glowing in [brand's secondary color].",
+                          "Generate a paper cut-out style design with '[Your Motto]' in layered typography with [brand color] shadows.",
+                          "Design a stamp or seal effect with '[Your Quote]' in official-looking typography with [brand's primary color] ink.",
+                          "Create a glitch art text effect with '[Your Motto]' distorted in digital style with [brand color] artifacts.",
+                          "Generate a marble texture background with '[Your Quote]' in elegant gold lettering (or [brand's secondary color]).",
+                          "Design a comic book style speech bubble with '[Your Motto]' in bold comic font with [brand color] outline.",
+                          "Create a wood-burned effect with '[Your Quote]' carved into rustic wood texture with [brand's primary color] highlights.",
+                          "Generate a funny image of a dog wearing a headset and sitting at a desk as if on a support call, looking confused (relatable customer service meme).",
+                          "Create a cartoon of an entrepreneur literally juggling multiple items – a laptop, phone, coffee, clock – representing balancing many tasks at once (hustle meme).",
+                          "Produce a comedic image of a person in office attire frantically trying to put out small fires burning on their desk (the 'everything is fine' chaos meme embodied).",
+                          "Design a meme-style image of a snail with a jet pack strapped on, racing a rabbit – symbolizing a slow start that accelerates rapidly (fun twist on the tortoise and hare).",
+                          "Illustrate a tired office worker buried in a huge pile of coffee cups and papers, with wild eyes (over-caffeinated hustle culture humor).",
+                          "Generate a funny graphic of a brain character arm-wrestling a bicep muscle character, representing brains vs. brawn in business decision-making.",
+                          "Create a parody image of a superhero in a suit holding a briefcase, ripping open their shirt to reveal a t-shirt that says '#Boss' underneath (business superhero meme).",
+                          "Illustrate an 'idea' as a cartoon lightbulb character literally dragging a person out of bed in the morning – a humorous take on inspiration striking.",
+                          "Produce a meme image of a person at a desk with a low battery icon above their head, while coffee is being poured into them like a charging cable (tired but recharging meme).",
+                          "Design a quirky image of a businessman riding a rocket like a cowboy, launching upward (startup success taking off meme).",
+                          "Generate a comical scene of multiple identical office workers in gray, except one in full color and unique outfit (standing out from the crowd concept).",
+                          "Create a whimsical visual of a money bag and a clock holding hands and dancing together – a personification of 'time is money' in a fun way.",
+                          "Illustrate a split-screen meme: left side a caveman with a square wheel, right side a modern person with a race car – evolution of innovation in a single image (no text needed).",
+                          "Produce a lighthearted image of a person asleep on their keyboard while their on-screen avatar is still working (the grind never stops meme).",
+                          "Design a meme-style graphic of a tombstone engraved with 'R.I.P. 9-5', with celebratory flowers and maybe a party hat on it (humorous farewell to the traditional job).",
+                          "Illustrate a chaotic office cartoon where everyone is running around in panic except one calm person in the center meditating with [product] in hand (zen amidst chaos meme).",
+                          "Create a funny 'upgrade' meme frame: an old broken lightbulb in the top part, and a bright LED bulb in the bottom part, indicating a brilliant upgrade idea (two-panel format merged).",
+                          "Generate a playful image of an angry printer shooting out papers at a panicked user (tech frustration embodied as a meme character).",
+                          "Design a comical signpost at a crossroads: one arrow says 'Comfort Zone' and another says 'Success', with a traveler hesitating towards the Success path (visual metaphor of tough choices).",
+                          "Illustrate an over-the-top Rube Goldberg machine performing a simple task (like clicking a button) through absurd convolutions, poking fun at overengineering.",
+                          "Create a cartoon of a coffee cup with arms and legs literally dragging a sleepy person to their desk (morning motivation meme).",
+                          "Generate a humorous image of a smartphone with legs running away from a person trying to focus on work (digital distraction meme).",
+                          "Design a funny visual of a calendar with a worried expression, pages flying off in panic as deadlines approach (time management humor).",
+                          "Illustrate a meme of a laptop screen showing 99+ notifications while a person hides under a blanket (information overload humor).",
+                          "Create a comical image of a to-do list that's literally as tall as a skyscraper, with a tiny person at the bottom holding a pencil (endless tasks meme).",
+                          "Generate a playful graphic of a lightbulb wearing sunglasses looking cool, surrounded by smaller dimmer bulbs (standing out with bright ideas meme).",
+                          "Design a cartoon of a person's brain as a browser with 47 tabs open, some frozen, some loading (mental multitasking meme).",
+                          "Illustrate a funny scene of a 'Monday' character (grumpy monster) chasing a happy 'Friday' character around a calendar (week cycle humor).",
+                          "Create a meme image of a plant labeled 'Motivation' that's wilting next to a thriving plant labeled 'Netflix' (priority humor).",
+                          "Generate a humorous visual of a person literally climbing a mountain made of crumpled papers labeled 'rough drafts' (creative process struggle meme).",
+                          "Design a funny graphic of a Wi-Fi signal bar with a superhero cape, saving the day (internet dependency humor).",
+                          "Illustrate a cartoon of a clock with arms crossed, tapping its foot impatiently while a procrastinator sits nearby (time waiting meme).",
+                          "Create a playful image of a 'comfort zone' as a literal small circle with a person squeezed inside, looking longingly at a vast 'possibility zone' outside.",
+                          "Generate a meme of a tiny person with a giant magnifying glass searching through a massive pile of emails for 'the important one' (inbox overwhelm humor).",
+                          "Design a comical scene of a person high-fiving their past self through a mirror, celebrating a good decision (self-appreciation meme).",
+                          "Illustrate a funny image of a 'creativity' faucet that's running dry, with a person holding an empty bucket underneath (creative block humor).",
+                          "Create a cartoon of a deadline as a literal finish line with a stressed runner (person) barely making it across (time pressure meme).",
+                          "Generate a humorous visual of a battery icon person plugging themselves into a coffee cup to recharge (caffeine dependency meme).",
+                          "Design a playful graphic of a 'focus' character wearing headphones, surrounded by 'distraction' characters making noise (concentration struggle meme).",
+                          "Illustrate a meme of a person sitting on a throne made of unopened emails, wearing a crown of stress (email royalty humor).",
+                          "Create a funny scene of 'Good Ideas' as flying birds that only come when you're in the shower or away from your notebook (timing irony meme).",
+                          "Generate a comical image of a person's 'energy level' as a gas gauge that mysteriously refills when it's time to avoid work (selective energy meme).",
+                          "Design a cartoon of a 'perfectionist' character obsessively polishing a tiny detail while a 'good enough' character has already finished multiple projects (productivity paradox meme).",
+                          "Illustrate a humorous visual of a person juggling 'urgent' and 'important' tasks, while 'fun' tasks watch from the sidelines eating popcorn (priority management humor).",
+                          "Create a meme image of a 'Monday morning' alarm clock as a villain in a dramatic movie poster style (morning motivation humor).",
+                          "Generate a playful graphic of a 'work-life balance' scale with work weighing down one side while 'life' hangs on desperately to the other (balance struggle meme).",
+                          "Design a funny visual of a person's 'attention span' as a goldfish swimming in decreasing circles around distractions (focus challenge humor).",
+                          "Illustrate a cartoon of 'Future Me' waving dismissively at 'Present Me's' problems, while 'Past Me' points and laughs (time perspective meme).",
+                          "Create a comical scene of a 'motivation' character that only shows up when it's too late to start something (timing irony humor).",
+                          "Generate a meme of a person's 'brain at 3 AM' presenting brilliant solutions to problems that seemed impossible during the day (night owl creativity humor).",
+                          "Design a humorous image of 'Imposter Syndrome' as a literal impostor wearing a fake mustache and hat, following a successful person around (self-doubt personification meme).",
+                          "Illustrate a funny graphic of a 'comfort zone' as a cozy blanket fort, while 'growth' stands outside in a business suit holding opportunities (change resistance humor).",
+                          "Create a playful visual of a person's 'productivity' riding a roller coaster – sometimes sky-high, sometimes rock-bottom (energy level meme).",
+                          "Generate a cartoon of 'Overthinking' as a hamster running endlessly in a wheel inside someone's head (mental loop humor).",
+                          "Design a meme image of a 'Sunday night' character ominously approaching while 'Weekend' tries to hide behind the couch (weekend ending dread humor).",
+                          "Illustrate a comical scene of 'Confidence' and 'Self-Doubt' arm wrestling, with different outcomes depending on the day (mental state fluctuation meme).",
+                          "Create a funny visual of a person's 'memory' as a library where the librarian can't find anything when you actually need it (forgetfulness humor).",
+                          "Generate a humorous graphic of 'Procrastination' as a smooth-talking salesman convincing someone to 'start tomorrow' (delay tactics personification meme).",
+                          "Design a playful image of a 'creative block' as a literal brick wall with a tiny person holding art supplies, looking for a way around (artistic struggle humor).",
+                          "Illustrate a meme of 'Deadlines' as race cars speeding toward a person who's still at the starting line tying their shoes (time management humor).",
+                          "Create a cartoon of a 'notification' army marching toward a person's phone while they try to meditate (digital distraction invasion meme).",
+                          "Generate a funny scene of 'Multitasking' as a person literally split into multiple copies, each doing something different and looking frazzled (busy life humor).",
+                          "Design a comical visual of 'Inspiration' as a lightning bolt that only strikes when you're nowhere near a pen and paper (creative timing irony meme).",
+                          "Illustrate a humorous image of a person's 'energy' as a smartphone battery that drains fastest when you need it most (personal energy management humor).",
+                          "Create a meme of 'Perfectionism' as a never-ending staircase where someone is perpetually climbing but never reaching the top (endless improvement humor).",
+                          "Generate a playful graphic of 'Work Mode' and 'Vacation Mode' as two different operating systems running on the same person (mindset switching humor).",
+                          "Design a funny visual of 'Common Sense' taking a vacation right when you need to make an important decision (wisdom availability humor).",
+                          "Illustrate a cartoon of 'Goals' as destinations on a map, while 'Distractions' are flashy billboards along the highway (focus journey meme).",
+                          "Create a humorous scene of 'Morning Person' and 'Night Owl' as roommates with completely opposite schedules causing chaos (chronotype conflict humor).",
+                          "Generate a meme image of a person's 'social battery' with a low power warning during a networking event (introvert energy humor).",
+                          "Design a comical graphic of 'Past Mistakes' as a GPS that keeps trying to reroute you to places you've already decided not to go (learning from experience humor).",
+                          "Illustrate a playful visual of 'Zoom Fatigue' as a literal weight lifting competition where video calls are the barbells (remote work humor).",
+                          "Create a funny image of 'Work Emails' as messenger pigeons that multiply exponentially every time you answer one (communication overload meme).",
+                          "Generate a cartoon of 'Creativity' and 'Logic' as dance partners who can't agree on the rhythm (left brain vs right brain humor).",
+                          "Design a meme of 'Free Time' as a rare, endangered species that people try to photograph in the wild but it always runs away (busy life humor).",
+                          "Illustrate a humorous visual of 'Productivity Apps' as a toolbox that somehow makes simple tasks more complicated (technology irony meme).",
+                          "Create a comical scene of 'Good Intentions' paving a road while 'Actual Actions' take a completely different path (goal vs reality humor).",
+                          "Generate a playful graphic of 'Inner Critic' as a harsh movie critic giving thumbs down to everything you do (self-judgment personification meme).",
+                          "Design a funny visual of 'Burnout' as a literally burnt-out lightbulb trying to shine but just producing smoke (exhaustion metaphor humor).",
+                          "Illustrate a meme of 'Comparison' as a funhouse mirror that makes everyone else look better than you (social media reality distortion humor).",
+                          "Create a cartoon of 'Patience' as a zen master meditation while 'Instant Gratification' bounces around impatiently (modern life pace humor).",
+                          "Generate a humorous image of 'Healthy Habits' as a gym membership card that's still in mint condition after six months (good intentions vs action meme).",
+                          "Design a comical graphic of 'Perfectionism' and 'Done is Better Than Perfect' having a philosophical debate (productivity philosophy humor).",
+                          "Illustrate a playful visual of 'Weekend Plans' as a beautiful castle in the clouds, while 'Sunday Reality' is a tiny hut on the ground (expectation vs reality meme).",
+                          "Create a funny scene of 'Motivation' as a fair-weather friend who only shows up when you don't really need them (inspiration timing irony humor).",
+                          "Generate a meme of 'Adult Responsibilities' as a giant backpack that gets heavier every year while your energy bar decreases (growing up reality humor).",
+                          "Design a humorous visual of 'Work-Life Balance' as a seesaw with a person desperately trying to balance while both sides keep adding weight (modern balance struggle meme).",
+                        ].map((prompt, index) => (
+                          <div
+                            key={index}
+                            className="bg-cream/5 border border-cream/20 rounded p-3 group hover:bg-cream/10 transition-all duration-200"
+                          >
+                            <div className="flex justify-between items-start gap-3">
+                              <p className="text-cream text-sm font-mono leading-relaxed flex-1">
+                                {prompt}
+                              </p>
+                              <Button
+                                onClick={(e) => copyPrompt(prompt, e)}
+                                className="bg-neon-orange text-black hover:bg-cream opacity-0 group-hover:opacity-100 transition-opacity"
+                                size="sm"
+                              >
+                                <Copy className="h-3 w-3" />
+                              </Button>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
           {/* EXAMPLES */}
           {activeTab === "examples" && (
             <div className="space-y-6">
