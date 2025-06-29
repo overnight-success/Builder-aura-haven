@@ -1121,15 +1121,15 @@ Always include:
                 </div>
 
                 {/* Lifestyle Templates */}
-                <div className="bg-black border-2 border-cream rounded-lg">
+                <div className="bg-black border-2 border-cream rounded-lg mb-5 py-5 flex flex-row justify-start items-start">
                   <Button
                     onClick={() => toggleTemplateSection("lifestyle")}
-                    className="w-full bg-black border-0 hover:bg-cream/10 text-cream p-6 rounded-lg flex items-center justify-between"
+                    className="w-auto bg-black border-0 hover:bg-cream/10 text-cream p-6 rounded-lg flex items-center justify-between"
                   >
                     <div className="flex items-center gap-3">
                       <Camera className="h-6 w-6 text-neon-orange" />
-                      <div className="text-left">
-                        <h4 className="text-lg font-black text-cream">
+                      <div className="text-left flex flex-col">
+                        <h4 className="text-lg font-black text-cream mr-auto">
                           Lifestyle Templates (100 Prompts)
                         </h4>
                         <p className="text-cream/80 text-sm">
@@ -1138,9 +1138,6 @@ Always include:
                         </p>
                       </div>
                     </div>
-                    <ChevronDown
-                      className={`h-5 w-5 text-neon-orange transition-transform ${expandedTemplateSection === "lifestyle" ? "rotate-180" : ""}`}
-                    />
                   </Button>
 
                   {expandedTemplateSection === "lifestyle" && (
@@ -1179,7 +1176,7 @@ Always include:
                           "Snap a throwback style photo: a Polaroid-like shot of [brand founder] in early days working on [product] in a garage or dorm, slightly desaturated filter for nostalgia, genuine candid moment.",
                           "Capture a gritty yet hopeful photo of an entrepreneur in workout gear using [product] at dawn on empty city streets (metaphor for early grind), sunrise light and city skyline visible.",
                           "Photograph a user-generated content style image: a smartphone screenshot aesthetic where a user has taken a photo of themselves with [product], including the phone UI (likes, comments) around it, showing community engagement (text not legible but concept clear).",
-                          "Generate a chill scene of a creator unwinding: [product] on a coffee table while the person relaxes nearby playing guitar or reading, warm lamp light – subtle message that [product] enables free time.",
+                          "Generate a chill scene of a creator unwinding: [product] on a coffee table while the person relaxes nearby playing guitar or reading, warm lamp light ��� subtle message that [product] enables free time.",
                           "Capture a lively office culture moment: a candid of coworkers at [brand] HQ laughing in a common area, one tossing [product] box playfully to another, bright office lighting and brand colors in decor.",
                           "Snap a holiday themed lifestyle image: a family or friends group using [product] during a holiday gathering (e.g., around a Christmas tree or at a New Year's party), cozy evening lighting and festive atmosphere.",
                           "Photograph a customer feedback moment: a user at a pop-up 'review station' recording a video testimonial about [product], with a small sign or backdrop behind them (text not crucial), decent event lighting capturing their enthusiasm.",
