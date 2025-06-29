@@ -552,10 +552,7 @@ Always include:
     if (selectedKeywords.length === 0) {
       return "Click keywords below to build your custom formula...";
     }
-    return (
-      selectedKeywords.join(", ") +
-      ", cinematic quality, 4K resolution, professional video production"
-    );
+    return selectedKeywords.join(", ");
   };
 
   const copyFormula = async () => {
