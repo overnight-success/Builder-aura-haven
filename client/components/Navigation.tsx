@@ -76,6 +76,10 @@ export function Navigation({
     setShowBriefcase(false);
   };
 
+  const handleCloseCreativeLibrary = () => {
+    setShowCreativeLibrary(false);
+  };
+
   return (
     <>
       <nav className="bg-neon-orange border-b-4 border-black">
