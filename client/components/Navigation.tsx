@@ -10,6 +10,7 @@ import {
   Target,
   RefreshCw,
   X,
+  BookOpen,
 } from "lucide-react";
 
 interface NavigationProps {
