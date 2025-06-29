@@ -959,70 +959,16 @@ Always include:
           {/* TEMPLATES */}
           {activeTab === "templates" && (
             <div className="space-y-6">
-              <div className="text-center mb-8">
-                <h3 className="text-2xl font-black text-cream mb-2">
-                  Professional Prompt Templates
-                </h3>
-                <p className="text-cream/80 mb-4">
-                  Copy and paste these templates into SORA, replacing
-                  placeholders like [product] or [brand] with your specifics
-                </p>
-                <div className="bg-cream/10 border border-cream/20 rounded-lg p-4 max-w-5xl mx-auto">
-                  <p className="text-cream/90 text-sm mb-4">
-                    <strong className="text-neon-orange">Instructions:</strong>{" "}
-                    Fill in your details below, then copy any template. The
-                    placeholders will be automatically replaced with your
-                    information.
-                  </p>
-
-                  {/* Placeholder Input Fields */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 mb-4">
-                    {Object.entries(placeholders).map(([key, value]) => (
-                      <div key={key}>
-                        <label className="block text-xs font-bold text-neon-orange mb-1 uppercase">
-                          [{key}]
-                        </label>
-                        <input
-                          type="text"
-                          value={value}
-                          onChange={(e) =>
-                            setPlaceholders((prev) => ({
-                              ...prev,
-                              [key]: e.target.value,
-                            }))
-                          }
-                          placeholder={`Enter your ${key}`}
-                          className="w-full px-2 py-1 text-xs bg-black border border-cream/30 rounded text-cream placeholder-cream/50 focus:border-neon-orange focus:outline-none"
-                        />
-                      </div>
-                    ))}
-                  </div>
-
-                  <div className="flex justify-center">
-                    <Button
-                      onClick={() =>
-                        setPlaceholders({
-                          product: "",
-                          brand: "",
-                          "brand color": "",
-                          "brand's primary color": "",
-                          "brand's secondary color": "",
-                          material: "",
-                          "Your Motto": "",
-                          "Your Quote": "",
-                        })
-                      }
-                      className="bg-cream/20 text-cream hover:bg-cream/30 text-xs font-bold"
-                      size="sm"
-                    >
-                      CLEAR ALL FIELDS
-                    </Button>
-                  </div>
-                </div>
-              </div>
+              <h3 className="text-2xl font-black text-cream mb-2">
+                Professional Prompt Templates
+              </h3>
+              <p className="text-cream/80 mb-4">
+                Copy and paste these templates into SORA, replacing placeholders
+                like [product] or [brand] with your specifics
+              </p>
 
               {/* Collapsible Template Sections */}
-              <div className="space-y-4">
+              <div className="flex flex-col space-y-4">
                 {/* Studio Templates */}
                 <div className="bg-black max-h-[550px] overflow-y-auto mt-5 p-5">
                   <Button
