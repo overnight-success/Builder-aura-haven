@@ -314,7 +314,7 @@ Always include:
       Enhancers: [
         "Shift texture layer: Velvet → Glass → Chrome → Plastic",
         "Change lighting mood: Golden hour → Neon glow → Paparazzi",
-        "Apply time-based logic: Day → Night → Rainy → Overcast",
+        "Apply time-based logic: Day �� Night → Rainy → Overcast",
         "Swap camera angle: Top-down → Orbit → Over-the-shoulder",
         "floating dust particles",
         "lens flare streak",
@@ -625,6 +625,19 @@ Always include:
     const finalPrompt = replacePlaceholders(prompt);
     try {
       await navigator.clipboard.writeText(finalPrompt);
+      // Show success feedback
+      const originalButtons = document.querySelectorAll("button");
+      const clickedButton = event?.target?.closest("button");
+      if (clickedButton) {
+        const originalText = clickedButton.innerHTML;
+        clickedButton.innerHTML =
+          '<svg class="h-3 w-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>';
+        clickedButton.style.backgroundColor = "#10b981";
+        setTimeout(() => {
+          clickedButton.innerHTML = originalText;
+          clickedButton.style.backgroundColor = "";
+        }, 1500);
+      }
     } catch (error) {
       // Fallback for browsers that don't support clipboard API
       const textArea = document.createElement("textarea");
@@ -633,6 +646,18 @@ Always include:
       textArea.select();
       document.execCommand("copy");
       document.body.removeChild(textArea);
+      // Show success feedback for fallback too
+      const clickedButton = event?.target?.closest("button");
+      if (clickedButton) {
+        const originalText = clickedButton.innerHTML;
+        clickedButton.innerHTML =
+          '<svg class="h-3 w-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>';
+        clickedButton.style.backgroundColor = "#10b981";
+        setTimeout(() => {
+          clickedButton.innerHTML = originalText;
+          clickedButton.style.backgroundColor = "";
+        }, 1500);
+      }
     }
   };
 
