@@ -143,6 +143,17 @@ Always include:
     "Your Quote": "",
   });
 
+  // TEMPLATES - Collapsible sections state
+  const [expandedTemplateSection, setExpandedTemplateSection] = useState<
+    string | null
+  >(null);
+
+  const toggleTemplateSection = (section: string) => {
+    setExpandedTemplateSection(
+      expandedTemplateSection === section ? null : section,
+    );
+  };
+
   const promptVault = {
     keywords: {
       Lighting: [
