@@ -3,6 +3,7 @@ import { Navigation } from "../components/Navigation";
 import { Generator } from "../components/Generator";
 import { SignupWall } from "../components/SignupWall";
 import { Paywall } from "../components/Paywall";
+import AdminDashboard from "./AdminDashboard";
 import {
   PromptGeneratorProvider,
   usePromptGenerator,
@@ -136,6 +137,15 @@ function AppContent() {
 }
 
 export default function Index() {
+  // Check if user is accessing admin route
+  const isAdminRoute =
+    window.location.pathname === "/admin" ||
+    window.location.pathname === "/admin-dashboard";
+
+  if (isAdminRoute) {
+    return <AdminDashboard />;
+  }
+
   return (
     <PromptGeneratorProvider>
       <AppContent />
