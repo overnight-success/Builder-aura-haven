@@ -89,11 +89,8 @@ export function Navigation({
                   className={`
                     font-bold text-xs lg:text-sm px-2 lg:px-3 py-1 lg:py-2 h-auto border-2 transition-all duration-200 whitespace-nowrap shrink-0 min-w-0
                     ${
-                      (currentPage === item.id &&
-                        !showBriefcase &&
-                        !showCreativeLibrary) ||
-                      (item.id === "briefcase" && showBriefcase) ||
-                      (item.id === "creative-library" && showCreativeLibrary)
+                      (currentPage === item.id && !showBriefcase) ||
+                      (item.id === "briefcase" && showBriefcase)
                         ? "bg-black border-black text-cream"
                         : "bg-neon-orange border-black text-black hover:bg-black hover:text-cream"
                     }
