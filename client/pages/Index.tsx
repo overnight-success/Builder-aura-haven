@@ -1,6 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Navigation } from "../components/Navigation";
 import { Generator } from "../components/Generator";
+import { SignupWall } from "../components/SignupWall";
 import {
   PromptGeneratorProvider,
   usePromptGenerator,
