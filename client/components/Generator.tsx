@@ -25,6 +25,7 @@ import {
 
 interface GeneratorProps {
   type: "product" | "lifestyle" | "graphic";
+  onActionAttempt?: (action: "outputs" | "downloads") => boolean;
 }
 
 const iconMap = {
