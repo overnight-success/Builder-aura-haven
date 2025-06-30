@@ -186,7 +186,7 @@ export function Navigation({
 
             {/* Creative Library Content */}
             <div className="h-full overflow-y-auto">
-              <CreativeLibrary />
+              <CreativeLibrary onClose={handleCloseCreativeLibrary} />
             </div>
           </div>
         </div>
