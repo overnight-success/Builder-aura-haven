@@ -1735,65 +1735,6 @@ Always include:
             </div>
           )}
 
-          {/* CREATIVE LIBRARY */}
-          {activeTab === "creative-library" && (
-            <div className="space-y-6">
-              <div className="text-center mb-8">
-                <h3 className="text-2xl font-black text-cream mb-2">
-                  Creative Library
-                </h3>
-                <p className="text-cream/80 mb-4">
-                  Explore curated inspiration, creative references, and visual
-                  resources to fuel your next project
-                </p>
-                <Button
-                  onClick={() =>
-                    window.open(
-                      "https://brass-particle-e85.notion.site/Inspiration-21b4ae31069d8105b5f0dc7c9352c292",
-                      "_blank",
-                    )
-                  }
-                  className="bg-cream text-black hover:bg-neon-orange hover:text-black border-2 border-cream font-bold"
-                >
-                  <ExternalLink className="h-4 w-4 mr-2" />
-                  Open in New Tab
-                </Button>
-              </div>
-
-              {/* Embedded Notion Page */}
-              <Card className="bg-black border-2 border-cream">
-                <CardHeader>
-                  <CardTitle className="text-cream text-xl font-black flex items-center gap-2">
-                    <BookOpen className="h-5 w-5 text-neon-orange" />
-                    Inspiration Gallery
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="p-0">
-                  <div className="relative w-full" style={{ height: "60vh" }}>
-                    <iframe
-                      src="https://brass-particle-e85.notion.site/Inspiration-21b4ae31069d8105b5f0dc7c9352c292"
-                      className="w-full h-full border-0 rounded-b-lg"
-                      title="Creative Library - Inspiration"
-                      allow="fullscreen"
-                      loading="lazy"
-                      style={{
-                        minHeight: "400px",
-                      }}
-                    />
-                    <div className="absolute inset-0 bg-black/20 rounded-b-lg pointer-events-none">
-                      <div className="flex items-center justify-center h-full">
-                        <div className="text-center text-cream/60 text-sm">
-                          <p>If the page doesn't load properly,</p>
-                          <p>click "Open in New Tab" above</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-          )}
-
           {/* TEMPLATES */}
           {activeTab === "templates" && (
             <div className="space-y-6">
