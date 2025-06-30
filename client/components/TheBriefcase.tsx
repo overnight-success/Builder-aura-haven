@@ -350,44 +350,28 @@ Always include:
   // UPDATES - Running feed of new updates
   const updates = [
     {
-      date: "Dec 20, 2024",
-      title: "Enhanced JSON Image Processing",
-      type: "Feature Update",
+      date: "Jan 20, 2025",
+      title: "O/S Creative System - Waiting List Now Open",
+      type: "New Launch",
       description:
-        "Improved image-to-JSON conversion for better SORA compatibility with optimized metadata",
+        "Join the waitlist for our revolutionary O/S Creative System - the next generation of AI-powered creative tools",
       isNew: true,
     },
     {
-      date: "Dec 19, 2024",
-      title: "Mobile Interface Optimization",
-      type: "UI Update",
+      date: "Jan 20, 2025",
+      title: "Get Our Beginners Playbook to AI Creative for Free Here",
+      type: "Free Resource",
       description:
-        "Complete mobile responsive design with touch-optimized controls and improved navigation",
+        "Download our comprehensive beginner's guide to AI creative tools and start creating professional content today",
       isNew: true,
     },
     {
-      date: "Dec 18, 2024",
-      title: "New Sora AI Features Integration",
-      type: "Feature Update",
+      date: "Jan 20, 2025",
+      title: "Follow Us on Social @overnightsuccessllc",
+      type: "Social Update",
       description:
-        "Enhanced video generation with better motion control and temporal consistency",
-      isNew: false,
-    },
-    {
-      date: "Dec 15, 2024",
-      title: "100+ New Prompt Templates",
-      type: "Content Update",
-      description:
-        "Premium product shots, lifestyle scenes, and graphic design prompts added to vault",
-      isNew: false,
-    },
-    {
-      date: "Dec 12, 2024",
-      title: "Advanced Quality Analysis",
-      type: "Feature Update",
-      description:
-        "AI-powered prompt analysis with real-time quality scoring and suggestions",
-      isNew: false,
+        "Stay connected with the latest tips, tutorials, and creative inspiration by following us on social media",
+      isNew: true,
     },
   ];
 
