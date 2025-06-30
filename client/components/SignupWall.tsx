@@ -123,30 +123,20 @@ export function SignupWall({ onSignupComplete }: SignupWallProps) {
     <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
       <Card className="bg-neon-orange border-4 border-black shadow-2xl max-w-md w-full">
         <CardHeader className="text-center pb-6">
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <div className="p-2 bg-black rounded-lg">
-              <Zap className="h-6 w-6 text-neon-orange" />
-            </div>
-            <div className="p-2 bg-black rounded-lg">
-              <Sparkles className="h-6 w-6 text-neon-orange" />
-            </div>
+          <div className="flex items-center justify-center mb-4">
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets%2F326314a2e8634f90977b83f81df01501%2F9a6248f59e554d6eb22258a507dde681?format=webp&width=800"
+              alt="Overnight Success Logo"
+              className="h-16 w-auto"
+            />
           </div>
           <CardTitle className="text-3xl font-black text-black mb-2">
-            WELCOME TO THE FUTURE
+            Overnight Success
           </CardTitle>
           <p className="text-black font-bold text-lg">
-            Join thousands creating with AI
+            Join thousands changing their lives overnight with next level
+            creative systems
           </p>
-          <div className="flex items-center justify-center gap-2 mt-4">
-            <Badge className="bg-black text-neon-orange font-bold">
-              <Lock className="h-3 w-3 mr-1" />
-              FREE ACCESS
-            </Badge>
-            <Badge className="bg-black text-neon-orange font-bold">
-              <CheckCircle className="h-3 w-3 mr-1" />
-              INSTANT SETUP
-            </Badge>
-          </div>
         </CardHeader>
 
         <CardContent>
@@ -227,12 +217,12 @@ export function SignupWall({ onSignupComplete }: SignupWallProps) {
               {isSubmitting ? (
                 <>
                   <div className="animate-spin rounded-full h-4 w-4 border-2 border-neon-orange border-t-transparent mr-2" />
-                  Setting Up Your Account...
+                  Joining Waitlist...
                 </>
               ) : (
                 <>
                   <Zap className="h-4 w-4 mr-2" />
-                  START CREATING NOW
+                  JOIN THE WAITLIST
                 </>
               )}
             </Button>
