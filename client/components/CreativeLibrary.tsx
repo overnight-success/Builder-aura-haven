@@ -3,7 +3,11 @@ import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { BookOpen, ExternalLink } from "lucide-react";
 import { Button } from "./ui/button";
 
-export function CreativeLibrary() {
+interface CreativeLibraryProps {
+  onClose?: () => void;
+}
+
+export function CreativeLibrary({ onClose }: CreativeLibraryProps) {
   const openInNewTab = () => {
     window.open(
       "https://brass-particle-e85.notion.site/Inspiration-21b4ae31069d8105b5f0dc7c9352c292",
