@@ -764,6 +764,11 @@ Always include:
   const tabs = [
     { id: "updates", label: "UPDATES", icon: <Bell className="h-4 w-4" /> },
     {
+      id: "creative-library",
+      label: "CREATIVE LIBRARY",
+      icon: <BookOpen className="h-4 w-4" />,
+    },
+    {
       id: "playbook",
       label: "THE PLAYBOOK",
       icon: <BookOpen className="h-4 w-4" />,
