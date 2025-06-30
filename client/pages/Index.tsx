@@ -2,14 +2,20 @@ import React, { useEffect, useState } from "react";
 import { Navigation } from "../components/Navigation";
 import { Generator } from "../components/Generator";
 import { SignupWall } from "../components/SignupWall";
+import { Paywall } from "../components/Paywall";
 import {
   PromptGeneratorProvider,
   usePromptGenerator,
 } from "../contexts/PromptGeneratorContext";
+import { useSubscription } from "../hooks/useSubscription";
+import { useTracking } from "../hooks/useTracking";
 
 function AppContent() {
   const { state, actions, computed } = usePromptGenerator();
   const [showSignupWall, setShowSignupWall] = useState(true);
+  const [showPaywall, setShowPaywall] = useState(false);
+  const { subscriptionStatus, canUseFeature, loading } = useSubscription();
+  const { trackView } = useTracking();
 
   // Check if user has already signed up
   useEffect(() => {
@@ -18,6 +24,13 @@ function AppContent() {
       setShowSignupWall(false);
     }
   }, []);
+
+  // Track page views
+  useEffect(() => {
+    if (!showSignupWall && !loading) {
+      trackView("main-app", `Generator: ${state.currentGenerator}`);
+    }
+  }, [showSignupWall, loading, state.currentGenerator, trackView]);
 
   // Load saved state on mount
   useEffect(() => {
@@ -53,13 +66,38 @@ function AppContent() {
     setShowSignupWall(false);
   };
 
+  const handleUpgradeComplete = () => {
+    setShowPaywall(false);
+    // Refresh subscription status
+    window.location.reload();
+  };
+
+  const checkUsageBeforeAction = (action: "outputs" | "downloads") => {
+    if (!canUseFeature(action)) {
+      setShowPaywall(true);
+      return false;
+    }
+    return true;
+  };
+
   const renderCurrentGenerator = () => {
-    return <Generator type={state.currentGenerator} />;
+    return (
+      <Generator
+        type={state.currentGenerator}
+        onActionAttempt={checkUsageBeforeAction}
+      />
+    );
   };
 
   // Show signup wall if user hasn't signed up
   if (showSignupWall) {
     return <SignupWall onSignupComplete={handleSignupComplete} />;
+  }
+
+  // Show paywall if user exceeded free limits
+  if (showPaywall) {
+    const userEmail = localStorage.getItem("userEmail") || "";
+    return <Paywall onUpgrade={handleUpgradeComplete} userEmail={userEmail} />;
   }
 
   return (
