@@ -45,7 +45,7 @@ const iconMap = {
   purpose: <Target className="h-5 w-5" />,
 };
 
-export function Generator({ type }: GeneratorProps) {
+export function Generator({ type, onActionAttempt }: GeneratorProps) {
   const { state, actions, computed } = usePromptGenerator();
   const [promptAnalysis, setPromptAnalysis] = useState<any>(null);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
