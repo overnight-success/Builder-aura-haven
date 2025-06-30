@@ -356,8 +356,8 @@ export function PromptFormulaPreview({
         <div className="text-xs font-medium text-cream space-y-1 border-t border-cream/20 pt-3">
           <p className="leading-tight flex items-center gap-2">
             <Sparkles className="h-3 w-3 text-neon-orange shrink-0" />
-            <strong className="text-neon-orange">FLOW TIP:</strong> Start with
-            custom instructions, then select 4+ categories
+            <strong className="text-neon-orange">TIP:</strong> Start with custom
+            instructions, then select 4+ categories
           </p>
           <p className="leading-tight flex items-center gap-2">
             <TrendingUp className="h-3 w-3 text-neon-orange shrink-0" />
