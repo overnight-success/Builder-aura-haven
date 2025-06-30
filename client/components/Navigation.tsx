@@ -153,29 +153,6 @@ export function Navigation({
           </div>
         </div>
       )}
-
-      {/* Creative Library Modal/Overlay */}
-      {showCreativeLibrary && (
-        <div className="fixed inset-0 z-50 bg-neon-orange">
-          <div className="relative h-full">
-            {/* Close Button */}
-            <div className="absolute top-4 right-4 z-10">
-              <Button
-                onClick={handleCloseCreativeLibrary}
-                className="bg-black border-2 border-black text-cream font-bold px-4 py-2 hover:bg-cream hover:text-black"
-              >
-                <X className="h-4 w-4 mr-1" />
-                CLOSE
-              </Button>
-            </div>
-
-            {/* Creative Library Content */}
-            <div className="h-full overflow-y-auto">
-              <CreativeLibrary onClose={handleCloseCreativeLibrary} />
-            </div>
-          </div>
-        </div>
-      )}
     </>
   );
 }
