@@ -25,12 +25,12 @@ function AppContent() {
     }
   }, []);
 
-  // Track page views
-  useEffect(() => {
-    if (!showSignupWall && !loading) {
-      trackView("main-app", `Generator: ${state.currentGenerator}`);
-    }
-  }, [showSignupWall, loading, state.currentGenerator, trackView]);
+  // Track page views - DISABLED TO PREVENT FLASHING
+  // useEffect(() => {
+  //   if (!showSignupWall && !loading) {
+  //     trackView("main-app", `Generator: ${state.currentGenerator}`);
+  //   }
+  // }, [showSignupWall, loading, state.currentGenerator, trackView]);
 
   // Load saved state on mount
   useEffect(() => {

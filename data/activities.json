@@ -8552,5 +8552,47 @@
       "timestamp": "2025-06-30T21:16:19.514Z",
       "url": "https://1e882c35e9924fc8bee33f0bbe78265e-59bdfd03b2194e628118de923.fly.dev/?reload=1751318140627"
     }
+  },
+  {
+    "id": "1751318181789",
+    "userId": "erin@thehighriseco.com",
+    "userEmail": "erin@thehighriseco.com",
+    "type": "view",
+    "details": "Generator: product",
+    "timestamp": "2025-06-30T21:16:21.789Z",
+    "metadata": {
+      "page": "main-app",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
+      "timestamp": "2025-06-30T21:16:21.773Z",
+      "url": "https://1e882c35e9924fc8bee33f0bbe78265e-59bdfd03b2194e628118de923.fly.dev/?reload=1751318140627"
+    }
+  },
+  {
+    "id": "1751318183543",
+    "userId": "erin@thehighriseco.com",
+    "userEmail": "erin@thehighriseco.com",
+    "type": "view",
+    "details": "Generator: product",
+    "timestamp": "2025-06-30T21:16:23.543Z",
+    "metadata": {
+      "page": "main-app",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
+      "timestamp": "2025-06-30T21:16:23.526Z",
+      "url": "https://1e882c35e9924fc8bee33f0bbe78265e-59bdfd03b2194e628118de923.fly.dev/?reload=1751318140627"
+    }
+  },
+  {
+    "id": "1751318185382",
+    "userId": "erin@thehighriseco.com",
+    "userEmail": "erin@thehighriseco.com",
+    "type": "view",
+    "details": "Generator: product",
+    "timestamp": "2025-06-30T21:16:25.382Z",
+    "metadata": {
+      "page": "main-app",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
+      "timestamp": "2025-06-30T21:16:25.365Z",
+      "url": "https://1e882c35e9924fc8bee33f0bbe78265e-59bdfd03b2194e628118de923.fly.dev/?reload=1751318140627"
+    }
   }
 ]
