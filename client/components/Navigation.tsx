@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Button } from "./ui/button";
 import { Badge } from "./ui/badge";
 import { TheBriefcase } from "./TheBriefcase";
-import { CreativeLibrary } from "./CreativeLibrary";
 import {
   Package,
   Camera,
@@ -11,7 +10,6 @@ import {
   Target,
   RefreshCw,
   X,
-  BookOpen,
 } from "lucide-react";
 
 interface NavigationProps {
