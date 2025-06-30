@@ -1900,15 +1900,15 @@ Always include:
                 </div>
 
                 {/* Lifestyle Templates */}
-                <div className="bg-black border-2 border-cream rounded-lg mb-5 py-5 flex flex-row justify-start items-start">
+                <div className="bg-black border-2 border-cream rounded-lg mb-5 py-5">
                   <Button
                     onClick={() => toggleTemplateSection("lifestyle")}
-                    className="w-auto bg-black border-0 hover:bg-cream/10 text-cream p-6 rounded-lg flex items-center justify-between"
+                    className="w-full bg-black border-0 hover:bg-cream/10 text-cream py-5 px-6 rounded-lg flex items-center justify-between"
                   >
                     <div className="flex items-center gap-3">
                       <Camera className="h-6 w-6 text-neon-orange" />
-                      <div className="text-left flex flex-col">
-                        <h4 className="text-lg font-black text-cream mr-auto">
+                      <div className="text-left">
+                        <h4 className="text-lg font-black text-cream">
                           Lifestyle Templates (100 Prompts)
                         </h4>
                         <p className="text-cream/80 text-sm">
@@ -1917,6 +1917,9 @@ Always include:
                         </p>
                       </div>
                     </div>
+                    <ChevronDown
+                      className={`h-5 w-5 text-neon-orange transition-transform ${expandedTemplateSection === "lifestyle" ? "rotate-180" : ""}`}
+                    />
                   </Button>
 
                   {expandedTemplateSection === "lifestyle" && (
