@@ -9,6 +9,15 @@ import {
 
 function AppContent() {
   const { state, actions, computed } = usePromptGenerator();
+  const [showSignupWall, setShowSignupWall] = useState(true);
+
+  // Check if user has already signed up
+  useEffect(() => {
+    const hasSignedUp = localStorage.getItem("userSignedUp");
+    if (hasSignedUp === "true") {
+      setShowSignupWall(false);
+    }
+  }, []);
 
   // Load saved state on mount
   useEffect(() => {
