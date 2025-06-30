@@ -974,38 +974,6 @@ Always include:
                 </p>
               </div>
 
-              {/* Table of Contents */}
-              <Card className="bg-black border-2 border-cream mb-8">
-                <CardHeader>
-                  <CardTitle className="text-xl font-black text-cream flex items-center gap-2">
-                    <BookOpen className="h-5 w-5 text-neon-orange" />
-                    Table of Contents
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                    {[
-                      "1. Introduction to Sora Image Generation",
-                      "2. Basics of Prompting (for Beginners)",
-                      "3. Key Prompt Components & Variables",
-                      "4. Lifestyle Photography Prompts",
-                      "5. Product & Studio Photography Prompts",
-                      "6. Custom Graphics & Design Prompts",
-                      "7. Scene Regeneration & Object Placement",
-                      "8. Using Modular Prompt Formulas",
-                      "9. Tips, Best Practices, and Warnings",
-                    ].map((item, index) => (
-                      <div
-                        key={index}
-                        className="text-cream/90 text-sm py-1 border-b border-cream/20"
-                      >
-                        {item}
-                      </div>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-
               {/* Section 1: Introduction */}
               <Card className="bg-black border-2 border-cream mb-6">
                 <CardHeader>
@@ -1211,7 +1179,7 @@ Always include:
                           background details, props, decor for realism
                         </li>
                         <li>
-                          • <strong>Lighting for Mood:</strong> Daylight and
+                          �� <strong>Lighting for Mood:</strong> Daylight and
                           ambient lighting are common
                         </li>
                       </ul>
