@@ -58,6 +58,9 @@ export function Navigation({
   const handlePageChange = (pageId: string) => {
     if (pageId === "briefcase") {
       setShowBriefcase(true);
+    } else if (pageId === "admin") {
+      // Navigate to admin dashboard
+      window.location.href = "/admin";
     } else {
       setShowBriefcase(false);
       onPageChange(pageId);
