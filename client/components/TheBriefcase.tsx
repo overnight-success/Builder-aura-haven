@@ -1722,15 +1722,26 @@ Always include:
                   <Card key={index} className="bg-black border-2 border-cream">
                     <CardContent className="p-6">
                       <div className="flex justify-between items-start mb-4">
-                        <Button
-                          onClick={(e) => copyPrompt(example.prompt, e)}
-                          className="bg-cream text-black hover:bg-neon-orange"
-                          size="sm"
-                        >
-                          <Copy className="h-3 w-3 mr-1" />
-                          Copy
-                        </Button>
+                        <div className="flex items-center gap-2">
+                          <span className="text-cream/60 text-sm">
+                            {update.date}
+                          </span>
+                          {update.isNew && (
+                            <span className="bg-neon-orange text-black text-xs px-2 py-1 rounded-full font-bold">
+                              NEW
+                            </span>
+                          )}
+                        </div>
+                        <span className="text-neon-orange text-sm font-semibold">
+                          {update.type}
+                        </span>
                       </div>
+                      <h4 className="text-cream font-bold text-lg mb-2">
+                        {update.title}
+                      </h4>
+                      <p className="text-cream/80 text-sm">
+                        {update.description}
+                      </p>
                     </CardContent>
                   </Card>
                 ))}
