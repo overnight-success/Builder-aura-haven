@@ -48,6 +48,11 @@ export function Navigation({
       label: "GRAPHIC GENERATOR",
       icon: <Palette className="h-5 w-5" />,
     },
+    {
+      id: "admin",
+      label: "ADMIN",
+      icon: <Target className="h-5 w-5" />,
+    },
   ];
 
   const handlePageChange = (pageId: string) => {
