@@ -49,9 +49,18 @@ function AppContent() {
     actions.resetAll();
   };
 
+  const handleSignupComplete = () => {
+    setShowSignupWall(false);
+  };
+
   const renderCurrentGenerator = () => {
     return <Generator type={state.currentGenerator} />;
   };
+
+  // Show signup wall if user hasn't signed up
+  if (showSignupWall) {
+    return <SignupWall onSignupComplete={handleSignupComplete} />;
+  }
 
   return (
     <div className="min-h-screen bg-neon-orange font-sans">
