@@ -28,18 +28,12 @@ export function Navigation({
   onReset,
 }: NavigationProps) {
   const [showBriefcase, setShowBriefcase] = useState(false);
-  const [showCreativeLibrary, setShowCreativeLibrary] = useState(false);
 
   const menuItems = [
     {
       id: "briefcase",
       label: "THE BRIEFCASE",
       icon: <Briefcase className="h-5 w-5" />,
-    },
-    {
-      id: "creative-library",
-      label: "CREATIVE LIBRARY",
-      icon: <BookOpen className="h-5 w-5" />,
     },
     {
       id: "product",
