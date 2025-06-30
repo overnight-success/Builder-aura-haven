@@ -5,7 +5,7 @@ import { CustomInstructions } from "./CustomInstructions";
 import { FileUpload, ProcessedFile } from "./FileUpload";
 import { InstructionFlow } from "./InstructionFlow";
 import { PromptQualityIndicator } from "./PromptQualityIndicator";
-import { SmartSuggestions } from "./SmartSuggestions";
+
 import { generatorData } from "../data/generators";
 import { usePromptGenerator } from "../contexts/PromptGeneratorContext";
 import { promptEngine } from "../utils/promptEngine";
