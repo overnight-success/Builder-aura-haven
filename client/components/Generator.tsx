@@ -271,11 +271,6 @@ export function Generator({ type }: GeneratorProps) {
             </p>
           </div>
         </div>
-
-        {/* Smart Suggestions */}
-        {smartSuggestions.length > 0 && (
-          <SmartSuggestions suggestions={smartSuggestions} />
-        )}
       </div>
 
       {/* Instruction Flow */}
