@@ -3,7 +3,6 @@ import { Navigation } from "../components/Navigation";
 import { Generator } from "../components/Generator";
 import { SignupWall } from "../components/SignupWall";
 import { Paywall } from "../components/Paywall";
-import AdminDashboard from "./AdminDashboard";
 import {
   PromptGeneratorProvider,
   usePromptGenerator,
@@ -137,28 +136,6 @@ function AppContent() {
 }
 
 export default function Index() {
-  const [currentRoute, setCurrentRoute] = useState(() => {
-    return window.location.pathname;
-  });
-
-  useEffect(() => {
-    const handleRouteChange = () => {
-      setCurrentRoute(window.location.pathname);
-    };
-
-    // Listen for route changes
-    window.addEventListener("popstate", handleRouteChange);
-
-    return () => {
-      window.removeEventListener("popstate", handleRouteChange);
-    };
-  }, []);
-
-  // Check if user is accessing admin route
-  if (currentRoute === "/admin" || currentRoute === "/admin-dashboard") {
-    return <AdminDashboard />;
-  }
-
   return (
     <PromptGeneratorProvider>
       <AppContent />
