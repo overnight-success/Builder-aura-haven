@@ -26,5 +26,61 @@
       "timestamp": "2025-06-30T20:40:36.526Z",
       "url": "https://1e882c35e9924fc8bee33f0bbe78265e-59bdfd03b2194e628118de923.fly.dev/?reload=1751316034946"
     }
+  },
+  {
+    "id": "1751316981012",
+    "userId": "erin@thehighriseco.com",
+    "userEmail": "erin@thehighriseco.com",
+    "type": "view",
+    "details": "Generator: product",
+    "timestamp": "2025-06-30T20:56:21.012Z",
+    "metadata": {
+      "page": "main-app",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
+      "timestamp": "2025-06-30T20:56:20.965Z",
+      "url": "https://1e882c35e9924fc8bee33f0bbe78265e-59bdfd03b2194e628118de923.fly.dev/?reload=1751316034946"
+    }
+  },
+  {
+    "id": "1751316983497",
+    "userId": "erin@thehighriseco.com",
+    "userEmail": "erin@thehighriseco.com",
+    "type": "view",
+    "details": "Generator: product",
+    "timestamp": "2025-06-30T20:56:23.497Z",
+    "metadata": {
+      "page": "main-app",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
+      "timestamp": "2025-06-30T20:56:23.445Z",
+      "url": "https://1e882c35e9924fc8bee33f0bbe78265e-59bdfd03b2194e628118de923.fly.dev/?reload=1751316981961"
+    }
+  },
+  {
+    "id": "1751316985352",
+    "userId": "erin@thehighriseco.com",
+    "userEmail": "erin@thehighriseco.com",
+    "type": "view",
+    "details": "Generator: product",
+    "timestamp": "2025-06-30T20:56:25.352Z",
+    "metadata": {
+      "page": "main-app",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
+      "timestamp": "2025-06-30T20:56:25.321Z",
+      "url": "https://1e882c35e9924fc8bee33f0bbe78265e-59bdfd03b2194e628118de923.fly.dev/?reload=1751316981961"
+    }
+  },
+  {
+    "id": "1751316987252",
+    "userId": "erin@thehighriseco.com",
+    "userEmail": "erin@thehighriseco.com",
+    "type": "view",
+    "details": "Generator: product",
+    "timestamp": "2025-06-30T20:56:27.252Z",
+    "metadata": {
+      "page": "main-app",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
+      "timestamp": "2025-06-30T20:56:27.201Z",
+      "url": "https://1e882c35e9924fc8bee33f0bbe78265e-59bdfd03b2194e628118de923.fly.dev/?reload=1751316981961"
+    }
   }
 ]
