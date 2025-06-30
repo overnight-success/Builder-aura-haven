@@ -137,12 +137,25 @@ function AppContent() {
 }
 
 export default function Index() {
-  // Check if user is accessing admin route
-  const isAdminRoute =
-    window.location.pathname === "/admin" ||
-    window.location.pathname === "/admin-dashboard";
+  const [currentRoute, setCurrentRoute] = useState(() => {
+    return window.location.pathname;
+  });
 
-  if (isAdminRoute) {
+  useEffect(() => {
+    const handleRouteChange = () => {
+      setCurrentRoute(window.location.pathname);
+    };
+
+    // Listen for route changes
+    window.addEventListener("popstate", handleRouteChange);
+
+    return () => {
+      window.removeEventListener("popstate", handleRouteChange);
+    };
+  }, []);
+
+  // Check if user is accessing admin route
+  if (currentRoute === "/admin" || currentRoute === "/admin-dashboard") {
     return <AdminDashboard />;
   }
 
