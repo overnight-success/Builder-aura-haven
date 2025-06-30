@@ -163,7 +163,7 @@ export function Navigation({
 
             {/* Briefcase Content */}
             <div className="h-full overflow-y-auto">
-              <TheBriefcase />
+              <TheBriefcase onClose={handleCloseBriefcase} />
             </div>
           </div>
         </div>
