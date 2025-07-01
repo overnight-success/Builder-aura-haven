@@ -43,16 +43,6 @@ export function Navigation({
       label: "LIFESTYLE GENERATOR",
       icon: <Camera className="h-5 w-5" />,
     },
-    {
-      id: "graphic",
-      label: "GRAPHIC GENERATOR",
-      icon: <Palette className="h-5 w-5" />,
-    },
-    {
-      id: "admin",
-      label: "ADMIN",
-      icon: <Target className="h-5 w-5" />,
-    },
   ];
 
   const handlePageChange = (pageId: string) => {
@@ -99,7 +89,7 @@ export function Navigation({
                     ${
                       (currentPage === item.id && !showBriefcase) ||
                       (item.id === "briefcase" && showBriefcase)
-                        ? "bg-black border-black text-cream"
+                        ? "bg-neon-orange border-black text-black"
                         : "bg-neon-orange border-black text-black hover:bg-black hover:text-cream"
                     }
                   `}
