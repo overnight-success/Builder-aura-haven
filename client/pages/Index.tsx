@@ -79,12 +79,10 @@ function AppContent() {
     return true;
   };
 
-  const renderCurrentGenerator = () => {
+  const renderMainContent = () => {
+    // Since we removed the generator from navigation, show the lifestyle generator by default
     return (
-      <Generator
-        type={state.currentGenerator}
-        onActionAttempt={checkUsageBeforeAction}
-      />
+      <Generator type="lifestyle" onActionAttempt={checkUsageBeforeAction} />
     );
   };
 
