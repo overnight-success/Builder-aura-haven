@@ -364,11 +364,8 @@ export function FileUpload({
               </div>
             )}
 
-            <div className="text-xs text-muted-foreground space-y-1">
-              <p>
-                💡 Images are automatically converted to JSON format for SORA AI
-              </p>
-              <p>🎯 Supported: JPG, PNG, GIF, MP4, MOV, WebM</p>
+            <div className="text-xs text-muted-foreground">
+              🎯 Supported: JPG, PNG, GIF, MP4, MOV, WebM
             </div>
           </CardContent>
         )}
