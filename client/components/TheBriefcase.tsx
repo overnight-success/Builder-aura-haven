@@ -912,34 +912,79 @@ Always include:
     )
       return;
 
+    // First try: Modern Clipboard API
     try {
-      await navigator.clipboard.writeText(formula);
-      console.log("Formula copied to clipboard:", formula);
-    } catch (error) {
-      console.error("Clipboard copy failed, using fallback:", error);
-      // Fallback for browsers that don't support clipboard API
-      try {
-        const textArea = document.createElement("textarea");
-        textArea.value = formula;
-        textArea.style.position = "fixed";
-        textArea.style.left = "-999999px";
-        textArea.style.top = "-999999px";
-        textArea.style.opacity = "0";
-        document.body.appendChild(textArea);
-        textArea.focus();
-        textArea.select();
-
-        const success = document.execCommand("copy");
-        document.body.removeChild(textArea);
-
-        if (success) {
-          console.log("Formula copied using fallback method");
-        } else {
-          console.error("Fallback copy also failed");
-        }
-      } catch (fallbackError) {
-        console.error("All copy methods failed:", fallbackError);
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(formula);
+        console.log("Formula copied to clipboard:", formula);
+        return;
       }
+    } catch (error) {
+      console.log("Modern clipboard failed, trying fallback methods:", error);
+    }
+
+    // Second try: Legacy execCommand with better implementation
+    try {
+      const textArea = document.createElement("textarea");
+      textArea.value = formula;
+
+      // Position the textarea to be invisible but still selectable
+      textArea.style.position = "absolute";
+      textArea.style.left = "-9999px";
+      textArea.style.top = "0";
+      textArea.style.opacity = "0";
+      textArea.style.pointerEvents = "none";
+      textArea.setAttribute("readonly", "");
+
+      document.body.appendChild(textArea);
+
+      // Select the text
+      textArea.select();
+      textArea.setSelectionRange(0, formula.length);
+
+      // Try to copy
+      const success = document.execCommand("copy");
+      document.body.removeChild(textArea);
+
+      if (success) {
+        console.log("Formula copied using legacy method");
+        return;
+      }
+    } catch (legacyError) {
+      console.log("Legacy copy method failed:", legacyError);
+    }
+
+    // Third try: Manual selection with user prompt
+    try {
+      const textArea = document.createElement("textarea");
+      textArea.value = formula;
+      textArea.style.position = "fixed";
+      textArea.style.top = "50%";
+      textArea.style.left = "50%";
+      textArea.style.transform = "translate(-50%, -50%)";
+      textArea.style.zIndex = "10000";
+      textArea.style.padding = "10px";
+      textArea.style.background = "white";
+      textArea.style.border = "2px solid #000";
+      textArea.style.borderRadius = "5px";
+      textArea.style.fontSize = "14px";
+      textArea.setAttribute("readonly", "");
+
+      document.body.appendChild(textArea);
+      textArea.select();
+      textArea.setSelectionRange(0, formula.length);
+
+      // Show user prompt
+      alert(
+        "Please press Ctrl+C (or Cmd+C on Mac) to copy the selected text, then click OK",
+      );
+
+      document.body.removeChild(textArea);
+      console.log("Manual copy method completed");
+    } catch (manualError) {
+      console.error("All copy methods failed:", manualError);
+      // Final fallback: show the text in an alert
+      alert(`Copy failed. Here's your formula:\n\n${formula}`);
     }
   };
 
