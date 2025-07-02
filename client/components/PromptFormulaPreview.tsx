@@ -174,7 +174,7 @@ export function PromptFormulaPreview({
     computed.hasFiles;
 
   return (
-    <Card className="bg-black border-2 border-cream sticky top-6">
+    <Card className="bg-black border-2 border-cream">
       <CardHeader className="pb-3">
         <CardTitle className="space-y-2">
           <div className="flex items-center gap-3">
