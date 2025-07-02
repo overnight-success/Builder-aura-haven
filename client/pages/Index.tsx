@@ -103,48 +103,88 @@ export default function Index() {
   };
 
   return (
-    <div className="min-h-screen bg-black text-white font-sans">
-      <div className="max-w-6xl mx-auto p-8">
+    <div className="min-h-screen bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+      <div className="bg-black border border-gray-600 rounded-2xl max-w-4xl w-full p-8">
         {/* Header */}
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold mb-4">AI Toolkit</h1>
-          <p className="text-gray-400 text-lg">
+        <div className="text-center mb-8">
+          <h1 className="text-3xl font-bold text-white mb-2">AI Toolkit</h1>
+          <p className="text-gray-400">
             Essential tools and resources for AI-powered creative work
           </p>
         </div>
 
-        {/* Categories */}
-        {categories.map((category) => (
-          <div key={category.name} className="mb-12">
-            <div className="flex items-center mb-6">
-              <Video className="h-6 w-6 text-red-500 mr-3" />
-              <h2 className="text-2xl font-bold">{category.name}</h2>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {category.tools.map((tool) => (
-                <div
-                  key={tool.name}
-                  onClick={() => openTool(tool.url)}
-                  className="bg-gray-900 border border-gray-700 rounded-lg p-6 cursor-pointer hover:border-gray-500 hover:bg-gray-800 transition-all duration-200"
-                >
-                  <div className="flex items-start justify-between mb-4">
-                    <div className="flex items-center">
-                      <div className="text-white mr-3">{tool.icon}</div>
-                      <h3 className="text-lg font-semibold text-white">
-                        {tool.name}
-                      </h3>
-                    </div>
-                    <ExternalLink className="h-4 w-4 text-gray-400" />
-                  </div>
-                  <p className="text-gray-300 text-sm leading-relaxed">
-                    {tool.description}
-                  </p>
-                </div>
-              ))}
-            </div>
+        {/* AI Video Generation Section */}
+        <div className="mb-8">
+          <div className="flex items-center mb-6">
+            <Video className="h-5 w-5 text-red-500 mr-3" />
+            <h2 className="text-xl font-bold text-white">
+              AI Video Generation
+            </h2>
           </div>
-        ))}
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {categories[0].tools.map((tool) => (
+              <div
+                key={tool.name}
+                onClick={() => openTool(tool.url)}
+                className="bg-gray-900 border border-gray-700 rounded-lg p-4 cursor-pointer hover:border-gray-500 hover:bg-gray-800 transition-all duration-200"
+              >
+                <div className="mb-3">
+                  <h3 className="text-white font-semibold mb-1">{tool.name}</h3>
+                  <p className="text-gray-400 text-sm">{tool.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* AI Image Generation Section */}
+        <div className="mb-8">
+          <div className="flex items-center mb-6">
+            <Image className="h-5 w-5 text-blue-500 mr-3" />
+            <h2 className="text-xl font-bold text-white">
+              AI Image Generation
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {categories[1].tools.map((tool) => (
+              <div
+                key={tool.name}
+                onClick={() => openTool(tool.url)}
+                className="bg-gray-900 border border-gray-700 rounded-lg p-4 cursor-pointer hover:border-gray-500 hover:bg-gray-800 transition-all duration-200"
+              >
+                <div className="mb-3">
+                  <h3 className="text-white font-semibold mb-1">{tool.name}</h3>
+                  <p className="text-gray-400 text-sm">{tool.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* AI Text Generation Section */}
+        <div>
+          <div className="flex items-center mb-6">
+            <FileText className="h-5 w-5 text-green-500 mr-3" />
+            <h2 className="text-xl font-bold text-white">AI Text Generation</h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {categories[2].tools.map((tool) => (
+              <div
+                key={tool.name}
+                onClick={() => openTool(tool.url)}
+                className="bg-gray-900 border border-gray-700 rounded-lg p-4 cursor-pointer hover:border-gray-500 hover:bg-gray-800 transition-all duration-200"
+              >
+                <div className="mb-3">
+                  <h3 className="text-white font-semibold mb-1">{tool.name}</h3>
+                  <p className="text-gray-400 text-sm">{tool.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );
