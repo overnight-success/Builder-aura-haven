@@ -1513,7 +1513,7 @@ Always include:
                     </div>
                     <div className="bg-cream/10 p-3 rounded">
                       <p className="text-neon-orange font-bold mb-1">
-                        Benefits:
+                        Pro Tips:
                       </p>
                       <p className="text-xs">
                         <strong>Consistency:</strong> Follow preferred structure
