@@ -12,25 +12,8 @@ import { useTracking } from "../hooks/useTracking";
 
 function AppContent() {
   const { state, actions, computed } = usePromptGenerator();
-  const [showSignupWall, setShowSignupWall] = useState(true);
-  const [showPaywall, setShowPaywall] = useState(false);
   const { subscriptionStatus, canUseFeature, loading } = useSubscription();
   const { trackView } = useTracking();
-
-  // Check if user has already signed up
-  useEffect(() => {
-    const hasSignedUp = localStorage.getItem("userSignedUp");
-    if (hasSignedUp === "true") {
-      setShowSignupWall(false);
-    }
-  }, []);
-
-  // Track page views - DISABLED TO PREVENT FLASHING
-  // useEffect(() => {
-  //   if (!showSignupWall && !loading) {
-  //     trackView("main-app", `Generator: ${state.currentGenerator}`);
-  //   }
-  // }, [showSignupWall, loading, state.currentGenerator, trackView]);
 
   // Load saved state on mount
   useEffect(() => {
@@ -49,7 +32,7 @@ function AppContent() {
     state.history,
     state.selections,
     state.customInstructions,
-    actions.saveState, // Only depend on the specific action, not the entire actions object
+    actions.saveState,
   ]);
 
   const handlePageChange = (page: string) => {
@@ -62,21 +45,8 @@ function AppContent() {
     actions.resetAll();
   };
 
-  const handleSignupComplete = () => {
-    setShowSignupWall(false);
-  };
-
-  const handleUpgradeComplete = () => {
-    setShowPaywall(false);
-    // Refresh subscription status
-    window.location.reload();
-  };
-
   const checkUsageBeforeAction = (action: "outputs" | "downloads") => {
-    if (!canUseFeature(action)) {
-      setShowPaywall(true);
-      return false;
-    }
+    // Allow unlimited access - remove paywall restrictions
     return true;
   };
 
@@ -88,17 +58,6 @@ function AppContent() {
       />
     );
   };
-
-  // Show signup wall if user hasn't signed up
-  if (showSignupWall) {
-    return <SignupWall onSignupComplete={handleSignupComplete} />;
-  }
-
-  // Show paywall if user exceeded free limits
-  if (showPaywall) {
-    const userEmail = localStorage.getItem("userEmail") || "";
-    return <Paywall onUpgrade={handleUpgradeComplete} userEmail={userEmail} />;
-  }
 
   return (
     <div className="min-h-screen bg-neon-orange font-sans">
