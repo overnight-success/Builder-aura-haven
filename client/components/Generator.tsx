@@ -35,7 +35,6 @@ const iconMap = {
   angle: <Camera className="h-5 w-5" />,
   mood: <Heart className="h-5 w-5" />,
   enhancement: <Layers3 className="h-5 w-5" />,
-  scene: <Camera className="h-5 w-5" />,
   people: <Heart className="h-5 w-5" />,
   environment: <MapPin className="h-5 w-5" />,
   layout: <Package className="h-5 w-5" />,
