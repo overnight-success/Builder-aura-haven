@@ -981,60 +981,38 @@ Always include:
     return replacedPrompt;
   };
 
-  const copyPrompt = async (prompt: string, event?: any) => {
+  const copyPrompt = (prompt: string, event?: any) => {
     const finalPrompt = replacePlaceholders(prompt);
     const clickedButton = event?.target?.closest("button");
+
+    // Simple, reliable copy
+    const textArea = document.createElement("textarea");
+    textArea.value = finalPrompt;
+    textArea.style.position = "fixed";
+    textArea.style.left = "-999px";
+    textArea.style.top = "-999px";
+
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+
     let copySuccess = false;
-
-    console.log("Attempting to copy prompt:", finalPrompt);
-
-    // Try modern clipboard API first
     try {
-      if (navigator.clipboard && window.isSecureContext) {
-        await navigator.clipboard.writeText(finalPrompt);
-        copySuccess = true;
-        console.log("✅ Prompt copied successfully with modern API");
-      }
+      copySuccess = document.execCommand("copy");
     } catch (error) {
-      console.log("Modern clipboard API failed for prompt:", error);
+      copySuccess = false;
     }
 
-    // Fallback to execCommand
+    document.body.removeChild(textArea);
+
     if (!copySuccess) {
-      try {
-        const textArea = document.createElement("textarea");
-        textArea.value = finalPrompt;
-        textArea.style.position = "fixed";
-        textArea.style.left = "-999999px";
-        textArea.style.top = "-999999px";
-        textArea.style.opacity = "0";
-
-        document.body.appendChild(textArea);
-        textArea.focus();
-        textArea.select();
-
-        copySuccess = document.execCommand("copy");
-        document.body.removeChild(textArea);
-
-        if (copySuccess) {
-          console.log("✅ Prompt copied successfully with execCommand");
-        }
-      } catch (error) {
-        console.log("execCommand failed for prompt:", error);
-      }
+      alert(`Copy this prompt:\n\n${finalPrompt}`);
     }
 
-    // Final fallback: show in alert
-    if (!copySuccess) {
-      console.log("All clipboard methods failed, showing alert");
-      alert(`Please copy this prompt manually:\n\n${finalPrompt}`);
-    }
-
-    // Show success feedback only if copy was successful
+    // Show success feedback
     if (copySuccess && clickedButton) {
       const originalText = clickedButton.innerHTML;
-      clickedButton.innerHTML =
-        '<svg class="h-3 w-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>';
+      clickedButton.innerHTML = "✓ COPIED";
       clickedButton.style.backgroundColor = "#10b981";
       setTimeout(() => {
         clickedButton.innerHTML = originalText;
