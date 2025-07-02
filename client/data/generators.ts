@@ -96,7 +96,7 @@ export const generatorData = {
     },
   },
   lifestyle: {
-    title: "LIFESTYLE GENERATOR",
+    title: "LIFESTYLE STUDIO",
     description: "Create stunning lifestyle visuals and models seamlessly.",
     categories: {
       scene: {
