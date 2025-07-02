@@ -114,7 +114,7 @@ export default function Index() {
         </div>
 
         {/* AI Video Generation Section */}
-        <div>
+        <div className="border border-gray-600 rounded-lg p-6">
           <div className="flex items-center mb-6">
             <Video className="h-5 w-5 text-red-500 mr-3" />
             <h2 className="text-xl font-bold text-white">
@@ -122,7 +122,7 @@ export default function Index() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-3 gap-6">
+          <div className="grid grid-cols-3 gap-4">
             <div
               onClick={() => openTool("https://openai.com/sora")}
               className="bg-gray-900/50 border border-gray-700 rounded-lg p-6 cursor-pointer hover:border-gray-500 hover:bg-gray-800/50 transition-all duration-200"
