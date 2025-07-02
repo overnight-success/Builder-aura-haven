@@ -1666,10 +1666,33 @@ Always include:
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                  <div className="min-h-24 p-4 border-2 border-cream rounded-lg bg-black">
-                    <p className="text-cream text-sm font-mono leading-relaxed">
-                      {getFormulaText()}
-                    </p>
+                  {/* Custom Text Input */}
+                  <div className="space-y-2">
+                    <label className="text-sm font-bold text-neon-orange">
+                      YOUR VISION:
+                    </label>
+                    <textarea
+                      value={customPromptText}
+                      onChange={(e) => setCustomPromptText(e.target.value)}
+                      placeholder="Describe your creative vision, subject, or scene..."
+                      className="w-full min-h-20 p-3 border-2 border-cream rounded-lg bg-black text-cream text-sm placeholder:text-cream/60 focus:border-neon-orange focus:outline-none resize-none"
+                      maxLength={500}
+                    />
+                    <div className="text-xs text-cream/60 text-right">
+                      {customPromptText.length}/500
+                    </div>
+                  </div>
+
+                  {/* Generated Formula Display */}
+                  <div className="space-y-2">
+                    <label className="text-sm font-bold text-neon-orange">
+                      STRUCTURED FORMULA:
+                    </label>
+                    <div className="min-h-24 p-4 border-2 border-cream rounded-lg bg-black">
+                      <p className="text-cream text-sm font-mono leading-relaxed">
+                        {getFormulaText()}
+                      </p>
+                    </div>
                   </div>
 
                   {/* Selected Keywords */}
