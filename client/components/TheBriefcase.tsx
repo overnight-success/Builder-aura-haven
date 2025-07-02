@@ -1497,7 +1497,17 @@ Always include:
                           for visual context (optional but recommended)
                         </li>
                         <li>
-                          �� Include conditional parts (omit empty fields)
+                          • <strong>Step 3:</strong> Select keywords from
+                          categories: Lighting, Framing, Locations, Texture,
+                          Creative Direction, Quality
+                        </li>
+                        <li>
+                          • <strong>Step 4:</strong> Review the structured
+                          formula that automatically organizes your inputs
+                        </li>
+                        <li>
+                          • <strong>Step 5:</strong> Copy the formula and paste
+                          directly into SORA
                         </li>
                       </ul>
                     </div>
