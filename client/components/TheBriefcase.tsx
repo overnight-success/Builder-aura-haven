@@ -1055,7 +1055,7 @@ Always include:
         </div>
 
         {/* Content */}
-        <div className="p-6 overflow-y-auto max-h-[60vh] bg-black">
+        <div className="p-4 lg:p-6 overflow-y-auto max-h-[70vh] lg:max-h-[60vh] bg-black">
           {/* THE PLAYBOOK */}
           {activeTab === "playbook" && (
             <div className="space-y-6">
