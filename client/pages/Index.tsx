@@ -190,6 +190,68 @@ export default function Index() {
             </div>
           </div>
         </div>
+
+        {/* AI Image Generation Section */}
+        <div className="border border-gray-600 rounded-lg p-6 mb-6">
+          <div className="flex items-center mb-6">
+            <Image className="h-5 w-5 text-blue-500 mr-3" />
+            <h2 className="text-xl font-bold text-white">
+              AI Image Generation
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-2 gap-4">
+            <div
+              onClick={() => openTool("https://openai.com/dall-e-3")}
+              className="bg-gray-900 border border-gray-600 rounded-lg p-4 cursor-pointer hover:border-gray-400 hover:bg-gray-800 transition-all duration-200"
+            >
+              <h3 className="text-white font-semibold mb-2">DALL-E 3</h3>
+              <p className="text-gray-400 text-sm">
+                Advanced AI image generation from OpenAI
+              </p>
+            </div>
+
+            <div
+              onClick={() => openTool("https://midjourney.com")}
+              className="bg-gray-900 border border-gray-600 rounded-lg p-4 cursor-pointer hover:border-gray-400 hover:bg-gray-800 transition-all duration-200"
+            >
+              <h3 className="text-white font-semibold mb-2">Midjourney</h3>
+              <p className="text-gray-400 text-sm">
+                High-quality AI art and image generation
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* AI Text Generation Section */}
+        <div className="border border-gray-600 rounded-lg p-6">
+          <div className="flex items-center mb-6">
+            <FileText className="h-5 w-5 text-green-500 mr-3" />
+            <h2 className="text-xl font-bold text-white">AI Text Generation</h2>
+          </div>
+
+          <div className="grid grid-cols-2 gap-4">
+            <div
+              onClick={() => openTool("https://chat.openai.com")}
+              className="bg-gray-900 border border-gray-600 rounded-lg p-4 cursor-pointer hover:border-gray-400 hover:bg-gray-800 transition-all duration-200"
+            >
+              <h3 className="text-white font-semibold mb-2">ChatGPT</h3>
+              <p className="text-gray-400 text-sm">
+                Advanced AI language model for text generation
+              </p>
+            </div>
+
+            <div
+              onClick={() => openTool("https://claude.ai")}
+              className="bg-gray-900 border border-gray-600 rounded-lg p-4 cursor-pointer hover:border-gray-400 hover:bg-gray-800 transition-all duration-200"
+            >
+              <h3 className="text-white font-semibold mb-2">Claude</h3>
+              <p className="text-gray-400 text-sm">
+                Advanced AI assistant for analysis and creative work
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
