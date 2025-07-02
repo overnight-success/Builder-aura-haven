@@ -104,7 +104,7 @@ export default function Index() {
 
   return (
     <div className="min-h-screen bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
-      <div className="bg-black border border-gray-600 rounded-2xl max-w-4xl w-full p-8">
+      <div className="bg-black border border-gray-600 rounded-2xl max-w-5xl w-full p-8">
         {/* Header */}
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-white mb-2">AI Toolkit</h1>
@@ -114,7 +114,7 @@ export default function Index() {
         </div>
 
         {/* AI Video Generation Section */}
-        <div className="mb-8">
+        <div>
           <div className="flex items-center mb-6">
             <Video className="h-5 w-5 text-red-500 mr-3" />
             <h2 className="text-xl font-bold text-white">
@@ -122,67 +122,72 @@ export default function Index() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {categories[0].tools.map((tool) => (
-              <div
-                key={tool.name}
-                onClick={() => openTool(tool.url)}
-                className="bg-gray-900 border border-gray-700 rounded-lg p-4 cursor-pointer hover:border-gray-500 hover:bg-gray-800 transition-all duration-200"
-              >
-                <div className="mb-3">
-                  <h3 className="text-white font-semibold mb-1">{tool.name}</h3>
-                  <p className="text-gray-400 text-sm">{tool.description}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+          <div className="grid grid-cols-3 gap-6">
+            <div
+              onClick={() => openTool("https://openai.com/sora")}
+              className="bg-gray-900/50 border border-gray-700 rounded-lg p-6 cursor-pointer hover:border-gray-500 hover:bg-gray-800/50 transition-all duration-200"
+            >
+              <h3 className="text-white font-semibold mb-2">SORA by OpenAI</h3>
+              <p className="text-gray-400 text-sm">
+                Advanced AI video generation with text-to-video capabilities
+              </p>
+            </div>
 
-        {/* AI Image Generation Section */}
-        <div className="mb-8">
-          <div className="flex items-center mb-6">
-            <Image className="h-5 w-5 text-blue-500 mr-3" />
-            <h2 className="text-xl font-bold text-white">
-              AI Image Generation
-            </h2>
-          </div>
+            <div
+              onClick={() => openTool("https://runwayml.com")}
+              className="bg-gray-900/50 border border-gray-700 rounded-lg p-6 cursor-pointer hover:border-gray-500 hover:bg-gray-800/50 transition-all duration-200"
+            >
+              <h3 className="text-white font-semibold mb-2">Runway ML</h3>
+              <p className="text-gray-400 text-sm">
+                Creative AI video tools for filmmakers and content creators
+              </p>
+            </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {categories[1].tools.map((tool) => (
-              <div
-                key={tool.name}
-                onClick={() => openTool(tool.url)}
-                className="bg-gray-900 border border-gray-700 rounded-lg p-4 cursor-pointer hover:border-gray-500 hover:bg-gray-800 transition-all duration-200"
-              >
-                <div className="mb-3">
-                  <h3 className="text-white font-semibold mb-1">{tool.name}</h3>
-                  <p className="text-gray-400 text-sm">{tool.description}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+            <div
+              onClick={() => openTool("https://pika.art")}
+              className="bg-gray-900/50 border border-gray-700 rounded-lg p-6 cursor-pointer hover:border-gray-500 hover:bg-gray-800/50 transition-all duration-200"
+            >
+              <h3 className="text-white font-semibold mb-2">Pika Labs</h3>
+              <p className="text-gray-400 text-sm">
+                AI video creation platform with text and image inputs
+              </p>
+            </div>
 
-        {/* AI Text Generation Section */}
-        <div>
-          <div className="flex items-center mb-6">
-            <FileText className="h-5 w-5 text-green-500 mr-3" />
-            <h2 className="text-xl font-bold text-white">AI Text Generation</h2>
-          </div>
+            <div
+              onClick={() =>
+                openTool(
+                  "https://stability.ai/news/stable-video-diffusion-open-ai-video-model",
+                )
+              }
+              className="bg-gray-900/50 border border-gray-700 rounded-lg p-6 cursor-pointer hover:border-gray-500 hover:bg-gray-800/50 transition-all duration-200"
+            >
+              <h3 className="text-white font-semibold mb-2">
+                Stable Video Diffusion
+              </h3>
+              <p className="text-gray-400 text-sm">
+                Open-source video generation model by Stability AI
+              </p>
+            </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {categories[2].tools.map((tool) => (
-              <div
-                key={tool.name}
-                onClick={() => openTool(tool.url)}
-                className="bg-gray-900 border border-gray-700 rounded-lg p-4 cursor-pointer hover:border-gray-500 hover:bg-gray-800 transition-all duration-200"
-              >
-                <div className="mb-3">
-                  <h3 className="text-white font-semibold mb-1">{tool.name}</h3>
-                  <p className="text-gray-400 text-sm">{tool.description}</p>
-                </div>
-              </div>
-            ))}
+            <div
+              onClick={() => openTool("https://synthesia.io")}
+              className="bg-gray-900/50 border border-gray-700 rounded-lg p-6 cursor-pointer hover:border-gray-500 hover:bg-gray-800/50 transition-all duration-200"
+            >
+              <h3 className="text-white font-semibold mb-2">Synthesia</h3>
+              <p className="text-gray-400 text-sm">
+                AI video generation with virtual avatars and voiceovers
+              </p>
+            </div>
+
+            <div
+              onClick={() => openTool("https://invideo.io")}
+              className="bg-gray-900/50 border border-gray-700 rounded-lg p-6 cursor-pointer hover:border-gray-500 hover:bg-gray-800/50 transition-all duration-200"
+            >
+              <h3 className="text-white font-semibold mb-2">InVideo AI</h3>
+              <p className="text-gray-400 text-sm">
+                AI-powered video creation and editing platform
+              </p>
+            </div>
           </div>
         </div>
       </div>
