@@ -68,21 +68,18 @@ export class PromptEngine {
         parts.push(`with reference to ${names.join(", ")}`);
       }
 
-      // Add basic SORA specs
-      parts.push("professional cinematic quality");
-      parts.push("4K resolution");
-      parts.push("optimized for SORA AI");
+      // Remove automatic SORA specs - formula should only represent user selections
 
       // Join with proper punctuation
       const result = parts.filter((p) => p && p.trim()).join(", ");
 
       return (
         result ||
-        "Professional video content, cinematic quality, 4K resolution, optimized for SORA AI"
+        "Add custom instructions and select categories to build your prompt"
       );
     } catch (error) {
       console.error("Error in generateFormula:", error);
-      return "Professional video content, cinematic quality, 4K resolution, optimized for SORA AI";
+      return "Add custom instructions and select categories to build your prompt";
     }
   }
 
@@ -216,7 +213,7 @@ export class PromptEngine {
     } catch (error) {
       console.error("Error in getCompleteSORAData:", error);
       const fallback =
-        "Professional video content, cinematic quality, 4K resolution, optimized for SORA AI";
+        "Add custom instructions and select categories to build your prompt";
       return {
         mainPrompt: fallback,
         imageData: [],
