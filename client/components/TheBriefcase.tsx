@@ -1584,7 +1584,7 @@ Always include:
                           <Badge
                             key={keyword}
                             onClick={() => removeKeywordFromFormula(keyword)}
-                            className="bg-neon-orange text-black font-bold text-xs cursor-pointer hover:bg-red-500 transition-all duration-200"
+                            className="bg-neon-orange text-white font-bold text-xs cursor-pointer hover:bg-red-500 transition-all duration-200"
                           >
                             {keyword} ×
                           </Badge>
