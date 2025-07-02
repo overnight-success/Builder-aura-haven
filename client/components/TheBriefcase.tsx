@@ -1516,12 +1516,17 @@ Always include:
                         Pro Tips:
                       </p>
                       <p className="text-xs">
-                        <strong>Consistency:</strong> Follow preferred structure
+                        <strong>Structure:</strong> The vault auto-organizes
+                        keywords for optimal SORA understanding
                         <br />
-                        <strong>Brainstorming:</strong> Quickly swap variables
+                        <strong>Images:</strong> Uploaded images become
+                        "--reference image:" parameters
                         <br />
-                        <strong>Scaling:</strong> Generate dozens of prompts
-                        efficiently
+                        <strong>Keywords:</strong> Click to add, click × to
+                        remove selected keywords
+                        <br />
+                        <strong>Quality:</strong> Use the quality meter to
+                        optimize your prompt completeness
                       </p>
                     </div>
                   </div>
