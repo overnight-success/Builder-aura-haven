@@ -36,7 +36,7 @@ export function Navigation({
     },
     {
       id: "lifestyle",
-      label: "LIFESTYLE GENERATOR",
+      label: "LIFESTYLE STUDIO",
       icon: <Camera className="h-5 w-5" />,
     },
     {
