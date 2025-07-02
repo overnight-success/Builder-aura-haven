@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Navigation } from "../components/Navigation";
 import { Generator } from "../components/Generator";
-import { SignupWall } from "../components/SignupWall";
-import { Paywall } from "../components/Paywall";
 import {
   PromptGeneratorProvider,
   usePromptGenerator,
