@@ -102,7 +102,7 @@ function AppContent() {
       <div className="relative z-10">
         {/* Enhanced Navigation */}
         <Navigation
-          currentPage={state.currentGenerator}
+          currentPage="lifestyle"
           onPageChange={handlePageChange}
           totalComponents={computed.totalComponents}
           onReset={handleReset}
