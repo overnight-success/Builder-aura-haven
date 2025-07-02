@@ -10,6 +10,7 @@ import {
   Target,
   RefreshCw,
   X,
+  Crown,
 } from "lucide-react";
 
 interface NavigationProps {
