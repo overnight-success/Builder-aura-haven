@@ -784,7 +784,75 @@ Always include:
     if (selectedKeywords.length === 0) {
       return "Click keywords below to build your custom formula...";
     }
-    return selectedKeywords.join(", ");
+
+    // Restructure keywords for optimal SORA output
+    const lighting = selectedKeywords.filter((k) =>
+      [
+        "cinematic lighting",
+        "soft lighting",
+        "dramatic lighting",
+        "natural lighting",
+        "golden hour",
+        "neon lighting",
+        "backlighting",
+        "rim lighting",
+      ].includes(k),
+    );
+    const camera = selectedKeywords.filter((k) =>
+      [
+        "close-up",
+        "wide shot",
+        "medium shot",
+        "overhead view",
+        "low angle",
+        "high angle",
+        "dutch angle",
+        "handheld camera",
+      ].includes(k),
+    );
+    const style = selectedKeywords.filter((k) =>
+      [
+        "minimalist",
+        "vintage",
+        "modern",
+        "futuristic",
+        "elegant",
+        "bold",
+        "artistic",
+        "commercial",
+      ].includes(k),
+    );
+    const quality = selectedKeywords.filter((k) =>
+      [
+        "4K",
+        "8K",
+        "high resolution",
+        "professional quality",
+        "cinematic quality",
+        "ultra-detailed",
+        "photorealistic",
+        "masterpiece",
+      ].includes(k),
+    );
+    const remaining = selectedKeywords.filter(
+      (k) =>
+        !lighting.includes(k) &&
+        !camera.includes(k) &&
+        !style.includes(k) &&
+        !quality.includes(k),
+    );
+
+    // Build structured prompt
+    let formula = "";
+    if (remaining.length > 0) formula += remaining.join(", ");
+    if (camera.length > 0) formula += (formula ? ", " : "") + camera.join(", ");
+    if (lighting.length > 0)
+      formula += (formula ? ", " : "") + lighting.join(", ");
+    if (style.length > 0) formula += (formula ? ", " : "") + style.join(", ");
+    if (quality.length > 0)
+      formula += (formula ? ", " : "") + quality.join(", ");
+
+    return formula || selectedKeywords.join(", ");
   };
 
   const copyFormula = async () => {
