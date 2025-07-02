@@ -1484,7 +1484,7 @@ Always include:
                     </p>
                     <div>
                       <h4 className="text-neon-orange font-bold mb-2">
-                        Setting Up in Notion:
+                        Step-by-Step Process:
                       </h4>
                       <ul className="space-y-1 ml-4 text-xs">
                         <li>
