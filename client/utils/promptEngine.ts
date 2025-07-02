@@ -37,7 +37,7 @@ export class PromptEngine {
     return PromptEngine.instance;
   }
 
-  // Generate clean SORA prompt - BULLETPROOF VERSION
+  // Generate SORA-optimized prompt using natural language structure
   generateFormula(
     generatorType: "product" | "lifestyle" | "graphic",
     selections: Record<string, string>,
@@ -45,36 +45,71 @@ export class PromptEngine {
     uploadedFiles: ProcessedFile[] = [],
   ): string {
     try {
-      const parts: string[] = [];
-
-      // Add custom instructions first
+      // Start with custom instructions as the foundation
+      let prompt = "";
       if (customInstructions && customInstructions.trim()) {
-        parts.push(customInstructions.trim());
+        prompt = customInstructions.trim();
       }
 
-      // Add each selection in simple format
-      Object.entries(selections).forEach(([category, value]) => {
+      // Structure the prompt in SORA-friendly order: Scene -> Subject -> Environment -> Mood -> Lighting -> Style
+      const orderedCategories = [
+        "scene",
+        "people",
+        "environment",
+        "mood",
+        "lighting",
+        "style",
+      ];
+      const categoryPhrases: string[] = [];
+
+      // Build natural language phrases from selections
+      orderedCategories.forEach((category) => {
+        const value = selections[category];
         if (value && value.trim()) {
-          parts.push(value.toLowerCase());
+          switch (category) {
+            case "scene":
+              categoryPhrases.push(`featuring ${value.toLowerCase()}`);
+              break;
+            case "people":
+              categoryPhrases.push(`with ${value.toLowerCase()}`);
+              break;
+            case "environment":
+              categoryPhrases.push(`in ${value.toLowerCase()}`);
+              break;
+            case "mood":
+              categoryPhrases.push(`capturing ${value.toLowerCase()}`);
+              break;
+            case "lighting":
+              categoryPhrases.push(`using ${value.toLowerCase()}`);
+              break;
+            case "style":
+              categoryPhrases.push(`shot in ${value.toLowerCase()} style`);
+              break;
+            default:
+              // For any other categories, use generic approach
+              categoryPhrases.push(value.toLowerCase());
+          }
         }
       });
+
+      // Combine custom instructions with structured selections
+      if (prompt && categoryPhrases.length > 0) {
+        prompt += ", " + categoryPhrases.join(", ");
+      } else if (categoryPhrases.length > 0) {
+        prompt = categoryPhrases.join(", ");
+      }
 
       // Add image references if any
       const images = uploadedFiles.filter(
         (f) => f.type.startsWith("image/") && f.processingStatus === "complete",
       );
-      if (images.length > 0) {
+      if (images.length > 0 && prompt) {
         const names = images.map((f) => f.name.split(".")[0]);
-        parts.push(`with reference to ${names.join(", ")}`);
+        prompt += `, referencing visual style from ${names.join(", ")}`;
       }
 
-      // Remove automatic SORA specs - formula should only represent user selections
-
-      // Join with proper punctuation
-      const result = parts.filter((p) => p && p.trim()).join(", ");
-
       return (
-        result ||
+        prompt ||
         "Add custom instructions and select categories to build your prompt"
       );
     } catch (error) {
