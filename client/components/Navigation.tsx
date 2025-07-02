@@ -85,6 +85,7 @@ export function Navigation({
                 <Button
                   key={item.id}
                   onClick={() => handlePageChange(item.id)}
+                  aria-label={`Navigate to ${item.label}`}
                   className={`
                     font-bold text-xs lg:text-sm px-2 lg:px-3 py-1 lg:py-2 h-auto border-2 transition-all duration-200 whitespace-nowrap shrink-0 min-w-0 mr-3
                     ${
