@@ -934,7 +934,7 @@ Always include:
             <div className="space-y-6">
               <div className="text-center mb-8">
                 <h3 className="text-2xl font-black text-cream mb-2">
-                  Image Generation with Sora & ChatGPT: Official Guide
+                  The PlayImage Generation with Sora & ChatGPT
                 </h3>
                 <p className="text-cream/80">
                   Complete guide for mastering AI image generation from beginner
