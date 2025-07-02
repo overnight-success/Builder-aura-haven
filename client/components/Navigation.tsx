@@ -52,6 +52,11 @@ export function Navigation({
     } else if (pageId === "admin") {
       // Navigate to admin dashboard
       window.location.href = "/admin";
+    } else if (pageId === "access") {
+      // Handle Get Full Access - could open pricing modal or redirect to pricing page
+      console.log("Get Full Access clicked");
+      // For now, just prevent navigation but could be customized
+      return;
     } else {
       setShowBriefcase(false);
       onPageChange(pageId);
