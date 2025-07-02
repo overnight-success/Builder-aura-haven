@@ -132,9 +132,29 @@ export default function Index() {
     );
   }
 
+  const goToMainApp = () => {
+    // Clear the signup wall and redirect to main app
+    localStorage.removeItem("userSignedUp");
+    window.location.href = "/";
+  };
+
   return (
     <div className="min-h-screen bg-neon-orange p-4">
       <div className="max-w-6xl mx-auto">
+        {/* Top Banner */}
+        <div
+          onClick={goToMainApp}
+          className="bg-black border-4 border-black rounded-lg p-4 mb-6 cursor-pointer hover:bg-gray-900 transition-all duration-200 text-center"
+        >
+          <h2 className="text-2xl font-black text-neon-orange mb-2">
+            🚀 Unlock Our AI Creative System Today
+          </h2>
+          <p className="text-cream font-bold">
+            Access our complete prompt generation system for Sora AI • Click
+            here to get started
+          </p>
+        </div>
+
         {/* Header with Logo */}
         <div className="text-center mb-8">
           <div className="flex items-center justify-center mb-6">
