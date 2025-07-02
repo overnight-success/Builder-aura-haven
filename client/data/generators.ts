@@ -97,7 +97,7 @@ export const generatorData = {
   },
   lifestyle: {
     title: "LIFESTYLE GENERATOR",
-    description: "Capture authentic moments and brand storytelling",
+    description: "Create stunning lifestyle visuals and models seamlessly.",
     categories: {
       scene: {
         title: "Lifestyle Scene",
