@@ -1846,6 +1846,7 @@ Always include:
                         selectedKeywords.length === 0 &&
                         !imageDescription
                       }
+                      aria-label="Clear all formula content"
                     >
                       CLEAR ALL
                     </Button>
