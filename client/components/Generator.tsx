@@ -90,57 +90,32 @@ export function Generator({ type, onActionAttempt }: GeneratorProps) {
   );
 
   const handleCopy = useCallback(
-    async (text: string) => {
-      console.log("Attempting to copy main generator text:", text);
+    (text: string) => {
+      // Simple, reliable copy
+      const textArea = document.createElement("textarea");
+      textArea.value = text;
+      textArea.style.position = "fixed";
+      textArea.style.left = "-999px";
+      textArea.style.top = "-999px";
+
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+
       let copySuccess = false;
-
-      // Try modern clipboard API first
       try {
-        if (navigator.clipboard && window.isSecureContext) {
-          await navigator.clipboard.writeText(text);
-          copySuccess = true;
-          console.log(
-            "✅ Main generator text copied successfully with modern API",
-          );
-        }
+        copySuccess = document.execCommand("copy");
       } catch (error) {
-        console.log("Modern clipboard API failed:", error);
+        copySuccess = false;
       }
 
-      // Fallback to execCommand
+      document.body.removeChild(textArea);
+
       if (!copySuccess) {
-        try {
-          const textArea = document.createElement("textarea");
-          textArea.value = text;
-          textArea.style.position = "fixed";
-          textArea.style.left = "-999999px";
-          textArea.style.top = "-999999px";
-          textArea.style.opacity = "0";
-
-          document.body.appendChild(textArea);
-          textArea.focus();
-          textArea.select();
-
-          copySuccess = document.execCommand("copy");
-          document.body.removeChild(textArea);
-
-          if (copySuccess) {
-            console.log(
-              "✅ Main generator text copied successfully with execCommand",
-            );
-          }
-        } catch (error) {
-          console.log("execCommand failed:", error);
-        }
+        alert(`Copy this text:\n\n${text}`);
       }
 
-      // Final fallback: show in alert
-      if (!copySuccess) {
-        console.log("All clipboard methods failed, showing alert");
-        alert(`Please copy this text manually:\n\n${text}`);
-      }
-
-      // Add to history regardless of copy method
+      // Add to history
       try {
         const promptVersion = {
           id: Date.now().toString(),
