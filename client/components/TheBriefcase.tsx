@@ -131,6 +131,7 @@ Always include:
 
   // PROMPT VAULT - Complete keyword library from screenshots
   const [selectedKeywords, setSelectedKeywords] = useState<string[]>([]);
+  const [customPromptText, setCustomPromptText] = useState<string>("");
 
   // TEMPLATES - Placeholder replacement values
   const [placeholders, setPlaceholders] = useState({
