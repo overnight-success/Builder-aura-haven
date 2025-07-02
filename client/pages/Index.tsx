@@ -260,10 +260,10 @@ export default function Index() {
 
             <div
               onClick={() => openTool("https://runwayml.com")}
-              className="bg-gray-900 border border-gray-600 rounded-lg p-4 cursor-pointer hover:border-gray-400 hover:bg-gray-800 transition-all duration-200"
+              className="bg-neon-orange border-2 border-cream rounded-lg p-4 cursor-pointer hover:bg-cream hover:text-black transition-all duration-200"
             >
-              <h3 className="text-white font-semibold mb-2">Runway ML</h3>
-              <p className="text-gray-400 text-sm">
+              <h3 className="text-black font-bold mb-2">Runway ML</h3>
+              <p className="text-black text-sm">
                 Creative AI video tools for filmmakers and content creators
               </p>
             </div>
