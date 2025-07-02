@@ -997,45 +997,48 @@ Always include:
     const clickedButton = event?.target?.closest("button");
     let copySuccess = false;
 
-    // First try: Modern Clipboard API
+    console.log("Attempting to copy prompt:", finalPrompt);
+
+    // Try modern clipboard API first
     try {
       if (navigator.clipboard && window.isSecureContext) {
         await navigator.clipboard.writeText(finalPrompt);
         copySuccess = true;
+        console.log("✅ Prompt copied successfully with modern API");
       }
     } catch (error) {
-      console.log("Modern clipboard failed for prompt copy:", error);
+      console.log("Modern clipboard API failed for prompt:", error);
     }
 
-    // Second try: Legacy execCommand with improved implementation
+    // Fallback to execCommand
     if (!copySuccess) {
       try {
         const textArea = document.createElement("textarea");
         textArea.value = finalPrompt;
-        textArea.style.position = "absolute";
-        textArea.style.left = "-9999px";
-        textArea.style.top = "0";
+        textArea.style.position = "fixed";
+        textArea.style.left = "-999999px";
+        textArea.style.top = "-999999px";
         textArea.style.opacity = "0";
-        textArea.setAttribute("readonly", "");
 
         document.body.appendChild(textArea);
+        textArea.focus();
         textArea.select();
-        textArea.setSelectionRange(0, finalPrompt.length);
 
         copySuccess = document.execCommand("copy");
         document.body.removeChild(textArea);
-      } catch (legacyError) {
-        console.log("Legacy copy method failed for prompt:", legacyError);
+
+        if (copySuccess) {
+          console.log("✅ Prompt copied successfully with execCommand");
+        }
+      } catch (error) {
+        console.log("execCommand failed for prompt:", error);
       }
     }
 
-    // Final fallback: Manual copy with alert
+    // Final fallback: show in alert
     if (!copySuccess) {
-      try {
-        alert(`Copy failed. Here's your prompt:\n\n${finalPrompt}`);
-      } catch (alertError) {
-        console.error("All copy methods failed for prompt:", alertError);
-      }
+      console.log("All clipboard methods failed, showing alert");
+      alert(`Please copy this prompt manually:\n\n${finalPrompt}`);
     }
 
     // Show success feedback only if copy was successful
