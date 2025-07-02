@@ -62,7 +62,7 @@ type PromptAction =
 
 // Initial state
 const initialState: PromptState = {
-  currentGenerator: "product",
+  currentGenerator: "lifestyle",
   selections: {},
   customInstructions: "",
   uploadedFiles: [],
