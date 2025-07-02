@@ -335,27 +335,23 @@ export function Generator({ type, onActionAttempt }: GeneratorProps) {
         </div>
 
         {/* Formula Preview & Analysis */}
-        <div className="lg:col-span-1">
-          <div className="sticky top-4 space-y-5">
-            <PromptFormulaPreview
-              generatorType={type}
-              onCopy={handleCopy}
-              onExport={handleExport}
-              promptAnalysis={promptAnalysis}
-            />
+        <div className="lg:col-span-1 space-y-5">
+          <PromptFormulaPreview
+            generatorType={type}
+            onCopy={handleCopy}
+            onExport={handleExport}
+            promptAnalysis={promptAnalysis}
+          />
 
-            {promptAnalysis && (
-              <div className="w-full">
-                <PromptQualityIndicator
-                  quality={promptAnalysis.quality}
-                  completeness={promptAnalysis.completeness}
-                  coherence={promptAnalysis.coherence}
-                  creativity={promptAnalysis.creativity}
-                  isAnalyzing={isAnalyzing}
-                />
-              </div>
-            )}
-          </div>
+          {promptAnalysis && (
+            <PromptQualityIndicator
+              quality={promptAnalysis.quality}
+              completeness={promptAnalysis.completeness}
+              coherence={promptAnalysis.coherence}
+              creativity={promptAnalysis.creativity}
+              isAnalyzing={isAnalyzing}
+            />
+          )}
         </div>
       </div>
     </div>
