@@ -1720,6 +1720,55 @@ Always include:
                     </div>
                   </div>
 
+                  {/* Image Upload */}
+                  <div className="space-y-2">
+                    <label className="text-sm font-bold text-neon-orange">
+                      REFERENCE IMAGE:
+                    </label>
+                    {!uploadedImage ? (
+                      <div className="border-2 border-dashed border-cream/50 rounded-lg p-4 text-center hover:border-neon-orange transition-colors">
+                        <input
+                          type="file"
+                          accept="image/*"
+                          onChange={handleImageUpload}
+                          className="hidden"
+                          id="image-upload"
+                        />
+                        <label
+                          htmlFor="image-upload"
+                          className="cursor-pointer flex flex-col items-center gap-2"
+                        >
+                          <Upload className="h-8 w-8 text-cream/60" />
+                          <span className="text-sm text-cream/80">
+                            Click to upload reference image
+                          </span>
+                          <span className="text-xs text-cream/60">
+                            JPG, PNG, GIF up to 10MB
+                          </span>
+                        </label>
+                      </div>
+                    ) : (
+                      <div className="border-2 border-cream rounded-lg p-3 flex items-center gap-3">
+                        <Image className="h-8 w-8 text-neon-orange" />
+                        <div className="flex-1">
+                          <p className="text-sm font-medium text-cream">
+                            {uploadedImage.name}
+                          </p>
+                          <p className="text-xs text-cream/60">
+                            {(uploadedImage.size / 1024 / 1024).toFixed(2)} MB
+                          </p>
+                        </div>
+                        <Button
+                          onClick={removeImage}
+                          className="p-1 h-auto bg-red-500 hover:bg-red-600 text-white"
+                          size="sm"
+                        >
+                          <X className="h-4 w-4" />
+                        </Button>
+                      </div>
+                    )}
+                  </div>
+
                   {/* Generated Formula Display */}
                   <div className="space-y-2">
                     <label className="text-sm font-bold text-neon-orange">
