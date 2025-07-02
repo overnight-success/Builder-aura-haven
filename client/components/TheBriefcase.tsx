@@ -1554,18 +1554,6 @@ Always include:
                     <p className="text-cream/80 text-sm">
                       💡 {getQualityMessage()}
                     </p>
-
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-2 text-xs">
-                      <div className="text-cream/60">
-                        ✓ Add lighting keywords
-                      </div>
-                      <div className="text-cream/60">
-                        ✓ Choose camera framing
-                      </div>
-                      <div className="text-cream/60">
-                        ✓ Select creative direction
-                      </div>
-                    </div>
                   </div>
                 </CardContent>
               </Card>
