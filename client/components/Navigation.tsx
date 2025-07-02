@@ -115,6 +115,7 @@ export function Navigation({
               </Badge>
               <Button
                 onClick={onReset}
+                aria-label="Reset all selections"
                 className="bg-black border-2 border-black text-cream font-bold text-xs px-3 py-1.5 h-auto hover:bg-cream hover:text-black transition-all duration-200 whitespace-nowrap"
                 disabled={totalComponents === 0}
               >
