@@ -69,6 +69,9 @@ export class PromptEngine {
             case "environment":
               categoryPhrases.push(`in ${value.toLowerCase()}`);
               break;
+            case "angle":
+              categoryPhrases.push(`shot from ${value.toLowerCase()}`);
+              break;
             case "mood":
               categoryPhrases.push(`capturing ${value.toLowerCase()}`);
               break;
