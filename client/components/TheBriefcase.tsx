@@ -1039,7 +1039,7 @@ Always include:
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
                 className={`
-                  font-bold text-xs px-4 py-3 border-0 rounded-none whitespace-nowrap
+                  font-bold text-xs lg:text-sm px-3 lg:px-4 py-2 lg:py-3 border-0 rounded-none whitespace-nowrap shrink-0
                   ${
                     activeTab === tab.id
                       ? "bg-neon-orange text-black"
