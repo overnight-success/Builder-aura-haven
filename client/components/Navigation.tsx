@@ -102,7 +102,7 @@ export function Navigation({
 
             {/* Stats & Reset */}
             <div className="flex items-center gap-2 shrink-0">
-              <Badge className="bg-black border-2 border-black text-cream font-bold text-xs px-2 py-1 whitespace-nowrap">
+              <Badge className="bg-black border-2 border-black text-cream font-bold text-xs px-2 py-1 whitespace-nowrap pr-5">
                 <Target className="h-3 w-3 text-neon-orange mr-1 shrink-0" />
                 <span>{totalComponents}/8</span>
               </Badge>
