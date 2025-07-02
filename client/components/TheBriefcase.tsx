@@ -804,13 +804,6 @@ Always include:
   };
 
   const getFormulaText = () => {
-    console.log("getFormulaText called with:", {
-      customPromptText: customPromptText.trim(),
-      selectedKeywords: selectedKeywords,
-      imageDescription: imageDescription,
-      uploadedImage: uploadedImage?.name,
-    });
-
     if (
       !customPromptText.trim() &&
       selectedKeywords.length === 0 &&
