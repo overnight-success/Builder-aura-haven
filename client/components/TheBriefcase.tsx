@@ -1604,7 +1604,7 @@ Always include:
                           scenes
                         </li>
                         <li>
-                          • <strong>Obscure Terms:</strong> Use simpler
+                          ��� <strong>Obscure Terms:</strong> Use simpler
                           descriptions
                         </li>
                         <li>
@@ -1749,6 +1749,7 @@ Always include:
                           onChange={handleImageUpload}
                           className="hidden"
                           id="image-upload"
+                          aria-label="Upload reference image"
                         />
                         <label
                           htmlFor="image-upload"
