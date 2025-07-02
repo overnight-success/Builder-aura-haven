@@ -124,9 +124,7 @@ function AppContent() {
                   EXCELLENCE
                 </p>
               </div>
-              <div className="text-xs text-cream/60">
-                v2.0 • Enhanced with AI
-              </div>
+              <div className="text-xs text-cream/60">Overnight Success LLC</div>
             </div>
           </div>
         </footer>

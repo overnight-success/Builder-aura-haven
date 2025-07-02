@@ -191,28 +191,7 @@ export function PromptFormulaPreview({
             </div>
           </div>
 
-          <div className="flex items-center justify-between">
-            <Badge className="bg-black border-2 border-neon-orange text-cream font-bold text-xs px-3 py-1">
-              {computed.selectedCount} CATEGORIES +{" "}
-              {computed.hasCustomInstructions ? 1 : 0} CUSTOM +{" "}
-              {computed.hasFiles ? 1 : 0} FILES
-            </Badge>
-
-            {promptAnalysis && (
-              <Badge
-                className={cn(
-                  "font-bold text-xs px-3 py-1",
-                  promptAnalysis.quality >= 80
-                    ? "bg-green-500 text-black"
-                    : promptAnalysis.quality >= 60
-                      ? "bg-yellow-500 text-black"
-                      : "bg-red-500 text-white",
-                )}
-              >
-                {Math.round(promptAnalysis.quality)}% QUALITY
-              </Badge>
-            )}
-          </div>
+          <div className="flex items-center justify-between" />
         </CardTitle>
       </CardHeader>
 
@@ -309,61 +288,28 @@ export function PromptFormulaPreview({
           </div>
         )}
 
-        {/* Action Buttons - Mobile Optimized */}
+        {/* Action Buttons - Simplified */}
         <div className="space-y-2">
-          <div className="grid grid-cols-2 gap-1 lg:gap-2">
+          <div className="grid grid-cols-2 gap-2">
             <Button
               onClick={handleCopy}
-              className="bg-black border-2 border-neon-orange text-cream font-bold text-xs lg:text-sm px-2 lg:px-3 py-2 h-auto hover:bg-neon-orange hover:text-black transition-all duration-200 truncate"
+              className="bg-black border-2 border-neon-orange text-cream font-bold text-xs lg:text-sm px-2 py-2 h-auto hover:bg-neon-orange hover:text-black transition-all duration-200 truncate"
               disabled={!hasContent}
             >
               <Copy className="h-3 w-3 text-neon-orange mr-1 shrink-0" />
               <span className="truncate">{copied ? "COPIED!" : "COPY"}</span>
             </Button>
             <Button
-              onClick={handleExportToSora}
-              className="bg-black border-2 border-neon-orange text-cream font-bold text-xs lg:text-sm px-2 lg:px-3 py-2 h-auto hover:bg-neon-orange hover:text-black transition-all duration-200 truncate"
-              disabled={!hasContent}
-            >
-              <ExternalLink className="h-3 w-3 text-neon-orange mr-1 shrink-0" />
-              <span className="truncate">
-                {exported ? "EXPORTED!" : "EXPORT"}
-              </span>
-            </Button>
-          </div>
-
-          <div className="grid grid-cols-2 gap-1 lg:gap-2">
-            <Button
               onClick={handleFavorite}
-              className="bg-black border-2 border-neon-orange text-cream font-bold text-xs lg:text-sm px-2 lg:px-3 py-2 h-auto hover:bg-neon-orange hover:text-black transition-all duration-200 truncate"
+              className="bg-black border-2 border-neon-orange text-cream font-bold text-xs lg:text-sm px-3 py-2 h-auto hover:bg-neon-orange hover:text-black transition-all duration-200 truncate flex"
               disabled={!computed.isComplete}
             >
               <Heart className="h-3 w-3 text-neon-orange mr-1 shrink-0" />
               <span className="truncate">FAVORITE</span>
             </Button>
-            <Button
-              onClick={handleOpenSora}
-              className="bg-black border-2 border-neon-orange text-cream font-bold text-xs lg:text-sm px-2 lg:px-3 py-2 h-auto hover:bg-neon-orange hover:text-black transition-all duration-200 truncate"
-              disabled={!computed.isComplete}
-            >
-              <Download className="h-3 w-3 text-neon-orange mr-1 shrink-0" />
-              <span className="truncate">SORA</span>
-            </Button>
           </div>
-        </div>
 
-        {/* Enhanced Tips */}
-        <div className="text-xs font-medium text-cream space-y-1 border-t border-cream/20 pt-3">
-          <p className="leading-tight flex items-center gap-2">
-            <Sparkles className="h-3 w-3 text-neon-orange shrink-0" />
-            <strong className="text-neon-orange">TIP:</strong> Start with custom
-            instructions, then select 4+ categories
-          </p>
-          <p className="leading-tight flex items-center gap-2">
-            <TrendingUp className="h-3 w-3 text-neon-orange shrink-0" />
-            <strong className="text-neon-orange">QUALITY:</strong> Specific
-            vision + categories = better results
-          </p>
+          <div className="grid grid-cols-2 gap-2" />
         </div>
       </CardContent>
 
