@@ -369,7 +369,6 @@ export function FileUpload({
                 💡 Images are automatically converted to JSON format for SORA AI
               </p>
               <p>🎯 Supported: JPG, PNG, GIF, MP4, MOV, WebM</p>
-              <p>⚡ JSON data is embedded directly in your prompt formula</p>
             </div>
           </CardContent>
         )}

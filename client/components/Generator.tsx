@@ -329,30 +329,29 @@ export function Generator({ type, onActionAttempt }: GeneratorProps) {
                   <span className="text-center">FORMULA READY TO COPY!</span>
                   <TrendingUp className="h-4 w-4 lg:h-5 lg:w-5 text-neon-orange shrink-0" />
                 </div>
-                {promptAnalysis && (
-                  <div className="w-full lg:w-auto">
-                    <PromptQualityIndicator
-                      quality={promptAnalysis.quality}
-                      completeness={promptAnalysis.completeness}
-                      coherence={promptAnalysis.coherence}
-                      creativity={promptAnalysis.creativity}
-                      isAnalyzing={isAnalyzing}
-                    />
-                  </div>
-                )}
               </div>
             )}
           </div>
         </div>
 
-        {/* Formula Preview */}
-        <div className="lg:col-span-1">
+        {/* Formula Preview & Analysis */}
+        <div className="lg:col-span-1 space-y-5">
           <PromptFormulaPreview
             generatorType={type}
             onCopy={handleCopy}
             onExport={handleExport}
             promptAnalysis={promptAnalysis}
           />
+
+          {promptAnalysis && (
+            <PromptQualityIndicator
+              quality={promptAnalysis.quality}
+              completeness={promptAnalysis.completeness}
+              coherence={promptAnalysis.coherence}
+              creativity={promptAnalysis.creativity}
+              isAnalyzing={isAnalyzing}
+            />
+          )}
         </div>
       </div>
     </div>
