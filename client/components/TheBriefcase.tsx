@@ -1478,8 +1478,9 @@ Always include:
                 <CardContent>
                   <div className="text-cream/90 text-sm space-y-3">
                     <p>
-                      Create template-based prompts for consistency and
-                      efficiency, especially useful for brand style guides.
+                      The Prompt Vault is your advanced formula builder that
+                      combines custom vision, professional keywords, and image
+                      references into perfectly structured SORA prompts.
                     </p>
                     <div>
                       <h4 className="text-neon-orange font-bold mb-2">
