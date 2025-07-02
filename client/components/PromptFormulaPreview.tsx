@@ -111,8 +111,8 @@ export function PromptFormulaPreview({
       ? enhancedFormula?.enhanced || optimizedFormula
       : optimizedFormula;
 
-    // Add Sora-specific optimizations
-    const soraOptimized = `${formulaToExport}, optimized for Sora AI video generation, cinematic quality, professional grade`;
+    // Use formula as-is without automatic enhancements
+    const soraOptimized = formulaToExport;
 
     try {
       await onCopy(soraOptimized);
