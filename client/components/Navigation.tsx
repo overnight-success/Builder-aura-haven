@@ -70,8 +70,9 @@ export function Navigation({
             <div className="flex items-center flex-shrink-0">
               <img
                 src="https://cdn.builder.io/api/v1/image/assets%2F326314a2e8634f90977b83f81df01501%2Fec00ceaef5524675ba25aca88f5d5cec?format=webp&width=400"
-                alt="Overnight Success"
+                alt="Overnight Success LLC - Lifestyle Studio"
                 className="h-8 lg:h-12 w-auto"
+                loading="eager"
               />
             </div>
 
