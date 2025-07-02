@@ -99,21 +99,6 @@ export const generatorData = {
     title: "LIFESTYLE STUDIO",
     description: "Create stunning lifestyle visuals and models seamlessly.",
     categories: {
-      people: {
-        title: "Subject Focus",
-        options: [
-          "Single person portrait",
-          "Couple interaction",
-          "Family with children",
-          "Friend group dynamic",
-          "Professional individual",
-          "Active lifestyle person",
-          "Creative artist type",
-          "Senior adult wisdom",
-          "Young adult energy",
-          "Diverse group unity",
-        ],
-      },
       environment: {
         title: "Environment",
         options: [
