@@ -1488,8 +1488,9 @@ Always include:
                       </h4>
                       <ul className="space-y-1 ml-4 text-xs">
                         <li>
-                          • Create table with columns: Subject, Action, Setting,
-                          Lighting, Style, Colors
+                          • <strong>Step 1:</strong> Write your creative vision
+                          in the text area (describe your subject, scene, or
+                          concept)
                         </li>
                         <li>
                           • Use Formula property to concatenate fields into
