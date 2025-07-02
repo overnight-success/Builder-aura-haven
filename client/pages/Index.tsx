@@ -12,94 +12,6 @@ import {
   Zap,
 } from "lucide-react";
 
-const aiTools = [
-  {
-    name: "SORA by OpenAI",
-    description: "Advanced AI video generation with text-to-video capabilities",
-    url: "https://openai.com/sora",
-    category: "AI Video Generation",
-    icon: <Video className="h-6 w-6" />,
-  },
-  {
-    name: "Runway ML",
-    description: "Creative AI video tools for filmmakers and content creators",
-    url: "https://runwayml.com",
-    category: "AI Video Generation",
-    icon: <Video className="h-6 w-6" />,
-  },
-  {
-    name: "Pika Labs",
-    description: "AI video creation platform with text and image inputs",
-    url: "https://pika.art",
-    category: "AI Video Generation",
-    icon: <Video className="h-6 w-6" />,
-  },
-  {
-    name: "Stable Video Diffusion",
-    description: "Open-source video generation model by Stability AI",
-    url: "https://stability.ai/news/stable-video-diffusion-open-ai-video-model",
-    category: "AI Video Generation",
-    icon: <Video className="h-6 w-6" />,
-  },
-  {
-    name: "Synthesia",
-    description: "AI video generation with virtual avatars and voiceovers",
-    url: "https://synthesia.io",
-    category: "AI Video Generation",
-    icon: <Mic className="h-6 w-6" />,
-  },
-  {
-    name: "InVideo AI",
-    description: "AI-powered video creation and editing platform",
-    url: "https://invideo.io",
-    category: "AI Video Generation",
-    icon: <Video className="h-6 w-6" />,
-  },
-  {
-    name: "DALL-E 3",
-    description: "Advanced AI image generation from OpenAI",
-    url: "https://openai.com/dall-e-3",
-    category: "AI Image Generation",
-    icon: <Image className="h-6 w-6" />,
-  },
-  {
-    name: "Midjourney",
-    description: "High-quality AI art and image generation",
-    url: "https://midjourney.com",
-    category: "AI Image Generation",
-    icon: <Palette className="h-6 w-6" />,
-  },
-  {
-    name: "ChatGPT",
-    description: "Advanced AI language model for text generation",
-    url: "https://chat.openai.com",
-    category: "AI Text Generation",
-    icon: <FileText className="h-6 w-6" />,
-  },
-  {
-    name: "Claude",
-    description: "Advanced AI assistant for analysis and creative work",
-    url: "https://claude.ai",
-    category: "AI Text Generation",
-    icon: <Wand2 className="h-6 w-6" />,
-  },
-];
-
-const categories = [
-  {
-    name: "AI Video Generation",
-    tools: aiTools.filter((tool) => tool.category === "AI Video Generation"),
-  },
-  {
-    name: "AI Image Generation",
-    tools: aiTools.filter((tool) => tool.category === "AI Image Generation"),
-  },
-  {
-    name: "AI Text Generation",
-    tools: aiTools.filter((tool) => tool.category === "AI Text Generation"),
-  },
-];
-
 export default function Index() {
   const [showSignupWall, setShowSignupWall] = useState(true);
   const [email, setEmail] = useState("");
@@ -270,10 +182,10 @@ export default function Index() {
 
             <div
               onClick={() => openTool("https://pika.art")}
-              className="bg-gray-900 border border-gray-600 rounded-lg p-4 cursor-pointer hover:border-gray-400 hover:bg-gray-800 transition-all duration-200"
+              className="bg-neon-orange border-2 border-cream rounded-lg p-4 cursor-pointer hover:bg-cream hover:text-black transition-all duration-200"
             >
-              <h3 className="text-white font-semibold mb-2">Pika Labs</h3>
-              <p className="text-gray-400 text-sm">
+              <h3 className="text-black font-bold mb-2">Pika Labs</h3>
+              <p className="text-black text-sm">
                 AI video creation platform with text and image inputs
               </p>
             </div>
@@ -284,32 +196,32 @@ export default function Index() {
                   "https://stability.ai/news/stable-video-diffusion-open-ai-video-model",
                 )
               }
-              className="bg-gray-900 border border-gray-600 rounded-lg p-4 cursor-pointer hover:border-gray-400 hover:bg-gray-800 transition-all duration-200"
+              className="bg-neon-orange border-2 border-cream rounded-lg p-4 cursor-pointer hover:bg-cream hover:text-black transition-all duration-200"
             >
-              <h3 className="text-white font-semibold mb-2">
+              <h3 className="text-black font-bold mb-2">
                 Stable Video Diffusion
               </h3>
-              <p className="text-gray-400 text-sm">
+              <p className="text-black text-sm">
                 Open-source video generation model by Stability AI
               </p>
             </div>
 
             <div
               onClick={() => openTool("https://synthesia.io")}
-              className="bg-gray-900 border border-gray-600 rounded-lg p-4 cursor-pointer hover:border-gray-400 hover:bg-gray-800 transition-all duration-200"
+              className="bg-neon-orange border-2 border-cream rounded-lg p-4 cursor-pointer hover:bg-cream hover:text-black transition-all duration-200"
             >
-              <h3 className="text-white font-semibold mb-2">Synthesia</h3>
-              <p className="text-gray-400 text-sm">
+              <h3 className="text-black font-bold mb-2">Synthesia</h3>
+              <p className="text-black text-sm">
                 AI video generation with virtual avatars and voiceovers
               </p>
             </div>
 
             <div
               onClick={() => openTool("https://invideo.io")}
-              className="bg-gray-900 border border-gray-600 rounded-lg p-4 cursor-pointer hover:border-gray-400 hover:bg-gray-800 transition-all duration-200"
+              className="bg-neon-orange border-2 border-cream rounded-lg p-4 cursor-pointer hover:bg-cream hover:text-black transition-all duration-200"
             >
-              <h3 className="text-white font-semibold mb-2">InVideo AI</h3>
-              <p className="text-gray-400 text-sm">
+              <h3 className="text-black font-bold mb-2">InVideo AI</h3>
+              <p className="text-black text-sm">
                 AI-powered video creation and editing platform
               </p>
             </div>
@@ -317,10 +229,10 @@ export default function Index() {
         </div>
 
         {/* AI Image Generation Section */}
-        <div className="border border-gray-600 rounded-lg p-6 mb-6">
+        <div className="bg-black border-4 border-black rounded-lg p-6 mb-6">
           <div className="flex items-center mb-6">
-            <Image className="h-5 w-5 text-blue-500 mr-3" />
-            <h2 className="text-xl font-bold text-white">
+            <Image className="h-5 w-5 text-neon-orange mr-3" />
+            <h2 className="text-xl font-bold text-cream">
               AI Image Generation
             </h2>
           </div>
@@ -328,132 +240,128 @@ export default function Index() {
           <div className="grid grid-cols-3 gap-4">
             <div
               onClick={() => openTool("https://openai.com/dall-e-3")}
-              className="bg-gray-900 border border-gray-600 rounded-lg p-4 cursor-pointer hover:border-gray-400 hover:bg-gray-800 transition-all duration-200"
+              className="bg-neon-orange border-2 border-cream rounded-lg p-4 cursor-pointer hover:bg-cream hover:text-black transition-all duration-200"
             >
-              <h3 className="text-white font-semibold mb-2">DALL-E 3</h3>
-              <p className="text-gray-400 text-sm">
+              <h3 className="text-black font-bold mb-2">DALL-E 3</h3>
+              <p className="text-black text-sm">
                 Advanced AI image generation from OpenAI
               </p>
             </div>
 
             <div
               onClick={() => openTool("https://midjourney.com")}
-              className="bg-gray-900 border border-gray-600 rounded-lg p-4 cursor-pointer hover:border-gray-400 hover:bg-gray-800 transition-all duration-200"
+              className="bg-neon-orange border-2 border-cream rounded-lg p-4 cursor-pointer hover:bg-cream hover:text-black transition-all duration-200"
             >
-              <h3 className="text-white font-semibold mb-2">Midjourney</h3>
-              <p className="text-gray-400 text-sm">
+              <h3 className="text-black font-bold mb-2">Midjourney</h3>
+              <p className="text-black text-sm">
                 High-quality AI art and image generation
               </p>
             </div>
 
             <div
               onClick={() => openTool("https://stability.ai/stable-diffusion")}
-              className="bg-gray-900 border border-gray-600 rounded-lg p-4 cursor-pointer hover:border-gray-400 hover:bg-gray-800 transition-all duration-200"
+              className="bg-neon-orange border-2 border-cream rounded-lg p-4 cursor-pointer hover:bg-cream hover:text-black transition-all duration-200"
             >
-              <h3 className="text-white font-semibold mb-2">
-                Stable Diffusion
-              </h3>
-              <p className="text-gray-400 text-sm">
+              <h3 className="text-black font-bold mb-2">Stable Diffusion</h3>
+              <p className="text-black text-sm">
                 Open-source AI image generation
               </p>
             </div>
 
             <div
               onClick={() => openTool("https://leonardo.ai")}
-              className="bg-gray-900 border border-gray-600 rounded-lg p-4 cursor-pointer hover:border-gray-400 hover:bg-gray-800 transition-all duration-200"
+              className="bg-neon-orange border-2 border-cream rounded-lg p-4 cursor-pointer hover:bg-cream hover:text-black transition-all duration-200"
             >
-              <h3 className="text-white font-semibold mb-2">Leonardo.AI</h3>
-              <p className="text-gray-400 text-sm">
+              <h3 className="text-black font-bold mb-2">Leonardo.AI</h3>
+              <p className="text-black text-sm">
                 Professional AI image generation platform
               </p>
             </div>
 
             <div
               onClick={() => openTool("https://ideogram.ai")}
-              className="bg-gray-900 border border-gray-600 rounded-lg p-4 cursor-pointer hover:border-gray-400 hover:bg-gray-800 transition-all duration-200"
+              className="bg-neon-orange border-2 border-cream rounded-lg p-4 cursor-pointer hover:bg-cream hover:text-black transition-all duration-200"
             >
-              <h3 className="text-white font-semibold mb-2">Ideogram</h3>
-              <p className="text-gray-400 text-sm">
+              <h3 className="text-black font-bold mb-2">Ideogram</h3>
+              <p className="text-black text-sm">
                 AI image generation with text rendering
               </p>
             </div>
 
             <div
               onClick={() => openTool("https://firefly.adobe.com")}
-              className="bg-gray-900 border border-gray-600 rounded-lg p-4 cursor-pointer hover:border-gray-400 hover:bg-gray-800 transition-all duration-200"
+              className="bg-neon-orange border-2 border-cream rounded-lg p-4 cursor-pointer hover:bg-cream hover:text-black transition-all duration-200"
             >
-              <h3 className="text-white font-semibold mb-2">Adobe Firefly</h3>
-              <p className="text-gray-400 text-sm">
-                Creative AI tools from Adobe
-              </p>
+              <h3 className="text-black font-bold mb-2">Adobe Firefly</h3>
+              <p className="text-black text-sm">Creative AI tools from Adobe</p>
             </div>
           </div>
         </div>
 
         {/* AI Text Generation Section */}
-        <div className="border border-gray-600 rounded-lg p-6 mb-6">
+        <div className="bg-black border-4 border-black rounded-lg p-6 mb-6">
           <div className="flex items-center mb-6">
-            <FileText className="h-5 w-5 text-green-500 mr-3" />
-            <h2 className="text-xl font-bold text-white">AI Text Generation</h2>
+            <FileText className="h-5 w-5 text-neon-orange mr-3" />
+            <h2 className="text-xl font-bold text-cream">AI Text Generation</h2>
           </div>
 
           <div className="grid grid-cols-3 gap-4">
             <div
               onClick={() => openTool("https://chat.openai.com")}
-              className="bg-gray-900 border border-gray-600 rounded-lg p-4 cursor-pointer hover:border-gray-400 hover:bg-gray-800 transition-all duration-200"
+              className="bg-neon-orange border-2 border-cream rounded-lg p-4 cursor-pointer hover:bg-cream hover:text-black transition-all duration-200"
             >
-              <h3 className="text-white font-semibold mb-2">ChatGPT</h3>
-              <p className="text-gray-400 text-sm">
+              <h3 className="text-black font-bold mb-2">ChatGPT</h3>
+              <p className="text-black text-sm">
                 Advanced AI language model for text generation
               </p>
             </div>
 
             <div
               onClick={() => openTool("https://claude.ai")}
-              className="bg-gray-900 border border-gray-600 rounded-lg p-4 cursor-pointer hover:border-gray-400 hover:bg-gray-800 transition-all duration-200"
+              className="bg-neon-orange border-2 border-cream rounded-lg p-4 cursor-pointer hover:bg-cream hover:text-black transition-all duration-200"
             >
-              <h3 className="text-white font-semibold mb-2">Claude</h3>
-              <p className="text-gray-400 text-sm">
+              <h3 className="text-black font-bold mb-2">Claude</h3>
+              <p className="text-black text-sm">
                 Advanced AI assistant for analysis and creative work
               </p>
             </div>
 
             <div
               onClick={() => openTool("https://gemini.google.com")}
-              className="bg-gray-900 border border-gray-600 rounded-lg p-4 cursor-pointer hover:border-gray-400 hover:bg-gray-800 transition-all duration-200"
+              className="bg-neon-orange border-2 border-cream rounded-lg p-4 cursor-pointer hover:bg-cream hover:text-black transition-all duration-200"
             >
-              <h3 className="text-white font-semibold mb-2">Gemini</h3>
-              <p className="text-gray-400 text-sm">
+              <h3 className="text-black font-bold mb-2">Gemini</h3>
+              <p className="text-black text-sm">
                 Google's advanced AI language model
               </p>
             </div>
 
             <div
               onClick={() => openTool("https://copilot.microsoft.com")}
-              className="bg-gray-900 border border-gray-600 rounded-lg p-4 cursor-pointer hover:border-gray-400 hover:bg-gray-800 transition-all duration-200"
+              className="bg-neon-orange border-2 border-cream rounded-lg p-4 cursor-pointer hover:bg-cream hover:text-black transition-all duration-200"
             >
-              <h3 className="text-white font-semibold mb-2">Copilot</h3>
-              <p className="text-gray-400 text-sm">
+              <h3 className="text-black font-bold mb-2">Copilot</h3>
+              <p className="text-black text-sm">
                 Microsoft's AI assistant and creative companion
               </p>
             </div>
 
             <div
               onClick={() => openTool("https://perplexity.ai")}
-              className="bg-gray-900 border border-gray-600 rounded-lg p-4 cursor-pointer hover:border-gray-400 hover:bg-gray-800 transition-all duration-200"
+              className="bg-neon-orange border-2 border-cream rounded-lg p-4 cursor-pointer hover:bg-cream hover:text-black transition-all duration-200"
             >
-              <h3 className="text-white font-semibold mb-2">Perplexity</h3>
-              <p className="text-gray-400 text-sm">
+              <h3 className="text-black font-bold mb-2">Perplexity</h3>
+              <p className="text-black text-sm">
                 AI-powered research and answer engine
               </p>
             </div>
 
             <div
               onClick={() => openTool("https://writesonic.com")}
-              className="bg-gray-900 border border-gray-600 rounded-lg p-4 cursor-pointer hover:border-gray-400 hover:bg-gray-800 transition-all duration-200"
+              className="bg-neon-orange border-2 border-cream rounded-lg p-4 cursor-pointer hover:bg-cream hover:text-black transition-all duration-200"
             >
-              <h3 className="text-white font-semibold mb-2">Writesonic</h3>
-              <p className="text-gray-400 text-sm">
+              <h3 className="text-black font-bold mb-2">Writesonic</h3>
+              <p className="text-black text-sm">
                 AI writing and content creation platform
               </p>
             </div>
@@ -461,10 +369,10 @@ export default function Index() {
         </div>
 
         {/* AI Audio Generation Section */}
-        <div className="border border-gray-600 rounded-lg p-6 mb-6">
+        <div className="bg-black border-4 border-black rounded-lg p-6 mb-6">
           <div className="flex items-center mb-6">
-            <Mic className="h-5 w-5 text-purple-500 mr-3" />
-            <h2 className="text-xl font-bold text-white">
+            <Mic className="h-5 w-5 text-neon-orange mr-3" />
+            <h2 className="text-xl font-bold text-cream">
               AI Audio Generation
             </h2>
           </div>
@@ -472,60 +380,60 @@ export default function Index() {
           <div className="grid grid-cols-3 gap-4">
             <div
               onClick={() => openTool("https://elevenlabs.io")}
-              className="bg-gray-900 border border-gray-600 rounded-lg p-4 cursor-pointer hover:border-gray-400 hover:bg-gray-800 transition-all duration-200"
+              className="bg-neon-orange border-2 border-cream rounded-lg p-4 cursor-pointer hover:bg-cream hover:text-black transition-all duration-200"
             >
-              <h3 className="text-white font-semibold mb-2">ElevenLabs</h3>
-              <p className="text-gray-400 text-sm">
+              <h3 className="text-black font-bold mb-2">ElevenLabs</h3>
+              <p className="text-black text-sm">
                 Advanced AI voice synthesis and cloning
               </p>
             </div>
 
             <div
               onClick={() => openTool("https://murf.ai")}
-              className="bg-gray-900 border border-gray-600 rounded-lg p-4 cursor-pointer hover:border-gray-400 hover:bg-gray-800 transition-all duration-200"
+              className="bg-neon-orange border-2 border-cream rounded-lg p-4 cursor-pointer hover:bg-cream hover:text-black transition-all duration-200"
             >
-              <h3 className="text-white font-semibold mb-2">Murf.AI</h3>
-              <p className="text-gray-400 text-sm">
+              <h3 className="text-black font-bold mb-2">Murf.AI</h3>
+              <p className="text-black text-sm">
                 AI voiceover and text-to-speech platform
               </p>
             </div>
 
             <div
               onClick={() => openTool("https://suno.ai")}
-              className="bg-gray-900 border border-gray-600 rounded-lg p-4 cursor-pointer hover:border-gray-400 hover:bg-gray-800 transition-all duration-200"
+              className="bg-neon-orange border-2 border-cream rounded-lg p-4 cursor-pointer hover:bg-cream hover:text-black transition-all duration-200"
             >
-              <h3 className="text-white font-semibold mb-2">Suno</h3>
-              <p className="text-gray-400 text-sm">
+              <h3 className="text-black font-bold mb-2">Suno</h3>
+              <p className="text-black text-sm">
                 AI music and song generation platform
               </p>
             </div>
 
             <div
               onClick={() => openTool("https://udio.com")}
-              className="bg-gray-900 border border-gray-600 rounded-lg p-4 cursor-pointer hover:border-gray-400 hover:bg-gray-800 transition-all duration-200"
+              className="bg-neon-orange border-2 border-cream rounded-lg p-4 cursor-pointer hover:bg-cream hover:text-black transition-all duration-200"
             >
-              <h3 className="text-white font-semibold mb-2">Udio</h3>
-              <p className="text-gray-400 text-sm">
+              <h3 className="text-black font-bold mb-2">Udio</h3>
+              <p className="text-black text-sm">
                 AI music creation and generation
               </p>
             </div>
 
             <div
               onClick={() => openTool("https://speechify.com")}
-              className="bg-gray-900 border border-gray-600 rounded-lg p-4 cursor-pointer hover:border-gray-400 hover:bg-gray-800 transition-all duration-200"
+              className="bg-neon-orange border-2 border-cream rounded-lg p-4 cursor-pointer hover:bg-cream hover:text-black transition-all duration-200"
             >
-              <h3 className="text-white font-semibold mb-2">Speechify</h3>
-              <p className="text-gray-400 text-sm">
+              <h3 className="text-black font-bold mb-2">Speechify</h3>
+              <p className="text-black text-sm">
                 AI text-to-speech and voice generation
               </p>
             </div>
 
             <div
               onClick={() => openTool("https://podcast.adobe.com")}
-              className="bg-gray-900 border border-gray-600 rounded-lg p-4 cursor-pointer hover:border-gray-400 hover:bg-gray-800 transition-all duration-200"
+              className="bg-neon-orange border-2 border-cream rounded-lg p-4 cursor-pointer hover:bg-cream hover:text-black transition-all duration-200"
             >
-              <h3 className="text-white font-semibold mb-2">Adobe Podcast</h3>
-              <p className="text-gray-400 text-sm">
+              <h3 className="text-black font-bold mb-2">Adobe Podcast</h3>
+              <p className="text-black text-sm">
                 AI-powered audio enhancement and recording
               </p>
             </div>
@@ -533,69 +441,67 @@ export default function Index() {
         </div>
 
         {/* AI Code Generation Section */}
-        <div className="border border-gray-600 rounded-lg p-6 mb-6">
+        <div className="bg-black border-4 border-black rounded-lg p-6 mb-6">
           <div className="flex items-center mb-6">
-            <Wand2 className="h-5 w-5 text-yellow-500 mr-3" />
-            <h2 className="text-xl font-bold text-white">AI Code Generation</h2>
+            <Wand2 className="h-5 w-5 text-neon-orange mr-3" />
+            <h2 className="text-xl font-bold text-cream">AI Code Generation</h2>
           </div>
 
           <div className="grid grid-cols-3 gap-4">
             <div
               onClick={() => openTool("https://github.com/features/copilot")}
-              className="bg-gray-900 border border-gray-600 rounded-lg p-4 cursor-pointer hover:border-gray-400 hover:bg-gray-800 transition-all duration-200"
+              className="bg-neon-orange border-2 border-cream rounded-lg p-4 cursor-pointer hover:bg-cream hover:text-black transition-all duration-200"
             >
-              <h3 className="text-white font-semibold mb-2">GitHub Copilot</h3>
-              <p className="text-gray-400 text-sm">
+              <h3 className="text-black font-bold mb-2">GitHub Copilot</h3>
+              <p className="text-black text-sm">
                 AI pair programmer for code completion
               </p>
             </div>
 
             <div
               onClick={() => openTool("https://cursor.sh")}
-              className="bg-gray-900 border border-gray-600 rounded-lg p-4 cursor-pointer hover:border-gray-400 hover:bg-gray-800 transition-all duration-200"
+              className="bg-neon-orange border-2 border-cream rounded-lg p-4 cursor-pointer hover:bg-cream hover:text-black transition-all duration-200"
             >
-              <h3 className="text-white font-semibold mb-2">Cursor</h3>
-              <p className="text-gray-400 text-sm">
+              <h3 className="text-black font-bold mb-2">Cursor</h3>
+              <p className="text-black text-sm">
                 AI-powered code editor and IDE
               </p>
             </div>
 
             <div
               onClick={() => openTool("https://codeium.com")}
-              className="bg-gray-900 border border-gray-600 rounded-lg p-4 cursor-pointer hover:border-gray-400 hover:bg-gray-800 transition-all duration-200"
+              className="bg-neon-orange border-2 border-cream rounded-lg p-4 cursor-pointer hover:bg-cream hover:text-black transition-all duration-200"
             >
-              <h3 className="text-white font-semibold mb-2">Codeium</h3>
-              <p className="text-gray-400 text-sm">
+              <h3 className="text-black font-bold mb-2">Codeium</h3>
+              <p className="text-black text-sm">
                 Free AI code completion and chat
               </p>
             </div>
 
             <div
               onClick={() => openTool("https://replit.com")}
-              className="bg-gray-900 border border-gray-600 rounded-lg p-4 cursor-pointer hover:border-gray-400 hover:bg-gray-800 transition-all duration-200"
+              className="bg-neon-orange border-2 border-cream rounded-lg p-4 cursor-pointer hover:bg-cream hover:text-black transition-all duration-200"
             >
-              <h3 className="text-white font-semibold mb-2">Replit</h3>
-              <p className="text-gray-400 text-sm">
+              <h3 className="text-black font-bold mb-2">Replit</h3>
+              <p className="text-black text-sm">
                 AI-powered collaborative coding platform
               </p>
             </div>
 
             <div
               onClick={() => openTool("https://tabnine.com")}
-              className="bg-gray-900 border border-gray-600 rounded-lg p-4 cursor-pointer hover:border-gray-400 hover:bg-gray-800 transition-all duration-200"
+              className="bg-neon-orange border-2 border-cream rounded-lg p-4 cursor-pointer hover:bg-cream hover:text-black transition-all duration-200"
             >
-              <h3 className="text-white font-semibold mb-2">Tabnine</h3>
-              <p className="text-gray-400 text-sm">
-                AI code completion assistant
-              </p>
+              <h3 className="text-black font-bold mb-2">Tabnine</h3>
+              <p className="text-black text-sm">AI code completion assistant</p>
             </div>
 
             <div
               onClick={() => openTool("https://v0.dev")}
-              className="bg-gray-900 border border-gray-600 rounded-lg p-4 cursor-pointer hover:border-gray-400 hover:bg-gray-800 transition-all duration-200"
+              className="bg-neon-orange border-2 border-cream rounded-lg p-4 cursor-pointer hover:bg-cream hover:text-black transition-all duration-200"
             >
-              <h3 className="text-white font-semibold mb-2">v0.dev</h3>
-              <p className="text-gray-400 text-sm">
+              <h3 className="text-black font-bold mb-2">v0.dev</h3>
+              <p className="text-black text-sm">
                 AI UI code generation by Vercel
               </p>
             </div>
@@ -603,71 +509,69 @@ export default function Index() {
         </div>
 
         {/* AI Design Tools Section */}
-        <div className="border border-gray-600 rounded-lg p-6">
+        <div className="bg-black border-4 border-black rounded-lg p-6">
           <div className="flex items-center mb-6">
-            <Palette className="h-5 w-5 text-pink-500 mr-3" />
-            <h2 className="text-xl font-bold text-white">AI Design Tools</h2>
+            <Palette className="h-5 w-5 text-neon-orange mr-3" />
+            <h2 className="text-xl font-bold text-cream">AI Design Tools</h2>
           </div>
 
           <div className="grid grid-cols-3 gap-4">
             <div
               onClick={() => openTool("https://www.figma.com")}
-              className="bg-gray-900 border border-gray-600 rounded-lg p-4 cursor-pointer hover:border-gray-400 hover:bg-gray-800 transition-all duration-200"
+              className="bg-neon-orange border-2 border-cream rounded-lg p-4 cursor-pointer hover:bg-cream hover:text-black transition-all duration-200"
             >
-              <h3 className="text-white font-semibold mb-2">Figma AI</h3>
-              <p className="text-gray-400 text-sm">
+              <h3 className="text-black font-bold mb-2">Figma AI</h3>
+              <p className="text-black text-sm">
                 AI-powered design and prototyping
               </p>
             </div>
 
             <div
               onClick={() => openTool("https://www.canva.com")}
-              className="bg-gray-900 border border-gray-600 rounded-lg p-4 cursor-pointer hover:border-gray-400 hover:bg-gray-800 transition-all duration-200"
+              className="bg-neon-orange border-2 border-cream rounded-lg p-4 cursor-pointer hover:bg-cream hover:text-black transition-all duration-200"
             >
-              <h3 className="text-white font-semibold mb-2">Canva AI</h3>
-              <p className="text-gray-400 text-sm">
+              <h3 className="text-black font-bold mb-2">Canva AI</h3>
+              <p className="text-black text-sm">
                 AI design assistant for graphics
               </p>
             </div>
 
             <div
               onClick={() => openTool("https://designer.microsoft.com")}
-              className="bg-gray-900 border border-gray-600 rounded-lg p-4 cursor-pointer hover:border-gray-400 hover:bg-gray-800 transition-all duration-200"
+              className="bg-neon-orange border-2 border-cream rounded-lg p-4 cursor-pointer hover:bg-cream hover:text-black transition-all duration-200"
             >
-              <h3 className="text-white font-semibold mb-2">
-                Microsoft Designer
-              </h3>
-              <p className="text-gray-400 text-sm">
+              <h3 className="text-black font-bold mb-2">Microsoft Designer</h3>
+              <p className="text-black text-sm">
                 AI-powered design creation tool
               </p>
             </div>
 
             <div
               onClick={() => openTool("https://gamma.app")}
-              className="bg-gray-900 border border-gray-600 rounded-lg p-4 cursor-pointer hover:border-gray-400 hover:bg-gray-800 transition-all duration-200"
+              className="bg-neon-orange border-2 border-cream rounded-lg p-4 cursor-pointer hover:bg-cream hover:text-black transition-all duration-200"
             >
-              <h3 className="text-white font-semibold mb-2">Gamma</h3>
-              <p className="text-gray-400 text-sm">
+              <h3 className="text-black font-bold mb-2">Gamma</h3>
+              <p className="text-black text-sm">
                 AI presentation and document creation
               </p>
             </div>
 
             <div
               onClick={() => openTool("https://www.framer.com")}
-              className="bg-gray-900 border border-gray-600 rounded-lg p-4 cursor-pointer hover:border-gray-400 hover:bg-gray-800 transition-all duration-200"
+              className="bg-neon-orange border-2 border-cream rounded-lg p-4 cursor-pointer hover:bg-cream hover:text-black transition-all duration-200"
             >
-              <h3 className="text-white font-semibold mb-2">Framer AI</h3>
-              <p className="text-gray-400 text-sm">
+              <h3 className="text-black font-bold mb-2">Framer AI</h3>
+              <p className="text-black text-sm">
                 AI website and app design platform
               </p>
             </div>
 
             <div
               onClick={() => openTool("https://beautiful.ai")}
-              className="bg-gray-900 border border-gray-600 rounded-lg p-4 cursor-pointer hover:border-gray-400 hover:bg-gray-800 transition-all duration-200"
+              className="bg-neon-orange border-2 border-cream rounded-lg p-4 cursor-pointer hover:bg-cream hover:text-black transition-all duration-200"
             >
-              <h3 className="text-white font-semibold mb-2">Beautiful.AI</h3>
-              <p className="text-gray-400 text-sm">
+              <h3 className="text-black font-bold mb-2">Beautiful.AI</h3>
+              <p className="text-black text-sm">
                 AI-powered presentation design
               </p>
             </div>
