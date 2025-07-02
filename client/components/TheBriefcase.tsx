@@ -803,12 +803,25 @@ Always include:
   };
 
   const getFormulaText = () => {
-    if (!customPromptText.trim() && selectedKeywords.length === 0) {
-      return "Type your vision above and click keywords below to build your custom formula...";
+    if (
+      !customPromptText.trim() &&
+      selectedKeywords.length === 0 &&
+      !imageDescription
+    ) {
+      return "Type your vision above, upload an image, and click keywords below to build your custom formula...";
     }
 
     // Start with the custom text
     let formula = customPromptText.trim();
+
+    // Add image description if available
+    if (imageDescription) {
+      if (formula) {
+        formula += ", " + imageDescription;
+      } else {
+        formula = imageDescription;
+      }
+    }
 
     if (selectedKeywords.length > 0) {
       // Restructure keywords for optimal image generation output
