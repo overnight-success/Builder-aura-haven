@@ -909,7 +909,7 @@ Always include:
             <div className="p-2 rounded-lg bg-black">
               <Archive className="h-6 w-6 text-neon-orange" />
             </div>
-            <h2 className="text-2xl font-black text-black">THE BRIEFCASE</h2>
+            <h2 className="text-2xl font-black text-white">THE BRIEFCASE</h2>
           </div>
           <Button
             onClick={onClose}
