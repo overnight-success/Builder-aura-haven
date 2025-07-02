@@ -1030,7 +1030,10 @@ Always include:
 
         {/* Tabs */}
         <div className="border-b-2 border-black bg-black">
-          <div className="flex overflow-x-auto">
+          <div
+            className="flex overflow-x-auto scrollbar-hide"
+            style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+          >
             {tabs.map((tab) => (
               <Button
                 key={tab.id}
