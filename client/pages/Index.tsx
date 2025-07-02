@@ -239,10 +239,10 @@ export default function Index() {
         </div>
 
         {/* AI Video Generation Section */}
-        <div className="border border-gray-600 rounded-lg p-6">
+        <div className="bg-black border-4 border-black rounded-lg p-6 mb-6">
           <div className="flex items-center mb-6">
-            <Video className="h-5 w-5 text-red-500 mr-3" />
-            <h2 className="text-xl font-bold text-white">
+            <Video className="h-5 w-5 text-neon-orange mr-3" />
+            <h2 className="text-xl font-bold text-cream">
               AI Video Generation
             </h2>
           </div>
