@@ -995,7 +995,9 @@ Always include:
     document.body.removeChild(textArea);
 
     if (!copySuccess) {
-      alert(`Copy this prompt:\n\n${finalPrompt}`);
+      alert(
+        `❌ Copy failed. Please copy this prompt manually:\n\n${finalPrompt}`,
+      );
     }
 
     // Show success feedback
