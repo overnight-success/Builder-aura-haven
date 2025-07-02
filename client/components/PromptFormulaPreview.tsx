@@ -195,7 +195,23 @@ export function PromptFormulaPreview({
         </CardTitle>
       </CardHeader>
 
-      <CardContent className="space-y-6">
+      <CardContent className="space-y-6 px-6 pb-5">
+        {/* Quality Badge */}
+        {promptAnalysis && (
+          <Badge
+            className={cn(
+              "font-bold text-xs px-3 py-1 mb-2",
+              promptAnalysis.quality >= 80
+                ? "bg-green-500 text-black"
+                : promptAnalysis.quality >= 60
+                  ? "bg-yellow-500 text-black"
+                  : "bg-red-500 text-white",
+            )}
+          >
+            {Math.round(promptAnalysis.quality)}% QUALITY
+          </Badge>
+        )}
+
         {/* Formula Display */}
         <div className="relative">
           <div
