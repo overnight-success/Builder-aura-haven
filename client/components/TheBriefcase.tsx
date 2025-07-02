@@ -870,7 +870,7 @@ Always include:
 
   const copyFormula = async () => {
     const formula = getFormulaText();
-    if (selectedKeywords.length === 0) return;
+    if (!customPromptText.trim() && selectedKeywords.length === 0) return;
 
     try {
       await navigator.clipboard.writeText(formula);
