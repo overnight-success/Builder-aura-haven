@@ -91,7 +91,7 @@ export function Navigation({
                   key={item.id}
                   onClick={() => handlePageChange(item.id)}
                   className={`
-                    font-bold text-xs lg:text-sm px-2 lg:px-3 py-1 lg:py-2 h-auto border-2 transition-all duration-200 whitespace-nowrap shrink-0 min-w-0 mr-5
+                    font-bold text-xs lg:text-sm px-2 lg:px-3 py-1 lg:py-2 h-auto border-2 transition-all duration-200 whitespace-nowrap shrink-0 min-w-0 mr-3
                     ${
                       (currentPage === item.id && !showBriefcase) ||
                       (item.id === "briefcase" && showBriefcase)
