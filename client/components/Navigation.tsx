@@ -35,11 +35,6 @@ export function Navigation({
       icon: <Briefcase className="h-5 w-5" />,
     },
     {
-      id: "lifestyle",
-      label: "LIFESTYLE STUDIO",
-      icon: <Camera className="h-5 w-5" />,
-    },
-    {
       id: "access",
       label: "GET FULL ACCESS",
       icon: <Crown className="h-5 w-5" />,
