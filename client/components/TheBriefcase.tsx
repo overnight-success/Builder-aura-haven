@@ -1687,7 +1687,7 @@ Always include:
                 </p>
               </div>
 
-              <div className="space-y-4">
+              <div>
                 {updates.map((update, index) => (
                   <Card key={index} className="bg-black border-2 border-cream">
                     <CardContent className="p-6">
