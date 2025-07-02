@@ -250,10 +250,10 @@ export default function Index() {
           <div className="grid grid-cols-3 gap-4">
             <div
               onClick={() => openTool("https://openai.com/sora")}
-              className="bg-gray-900 border border-gray-600 rounded-lg p-4 cursor-pointer hover:border-gray-400 hover:bg-gray-800 transition-all duration-200"
+              className="bg-neon-orange border-2 border-cream rounded-lg p-4 cursor-pointer hover:bg-cream hover:text-black transition-all duration-200"
             >
-              <h3 className="text-white font-semibold mb-2">SORA by OpenAI</h3>
-              <p className="text-gray-400 text-sm">
+              <h3 className="text-black font-bold mb-2">SORA by OpenAI</h3>
+              <p className="text-black text-sm">
                 Advanced AI video generation with text-to-video capabilities
               </p>
             </div>
