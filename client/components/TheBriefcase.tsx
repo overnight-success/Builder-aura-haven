@@ -782,7 +782,24 @@ Always include:
   const clearFormula = () => {
     setSelectedKeywords([]);
     setCustomPromptText("");
+    setUploadedImage(null);
+    setImageDescription("");
     console.log("Formula cleared");
+  };
+
+  const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file && file.type.startsWith("image/")) {
+      setUploadedImage(file);
+      // Generate a basic description based on filename and type
+      const description = `[Image: ${file.name.replace(/\.[^/.]+$/, "").replace(/[-_]/g, " ")}]`;
+      setImageDescription(description);
+    }
+  };
+
+  const removeImage = () => {
+    setUploadedImage(null);
+    setImageDescription("");
   };
 
   const getFormulaText = () => {
