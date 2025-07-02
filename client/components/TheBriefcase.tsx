@@ -1026,40 +1026,60 @@ Always include:
 
   const copyPrompt = async (prompt: string, event?: any) => {
     const finalPrompt = replacePlaceholders(prompt);
+    const clickedButton = event?.target?.closest("button");
+    let copySuccess = false;
+
+    // First try: Modern Clipboard API
     try {
-      await navigator.clipboard.writeText(finalPrompt);
-      // Show success feedback
-      const clickedButton = event?.target?.closest("button");
-      if (clickedButton) {
-        const originalText = clickedButton.innerHTML;
-        clickedButton.innerHTML =
-          '<svg class="h-3 w-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>';
-        clickedButton.style.backgroundColor = "#10b981";
-        setTimeout(() => {
-          clickedButton.innerHTML = originalText;
-          clickedButton.style.backgroundColor = "";
-        }, 1500);
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(finalPrompt);
+        copySuccess = true;
       }
     } catch (error) {
-      // Fallback for browsers that don't support clipboard API
-      const textArea = document.createElement("textarea");
-      textArea.value = finalPrompt;
-      document.body.appendChild(textArea);
-      textArea.select();
-      document.execCommand("copy");
-      document.body.removeChild(textArea);
-      // Show success feedback for fallback too
-      const clickedButton = event?.target?.closest("button");
-      if (clickedButton) {
-        const originalText = clickedButton.innerHTML;
-        clickedButton.innerHTML =
-          '<svg class="h-3 w-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>';
-        clickedButton.style.backgroundColor = "#10b981";
-        setTimeout(() => {
-          clickedButton.innerHTML = originalText;
-          clickedButton.style.backgroundColor = "";
-        }, 1500);
+      console.log("Modern clipboard failed for prompt copy:", error);
+    }
+
+    // Second try: Legacy execCommand with improved implementation
+    if (!copySuccess) {
+      try {
+        const textArea = document.createElement("textarea");
+        textArea.value = finalPrompt;
+        textArea.style.position = "absolute";
+        textArea.style.left = "-9999px";
+        textArea.style.top = "0";
+        textArea.style.opacity = "0";
+        textArea.setAttribute("readonly", "");
+
+        document.body.appendChild(textArea);
+        textArea.select();
+        textArea.setSelectionRange(0, finalPrompt.length);
+
+        copySuccess = document.execCommand("copy");
+        document.body.removeChild(textArea);
+      } catch (legacyError) {
+        console.log("Legacy copy method failed for prompt:", legacyError);
       }
+    }
+
+    // Final fallback: Manual copy with alert
+    if (!copySuccess) {
+      try {
+        alert(`Copy failed. Here's your prompt:\n\n${finalPrompt}`);
+      } catch (alertError) {
+        console.error("All copy methods failed for prompt:", alertError);
+      }
+    }
+
+    // Show success feedback only if copy was successful
+    if (copySuccess && clickedButton) {
+      const originalText = clickedButton.innerHTML;
+      clickedButton.innerHTML =
+        '<svg class="h-3 w-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>';
+      clickedButton.style.backgroundColor = "#10b981";
+      setTimeout(() => {
+        clickedButton.innerHTML = originalText;
+        clickedButton.style.backgroundColor = "";
+      }, 1500);
     }
   };
 
