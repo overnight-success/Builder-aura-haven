@@ -597,6 +597,23 @@ export default function Index() {
             </div>
           </div>
         </div>
+
+        {/* Bottom Banner */}
+        <div
+          onClick={goToMainApp}
+          className="bg-black border-4 border-black rounded-lg p-6 mt-8 cursor-pointer hover:bg-gray-900 transition-all duration-200 text-center"
+        >
+          <h2 className="text-3xl font-black text-neon-orange mb-3">
+            🎯 Ready to Create? Unlock Our AI Creative System Today
+          </h2>
+          <p className="text-cream font-bold text-lg mb-4">
+            Join thousands using our advanced prompt generation system for Sora
+            AI
+          </p>
+          <div className="bg-neon-orange text-black font-black py-3 px-6 rounded-lg inline-block hover:bg-cream transition-colors">
+            ACCESS THE FULL SYSTEM →
+          </div>
+        </div>
       </div>
     </div>
   );
