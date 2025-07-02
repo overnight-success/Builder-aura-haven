@@ -812,18 +812,15 @@ Always include:
       return "Type your vision above, upload an image, and click keywords below to build your custom formula...";
     }
 
-    // Start with the custom text
-    let formula = customPromptText.trim();
+    // Build structured prompt for SORA image generation
+    const formulaParts = [];
 
-    // Add image description if available
-    if (imageDescription) {
-      if (formula) {
-        formula += ", " + imageDescription;
-      } else {
-        formula = imageDescription;
-      }
+    // 1. Start with custom text/vision
+    if (customPromptText.trim()) {
+      formulaParts.push(customPromptText.trim());
     }
 
+    // 2. Add structured keywords
     if (selectedKeywords.length > 0) {
       // Restructure keywords for optimal image generation output
       const lighting = selectedKeywords.filter((k) =>
@@ -882,24 +879,28 @@ Always include:
           !quality.includes(k),
       );
 
-      // Build structured prompt for image generation
-      const keywordFormula = [];
-      if (remaining.length > 0) keywordFormula.push(remaining.join(", "));
-      if (camera.length > 0) keywordFormula.push(camera.join(", "));
-      if (lighting.length > 0) keywordFormula.push(lighting.join(", "));
-      if (style.length > 0) keywordFormula.push(style.join(", "));
-      if (quality.length > 0) keywordFormula.push(quality.join(", "));
+      // Build keyword sections in logical order
+      const keywordSections = [];
+      if (remaining.length > 0) keywordSections.push(remaining.join(", "));
+      if (camera.length > 0) keywordSections.push(camera.join(", "));
+      if (lighting.length > 0) keywordSections.push(lighting.join(", "));
+      if (style.length > 0) keywordSections.push(style.join(", "));
+      if (quality.length > 0) keywordSections.push(quality.join(", "));
 
-      const keywordString = keywordFormula.join(", ");
-
-      if (formula && keywordString) {
-        formula += ", " + keywordString;
-      } else if (keywordString) {
-        formula = keywordString;
+      if (keywordSections.length > 0) {
+        formulaParts.push(keywordSections.join(", "));
       }
     }
 
-    return formula || "Start typing your vision...";
+    // 3. Add image reference at the end for SORA processing
+    if (imageDescription && uploadedImage) {
+      const imageRef = `--reference image: ${uploadedImage.name} (${imageDescription.replace(/[\[\]]/g, "")})`;
+      formulaParts.push(imageRef);
+    }
+
+    return formulaParts.length > 0
+      ? formulaParts.join(", ")
+      : "Start typing your vision...";
   };
 
   const copyFormula = async () => {
