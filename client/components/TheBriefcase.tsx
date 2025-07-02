@@ -1012,7 +1012,7 @@ Always include:
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
       <div className="bg-black rounded-lg max-w-6xl w-full max-h-[95vh] lg:max-h-[90vh] overflow-hidden">
         {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b-4 border-black">
+        <div className="flex items-center justify-between p-4 lg:p-6 border-b-4 border-black">
           <div className="flex items-center gap-3">
             <div className="p-2 rounded-lg bg-black">
               <Archive className="h-6 w-6 text-neon-orange" />
