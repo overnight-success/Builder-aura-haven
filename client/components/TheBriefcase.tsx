@@ -1493,8 +1493,8 @@ Always include:
                           concept)
                         </li>
                         <li>
-                          • Use Formula property to concatenate fields into
-                          prompt string
+                          • <strong>Step 2:</strong> Upload a reference image
+                          for visual context (optional but recommended)
                         </li>
                         <li>
                           �� Include conditional parts (omit empty fields)
