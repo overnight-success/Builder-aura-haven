@@ -1833,6 +1833,7 @@ Always include:
                         selectedKeywords.length === 0 &&
                         !imageDescription
                       }
+                      aria-label="Copy generated formula to clipboard"
                     >
                       <Copy className="h-4 w-4 mr-2" />
                       COPY FORMULA
