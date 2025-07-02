@@ -39,6 +39,11 @@ export function Navigation({
       label: "LIFESTYLE GENERATOR",
       icon: <Camera className="h-5 w-5" />,
     },
+    {
+      id: "access",
+      label: "GET FULL ACCESS",
+      icon: <Crown className="h-5 w-5" />,
+    },
   ];
 
   const handlePageChange = (pageId: string) => {
