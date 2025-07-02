@@ -783,78 +783,89 @@ Always include:
   };
 
   const getFormulaText = () => {
-    if (selectedKeywords.length === 0) {
-      return "Click keywords below to build your custom formula...";
+    if (!customPromptText.trim() && selectedKeywords.length === 0) {
+      return "Type your vision above and click keywords below to build your custom formula...";
     }
 
-    // Restructure keywords for optimal image generation output
-    const lighting = selectedKeywords.filter((k) =>
-      [
-        "studio lighting",
-        "soft lighting",
-        "dramatic lighting",
-        "natural lighting",
-        "golden hour",
-        "neon lighting",
-        "backlighting",
-        "rim lighting",
-      ].includes(k),
-    );
-    const camera = selectedKeywords.filter((k) =>
-      [
-        "close-up",
-        "wide shot",
-        "portrait view",
-        "overhead view",
-        "low angle",
-        "high angle",
-        "dutch angle",
-        "macro angle",
-      ].includes(k),
-    );
-    const style = selectedKeywords.filter((k) =>
-      [
-        "minimalist",
-        "vintage",
-        "modern",
-        "futuristic",
-        "elegant",
-        "bold",
-        "artistic",
-        "commercial",
-      ].includes(k),
-    );
-    const quality = selectedKeywords.filter((k) =>
-      [
-        "4K",
-        "8K",
-        "high resolution",
-        "professional quality",
-        "photographic quality",
-        "ultra-detailed",
-        "photorealistic",
-        "masterpiece",
-      ].includes(k),
-    );
-    const remaining = selectedKeywords.filter(
-      (k) =>
-        !lighting.includes(k) &&
-        !camera.includes(k) &&
-        !style.includes(k) &&
-        !quality.includes(k),
-    );
+    // Start with the custom text
+    let formula = customPromptText.trim();
 
-    // Build structured prompt
-    let formula = "";
-    if (remaining.length > 0) formula += remaining.join(", ");
-    if (camera.length > 0) formula += (formula ? ", " : "") + camera.join(", ");
-    if (lighting.length > 0)
-      formula += (formula ? ", " : "") + lighting.join(", ");
-    if (style.length > 0) formula += (formula ? ", " : "") + style.join(", ");
-    if (quality.length > 0)
-      formula += (formula ? ", " : "") + quality.join(", ");
+    if (selectedKeywords.length > 0) {
+      // Restructure keywords for optimal image generation output
+      const lighting = selectedKeywords.filter((k) =>
+        [
+          "studio lighting",
+          "soft lighting",
+          "dramatic lighting",
+          "natural lighting",
+          "golden hour",
+          "neon lighting",
+          "backlighting",
+          "rim lighting",
+        ].includes(k),
+      );
+      const camera = selectedKeywords.filter((k) =>
+        [
+          "close-up",
+          "wide shot",
+          "portrait view",
+          "overhead view",
+          "low angle",
+          "high angle",
+          "dutch angle",
+          "macro angle",
+        ].includes(k),
+      );
+      const style = selectedKeywords.filter((k) =>
+        [
+          "minimalist",
+          "vintage",
+          "modern",
+          "futuristic",
+          "elegant",
+          "bold",
+          "artistic",
+          "commercial",
+        ].includes(k),
+      );
+      const quality = selectedKeywords.filter((k) =>
+        [
+          "4K",
+          "8K",
+          "high resolution",
+          "professional quality",
+          "photographic quality",
+          "ultra-detailed",
+          "photorealistic",
+          "masterpiece",
+        ].includes(k),
+      );
+      const remaining = selectedKeywords.filter(
+        (k) =>
+          !lighting.includes(k) &&
+          !camera.includes(k) &&
+          !style.includes(k) &&
+          !quality.includes(k),
+      );
 
-    return formula || selectedKeywords.join(", ");
+      // Build structured prompt for image generation
+      const keywordFormula = [];
+      if (remaining.length > 0) keywordFormula.push(remaining.join(", "));
+      if (camera.length > 0) keywordFormula.push(camera.join(", "));
+      if (lighting.length > 0) keywordFormula.push(lighting.join(", "));
+      if (style.length > 0) keywordFormula.push(style.join(", "));
+      if (quality.length > 0) keywordFormula.push(quality.join(", "));
+
+      const keywordString = keywordFormula.join(", ");
+
+      if (formula && keywordString) {
+        formula += ", " + keywordString;
+      } else if (keywordString) {
+        formula = keywordString;
+      }
+    }
+
+    return formula || "Start typing your vision...";
   };
 
   const copyFormula = async () => {
