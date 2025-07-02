@@ -914,57 +914,35 @@ Always include:
     return finalFormula;
   };
 
-  const copyFormula = async () => {
+  const copyFormula = () => {
     const formula = getFormulaText();
     if (
       !customPromptText.trim() &&
       selectedKeywords.length === 0 &&
       !imageDescription
     ) {
-      console.log("No content to copy");
       return;
     }
 
-    console.log("Attempting to copy formula:", formula);
+    // Simple, reliable copy
+    const textArea = document.createElement("textarea");
+    textArea.value = formula;
+    textArea.style.position = "fixed";
+    textArea.style.left = "-999px";
+    textArea.style.top = "-999px";
 
-    // Try modern clipboard API first
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+
     try {
-      if (navigator.clipboard && window.isSecureContext) {
-        await navigator.clipboard.writeText(formula);
-        console.log("✅ Formula copied successfully with modern API");
-        return;
-      }
+      document.execCommand("copy");
+      alert("Formula copied to clipboard!");
     } catch (error) {
-      console.log("Modern clipboard API failed:", error);
+      alert(`Copy this formula:\n\n${formula}`);
     }
 
-    // Fallback to execCommand
-    try {
-      const textArea = document.createElement("textarea");
-      textArea.value = formula;
-      textArea.style.position = "fixed";
-      textArea.style.left = "-999999px";
-      textArea.style.top = "-999999px";
-      textArea.style.opacity = "0";
-
-      document.body.appendChild(textArea);
-      textArea.focus();
-      textArea.select();
-
-      const success = document.execCommand("copy");
-      document.body.removeChild(textArea);
-
-      if (success) {
-        console.log("✅ Formula copied successfully with execCommand");
-        return;
-      }
-    } catch (error) {
-      console.log("execCommand failed:", error);
-    }
-
-    // Final fallback: show in alert for manual copy
-    console.log("All clipboard methods failed, showing alert");
-    alert(`Please copy this formula manually:\n\n${formula}`);
+    document.body.removeChild(textArea);
   };
 
   const getPromptQualityScore = () => {
@@ -1498,7 +1476,7 @@ Always include:
                           overall scene coherence
                         </li>
                         <li>
-                          ��� <strong>One Change at a Time:</strong> For big
+                          • <strong>One Change at a Time:</strong> For big
                           edits, work stepwise
                         </li>
                         <li>
