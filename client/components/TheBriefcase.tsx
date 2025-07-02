@@ -905,9 +905,13 @@ Always include:
       formulaParts.push(imageRef);
     }
 
-    return formulaParts.length > 0
-      ? formulaParts.join(", ")
-      : "Start typing your vision...";
+    const finalFormula =
+      formulaParts.length > 0
+        ? formulaParts.join(", ")
+        : "Start typing your vision...";
+
+    console.log("Final formula generated:", finalFormula);
+    return finalFormula;
   };
 
   const copyFormula = async () => {
@@ -1494,7 +1498,7 @@ Always include:
                           overall scene coherence
                         </li>
                         <li>
-                          • <strong>One Change at a Time:</strong> For big
+                          ��� <strong>One Change at a Time:</strong> For big
                           edits, work stepwise
                         </li>
                         <li>
