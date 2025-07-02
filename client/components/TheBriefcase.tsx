@@ -305,7 +305,7 @@ Always include:
         "Chloé minimalist elegance",
         "Supreme streetwear culture",
       ],
-      "Quality Modifiers": [
+      "Modify & Enhance": [
         "4K resolution",
         "photographic quality",
         "professional grade",
@@ -326,12 +326,6 @@ Always include:
         "commercial photography grade",
         "editorial standard",
         "fashion photography quality",
-      ],
-      Enhancers: [
-        "Shift texture layer: Velvet → Glass → Chrome → Plastic",
-        "Change lighting mood: Golden hour → Neon glow → Studio flash",
-        "Apply time-based logic: Day → Night → Rainy → Overcast",
-        "Swap camera angle: Top-down → Low angle → Portrait view",
         "floating dust particles",
         "lens flare streak",
         "reflections on lens",
