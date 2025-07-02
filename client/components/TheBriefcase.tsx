@@ -861,15 +861,32 @@ Always include:
 
     try {
       await navigator.clipboard.writeText(formula);
-      // Visual feedback could be added here
+      console.log("Formula copied to clipboard:", formula);
     } catch (error) {
+      console.error("Clipboard copy failed, using fallback:", error);
       // Fallback for browsers that don't support clipboard API
-      const textArea = document.createElement("textarea");
-      textArea.value = formula;
-      document.body.appendChild(textArea);
-      textArea.select();
-      document.execCommand("copy");
-      document.body.removeChild(textArea);
+      try {
+        const textArea = document.createElement("textarea");
+        textArea.value = formula;
+        textArea.style.position = "fixed";
+        textArea.style.left = "-999999px";
+        textArea.style.top = "-999999px";
+        textArea.style.opacity = "0";
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+
+        const success = document.execCommand("copy");
+        document.body.removeChild(textArea);
+
+        if (success) {
+          console.log("Formula copied using fallback method");
+        } else {
+          console.error("Fallback copy also failed");
+        }
+      } catch (fallbackError) {
+        console.error("All copy methods failed:", fallbackError);
+      }
     }
   };
 
