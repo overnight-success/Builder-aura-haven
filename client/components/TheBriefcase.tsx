@@ -351,22 +351,6 @@ Always include:
   const updates = [
     {
       date: "Jan 20, 2025",
-      title: "O/S Creative System - Waiting List Now Open",
-      type: "New Launch",
-      description:
-        "Join the waitlist for our revolutionary O/S Creative System - the next generation of AI-powered creative tools",
-      isNew: true,
-    },
-    {
-      date: "Jan 20, 2025",
-      title: "Get Our Beginners Playbook to AI Creative for Free Here",
-      type: "Free Resource",
-      description:
-        "Download our comprehensive beginner's guide to AI creative tools and start creating professional content today",
-      isNew: true,
-    },
-    {
-      date: "Jan 20, 2025",
       title: "Follow Us on Social @overnightsuccessllc",
       type: "Social Update",
       description:
