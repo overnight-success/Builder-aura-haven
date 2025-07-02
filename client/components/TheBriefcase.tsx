@@ -785,10 +785,18 @@ Always include:
   const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file && file.type.startsWith("image/")) {
+      // Check file size (limit to 10MB)
+      if (file.size > 10 * 1024 * 1024) {
+        alert("❌ File too large. Please select an image under 10MB.");
+        return;
+      }
+
       setUploadedImage(file);
       // Generate a basic description based on filename and type
       const description = `[Image: ${file.name.replace(/\.[^/.]+$/, "").replace(/[-_]/g, " ")}]`;
       setImageDescription(description);
+    } else {
+      alert("❌ Please select a valid image file (JPG, PNG, GIF).");
     }
   };
 
