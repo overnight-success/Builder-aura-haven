@@ -786,10 +786,10 @@ Always include:
       return "Click keywords below to build your custom formula...";
     }
 
-    // Restructure keywords for optimal SORA output
+    // Restructure keywords for optimal image generation output
     const lighting = selectedKeywords.filter((k) =>
       [
-        "cinematic lighting",
+        "studio lighting",
         "soft lighting",
         "dramatic lighting",
         "natural lighting",
@@ -803,12 +803,12 @@ Always include:
       [
         "close-up",
         "wide shot",
-        "medium shot",
+        "portrait view",
         "overhead view",
         "low angle",
         "high angle",
         "dutch angle",
-        "handheld camera",
+        "macro angle",
       ].includes(k),
     );
     const style = selectedKeywords.filter((k) =>
@@ -829,7 +829,7 @@ Always include:
         "8K",
         "high resolution",
         "professional quality",
-        "cinematic quality",
+        "photographic quality",
         "ultra-detailed",
         "photorealistic",
         "masterpiece",
