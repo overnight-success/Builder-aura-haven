@@ -918,11 +918,17 @@ Always include:
     textArea.focus();
     textArea.select();
 
+    let success = false;
     try {
-      document.execCommand("copy");
-      alert("Formula copied to clipboard!");
+      success = document.execCommand("copy");
     } catch (error) {
-      alert(`Copy this formula:\n\n${formula}`);
+      success = false;
+    }
+
+    if (success) {
+      alert("✅ Formula copied to clipboard!");
+    } else {
+      alert(`❌ Copy failed. Please copy this formula manually:\n\n${formula}`);
     }
 
     document.body.removeChild(textArea);
