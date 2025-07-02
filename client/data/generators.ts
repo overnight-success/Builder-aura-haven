@@ -102,6 +102,10 @@ export const generatorData = {
       environment: {
         title: "Environment",
         options: [
+          "Photography Studio",
+          "White Wall",
+          "Black Wall",
+          "City Street",
           "Fashion Studio",
           "TV Set",
           "Commercial",
