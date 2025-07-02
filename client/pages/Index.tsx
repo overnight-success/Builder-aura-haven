@@ -53,9 +53,8 @@ function AppContent() {
   ]);
 
   const handlePageChange = (page: string) => {
-    if (page === "product" || page === "lifestyle" || page === "graphic") {
-      actions.setGenerator(page);
-    }
+    // Handle navigation changes (no generators available in nav)
+    console.log("Page change requested:", page);
   };
 
   const handleReset = () => {
