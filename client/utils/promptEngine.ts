@@ -51,14 +51,8 @@ export class PromptEngine {
         prompt = customInstructions.trim();
       }
 
-      // Structure the prompt in SORA-friendly order: Subject -> Environment -> Mood -> Lighting -> Style
-      const orderedCategories = [
-        "people",
-        "environment",
-        "mood",
-        "lighting",
-        "style",
-      ];
+      // Structure the prompt in SORA-friendly order: Environment -> Mood -> Lighting -> Style
+      const orderedCategories = ["environment", "mood", "lighting", "style"];
       const categoryPhrases: string[] = [];
 
       // Build natural language phrases from selections
