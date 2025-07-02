@@ -1719,7 +1719,10 @@ Always include:
                     <Button
                       onClick={copyFormula}
                       className="bg-neon-orange text-black hover:bg-cream font-bold"
-                      disabled={selectedKeywords.length === 0}
+                      disabled={
+                        !customPromptText.trim() &&
+                        selectedKeywords.length === 0
+                      }
                     >
                       <Copy className="h-4 w-4 mr-2" />
                       COPY FORMULA
@@ -1727,7 +1730,10 @@ Always include:
                     <Button
                       onClick={clearFormula}
                       className="bg-cream text-black hover:bg-red-500 hover:text-white font-bold"
-                      disabled={selectedKeywords.length === 0}
+                      disabled={
+                        !customPromptText.trim() &&
+                        selectedKeywords.length === 0
+                      }
                     >
                       CLEAR ALL
                     </Button>
