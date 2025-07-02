@@ -778,6 +778,7 @@ Always include:
 
   const clearFormula = () => {
     setSelectedKeywords([]);
+    console.log("Formula cleared");
   };
 
   const getFormulaText = () => {
