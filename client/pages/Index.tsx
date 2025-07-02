@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   ExternalLink,
   Video,
@@ -7,6 +7,9 @@ import {
   Mic,
   FileText,
   Palette,
+  Mail,
+  User,
+  Zap,
 } from "lucide-react";
 
 const aiTools = [
