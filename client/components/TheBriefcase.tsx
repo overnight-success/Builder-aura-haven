@@ -898,13 +898,9 @@ Always include:
       formulaParts.push(imageRef);
     }
 
-    const finalFormula =
-      formulaParts.length > 0
-        ? formulaParts.join(", ")
-        : "Start typing your vision...";
-
-    console.log("Final formula generated:", finalFormula);
-    return finalFormula;
+    return formulaParts.length > 0
+      ? formulaParts.join(", ")
+      : "Start typing your vision...";
   };
 
   const copyFormula = () => {
