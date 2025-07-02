@@ -51,9 +51,8 @@ export class PromptEngine {
         prompt = customInstructions.trim();
       }
 
-      // Structure the prompt in SORA-friendly order: Scene -> Subject -> Environment -> Mood -> Lighting -> Style
+      // Structure the prompt in SORA-friendly order: Subject -> Environment -> Mood -> Lighting -> Style
       const orderedCategories = [
-        "scene",
         "people",
         "environment",
         "mood",
