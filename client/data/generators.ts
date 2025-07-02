@@ -99,21 +99,6 @@ export const generatorData = {
     title: "LIFESTYLE STUDIO",
     description: "Create stunning lifestyle visuals and models seamlessly.",
     categories: {
-      scene: {
-        title: "Lifestyle Scene",
-        options: [
-          "Morning coffee ritual",
-          "Workspace productivity",
-          "Weekend outdoor adventure",
-          "Cozy evening at home",
-          "City street exploration",
-          "Beach vacation vibes",
-          "Family gathering moments",
-          "Fitness workout session",
-          "Creative studio time",
-          "Social dining experience",
-        ],
-      },
       people: {
         title: "Subject Focus",
         options: [
