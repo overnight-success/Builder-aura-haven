@@ -779,6 +779,7 @@ Always include:
 
   const clearFormula = () => {
     setSelectedKeywords([]);
+    setCustomPromptText("");
     console.log("Formula cleared");
   };
 
