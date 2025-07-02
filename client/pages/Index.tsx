@@ -108,8 +108,8 @@ function AppContent() {
           onReset={handleReset}
         />
 
-        {/* Current Generator */}
-        {renderCurrentGenerator()}
+        {/* Main Content */}
+        {renderMainContent()}
 
         {/* Enhanced Footer */}
         <footer className="border-t-2 border-black bg-black mt-12">
