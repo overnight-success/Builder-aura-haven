@@ -1472,7 +1472,7 @@ Always include:
               <Card className="bg-black border-2 border-cream mb-6">
                 <CardHeader>
                   <CardTitle className="text-lg font-black text-cream">
-                    8. Using Modular Prompt Formulas
+                    8. Using the Prompt Vault
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
