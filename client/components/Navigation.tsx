@@ -4,7 +4,6 @@ import { Badge } from "./ui/badge";
 import { TheBriefcase } from "./TheBriefcase";
 import {
   Package,
-  Camera,
   Palette,
   Briefcase,
   Target,
