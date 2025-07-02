@@ -1604,7 +1604,7 @@ Always include:
                           scenes
                         </li>
                         <li>
-                          ��� <strong>Obscure Terms:</strong> Use simpler
+                          • <strong>Obscure Terms:</strong> Use simpler
                           descriptions
                         </li>
                         <li>
@@ -1730,7 +1730,13 @@ Always include:
                       placeholder="Describe your creative vision, subject, or scene..."
                       className="w-full min-h-20 p-3 border-2 border-cream rounded-lg bg-black text-cream text-sm placeholder:text-cream/60 focus:border-neon-orange focus:outline-none resize-none"
                       maxLength={500}
+                      aria-label="Describe your creative vision"
+                      aria-describedby="vision-help"
                     />
+                    <div id="vision-help" className="sr-only">
+                      Describe your creative vision, subject, or scene to help
+                      generate better prompts
+                    </div>
                     <div className="text-xs text-cream/60 text-right">
                       {customPromptText.length}/500
                     </div>
