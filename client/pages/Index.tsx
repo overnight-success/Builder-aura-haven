@@ -125,7 +125,7 @@ export default function Index() {
           <div className="grid grid-cols-3 gap-4">
             <div
               onClick={() => openTool("https://openai.com/sora")}
-              className="bg-gray-900/50 border border-gray-700 rounded-lg p-6 cursor-pointer hover:border-gray-500 hover:bg-gray-800/50 transition-all duration-200"
+              className="bg-gray-900 border border-gray-600 rounded-lg p-4 cursor-pointer hover:border-gray-400 hover:bg-gray-800 transition-all duration-200"
             >
               <h3 className="text-white font-semibold mb-2">SORA by OpenAI</h3>
               <p className="text-gray-400 text-sm">
@@ -135,7 +135,7 @@ export default function Index() {
 
             <div
               onClick={() => openTool("https://runwayml.com")}
-              className="bg-gray-900/50 border border-gray-700 rounded-lg p-6 cursor-pointer hover:border-gray-500 hover:bg-gray-800/50 transition-all duration-200"
+              className="bg-gray-900 border border-gray-600 rounded-lg p-4 cursor-pointer hover:border-gray-400 hover:bg-gray-800 transition-all duration-200"
             >
               <h3 className="text-white font-semibold mb-2">Runway ML</h3>
               <p className="text-gray-400 text-sm">
@@ -145,7 +145,7 @@ export default function Index() {
 
             <div
               onClick={() => openTool("https://pika.art")}
-              className="bg-gray-900/50 border border-gray-700 rounded-lg p-6 cursor-pointer hover:border-gray-500 hover:bg-gray-800/50 transition-all duration-200"
+              className="bg-gray-900 border border-gray-600 rounded-lg p-4 cursor-pointer hover:border-gray-400 hover:bg-gray-800 transition-all duration-200"
             >
               <h3 className="text-white font-semibold mb-2">Pika Labs</h3>
               <p className="text-gray-400 text-sm">
@@ -159,7 +159,7 @@ export default function Index() {
                   "https://stability.ai/news/stable-video-diffusion-open-ai-video-model",
                 )
               }
-              className="bg-gray-900/50 border border-gray-700 rounded-lg p-6 cursor-pointer hover:border-gray-500 hover:bg-gray-800/50 transition-all duration-200"
+              className="bg-gray-900 border border-gray-600 rounded-lg p-4 cursor-pointer hover:border-gray-400 hover:bg-gray-800 transition-all duration-200"
             >
               <h3 className="text-white font-semibold mb-2">
                 Stable Video Diffusion
@@ -171,7 +171,7 @@ export default function Index() {
 
             <div
               onClick={() => openTool("https://synthesia.io")}
-              className="bg-gray-900/50 border border-gray-700 rounded-lg p-6 cursor-pointer hover:border-gray-500 hover:bg-gray-800/50 transition-all duration-200"
+              className="bg-gray-900 border border-gray-600 rounded-lg p-4 cursor-pointer hover:border-gray-400 hover:bg-gray-800 transition-all duration-200"
             >
               <h3 className="text-white font-semibold mb-2">Synthesia</h3>
               <p className="text-gray-400 text-sm">
@@ -181,7 +181,7 @@ export default function Index() {
 
             <div
               onClick={() => openTool("https://invideo.io")}
-              className="bg-gray-900/50 border border-gray-700 rounded-lg p-6 cursor-pointer hover:border-gray-500 hover:bg-gray-800/50 transition-all duration-200"
+              className="bg-gray-900 border border-gray-600 rounded-lg p-4 cursor-pointer hover:border-gray-400 hover:bg-gray-800 transition-all duration-200"
             >
               <h3 className="text-white font-semibold mb-2">InVideo AI</h3>
               <p className="text-gray-400 text-sm">
