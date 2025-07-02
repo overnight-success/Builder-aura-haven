@@ -60,9 +60,6 @@ export class PromptEngine {
         const value = selections[category];
         if (value && value.trim()) {
           switch (category) {
-            case "people":
-              categoryPhrases.push(`with ${value.toLowerCase()}`);
-              break;
             case "environment":
               categoryPhrases.push(`in ${value.toLowerCase()}`);
               break;
