@@ -144,7 +144,7 @@ export const generatorData = {
         ],
       },
       lighting: {
-        title: "Natural Lighting",
+        title: "Lighting",
         options: [
           "Golden hour warmth",
           "Soft window light",
