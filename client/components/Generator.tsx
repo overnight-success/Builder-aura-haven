@@ -110,7 +110,7 @@ export function Generator({ type, onActionAttempt }: GeneratorProps) {
       document.body.removeChild(textArea);
 
       if (!copySuccess) {
-        alert(`Copy this text:\n\n${text}`);
+        alert(`❌ Copy failed. Please copy this text manually:\n\n${text}`);
       }
 
       // Add to history
