@@ -101,17 +101,139 @@ const categories = [
 ];
 
 export default function Index() {
+  const [showSignupWall, setShowSignupWall] = useState(true);
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // Check if user has already signed up
+  useEffect(() => {
+    const hasSignedUp = localStorage.getItem("userSignedUp");
+    if (hasSignedUp === "true") {
+      setShowSignupWall(false);
+    }
+  }, []);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email || !name) return;
+
+    setIsSubmitting(true);
+
+    try {
+      // Store signup status
+      localStorage.setItem("userSignedUp", "true");
+      localStorage.setItem("userEmail", email);
+      setShowSignupWall(false);
+    } catch (error) {
+      console.error("Signup error:", error);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   const openTool = (url: string) => {
     window.open(url, "_blank");
   };
 
+  // Show signup wall if user hasn't signed up
+  if (showSignupWall) {
+    return (
+      <div className="min-h-screen bg-neon-orange flex items-center justify-center p-4">
+        <div className="bg-black border-4 border-black rounded-lg max-w-md w-full p-8">
+          {/* Logo */}
+          <div className="flex items-center justify-center mb-6">
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets%2F326314a2e8634f90977b83f81df01501%2F9a6248f59e554d6eb22258a507dde681?format=webp&width=800"
+              alt="Overnight Success Logo"
+              className="h-16 w-auto"
+            />
+          </div>
+
+          <div className="text-center mb-8">
+            <h1 className="text-3xl font-black text-cream mb-2">
+              Access AI Toolkit
+            </h1>
+            <p className="text-cream">
+              Get instant access to 36+ AI tools for creative work
+            </p>
+          </div>
+
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div>
+              <label className="block text-cream font-bold text-sm mb-2">
+                <User className="h-4 w-4 inline mr-2" />
+                Full Name *
+              </label>
+              <input
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className="w-full px-3 py-2 bg-cream text-black border-2 border-cream rounded-lg focus:outline-none focus:border-neon-orange transition-colors font-medium"
+                placeholder="Enter your full name"
+                required
+              />
+            </div>
+
+            <div>
+              <label className="block text-cream font-bold text-sm mb-2">
+                <Mail className="h-4 w-4 inline mr-2" />
+                Email Address *
+              </label>
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full px-3 py-2 bg-cream text-black border-2 border-cream rounded-lg focus:outline-none focus:border-neon-orange transition-colors font-medium"
+                placeholder="Enter your email"
+                required
+              />
+            </div>
+
+            <button
+              type="submit"
+              disabled={isSubmitting || !email || !name}
+              className="w-full bg-cream text-black hover:bg-white border-2 border-cream font-bold py-3 text-lg mt-6 rounded-lg transition-colors disabled:opacity-50"
+            >
+              {isSubmitting ? (
+                <>
+                  <div className="animate-spin rounded-full h-4 w-4 border-2 border-black border-t-transparent mr-2 inline-block" />
+                  Getting Access...
+                </>
+              ) : (
+                <>
+                  <Zap className="h-4 w-4 mr-2 inline" />
+                  GET INSTANT ACCESS
+                </>
+              )}
+            </button>
+          </form>
+
+          <div className="text-center mt-4">
+            <p className="text-cream text-xs">
+              Join thousands changing their lives with next-level AI creative
+              tools
+            </p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <div className="min-h-screen bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
-      <div className="bg-black border border-gray-600 rounded-2xl max-w-5xl w-full p-8">
-        {/* Header */}
+    <div className="min-h-screen bg-neon-orange p-4">
+      <div className="max-w-6xl mx-auto">
+        {/* Header with Logo */}
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-white mb-2">AI Toolkit</h1>
-          <p className="text-gray-400">
+          <div className="flex items-center justify-center mb-6">
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets%2F326314a2e8634f90977b83f81df01501%2F9a6248f59e554d6eb22258a507dde681?format=webp&width=800"
+              alt="Overnight Success Logo"
+              className="h-16 w-auto"
+            />
+          </div>
+          <h1 className="text-4xl font-black text-black mb-2">AI Toolkit</h1>
+          <p className="text-black font-bold">
             Essential tools and resources for AI-powered creative work
           </p>
         </div>
