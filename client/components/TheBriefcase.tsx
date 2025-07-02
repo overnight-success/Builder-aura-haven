@@ -20,6 +20,7 @@ import {
   Camera,
   Package,
   ChevronDown,
+  Upload,
 } from "lucide-react";
 
 interface TheBriefcaseProps {
