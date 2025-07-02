@@ -1807,7 +1807,8 @@ Always include:
                       className="bg-neon-orange text-black hover:bg-cream font-bold"
                       disabled={
                         !customPromptText.trim() &&
-                        selectedKeywords.length === 0
+                        selectedKeywords.length === 0 &&
+                        !imageDescription
                       }
                     >
                       <Copy className="h-4 w-4 mr-2" />
@@ -1818,7 +1819,8 @@ Always include:
                       className="bg-cream text-black hover:bg-red-500 hover:text-white font-bold"
                       disabled={
                         !customPromptText.trim() &&
-                        selectedKeywords.length === 0
+                        selectedKeywords.length === 0 &&
+                        !imageDescription
                       }
                     >
                       CLEAR ALL
