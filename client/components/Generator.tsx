@@ -91,60 +91,66 @@ export function Generator({ type, onActionAttempt }: GeneratorProps) {
 
   const handleCopy = useCallback(
     async (text: string) => {
-      // Enhanced copy with analytics
+      console.log("Attempting to copy main generator text:", text);
+      let copySuccess = false;
+
+      // Try modern clipboard API first
       try {
-        // Try modern clipboard API first
-        let clipboardSuccess = false;
-
-        if (navigator.clipboard) {
-          try {
-            await navigator.clipboard.writeText(text);
-            clipboardSuccess = true;
-          } catch (clipboardError) {
-            console.warn(
-              "Modern clipboard failed, using fallback:",
-              clipboardError,
-            );
-          }
-        }
-
-        // Fallback method
-        if (!clipboardSuccess) {
-          try {
-            const textArea = document.createElement("textarea");
-            textArea.value = text;
-            textArea.style.position = "fixed";
-            textArea.style.left = "-999999px";
-            textArea.style.top = "-999999px";
-            textArea.style.opacity = "0";
-            document.body.appendChild(textArea);
-            textArea.focus();
-            textArea.select();
-
-            const success = document.execCommand("copy");
-            document.body.removeChild(textArea);
-
-            if (!success) {
-              throw new Error("execCommand copy failed");
-            }
-          } catch (fallbackError) {
-            console.error("All copy methods failed:", fallbackError);
-            alert(`Copy failed. Please manually copy this text:\n\n${text}`);
-          }
-        }
-
-        // Add to history if successful
-        if (clipboardSuccess || true) {
-          const promptVersion = {
-            id: Date.now().toString(),
-            formula: text,
-            timestamp: Date.now(),
-            quality: promptAnalysis?.quality || 0,
-          };
-          actions.addToHistory(promptVersion);
+        if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(text);
+          copySuccess = true;
+          console.log(
+            "✅ Main generator text copied successfully with modern API",
+          );
         }
       } catch (error) {
-        console.error("Copy operation failed:", error);
+        console.log("Modern clipboard API failed:", error);
+      }
+
+      // Fallback to execCommand
+      if (!copySuccess) {
+        try {
+          const textArea = document.createElement("textarea");
+          textArea.value = text;
+          textArea.style.position = "fixed";
+          textArea.style.left = "-999999px";
+          textArea.style.top = "-999999px";
+          textArea.style.opacity = "0";
+
+          document.body.appendChild(textArea);
+          textArea.focus();
+          textArea.select();
+
+          copySuccess = document.execCommand("copy");
+          document.body.removeChild(textArea);
+
+          if (copySuccess) {
+            console.log(
+              "✅ Main generator text copied successfully with execCommand",
+            );
+          }
+        } catch (error) {
+          console.log("execCommand failed:", error);
+        }
+      }
+
+      // Final fallback: show in alert
+      if (!copySuccess) {
+        console.log("All clipboard methods failed, showing alert");
+        alert(`Please copy this text manually:\n\n${text}`);
+      }
+
+      // Add to history regardless of copy method
+      try {
+        const promptVersion = {
+          id: Date.now().toString(),
+          formula: text,
+          timestamp: Date.now(),
+          quality: promptAnalysis?.quality || 0,
+        };
+        actions.addToHistory(promptVersion);
+      } catch (historyError) {
+        console.error("Failed to add to history:", historyError);
       }
     },
     [actions, promptAnalysis],
