@@ -216,9 +216,9 @@ export default function Index() {
                   "https://stability.ai/news/stable-video-diffusion-open-ai-video-model",
                 )
               }
-              className="bg-neon-orange border-2 border-cream rounded-lg p-4 cursor-pointer hover:bg-cream hover:text-black transition-all duration-200"
+              className="bg-black border-2 border-neon-orange rounded-lg p-3 cursor-pointer hover:bg-gray-900 transition-all duration-200"
             >
-              <h3 className="text-black font-bold mb-2">
+              <h3 className="text-neon-orange font-bold mb-1">
                 Stable Video Diffusion
               </h3>
               <p className="text-black text-sm">
