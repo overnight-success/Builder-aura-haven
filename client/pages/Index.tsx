@@ -66,7 +66,7 @@ export default function Index() {
     return (
       <div className="min-h-screen bg-neon-orange">
         {/* Header */}
-        <div className="text-center pt-12 pb-8">
+        <div className="text-center pt-8 pb-5">
           <img
             src="https://cdn.builder.io/api/v1/image/assets%2F326314a2e8634f90977b83f81df01501%2F9a6248f59e554d6eb22258a507dde681?format=webp&width=800"
             alt="Overnight Success"
