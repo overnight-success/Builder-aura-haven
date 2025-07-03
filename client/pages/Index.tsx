@@ -57,121 +57,154 @@ export default function Index() {
   // Show landing page paywall if user doesn't have access
   if (!hasAccess) {
     return (
-      <div className="min-h-screen bg-black text-white">
-        {/* Navigation */}
-        <nav className="flex items-center justify-between p-6 max-w-7xl mx-auto">
+      <div className="min-h-screen bg-neon-orange">
+        {/* Header */}
+        <div className="text-center pt-12 pb-8">
           <img
             src="https://cdn.builder.io/api/v1/image/assets%2F326314a2e8634f90977b83f81df01501%2F9a6248f59e554d6eb22258a507dde681?format=webp&width=800"
             alt="Overnight Success"
-            className="h-8 w-auto"
+            className="h-12 w-auto mx-auto mb-6"
           />
-          <button
-            onClick={goToMainApp}
-            className="text-sm text-gray-400 hover:text-white transition-colors"
-          >
-            Back to App
-          </button>
-        </nav>
-
-        {/* Hero Section */}
-        <div className="max-w-4xl mx-auto px-6 py-20 text-center">
-          <div className="inline-flex items-center gap-2 bg-neon-orange/10 border border-neon-orange/20 rounded-full px-4 py-2 mb-8">
-            <Zap className="h-4 w-4 text-neon-orange" />
-            <span className="text-sm font-medium text-neon-orange">
-              30+ Premium AI Tools
-            </span>
-          </div>
-
-          <h1 className="text-5xl md:text-6xl font-black mb-6 leading-tight">
-            Your Complete
-            <span className="text-neon-orange block">AI Arsenal</span>
-          </h1>
-
-          <p className="text-xl text-gray-400 mb-12 max-w-2xl mx-auto leading-relaxed">
-            Video, images, text, audio, and design. Everything you need to
-            create with AI in one curated collection.
-          </p>
-
-          {/* Stats */}
-          <div className="grid grid-cols-3 gap-8 mb-16 max-w-lg mx-auto">
-            <div>
-              <div className="text-3xl font-black text-white mb-1">30+</div>
-              <div className="text-sm text-gray-500">AI Tools</div>
-            </div>
-            <div>
-              <div className="text-3xl font-black text-white mb-1">5</div>
-              <div className="text-sm text-gray-500">Categories</div>
-            </div>
-            <div>
-              <div className="text-3xl font-black text-white mb-1">Free</div>
-              <div className="text-sm text-gray-500">Access</div>
-            </div>
-          </div>
-
-          {/* Email Form */}
-          <div className="max-w-sm mx-auto">
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="w-full px-4 py-4 bg-gray-900 border border-gray-800 rounded-xl focus:outline-none focus:border-neon-orange transition-colors text-white placeholder-gray-500"
-                placeholder="Enter your email"
-                required
-              />
-              <button
-                type="submit"
-                disabled={isSubmitting || !email}
-                className="w-full bg-neon-orange text-black font-bold py-4 rounded-xl hover:bg-orange-500 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {isSubmitting ? (
-                  <>
-                    <div className="animate-spin rounded-full h-4 w-4 border-2 border-black border-t-transparent mr-2 inline-block" />
-                    Getting Access...
-                  </>
-                ) : (
-                  "Get Instant Access"
-                )}
-              </button>
-            </form>
-            <p className="text-xs text-gray-600 mt-3">
-              No spam. Unsubscribe anytime.
+          <div className="max-w-4xl mx-auto px-6">
+            <h1 className="text-4xl md:text-6xl font-black text-black mb-4 leading-tight">
+              The Ultimate AI Toolkit
+            </h1>
+            <p className="text-xl text-black font-bold mb-8 max-w-2xl mx-auto">
+              Access 30+ premium AI tools in one curated collection. Video,
+              images, text, audio, and design tools.
             </p>
           </div>
         </div>
 
-        {/* Tools Preview */}
-        <div className="max-w-6xl mx-auto px-6 pb-20">
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-            {[
-              { icon: Video, name: "Video AI", tools: "6 tools" },
-              { icon: Image, name: "Image AI", tools: "6 tools" },
-              { icon: FileText, name: "Text AI", tools: "6 tools" },
-              { icon: Mic, name: "Audio AI", tools: "6 tools" },
-              { icon: Palette, name: "Design AI", tools: "6 tools" },
-            ].map((category, i) => (
-              <div
-                key={i}
-                className="bg-gray-900/50 border border-gray-800 rounded-xl p-4 text-center hover:border-gray-700 transition-colors"
-              >
-                <category.icon className="h-6 w-6 text-gray-400 mx-auto mb-3" />
-                <h3 className="font-medium text-white text-sm mb-1">
-                  {category.name}
-                </h3>
-                <p className="text-xs text-gray-500">{category.tools}</p>
+        {/* Main Content */}
+        <div className="max-w-6xl mx-auto px-6 pb-12">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Left: Email Collection */}
+            <div className="lg:order-2">
+              <div className="bg-black rounded-2xl p-8 max-w-md mx-auto">
+                <div className="text-center mb-6">
+                  <h2 className="text-2xl font-black text-neon-orange mb-2">
+                    🚀 Get Instant Access
+                  </h2>
+                  <p className="text-cream font-medium">
+                    Enter your email to unlock all 30+ AI tools
+                  </p>
+                </div>
+
+                <form onSubmit={handleSubmit} className="space-y-4">
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="w-full px-4 py-3 bg-cream text-black rounded-lg font-medium text-center placeholder-black/60 focus:outline-none focus:ring-2 focus:ring-neon-orange"
+                    placeholder="Enter your email address"
+                    required
+                  />
+                  <button
+                    type="submit"
+                    disabled={isSubmitting || !email}
+                    className="w-full bg-neon-orange text-black font-bold py-3 rounded-lg hover:bg-orange-400 transition-colors disabled:opacity-50"
+                  >
+                    {isSubmitting ? (
+                      <>
+                        <div className="animate-spin rounded-full h-4 w-4 border-2 border-black border-t-transparent mr-2 inline-block" />
+                        Unlocking Access...
+                      </>
+                    ) : (
+                      <>
+                        <Zap className="h-4 w-4 mr-2 inline" />
+                        UNLOCK TOOLKIT
+                      </>
+                    )}
+                  </button>
+                </form>
+
+                <div className="text-center mt-4">
+                  <p className="text-cream text-xs">
+                    ✓ Free access ✓ No credit card required ✓ Instant unlock
+                  </p>
+                </div>
+
+                {/* Value Props */}
+                <div className="mt-6 space-y-3">
+                  <div className="flex items-center text-cream text-sm">
+                    <Video className="h-4 w-4 text-neon-orange mr-3 shrink-0" />
+                    <span>6 AI Video Generation Tools</span>
+                  </div>
+                  <div className="flex items-center text-cream text-sm">
+                    <Image className="h-4 w-4 text-neon-orange mr-3 shrink-0" />
+                    <span>6 AI Image Creation Tools</span>
+                  </div>
+                  <div className="flex items-center text-cream text-sm">
+                    <FileText className="h-4 w-4 text-neon-orange mr-3 shrink-0" />
+                    <span>6 AI Text Writing Tools</span>
+                  </div>
+                  <div className="flex items-center text-cream text-sm">
+                    <Mic className="h-4 w-4 text-neon-orange mr-3 shrink-0" />
+                    <span>6 AI Audio Production Tools</span>
+                  </div>
+                  <div className="flex items-center text-cream text-sm">
+                    <Palette className="h-4 w-4 text-neon-orange mr-3 shrink-0" />
+                    <span>6 AI Design Tools</span>
+                  </div>
+                </div>
               </div>
-            ))}
+            </div>
+
+            {/* Right: Tool Preview Grid */}
+            <div className="lg:order-1">
+              <h3 className="text-2xl font-bold text-black mb-6 text-center lg:text-left">
+                What's Inside:
+              </h3>
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                {[
+                  "SORA",
+                  "Runway ML",
+                  "Pika Labs",
+                  "DALL-E 3",
+                  "Midjourney",
+                  "Stable Diffusion",
+                  "ChatGPT",
+                  "Claude",
+                  "Gemini",
+                  "ElevenLabs",
+                  "Murf.AI",
+                  "Suno",
+                  "Figma AI",
+                  "Canva AI",
+                  "Adobe Firefly",
+                  "Leonardo.AI",
+                  "Synthesia",
+                  "InVideo AI",
+                ].map((tool, i) => (
+                  <div
+                    key={i}
+                    className="bg-black/10 border-2 border-black/20 rounded-lg p-3 text-center backdrop-blur-sm"
+                  >
+                    <span className="text-sm font-bold text-black">{tool}</span>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-8 text-center lg:text-left">
+                <p className="text-black font-bold mb-2">
+                  Join 10,000+ creators who are already using these tools
+                </p>
+                <p className="text-black/80 text-sm">
+                  Save hundreds of hours with our curated AI toolkit
+                </p>
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* Footer */}
-        <footer className="border-t border-gray-900 py-8">
-          <div className="max-w-4xl mx-auto px-6 text-center">
-            <p className="text-gray-600 text-sm">
-              Trusted by creators worldwide • Built by Overnight Success
-            </p>
-          </div>
-        </footer>
+        {/* Footer CTA */}
+        <div className="bg-black/10 py-8 text-center">
+          <p className="text-black font-medium">
+            Ready to transform your creative workflow?
+            <span className="font-bold"> Get instant access above ↑</span>
+          </p>
+        </div>
       </div>
     );
   }
