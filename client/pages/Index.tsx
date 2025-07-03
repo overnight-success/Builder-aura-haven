@@ -13,15 +13,15 @@ import {
 } from "lucide-react";
 
 export default function Index() {
-  const [showToolkit, setShowToolkit] = useState(false);
+  const [hasAccess, setHasAccess] = useState(false);
   const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   // Check if user has already unlocked
   useEffect(() => {
-    const hasAccess = localStorage.getItem("toolkitAccess");
-    if (hasAccess === "true") {
-      setShowToolkit(true);
+    const access = localStorage.getItem("toolkitAccess");
+    if (access === "true") {
+      setHasAccess(true);
     }
   }, []);
 
