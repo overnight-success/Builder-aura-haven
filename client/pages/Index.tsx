@@ -54,6 +54,12 @@ export default function Index() {
     window.location.href = "/";
   };
 
+  const resetAccess = () => {
+    localStorage.removeItem("toolkitAccess");
+    localStorage.removeItem("userEmail");
+    setHasAccess(false);
+  };
+
   // Show landing page paywall if user doesn't have access
   if (!hasAccess) {
     return (
