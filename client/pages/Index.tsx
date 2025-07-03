@@ -66,14 +66,14 @@ export default function Index() {
     return (
       <div className="min-h-screen bg-gradient-to-br from-neon-orange via-neon-orange to-orange-500">
         {/* Header */}
-        <div className="text-center pt-16 pb-12">
+        <div className="text-center pt-5 pb-0">
           <img
             src="https://cdn.builder.io/api/v1/image/assets%2F326314a2e8634f90977b83f81df01501%2F9a6248f59e554d6eb22258a507dde681?format=webp&width=800"
             alt="Overnight Success"
             className="h-12 w-auto mx-auto mb-12"
           />
 
-          <div className="max-w-4xl mx-auto px-6 mb-16">
+          <div className="max-w-4xl mx-auto px-6 mb-10">
             <div className="inline-flex items-center gap-2 bg-black backdrop-blur-sm rounded-full px-6 py-3 mb-8">
               <Zap className="h-5 w-5 text-neon-orange" />
               <span className="text-neon-orange font-bold">
@@ -82,7 +82,7 @@ export default function Index() {
             </div>
 
             <h1 className="text-5xl md:text-7xl font-black text-black mb-6 leading-tight">
-              AI Arsenal
+              AI Toolkit
             </h1>
             <p className="text-2xl text-black/80 font-medium max-w-2xl mx-auto">
               Everything you need to dominate with AI
@@ -91,7 +91,7 @@ export default function Index() {
 
           {/* Centered Email Form */}
           <div className="max-w-lg mx-auto px-6">
-            <div className="bg-black rounded-3xl p-10 shadow-2xl backdrop-blur-sm">
+            <div className="bg-black rounded-3xl mt-5 pt-8 px-10 pb-10 shadow-2xl backdrop-blur-sm">
               <div className="text-center mb-8">
                 <h2 className="text-3xl font-black text-white mb-4">
                   Get Instant Access
