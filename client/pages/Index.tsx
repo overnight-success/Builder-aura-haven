@@ -130,30 +130,6 @@ export default function Index() {
                     ✓ Free access ✓ No credit card required ✓ Instant unlock
                   </p>
                 </div>
-
-                {/* Value Props */}
-                <div className="mt-6 space-y-3">
-                  <div className="flex items-center text-cream text-sm">
-                    <Video className="h-4 w-4 text-neon-orange mr-3 shrink-0" />
-                    <span>6 AI Video Generation Tools</span>
-                  </div>
-                  <div className="flex items-center text-cream text-sm">
-                    <Image className="h-4 w-4 text-neon-orange mr-3 shrink-0" />
-                    <span>6 AI Image Creation Tools</span>
-                  </div>
-                  <div className="flex items-center text-cream text-sm">
-                    <FileText className="h-4 w-4 text-neon-orange mr-3 shrink-0" />
-                    <span>6 AI Text Writing Tools</span>
-                  </div>
-                  <div className="flex items-center text-cream text-sm">
-                    <Mic className="h-4 w-4 text-neon-orange mr-3 shrink-0" />
-                    <span>6 AI Audio Production Tools</span>
-                  </div>
-                  <div className="flex items-center text-cream text-sm">
-                    <Palette className="h-4 w-4 text-neon-orange mr-3 shrink-0" />
-                    <span>6 AI Design Tools</span>
-                  </div>
-                </div>
               </div>
             </div>
 
