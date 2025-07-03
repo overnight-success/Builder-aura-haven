@@ -56,137 +56,121 @@ export default function Index() {
   // Show sleek landing page if user hasn't unlocked
   if (!showToolkit) {
     return (
-      <div className="min-h-screen bg-neon-orange">
+      <div className="min-h-screen bg-black text-white">
+        {/* Navigation */}
+        <nav className="flex items-center justify-between p-6 max-w-7xl mx-auto">
+          <img
+            src="https://cdn.builder.io/api/v1/image/assets%2F326314a2e8634f90977b83f81df01501%2F9a6248f59e554d6eb22258a507dde681?format=webp&width=800"
+            alt="Overnight Success"
+            className="h-8 w-auto"
+          />
+          <button
+            onClick={goToMainApp}
+            className="text-sm text-gray-400 hover:text-white transition-colors"
+          >
+            Back to App
+          </button>
+        </nav>
+
         {/* Hero Section */}
-        <div className="relative overflow-hidden">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-            {/* Logo */}
-            <div className="flex justify-center mb-8">
-              <img
-                src="https://cdn.builder.io/api/v1/image/assets%2F326314a2e8634f90977b83f81df01501%2F9a6248f59e554d6eb22258a507dde681?format=webp&width=800"
-                alt="Overnight Success Logo"
-                className="h-16 w-auto"
-              />
+        <div className="max-w-4xl mx-auto px-6 py-20 text-center">
+          <div className="inline-flex items-center gap-2 bg-neon-orange/10 border border-neon-orange/20 rounded-full px-4 py-2 mb-8">
+            <Zap className="h-4 w-4 text-neon-orange" />
+            <span className="text-sm font-medium text-neon-orange">
+              30+ Premium AI Tools
+            </span>
+          </div>
+
+          <h1 className="text-5xl md:text-6xl font-black mb-6 leading-tight">
+            Your Complete
+            <span className="text-neon-orange block">AI Arsenal</span>
+          </h1>
+
+          <p className="text-xl text-gray-400 mb-12 max-w-2xl mx-auto leading-relaxed">
+            Video, images, text, audio, and design. Everything you need to
+            create with AI in one curated collection.
+          </p>
+
+          {/* Stats */}
+          <div className="grid grid-cols-3 gap-8 mb-16 max-w-lg mx-auto">
+            <div>
+              <div className="text-3xl font-black text-white mb-1">30+</div>
+              <div className="text-sm text-gray-500">AI Tools</div>
             </div>
-
-            {/* Hero Content */}
-            <div className="text-center mb-16">
-              <h1 className="text-5xl md:text-7xl font-black text-black mb-6 leading-tight">
-                The Ultimate
-                <span className="block">AI Toolkit</span>
-              </h1>
-              <p className="text-xl md:text-2xl text-black font-bold mb-4 max-w-4xl mx-auto leading-relaxed">
-                Access 30+ premium AI tools in one place. Video generation,
-                image creation, text writing, audio production, and design
-                tools.
-              </p>
-              <p className="text-lg text-black font-medium mb-12 max-w-2xl mx-auto">
-                Everything you need to dominate the AI creative landscape
-              </p>
-
-              {/* Features Grid */}
-              <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-16 max-w-4xl mx-auto">
-                <div className="bg-black/10 backdrop-blur-sm rounded-lg p-4 border-2 border-black/20">
-                  <Video className="h-8 w-8 text-black mx-auto mb-2" />
-                  <h3 className="font-bold text-black text-sm">AI Video</h3>
-                  <p className="text-xs text-black/80">6 Tools</p>
-                </div>
-                <div className="bg-black/10 backdrop-blur-sm rounded-lg p-4 border-2 border-black/20">
-                  <Image className="h-8 w-8 text-black mx-auto mb-2" />
-                  <h3 className="font-bold text-black text-sm">AI Image</h3>
-                  <p className="text-xs text-black/80">6 Tools</p>
-                </div>
-                <div className="bg-black/10 backdrop-blur-sm rounded-lg p-4 border-2 border-black/20">
-                  <FileText className="h-8 w-8 text-black mx-auto mb-2" />
-                  <h3 className="font-bold text-black text-sm">AI Text</h3>
-                  <p className="text-xs text-black/80">6 Tools</p>
-                </div>
-                <div className="bg-black/10 backdrop-blur-sm rounded-lg p-4 border-2 border-black/20">
-                  <Mic className="h-8 w-8 text-black mx-auto mb-2" />
-                  <h3 className="font-bold text-black text-sm">AI Audio</h3>
-                  <p className="text-xs text-black/80">6 Tools</p>
-                </div>
-                <div className="bg-black/10 backdrop-blur-sm rounded-lg p-4 border-2 border-black/20">
-                  <Palette className="h-8 w-8 text-black mx-auto mb-2" />
-                  <h3 className="font-bold text-black text-sm">AI Design</h3>
-                  <p className="text-xs text-black/80">6 Tools</p>
-                </div>
-              </div>
-
-              {/* Email Capture */}
-              <div className="max-w-md mx-auto">
-                <div className="bg-black rounded-xl p-8 border-4 border-black shadow-2xl">
-                  <h2 className="text-2xl font-black text-neon-orange mb-2">
-                    🚀 Unlock Instant Access
-                  </h2>
-                  <p className="text-cream font-bold mb-6 text-sm">
-                    Enter your email to access all 30+ AI tools
-                  </p>
-
-                  <form onSubmit={handleSubmit} className="space-y-4">
-                    <div>
-                      <input
-                        type="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        className="w-full px-4 py-3 bg-cream text-black border-2 border-cream rounded-lg focus:outline-none focus:border-neon-orange transition-colors font-bold text-center placeholder-black/60"
-                        placeholder="Enter your email address"
-                        required
-                      />
-                    </div>
-
-                    <button
-                      type="submit"
-                      disabled={isSubmitting || !email}
-                      className="w-full bg-neon-orange text-black hover:bg-cream border-2 border-neon-orange font-black py-3 text-lg rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                    >
-                      {isSubmitting ? (
-                        <>
-                          <div className="animate-spin rounded-full h-5 w-5 border-2 border-black border-t-transparent mr-2 inline-block" />
-                          UNLOCKING...
-                        </>
-                      ) : (
-                        <>
-                          <Zap className="h-5 w-5 mr-2 inline" />
-                          UNLOCK AI TOOLKIT
-                        </>
-                      )}
-                    </button>
-                  </form>
-
-                  <div className="text-center mt-4">
-                    <p className="text-cream text-xs">
-                      Free access • No credit card required • Instant unlock
-                    </p>
-                  </div>
-                </div>
-              </div>
+            <div>
+              <div className="text-3xl font-black text-white mb-1">5</div>
+              <div className="text-sm text-gray-500">Categories</div>
             </div>
-
-            {/* Social Proof */}
-            <div className="text-center">
-              <p className="text-black font-bold text-sm mb-4">
-                Trusted by 10,000+ creators and entrepreneurs
-              </p>
-              <div className="flex justify-center items-center space-x-6 opacity-60">
-                <div className="bg-black/20 px-4 py-2 rounded-lg">
-                  <span className="text-black font-bold text-xs">SORA</span>
-                </div>
-                <div className="bg-black/20 px-4 py-2 rounded-lg">
-                  <span className="text-black font-bold text-xs">
-                    MIDJOURNEY
-                  </span>
-                </div>
-                <div className="bg-black/20 px-4 py-2 rounded-lg">
-                  <span className="text-black font-bold text-xs">CHATGPT</span>
-                </div>
-                <div className="bg-black/20 px-4 py-2 rounded-lg">
-                  <span className="text-black font-bold text-xs">CLAUDE</span>
-                </div>
-              </div>
+            <div>
+              <div className="text-3xl font-black text-white mb-1">Free</div>
+              <div className="text-sm text-gray-500">Access</div>
             </div>
           </div>
+
+          {/* Email Form */}
+          <div className="max-w-sm mx-auto">
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full px-4 py-4 bg-gray-900 border border-gray-800 rounded-xl focus:outline-none focus:border-neon-orange transition-colors text-white placeholder-gray-500"
+                placeholder="Enter your email"
+                required
+              />
+              <button
+                type="submit"
+                disabled={isSubmitting || !email}
+                className="w-full bg-neon-orange text-black font-bold py-4 rounded-xl hover:bg-orange-500 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {isSubmitting ? (
+                  <>
+                    <div className="animate-spin rounded-full h-4 w-4 border-2 border-black border-t-transparent mr-2 inline-block" />
+                    Getting Access...
+                  </>
+                ) : (
+                  "Get Instant Access"
+                )}
+              </button>
+            </form>
+            <p className="text-xs text-gray-600 mt-3">
+              No spam. Unsubscribe anytime.
+            </p>
+          </div>
         </div>
+
+        {/* Tools Preview */}
+        <div className="max-w-6xl mx-auto px-6 pb-20">
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+            {[
+              { icon: Video, name: "Video AI", tools: "6 tools" },
+              { icon: Image, name: "Image AI", tools: "6 tools" },
+              { icon: FileText, name: "Text AI", tools: "6 tools" },
+              { icon: Mic, name: "Audio AI", tools: "6 tools" },
+              { icon: Palette, name: "Design AI", tools: "6 tools" },
+            ].map((category, i) => (
+              <div
+                key={i}
+                className="bg-gray-900/50 border border-gray-800 rounded-xl p-4 text-center hover:border-gray-700 transition-colors"
+              >
+                <category.icon className="h-6 w-6 text-gray-400 mx-auto mb-3" />
+                <h3 className="font-medium text-white text-sm mb-1">
+                  {category.name}
+                </h3>
+                <p className="text-xs text-gray-500">{category.tools}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Footer */}
+        <footer className="border-t border-gray-900 py-8">
+          <div className="max-w-4xl mx-auto px-6 text-center">
+            <p className="text-gray-600 text-sm">
+              Trusted by creators worldwide • Built by Overnight Success
+            </p>
+          </div>
+        </footer>
       </div>
     );
   }
