@@ -77,8 +77,7 @@ export default function Index() {
               The Ultimate AI Toolkit
             </h1>
             <p className="text-xl text-black font-bold mb-8 max-w-2xl mx-auto">
-              Access 30+ premium AI tools in one curated collection. Video,
-              images, text, audio, and design tools.
+              Access 50+ premium AI tools in one curated collection.
             </p>
           </div>
         </div>
