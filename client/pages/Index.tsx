@@ -144,20 +144,14 @@ export default function Index() {
                   "AI Editors",
                   "Text-to-Video",
                   "Image Creation",
-                  "Art Generation",
-                  "Style Transfer",
                   "Writing Assistants",
                   "Content Tools",
                   "Research AI",
-                  "Voice Synthesis",
                   "Audio Editing",
                   "Music Creation",
                   "Design Tools",
-                  "UI Generators",
-                  "Creative Suite",
                   "Visual AI",
                   "Animation Tools",
-                  "Media Creation",
                 ].map((tool, i) => (
                   <div
                     key={i}
