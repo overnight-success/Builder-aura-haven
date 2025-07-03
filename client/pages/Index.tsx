@@ -74,9 +74,11 @@ export default function Index() {
           />
 
           <div className="max-w-4xl mx-auto px-6 mb-16">
-            <div className="inline-flex items-center gap-2 bg-black/20 backdrop-blur-sm rounded-full px-6 py-3 mb-8">
-              <Zap className="h-5 w-5 text-black" />
-              <span className="text-black font-bold">50+ Premium AI Tools</span>
+            <div className="inline-flex items-center gap-2 bg-black backdrop-blur-sm rounded-full px-6 py-3 mb-8">
+              <Zap className="h-5 w-5 text-neon-orange" />
+              <span className="text-neon-orange font-bold">
+                50+ Premium AI Tools
+              </span>
             </div>
 
             <h1 className="text-5xl md:text-7xl font-black text-black mb-6 leading-tight">
