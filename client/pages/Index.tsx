@@ -195,10 +195,10 @@ export default function Index() {
 
               <div className="mt-8 text-center lg:text-left">
                 <p className="text-black font-bold mb-2">
-                  Join 10,000+ creators who are already using these tools
+                  Join thousands of creators worldwide
                 </p>
                 <p className="text-black/80 text-sm">
-                  Save hundreds of hours with our curated AI toolkit
+                  Access premium AI tools in one curated collection
                 </p>
               </div>
             </div>
