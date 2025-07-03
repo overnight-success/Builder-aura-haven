@@ -140,31 +140,16 @@ export default function Index() {
 
   return (
     <div className="min-h-screen bg-neon-orange p-3">
+      <img
+        src="https://cdn.builder.io/api/v1/image/assets%2F326314a2e8634f90977b83f81df01501%2F9a6248f59e554d6eb22258a507dde681?format=webp&width=800"
+        alt="Overnight Success Logo"
+        className="h-14 w-auto block"
+      />
       <div className="max-w-7xl mx-auto">
-        {/* Top Banner */}
-        <div
-          onClick={goToMainApp}
-          className="bg-black border-2 border-black rounded-lg p-3 mb-4 cursor-pointer hover:bg-gray-900 transition-all duration-200 text-center"
-        >
-          <h2 className="text-xl font-black text-neon-orange mb-1">
-            🚀 Unlock Our AI Creative System Today
-          </h2>
-          <p className="text-cream font-bold text-sm">
-            Access our complete prompt generation system for Sora AI • Click
-            here to get started
-          </p>
-        </div>
-
-        {/* Header with Logo */}
-        <div className="text-center mb-6">
-          <div className="flex items-center justify-center mb-4">
-            <img
-              src="https://cdn.builder.io/api/v1/image/assets%2F326314a2e8634f90977b83f81df01501%2F9a6248f59e554d6eb22258a507dde681?format=webp&width=800"
-              alt="Overnight Success Logo"
-              className="h-14 w-auto"
-            />
-          </div>
-          <h1 className="text-3xl font-black text-black mb-1">AI Toolkit</h1>
+        {/* Header */}
+        <div className="text-center mb-3 pt-1.5">
+          <div className="flex items-center justify-center mb-4"></div>
+          <h1 className="text-4xl font-black text-black mb-1">AI Toolkit</h1>
           <p className="text-black font-bold text-sm">
             Essential tools and resources for AI-powered creative work
           </p>
