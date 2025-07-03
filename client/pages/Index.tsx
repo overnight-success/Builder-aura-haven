@@ -32,10 +32,13 @@ export default function Index() {
     setIsSubmitting(true);
 
     try {
+      // Simulate API call
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+
       // Store access status
       localStorage.setItem("toolkitAccess", "true");
       localStorage.setItem("userEmail", email);
-      setShowToolkit(true);
+      setHasAccess(true);
     } catch (error) {
       console.error("Access error:", error);
     } finally {
@@ -48,13 +51,11 @@ export default function Index() {
   };
 
   const goToMainApp = () => {
-    // Clear the toolkit access and redirect to main app
-    localStorage.removeItem("toolkitAccess");
     window.location.href = "/";
   };
 
-  // Show sleek landing page if user hasn't unlocked
-  if (!showToolkit) {
+  // Show landing page paywall if user doesn't have access
+  if (!hasAccess) {
     return (
       <div className="min-h-screen bg-black text-white">
         {/* Navigation */}
