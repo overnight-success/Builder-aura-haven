@@ -13,32 +13,31 @@ import {
 } from "lucide-react";
 
 export default function Index() {
-  const [showSignupWall, setShowSignupWall] = useState(true);
+  const [showToolkit, setShowToolkit] = useState(false);
   const [email, setEmail] = useState("");
-  const [name, setName] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Check if user has already signed up
+  // Check if user has already unlocked
   useEffect(() => {
-    const hasSignedUp = localStorage.getItem("userSignedUp");
-    if (hasSignedUp === "true") {
-      setShowSignupWall(false);
+    const hasAccess = localStorage.getItem("toolkitAccess");
+    if (hasAccess === "true") {
+      setShowToolkit(true);
     }
   }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email || !name) return;
+    if (!email) return;
 
     setIsSubmitting(true);
 
     try {
-      // Store signup status
-      localStorage.setItem("userSignedUp", "true");
+      // Store access status
+      localStorage.setItem("toolkitAccess", "true");
       localStorage.setItem("userEmail", email);
-      setShowSignupWall(false);
+      setShowToolkit(true);
     } catch (error) {
-      console.error("Signup error:", error);
+      console.error("Access error:", error);
     } finally {
       setIsSubmitting(false);
     }
@@ -49,89 +48,143 @@ export default function Index() {
   };
 
   const goToMainApp = () => {
-    // Clear the signup wall and redirect to main app
-    localStorage.removeItem("userSignedUp");
+    // Clear the toolkit access and redirect to main app
+    localStorage.removeItem("toolkitAccess");
     window.location.href = "/";
   };
 
-  // Show signup wall if user hasn't signed up
-  if (showSignupWall) {
+  // Show sleek landing page if user hasn't unlocked
+  if (!showToolkit) {
     return (
-      <div className="min-h-screen bg-neon-orange flex items-center justify-center p-4">
-        <div className="bg-black border-4 border-black rounded-lg max-w-md w-full p-8">
-          {/* Logo */}
-          <div className="flex items-center justify-center mb-6">
-            <img
-              src="https://cdn.builder.io/api/v1/image/assets%2F326314a2e8634f90977b83f81df01501%2F9a6248f59e554d6eb22258a507dde681?format=webp&width=800"
-              alt="Overnight Success Logo"
-              className="h-16 w-auto"
-            />
-          </div>
-
-          <div className="text-center mb-8">
-            <h1 className="text-3xl font-black text-cream mb-2">
-              Access AI Toolkit
-            </h1>
-            <p className="text-cream">
-              Get instant access to 36+ AI tools for creative work
-            </p>
-          </div>
-
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div>
-              <label className="block text-cream font-bold text-sm mb-2">
-                <User className="h-4 w-4 inline mr-2" />
-                Full Name *
-              </label>
-              <input
-                type="text"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                className="w-full px-3 py-2 bg-cream text-black border-2 border-cream rounded-lg focus:outline-none focus:border-neon-orange transition-colors font-medium"
-                placeholder="Enter your full name"
-                required
+      <div className="min-h-screen bg-neon-orange">
+        {/* Hero Section */}
+        <div className="relative overflow-hidden">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            {/* Logo */}
+            <div className="flex justify-center mb-8">
+              <img
+                src="https://cdn.builder.io/api/v1/image/assets%2F326314a2e8634f90977b83f81df01501%2F9a6248f59e554d6eb22258a507dde681?format=webp&width=800"
+                alt="Overnight Success Logo"
+                className="h-16 w-auto"
               />
             </div>
 
-            <div>
-              <label className="block text-cream font-bold text-sm mb-2">
-                <Mail className="h-4 w-4 inline mr-2" />
-                Email Address *
-              </label>
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="w-full px-3 py-2 bg-cream text-black border-2 border-cream rounded-lg focus:outline-none focus:border-neon-orange transition-colors font-medium"
-                placeholder="Enter your email"
-                required
-              />
+            {/* Hero Content */}
+            <div className="text-center mb-16">
+              <h1 className="text-5xl md:text-7xl font-black text-black mb-6 leading-tight">
+                The Ultimate
+                <span className="block">AI Toolkit</span>
+              </h1>
+              <p className="text-xl md:text-2xl text-black font-bold mb-4 max-w-4xl mx-auto leading-relaxed">
+                Access 30+ premium AI tools in one place. Video generation,
+                image creation, text writing, audio production, and design
+                tools.
+              </p>
+              <p className="text-lg text-black font-medium mb-12 max-w-2xl mx-auto">
+                Everything you need to dominate the AI creative landscape
+              </p>
+
+              {/* Features Grid */}
+              <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-16 max-w-4xl mx-auto">
+                <div className="bg-black/10 backdrop-blur-sm rounded-lg p-4 border-2 border-black/20">
+                  <Video className="h-8 w-8 text-black mx-auto mb-2" />
+                  <h3 className="font-bold text-black text-sm">AI Video</h3>
+                  <p className="text-xs text-black/80">6 Tools</p>
+                </div>
+                <div className="bg-black/10 backdrop-blur-sm rounded-lg p-4 border-2 border-black/20">
+                  <Image className="h-8 w-8 text-black mx-auto mb-2" />
+                  <h3 className="font-bold text-black text-sm">AI Image</h3>
+                  <p className="text-xs text-black/80">6 Tools</p>
+                </div>
+                <div className="bg-black/10 backdrop-blur-sm rounded-lg p-4 border-2 border-black/20">
+                  <FileText className="h-8 w-8 text-black mx-auto mb-2" />
+                  <h3 className="font-bold text-black text-sm">AI Text</h3>
+                  <p className="text-xs text-black/80">6 Tools</p>
+                </div>
+                <div className="bg-black/10 backdrop-blur-sm rounded-lg p-4 border-2 border-black/20">
+                  <Mic className="h-8 w-8 text-black mx-auto mb-2" />
+                  <h3 className="font-bold text-black text-sm">AI Audio</h3>
+                  <p className="text-xs text-black/80">6 Tools</p>
+                </div>
+                <div className="bg-black/10 backdrop-blur-sm rounded-lg p-4 border-2 border-black/20">
+                  <Palette className="h-8 w-8 text-black mx-auto mb-2" />
+                  <h3 className="font-bold text-black text-sm">AI Design</h3>
+                  <p className="text-xs text-black/80">6 Tools</p>
+                </div>
+              </div>
+
+              {/* Email Capture */}
+              <div className="max-w-md mx-auto">
+                <div className="bg-black rounded-xl p-8 border-4 border-black shadow-2xl">
+                  <h2 className="text-2xl font-black text-neon-orange mb-2">
+                    🚀 Unlock Instant Access
+                  </h2>
+                  <p className="text-cream font-bold mb-6 text-sm">
+                    Enter your email to access all 30+ AI tools
+                  </p>
+
+                  <form onSubmit={handleSubmit} className="space-y-4">
+                    <div>
+                      <input
+                        type="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        className="w-full px-4 py-3 bg-cream text-black border-2 border-cream rounded-lg focus:outline-none focus:border-neon-orange transition-colors font-bold text-center placeholder-black/60"
+                        placeholder="Enter your email address"
+                        required
+                      />
+                    </div>
+
+                    <button
+                      type="submit"
+                      disabled={isSubmitting || !email}
+                      className="w-full bg-neon-orange text-black hover:bg-cream border-2 border-neon-orange font-black py-3 text-lg rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      {isSubmitting ? (
+                        <>
+                          <div className="animate-spin rounded-full h-5 w-5 border-2 border-black border-t-transparent mr-2 inline-block" />
+                          UNLOCKING...
+                        </>
+                      ) : (
+                        <>
+                          <Zap className="h-5 w-5 mr-2 inline" />
+                          UNLOCK AI TOOLKIT
+                        </>
+                      )}
+                    </button>
+                  </form>
+
+                  <div className="text-center mt-4">
+                    <p className="text-cream text-xs">
+                      Free access • No credit card required • Instant unlock
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
 
-            <button
-              type="submit"
-              disabled={isSubmitting || !email || !name}
-              className="w-full bg-cream text-black hover:bg-white border-2 border-cream font-bold py-3 text-lg mt-6 rounded-lg transition-colors disabled:opacity-50"
-            >
-              {isSubmitting ? (
-                <>
-                  <div className="animate-spin rounded-full h-4 w-4 border-2 border-black border-t-transparent mr-2 inline-block" />
-                  Getting Access...
-                </>
-              ) : (
-                <>
-                  <Zap className="h-4 w-4 mr-2 inline" />
-                  GET INSTANT ACCESS
-                </>
-              )}
-            </button>
-          </form>
-
-          <div className="text-center mt-4">
-            <p className="text-cream text-xs">
-              Join thousands changing their lives with next-level AI creative
-              tools
-            </p>
+            {/* Social Proof */}
+            <div className="text-center">
+              <p className="text-black font-bold text-sm mb-4">
+                Trusted by 10,000+ creators and entrepreneurs
+              </p>
+              <div className="flex justify-center items-center space-x-6 opacity-60">
+                <div className="bg-black/20 px-4 py-2 rounded-lg">
+                  <span className="text-black font-bold text-xs">SORA</span>
+                </div>
+                <div className="bg-black/20 px-4 py-2 rounded-lg">
+                  <span className="text-black font-bold text-xs">
+                    MIDJOURNEY
+                  </span>
+                </div>
+                <div className="bg-black/20 px-4 py-2 rounded-lg">
+                  <span className="text-black font-bold text-xs">CHATGPT</span>
+                </div>
+                <div className="bg-black/20 px-4 py-2 rounded-lg">
+                  <span className="text-black font-bold text-xs">CLAUDE</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
