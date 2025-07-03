@@ -3,6 +3,7 @@ import { Navigation } from "../components/Navigation";
 import { Generator } from "../components/Generator";
 import { SignupWall } from "../components/SignupWall";
 import { Paywall } from "../components/Paywall";
+import { PaywallLanding } from "../components/PaywallLanding";
 import {
   PromptGeneratorProvider,
   usePromptGenerator,
@@ -12,16 +13,24 @@ import { useTracking } from "../hooks/useTracking";
 
 function AppContent() {
   const { state, actions, computed } = usePromptGenerator();
-  const [showSignupWall, setShowSignupWall] = useState(true);
+  const [showPaywallLanding, setShowPaywallLanding] = useState(true);
+  const [showSignupWall, setShowSignupWall] = useState(false);
   const [showPaywall, setShowPaywall] = useState(false);
   const { subscriptionStatus, canUseFeature, loading } = useSubscription();
   const { trackView } = useTracking();
 
-  // Check if user has already signed up
+  // Check if user has already accessed the app
   useEffect(() => {
+    const hasAccessedApp = localStorage.getItem("hasAccessedApp");
     const hasSignedUp = localStorage.getItem("userSignedUp");
-    if (hasSignedUp === "true") {
-      setShowSignupWall(false);
+
+    if (hasAccessedApp === "true") {
+      setShowPaywallLanding(false);
+      if (hasSignedUp === "true") {
+        setShowSignupWall(false);
+      } else {
+        setShowSignupWall(true);
+      }
     }
   }, []);
 
@@ -61,6 +70,18 @@ function AppContent() {
     actions.resetAll();
   };
 
+  const handleGetAccess = () => {
+    localStorage.setItem("hasAccessedApp", "true");
+    setShowPaywallLanding(false);
+    setShowPaywall(true);
+  };
+
+  const handleStartFree = () => {
+    localStorage.setItem("hasAccessedApp", "true");
+    setShowPaywallLanding(false);
+    setShowSignupWall(true);
+  };
+
   const handleSignupComplete = () => {
     setShowSignupWall(false);
   };
@@ -85,6 +106,16 @@ function AppContent() {
       <Generator type="lifestyle" onActionAttempt={checkUsageBeforeAction} />
     );
   };
+
+  // Show paywall landing page first
+  if (showPaywallLanding) {
+    return (
+      <PaywallLanding
+        onGetAccess={handleGetAccess}
+        onStartFree={handleStartFree}
+      />
+    );
+  }
 
   // Show signup wall if user hasn't signed up
   if (showSignupWall) {
