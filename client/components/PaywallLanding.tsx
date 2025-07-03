@@ -12,7 +12,7 @@ import {
   Users,
   TrendingUp,
   Shield,
-  Lightning,
+  Bolt,
 } from "lucide-react";
 import { PricingCard } from "./PricingCard";
 import { FeatureCard } from "./FeatureCard";
@@ -151,7 +151,7 @@ export function PaywallLanding({
         <div className="relative z-10 text-center max-w-6xl mx-auto">
           <div className="mb-8">
             <div className="inline-flex items-center gap-2 bg-black text-cream px-6 py-3 rounded-full font-bold text-sm mb-6">
-              <Lightning className="w-4 h-4" />
+              <Bolt className="w-4 h-4" />
               NOW WITH SORA INTEGRATION
             </div>
 
