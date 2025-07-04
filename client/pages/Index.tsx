@@ -592,9 +592,11 @@ export default function Index() {
         </div>
 
         {/* Bottom Banner */}
-        <button
-          onClick={goToMainApp}
-          className="bg-black border-2 border-black rounded-lg p-4 cursor-pointer hover:bg-gray-900 transition-all duration-200 text-center w-full"
+        <a
+          href="https://overnightsuccessllc.gumroad.com/l/creativeos"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="bg-black border-2 border-black rounded-lg p-4 cursor-pointer hover:bg-gray-900 transition-all duration-200 text-center w-full block"
         >
           <h2 className="text-2xl font-black text-neon-orange mb-2">
             🎯 Unlock Our AI Creative System Today
@@ -604,15 +606,9 @@ export default function Index() {
             AI
           </p>
           <div className="bg-neon-orange text-black font-black py-2 px-4 rounded-lg inline-block hover:bg-cream transition-colors text-sm">
-            <a
-              href="https://overnightsuccessllc.gumroad.com/l/creativeos"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              ACCESS THE FULL SYSTEM →
-            </a>
+            ACCESS THE FULL SYSTEM →
           </div>
-        </button>
+        </a>
       </div>
     </div>
   );
