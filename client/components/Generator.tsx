@@ -269,7 +269,7 @@ export function Generator({ type, onActionAttempt }: GeneratorProps) {
             </h3>
           </div>
           <div className="p-6">
-            <div className="text-cream text-sm space-y-4">
+            <div className="text-cream/90 text-sm space-y-3">
               <p>
                 Sora is OpenAI's advanced platform that extends ChatGPT's
                 capabilities to <strong>create images from text prompts</strong>
@@ -302,12 +302,12 @@ export function Generator({ type, onActionAttempt }: GeneratorProps) {
             </h3>
           </div>
           <div className="p-6">
-            <div className="text-cream text-sm space-y-4">
+            <div className="text-cream/90 text-sm space-y-4">
               <div>
-                <h4 className="text-neon-orange font-bold mb-3 text-lg">
+                <h4 className="text-neon-orange font-bold mb-2">
                   Core Principles:
                 </h4>
-                <ul className="space-y-3 ml-4">
+                <ul className="space-y-2 ml-4">
                   <li>
                     <strong>• Be Specific and Clear:</strong> Provide concrete
                     details about the subject and scene. "A young woman in a red
@@ -332,28 +332,26 @@ export function Generator({ type, onActionAttempt }: GeneratorProps) {
                   </li>
                 </ul>
               </div>
-              <div className="bg-cream/10 p-4 rounded border-2 border-neon-orange/30">
-                <p className="text-neon-orange font-bold mb-3">
+              <div className="bg-cream/10 p-3 rounded">
+                <p className="text-neon-orange font-bold mb-2">
                   Example Progression:
                 </p>
-                <div className="space-y-2">
-                  <p>
-                    <strong>Beginner:</strong> "Photo of a cat sitting on a
-                    windowsill."
-                  </p>
-                  <p>
-                    <strong>Advanced:</strong> "A tabby cat lounging on a sunny
-                    windowsill with soft morning light filtering through lace
-                    curtains, looking outside at birds."
-                  </p>
-                  <p>
-                    <strong>Expert:</strong> "Candid pet photography, close-up
-                    shot of a green-eyed tabby cat lounging on a sunlit
-                    Victorian bay window, rays of golden morning light
-                    patterning its fur through ornate lace curtains. Shot with
-                    shallow depth of field (85mm f/1.8)."
-                  </p>
-                </div>
+                <p>
+                  <strong>Beginner:</strong> "Photo of a cat sitting on a
+                  windowsill."
+                </p>
+                <p>
+                  <strong>Advanced:</strong> "A tabby cat lounging on a sunny
+                  windowsill with soft morning light filtering through lace
+                  curtains, looking outside at birds."
+                </p>
+                <p>
+                  <strong>Expert:</strong> "Candid pet photography, close-up
+                  shot of a green-eyed tabby cat lounging on a sunlit Victorian
+                  bay window, rays of golden morning light patterning its fur
+                  through ornate lace curtains. Shot with shallow depth of field
+                  (85mm f/1.8)."
+                </p>
               </div>
             </div>
           </div>
@@ -367,193 +365,360 @@ export function Generator({ type, onActionAttempt }: GeneratorProps) {
             </h3>
           </div>
           <div className="p-6">
-            <div className="text-cream text-sm space-y-4">
-              <div className="bg-cream/10 p-4 rounded border-2 border-neon-orange/30 font-mono text-sm">
-                <strong className="text-neon-orange">
-                  Prompt Structure Formula:
-                </strong>
+            <div className="text-cream/90 text-sm space-y-4">
+              <div className="bg-cream/10 p-3 rounded font-mono text-xs">
+                <strong>Prompt Structure Formula:</strong>
                 <br />
-                [Subject] + [Action/Pose] + [Environment/Setting] + [Style/Mood]
-                + [Technical Specs]
+                [Subject] + [Action/Pose] + [Environment/Setting] + [Lighting] +
+                [Camera Details] + [Style/Mood] + [Quality Parameters]
               </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <h4 className="text-neon-orange font-bold mb-3">
-                    Essential Components:
+                  <h4 className="text-neon-orange font-bold mb-2">
+                    Subject Description
                   </h4>
-                  <ul className="space-y-2 text-xs">
-                    <li>
-                      <strong>Subject:</strong> The main focus (person, object,
-                      animal)
-                    </li>
-                    <li>
-                      <strong>Action/Pose:</strong> What they're doing or how
-                      positioned
-                    </li>
-                    <li>
-                      <strong>Setting:</strong> Where the scene takes place
-                    </li>
-                    <li>
-                      <strong>Lighting:</strong> Type and quality of light
-                    </li>
-                    <li>
-                      <strong>Style:</strong> Artistic style or photographic
-                      approach
-                    </li>
-                    <li>
-                      <strong>Technical:</strong> Camera settings, quality
-                      markers
-                    </li>
-                  </ul>
+                  <p className="text-xs">
+                    Who or what is the focus. Be specific about color, size,
+                    distinctive features.
+                  </p>
                 </div>
-
                 <div>
-                  <h4 className="text-neon-orange font-bold mb-3">
-                    Advanced Variables:
+                  <h4 className="text-neon-orange font-bold mb-2">
+                    Action/Pose
                   </h4>
-                  <ul className="space-y-2 text-xs">
-                    <li>
-                      <strong>Camera Angle:</strong> Eye-level, low-angle,
-                      overhead
-                    </li>
-                    <li>
-                      <strong>Composition:</strong> Rule of thirds, centered,
-                      close-up
-                    </li>
-                    <li>
-                      <strong>Color Palette:</strong> Warm tones, monochrome,
-                      vibrant
-                    </li>
-                    <li>
-                      <strong>Texture:</strong> Smooth, rough, glossy, matte
-                    </li>
-                    <li>
-                      <strong>Mood:</strong> Cheerful, moody, dramatic, serene
-                    </li>
-                    <li>
-                      <strong>Quality:</strong> 4K, photorealistic, professional
-                    </li>
-                  </ul>
+                  <p className="text-xs">
+                    What the subject is doing. Adds dynamism and context.
+                  </p>
+                </div>
+                <div>
+                  <h4 className="text-neon-orange font-bold mb-2">
+                    Environment/Setting
+                  </h4>
+                  <p className="text-xs">
+                    Surroundings, background. Include time of day or weather if
+                    relevant.
+                  </p>
+                </div>
+                <div>
+                  <h4 className="text-neon-orange font-bold mb-2">Lighting</h4>
+                  <p className="text-xs">
+                    Quality and direction of light. Most powerful mood setter.
+                  </p>
+                </div>
+                <div>
+                  <h4 className="text-neon-orange font-bold mb-2">
+                    Camera Details
+                  </h4>
+                  <p className="text-xs">
+                    Angle, framing, lens type, depth of field, composition
+                    terms.
+                  </p>
+                </div>
+                <div>
+                  <h4 className="text-neon-orange font-bold mb-2">
+                    Style/Mood
+                  </h4>
+                  <p className="text-xs">
+                    Artistic style, genre, overall vibe, color palette.
+                  </p>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Section 4: SORA-Specific Best Practices */}
+        {/* Section 4: Lifestyle Photography */}
         <div className="bg-black border-4 border-black rounded-lg mb-6">
           <div className="bg-neon-orange text-black p-6 border-b-4 border-black">
             <h3 className="text-xl font-black">
-              4. SORA-Specific Best Practices
+              4. Lifestyle Photography Prompts
             </h3>
           </div>
           <div className="p-6">
-            <div className="text-cream text-sm space-y-4">
+            <div className="text-cream/90 text-sm space-y-3">
+              <p>
+                Lifestyle images capture people in everyday, real-life contexts.
+                They feel candid, authentic, and relatable.
+              </p>
               <div>
-                <h4 className="text-neon-orange font-bold mb-3">
-                  Video-First Thinking
+                <h4 className="text-neon-orange font-bold mb-2">
+                  Characteristics:
                 </h4>
-                <p className="mb-3">
-                  Remember that SORA generates video, so think about:
-                </p>
                 <ul className="space-y-1 ml-4 text-xs">
-                  <li>• Motion and movement</li>
-                  <li>• Temporal consistency</li>
-                  <li>• Cinematic composition</li>
-                  <li>• Lighting that works in motion</li>
+                  <li>
+                    • <strong>Everyday Scenarios:</strong> Focus on common
+                    activities - friends at cafe, family cooking, person jogging
+                  </li>
+                  <li>
+                    • <strong>Natural Styling:</strong> Use "candid", "unposed",
+                    "in the moment" descriptors
+                  </li>
+                  <li>
+                    • <strong>Environmental Context:</strong> Include background
+                    details, props, decor for realism
+                  </li>
+                  <li>
+                    • <strong>Lighting for Mood:</strong> Daylight and ambient
+                    lighting are common
+                  </li>
                 </ul>
               </div>
-
-              <div>
-                <h4 className="text-neon-orange font-bold mb-3">
-                  Technical Specifications
-                </h4>
-                <p className="mb-3">Always include:</p>
-                <ul className="space-y-1 ml-4 text-xs">
-                  <li>• Resolution (4K recommended)</li>
-                  <li>• Aspect ratio (16:9 for video)</li>
-                  <li>• Quality markers (cinematic, professional)</li>
-                  <li>• Frame rate considerations</li>
-                </ul>
-              </div>
-
-              <div className="bg-cream/10 p-4 rounded border-2 border-neon-orange/30">
-                <h4 className="text-neon-orange font-bold mb-3">
-                  Prompt Structure for Video
-                </h4>
-                <ol className="space-y-1 ml-4 text-xs">
-                  <li>
-                    1. <strong>Opening Statement:</strong> What the video shows
-                  </li>
-                  <li>
-                    2. <strong>Visual Style:</strong> How it should look
-                  </li>
-                  <li>
-                    3. <strong>Motion Description:</strong> How things move
-                  </li>
-                  <li>
-                    4. <strong>Technical Specs:</strong> Quality and format
-                  </li>
-                  <li>
-                    5. <strong>Reference Data:</strong> JSON image data
-                  </li>
-                </ol>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Section 5: Quick Reference */}
-        <div className="bg-black border-4 border-neon-orange rounded-lg">
-          <div className="bg-neon-orange text-black p-6 border-b-4 border-black">
-            <h3 className="text-xl font-black">
-              5. Quick Reference: Variable Examples
-            </h3>
-          </div>
-          <div className="p-6">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-xs">
-              <div>
-                <h4 className="text-neon-orange font-bold mb-3">Lighting</h4>
-                <p className="text-cream/80">
-                  Soft diffused light, Golden hour sunlight, Neon glow,
-                  Candlelight, Dramatic rim lighting
+              <div className="bg-cream/10 p-3 rounded">
+                <p className="text-neon-orange font-bold mb-1">
+                  Expert Example:
                 </p>
-              </div>
-              <div>
-                <h4 className="text-neon-orange font-bold mb-3">
-                  Camera Angles
-                </h4>
-                <p className="text-cream/80">
-                  Eye-level, Low-angle, Bird's-eye, First-person POV, Close-up,
-                  Wide shot
-                </p>
-              </div>
-              <div>
-                <h4 className="text-neon-orange font-bold mb-3">Mood/Tone</h4>
-                <p className="text-cream/80">
-                  Cheerful and bright, Moody and dark, Tranquil, Whimsical,
-                  Cinematic
+                <p className="text-xs">
+                  "Candid outdoor lifestyle shot, golden-hour sun flare. A group
+                  of diverse friends in hiking gear reach the summit of a hill,
+                  cheering with exhilaration. Camera positioned low looking up
+                  at triumphant poses against vibrant sky, emphasizing
+                  achievement. Lens flare and long shadows add drama while faces
+                  glow with warm sunset light."
                 </p>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Section 6: Tips & Warnings */}
+        {/* Section 5: Product & Studio Photography */}
         <div className="bg-black border-4 border-black rounded-lg mb-6">
           <div className="bg-neon-orange text-black p-6 border-b-4 border-black">
             <h3 className="text-xl font-black">
-              6. Tips, Best Practices, and Warnings
+              5. Product & Studio Photography Prompts
             </h3>
           </div>
           <div className="p-6">
-            <div className="text-cream text-sm space-y-4">
+            <div className="text-cream/90 text-sm space-y-3">
+              <p>
+                Product photography focuses on highlighting item features in a
+                clear, visually appealing way.
+              </p>
               <div>
-                <h4 className="text-neon-orange font-bold mb-3">
+                <h4 className="text-neon-orange font-bold mb-2">
+                  Key Elements:
+                </h4>
+                <ul className="space-y-1 ml-4 text-xs">
+                  <li>
+                    • <strong>Isolate the Product:</strong> Clean background,
+                    good lighting, product centered
+                  </li>
+                  <li>
+                    • <strong>Lighting & Reflections:</strong> Match lighting to
+                    material - softbox for shiny objects
+                  </li>
+                  <li>
+                    • <strong>Camera and Focus:</strong> Sharp focus, high
+                    resolution, consider angle
+                  </li>
+                  <li>
+                    • <strong>Contextual vs. Isolated:</strong> Decide on props
+                    or plain background
+                  </li>
+                </ul>
+              </div>
+              <div className="bg-cream/10 p-3 rounded">
+                <p className="text-neon-orange font-bold mb-1">
+                  Expert Example:
+                </p>
+                <p className="text-xs">
+                  "Hero shot of new smartphone levitating above matte black
+                  pedestal, against dimly lit studio with two-point lighting
+                  (cool blue fill from left, soft white key from right). Phone
+                  screen displays faint home screen glow. Detailed reflections
+                  on phone edges highlight metallic frame. Background in deep
+                  shadow with bokeh city lights. Shot in 4K, ultra-sharp."
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Section 6: Custom Graphics & Design */}
+        <div className="bg-black border-4 border-black rounded-lg mb-6">
+          <div className="bg-neon-orange text-black p-6 border-b-4 border-black">
+            <h3 className="text-xl font-black">
+              6. Custom Graphics & Design Prompts
+            </h3>
+          </div>
+          <div className="p-6">
+            <div className="text-cream/90 text-sm space-y-3">
+              <p>
+                Sora can generate graphic designs: logos, icons, banners with
+                text, illustrations for branding.
+              </p>
+              <div>
+                <h4 className="text-neon-orange font-bold mb-2">
+                  Logo Creation Tips:
+                </h4>
+                <ul className="space-y-1 ml-4 text-xs">
+                  <li>
+                    • <strong>Keep it Simple:</strong> "Minimalist logo" or
+                    "bold emblem-style logo"
+                  </li>
+                  <li>
+                    • <strong>Specify Style:</strong> "Modern flat design",
+                    "vintage retro style"
+                  </li>
+                  <li>
+                    • <strong>Colors and Fonts:</strong> Include color schemes
+                    and font style descriptions
+                  </li>
+                  <li>
+                    • <strong>Background:</strong> Usually "plain white
+                    background" or transparent
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="text-neon-orange font-bold mb-2">
+                  Text Rendering (GPT-4o):
+                </h4>
+                <ul className="space-y-1 ml-4 text-xs">
+                  <li>
+                    • <strong>Be Concise:</strong> Short phrases work better
+                    than paragraphs
+                  </li>
+                  <li>
+                    • <strong>Use Quotes:</strong> "A poster with title 'Summer
+                    Festival 2025'"
+                  </li>
+                  <li>
+                    • <strong>Specify Style:</strong> "In red bold font" or
+                    "handwritten style text"
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Section 7: Scene Regeneration */}
+        <div className="bg-black border-4 border-black rounded-lg mb-6">
+          <div className="bg-neon-orange text-black p-6 border-b-4 border-black">
+            <h3 className="text-xl font-black">
+              7. Scene Regeneration & Object Placement (Editing Images)
+            </h3>
+          </div>
+          <div className="p-6">
+            <div className="text-cream/90 text-sm space-y-3">
+              <p>
+                Sora's powerful editing feature lets you modify generated images
+                by describing changes.
+              </p>
+              <div>
+                <h4 className="text-neon-orange font-bold mb-2">
+                  Editing Tips:
+                </h4>
+                <ul className="space-y-1 ml-4 text-xs">
+                  <li>
+                    • <strong>Identify Elements:</strong> Describe what you want
+                    changed as you see it
+                  </li>
+                  <li>
+                    • <strong>Be Spatially Specific:</strong> Use "left",
+                    "right", "foreground", "background"
+                  </li>
+                  <li>
+                    • <strong>Maintain Consistency:</strong> Consider overall
+                    scene coherence
+                  </li>
+                  <li>
+                    • <strong>One Change at a Time:</strong> For big edits, work
+                    stepwise
+                  </li>
+                  <li>
+                    • <strong>Object Removal:</strong> "Remove" or "erase"
+                    usually works
+                  </li>
+                </ul>
+              </div>
+              <div className="bg-cream/10 p-3 rounded">
+                <p className="text-neon-orange font-bold mb-1">Example Edit:</p>
+                <p className="text-xs">
+                  Initial: Outdoor picnic scene on sunny day
+                  <br />
+                  Remix: "Make it look like evening, with sunset sky. Add string
+                  lights hanging between trees to create cozy atmosphere."
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Section 8: Using the Prompt Vault */}
+        <div className="bg-black border-4 border-black rounded-lg mb-6">
+          <div className="bg-neon-orange text-black p-6 border-b-4 border-black">
+            <h3 className="text-xl font-black">8. Using the Prompt Vault</h3>
+          </div>
+          <div className="p-6">
+            <div className="text-cream/90 text-sm space-y-3">
+              <p>
+                The Prompt Vault is your advanced formula builder that combines
+                custom vision, professional keywords, and image references into
+                perfectly structured SORA prompts.
+              </p>
+              <div>
+                <h4 className="text-neon-orange font-bold mb-2">
+                  Step-by-Step Process:
+                </h4>
+                <ul className="space-y-1 ml-4 text-xs">
+                  <li>
+                    • <strong>Step 1:</strong> Write your creative vision in the
+                    text area (describe your subject, scene, or concept)
+                  </li>
+                  <li>
+                    • <strong>Step 2:</strong> Upload a reference image for
+                    visual context (optional but recommended)
+                  </li>
+                  <li>
+                    • <strong>Step 3:</strong> Select keywords from categories:
+                    Lighting, Framing, Locations, Texture, Creative Direction,
+                    Quality
+                  </li>
+                  <li>
+                    • <strong>Step 4:</strong> Review the structured formula
+                    that automatically organizes your inputs
+                  </li>
+                  <li>
+                    • <strong>Step 5:</strong> Copy the formula and paste
+                    directly into SORA
+                  </li>
+                </ul>
+              </div>
+              <div className="bg-cream/10 p-3 rounded">
+                <p className="text-neon-orange font-bold mb-1">Pro Tips:</p>
+                <p className="text-xs">
+                  <strong>Structure:</strong> The vault auto-organizes keywords
+                  for optimal SORA understanding
+                  <br />
+                  <strong>Images:</strong> Uploaded images become "--reference
+                  image:" parameters
+                  <br />
+                  <strong>Keywords:</strong> Click to add, click × to remove
+                  selected keywords
+                  <br />
+                  <strong>Quality:</strong> Use the quality meter to optimize
+                  your prompt completeness
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Section 9: Tips & Best Practices */}
+        <div className="bg-black border-4 border-black rounded-lg mb-6">
+          <div className="bg-neon-orange text-black p-6 border-b-4 border-black">
+            <h3 className="text-xl font-black">
+              9. Tips, Best Practices, and Warnings
+            </h3>
+          </div>
+          <div className="p-6">
+            <div className="text-cream/90 text-sm space-y-4">
+              <div>
+                <h4 className="text-neon-orange font-bold mb-2">
                   General Tips:
                 </h4>
-                <ul className="space-y-2 ml-4 text-xs">
+                <ul className="space-y-1 ml-4 text-xs">
                   <li>
                     • <strong>Be Specific, Avoid Redundancy:</strong> "Red ball
                     on wooden table" not "nice pretty red ball sitting on wooden
@@ -573,12 +738,11 @@ export function Generator({ type, onActionAttempt }: GeneratorProps) {
                   </li>
                 </ul>
               </div>
-
               <div>
-                <h4 className="text-neon-orange font-bold mb-3">
+                <h4 className="text-neon-orange font-bold mb-2">
                   Content Warnings:
                 </h4>
-                <ul className="space-y-2 ml-4 text-xs">
+                <ul className="space-y-1 ml-4 text-xs">
                   <li>
                     • <strong>No Disallowed Content:</strong> Violence, gore,
                     sexual, hate content
@@ -593,13 +757,69 @@ export function Generator({ type, onActionAttempt }: GeneratorProps) {
                   </li>
                 </ul>
               </div>
-
-              <div className="bg-cream/10 p-4 rounded border-2 border-neon-orange/30">
-                <p className="text-neon-orange font-bold mb-2">Final Advice:</p>
+              <div>
+                <h4 className="text-neon-orange font-bold mb-2">
+                  When Things Go Wrong:
+                </h4>
+                <ul className="space-y-1 ml-4 text-xs">
+                  <li>
+                    • <strong>Conflicting Elements:</strong> Resolve
+                    contradictions
+                  </li>
+                  <li>
+                    • <strong>Too Complex:</strong> Break into simpler scenes
+                  </li>
+                  <li>
+                    • <strong>Obscure Terms:</strong> Use simpler descriptions
+                  </li>
+                  <li>
+                    • <strong>Use Variations:</strong> Re-run same prompt for
+                    different results
+                  </li>
+                </ul>
+              </div>
+              <div className="bg-cream/10 p-3 rounded">
+                <p className="text-neon-orange font-bold mb-1">Final Advice:</p>
                 <p className="text-xs">
                   Great images may not come on first try. Use Remix feature to
                   refine. Treat each generation as a prototype. "Iterate and
                   Refine" is key - even professional artists make many sketches!
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Quick Reference Card */}
+        <div className="bg-black border-4 border-neon-orange rounded-lg">
+          <div className="bg-neon-orange text-black p-6 border-b-4 border-black">
+            <h3 className="text-xl font-black">
+              Quick Reference: Variable Examples
+            </h3>
+          </div>
+          <div className="p-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+              <div>
+                <h4 className="text-neon-orange font-bold mb-2">Lighting</h4>
+                <p className="text-cream/80">
+                  Soft diffused light, Golden hour sunlight, Neon glow,
+                  Candlelight, Dramatic rim lighting
+                </p>
+              </div>
+              <div>
+                <h4 className="text-neon-orange font-bold mb-2">
+                  Camera Angles
+                </h4>
+                <p className="text-cream/80">
+                  Eye-level, Low-angle, Bird's-eye, First-person POV, Close-up,
+                  Wide shot
+                </p>
+              </div>
+              <div>
+                <h4 className="text-neon-orange font-bold mb-2">Mood/Tone</h4>
+                <p className="text-cream/80">
+                  Cheerful and bright, Moody and dark, Tranquil, Whimsical,
+                  Cinematic
                 </p>
               </div>
             </div>
