@@ -604,7 +604,11 @@ export default function Index() {
             AI
           </p>
           <div className="bg-neon-orange text-black font-black py-2 px-4 rounded-lg inline-block hover:bg-cream transition-colors text-sm">
-            <a href="overnightsuccessllc.gumroad.com/l/creativeos">
+            <a
+              href="https://overnightsuccessllc.gumroad.com/l/creativeos"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               ACCESS THE FULL SYSTEM →
             </a>
           </div>
