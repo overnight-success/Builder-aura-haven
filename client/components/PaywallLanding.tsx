@@ -146,40 +146,26 @@ export function PaywallLanding({
     <div className="min-h-screen bg-neon-orange font-sans">
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center px-4 overflow-hidden">
-        <div className="absolute inset-0 bg-black/5 backdrop-blur-sm"></div>
+        <div
+          className="absolute bg-black/5 backdrop-blur-sm"
+          style={{ left: "3px", top: "-54px", right: "0px", bottom: "0px" }}
+        ></div>
 
         <div className="relative z-10 text-center max-w-6xl mx-auto">
           <div className="mb-8">
-            <div className="inline-flex items-center gap-2 bg-black text-cream px-6 py-3 rounded-full font-bold text-sm mb-6">
-              <Bolt className="w-4 h-4" />
-              NOW WITH SORA INTEGRATION
-            </div>
-
-            <h1 className="text-5xl md:text-7xl font-black text-black mb-6 leading-tight">
-              THE FUTURE OF
+            <h1 className="text-5xl md:text-7xl font-black text-black leading-tight flex flex-row justify-center items-start">
               <br />
-              <span className="bg-black text-neon-orange px-4 py-2 inline-block">
-                LIFESTYLE CREATION
+              <span className="bg-black text-neon-orange px-4 py-3 inline-block my-3">
+                THE PLAYBOOK
               </span>
             </h1>
 
-            <p className="text-xl md:text-2xl text-black font-bold max-w-3xl mx-auto mb-8">
-              Professional AI-powered content generation system trusted by
-              10,000+ creators worldwide. Generate stunning lifestyle content
-              with precision and speed.
+            <p className="text-xl md:text-2xl text-black font-bold max-w-3xl mx-auto my-3 py-3 pb-1.5">
+              Our free guide to show you the ropes of AI Content Creation.
             </p>
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
-            <button
-              onClick={onGetAccess}
-              className="bg-black text-cream px-8 py-4 text-lg font-black border-4 border-black hover:bg-black/90 transition-all duration-200 flex items-center gap-2 min-w-[200px] justify-center"
-            >
-              <Crown className="w-5 h-5" />
-              GET FULL ACCESS
-              <ArrowRight className="w-5 h-5" />
-            </button>
-
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center py-1.5">
             <button
               onClick={onStartFree}
               className="bg-transparent text-black px-8 py-4 text-lg font-black border-4 border-black hover:bg-black hover:text-cream transition-all duration-200 flex items-center gap-2 min-w-[200px] justify-center"
@@ -187,21 +173,6 @@ export function PaywallLanding({
               <Play className="w-5 h-5" />
               TRY FREE VERSION
             </button>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-2xl mx-auto">
-            <div className="text-center">
-              <div className="text-3xl font-black text-black">10K+</div>
-              <div className="text-black font-bold">Active Creators</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-black text-black">1M+</div>
-              <div className="text-black font-bold">Prompts Generated</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-black text-black">98%</div>
-              <div className="text-black font-bold">Satisfaction Rate</div>
-            </div>
           </div>
         </div>
       </section>
