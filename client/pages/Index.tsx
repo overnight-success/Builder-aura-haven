@@ -21,6 +21,10 @@ function AppContent() {
 
   // Check if user has already accessed the app
   useEffect(() => {
+    // Clear localStorage for testing - remove this in production
+    localStorage.removeItem("hasAccessedApp");
+    localStorage.removeItem("userSignedUp");
+
     const hasAccessedApp = localStorage.getItem("hasAccessedApp");
     const hasSignedUp = localStorage.getItem("userSignedUp");
 
