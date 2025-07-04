@@ -19,11 +19,10 @@ export default function Index() {
 
   // Check if user has already unlocked
   useEffect(() => {
-    // Temporarily disabled to show landing page
-    // const access = localStorage.getItem("toolkitAccess");
-    // if (access === "true") {
-    //   setHasAccess(true);
-    // }
+    const access = localStorage.getItem("toolkitAccess");
+    if (access === "true") {
+      setHasAccess(true);
+    }
   }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
