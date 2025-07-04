@@ -92,19 +92,8 @@ export default function Index() {
           {/* Centered Email Form */}
           <div className="max-w-lg mx-auto px-6">
             <div className="bg-black rounded-3xl mt-5 pt-8 px-10 pb-10 shadow-2xl backdrop-blur-sm">
-              <div className="text-center mb-8">
-                <h2 className="text-3xl font-black text-white mb-4">
-                  Get Instant Access
-                </h2>
-                <div className="flex justify-center space-x-6 text-gray-400 text-sm mb-6">
-                  <span>Video</span>
-                  <span>•</span>
-                  <span>Image</span>
-                  <span>•</span>
-                  <span>Text</span>
-                  <span>•</span>
-                  <span>Audio</span>
-                </div>
+              <div className="text-white text-3xl font-normal leading-9 mb-8 pb-4">
+                Get Instant Access
               </div>
 
               <form onSubmit={handleSubmit} className="space-y-5">
@@ -135,11 +124,7 @@ export default function Index() {
                 </button>
               </form>
 
-              <div className="text-center mt-6">
-                <p className="text-gray-500 text-sm">
-                  Free • Instant • No signup required
-                </p>
-              </div>
+              <div className="mt-6"></div>
             </div>
           </div>
         </div>
