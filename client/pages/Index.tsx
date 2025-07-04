@@ -597,14 +597,16 @@ export default function Index() {
           className="bg-black border-2 border-black rounded-lg p-4 cursor-pointer hover:bg-gray-900 transition-all duration-200 text-center"
         >
           <h2 className="text-2xl font-black text-neon-orange mb-2">
-            🎯 Ready to Create? Unlock Our AI Creative System Today
+            🎯 Unlock Our AI Creative System Today
           </h2>
           <p className="text-cream font-bold mb-3">
             Join thousands using our advanced prompt generation system for Sora
             AI
           </p>
           <div className="bg-neon-orange text-black font-black py-2 px-4 rounded-lg inline-block hover:bg-cream transition-colors text-sm">
-            ACCESS THE FULL SYSTEM →
+            <a href="overnightsuccessllc.gumroad.com/l/creativeos">
+              ACCESS THE FULL SYSTEM →
+            </a>
           </div>
         </div>
       </div>
