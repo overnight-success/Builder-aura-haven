@@ -596,7 +596,7 @@ export default function Index() {
           href="https://overnightsuccessllc.gumroad.com/l/creativeos"
           target="_blank"
           rel="noopener noreferrer"
-          className="bg-black border-2 border-black rounded-lg p-4 cursor-pointer hover:bg-gray-900 transition-all duration-200 text-center w-full block"
+          className="bg-black border-2 border-black rounded-lg p-4 cursor-pointer hover:bg-gray-900 transition-all duration-200 text-center w-full block text-black"
         >
           <h2 className="text-2xl font-black text-neon-orange mb-2">
             🎯 Unlock Our AI Creative System Today
