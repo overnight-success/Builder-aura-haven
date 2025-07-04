@@ -29,11 +29,6 @@ export function Navigation({
 
   const menuItems = [
     {
-      id: "briefcase",
-      label: "THE BRIEFCASE",
-      icon: <Briefcase className="h-5 w-5" />,
-    },
-    {
       id: "access",
       label: "GET FULL ACCESS",
       icon: <Crown className="h-5 w-5" />,
@@ -105,23 +100,6 @@ export function Navigation({
                   </span>
                 </Button>
               ))}
-            </div>
-
-            {/* Stats & Reset */}
-            <div className="flex items-center gap-2 shrink-0">
-              <Badge className="bg-black border-2 border-black text-cream font-bold text-xs px-2 py-1 whitespace-nowrap pr-5">
-                <Target className="h-3 w-3 text-neon-orange mr-1 shrink-0" />
-                <span>{totalComponents}/8</span>
-              </Badge>
-              <Button
-                onClick={onReset}
-                aria-label="Reset all selections"
-                className="bg-black border-2 border-black text-cream font-bold text-xs px-3 py-1.5 h-auto hover:bg-cream hover:text-black transition-all duration-200 whitespace-nowrap"
-                disabled={totalComponents === 0}
-              >
-                <RefreshCw className="h-3 w-3 text-neon-orange mr-1 shrink-0" />
-                <span>RESET</span>
-              </Button>
             </div>
           </div>
         </div>
