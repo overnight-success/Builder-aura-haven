@@ -41,7 +41,7 @@ export default function Index() {
       localStorage.setItem("userEmail", email);
       setHasAccess(true);
     } catch (error) {
-      console.error("Access error:", error);
+      // Handle error silently
     } finally {
       setIsSubmitting(false);
     }
@@ -592,9 +592,9 @@ export default function Index() {
         </div>
 
         {/* Bottom Banner */}
-        <div
+        <button
           onClick={goToMainApp}
-          className="bg-black border-2 border-black rounded-lg p-4 cursor-pointer hover:bg-gray-900 transition-all duration-200 text-center"
+          className="bg-black border-2 border-black rounded-lg p-4 cursor-pointer hover:bg-gray-900 transition-all duration-200 text-center w-full"
         >
           <h2 className="text-2xl font-black text-neon-orange mb-2">
             🎯 Unlock Our AI Creative System Today
