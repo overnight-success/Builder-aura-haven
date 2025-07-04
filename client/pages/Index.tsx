@@ -612,7 +612,7 @@ export default function Index() {
               ACCESS THE FULL SYSTEM →
             </a>
           </div>
-        </div>
+        </button>
       </div>
     </div>
   );
