@@ -100,9 +100,6 @@ export function CustomInstructions({
         {isExpanded && (
           <CardContent className="pt-0 space-y-4">
             <div className="space-y-2">
-              <label className="text-sm font-medium text-foreground">
-                Your Creative Vision & Requirements
-              </label>
               <Textarea
                 placeholder="Start with your specific instructions, creative vision, or requirements that will guide the AI generation..."
                 value={value}
@@ -110,10 +107,6 @@ export function CustomInstructions({
                 className="min-h-24 resize-none bg-black border-2 border-cream text-cream focus:border-neon-orange focus:bg-black placeholder:text-cream"
               />
               <div className="flex justify-between items-center text-xs text-muted-foreground">
-                <span>
-                  💡 Start here: Describe your vision to guide category
-                  selections
-                </span>
                 <span>{value.length}/500</span>
               </div>
             </div>

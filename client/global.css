@@ -171,6 +171,25 @@
   display: none; /* Chrome, Safari and Opera */
 }
 
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .container {
+    padding-inline: 1rem;
+  }
+
+  /* Improve touch targets */
+  button,
+  .btn {
+    min-height: 44px;
+  }
+
+  /* Better modal handling on mobile */
+  .modal-content {
+    margin: 1rem;
+    max-height: calc(100vh - 2rem);
+  }
+}
+
 .btn-shiny-black {
   background: #000000;
   border: 2px solid #ff3120;

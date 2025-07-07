@@ -20,6 +20,7 @@ import {
   Camera,
   Package,
   ChevronDown,
+  Upload,
 } from "lucide-react";
 
 interface TheBriefcaseProps {
@@ -131,6 +132,9 @@ Always include:
 
   // PROMPT VAULT - Complete keyword library from screenshots
   const [selectedKeywords, setSelectedKeywords] = useState<string[]>([]);
+  const [customPromptText, setCustomPromptText] = useState<string>("");
+  const [uploadedImage, setUploadedImage] = useState<File | null>(null);
+  const [imageDescription, setImageDescription] = useState<string>("");
 
   // TEMPLATES - Placeholder replacement values
   const [placeholders, setPlaceholders] = useState({
@@ -158,12 +162,12 @@ Always include:
   const promptVault = {
     keywords: {
       Lighting: [
-        "Golden Hour: Warm, cinematic",
+        "Golden Hour: Warm, natural",
         "Backlit: Rim lighting for shape",
         "Soft Ambient: Beauty shots, lifestyle",
-        "Hard Flash: Edgy streetwear",
+        "Hard Flash: Sharp, defined shadows",
         "Neon: Retro-future, saturated",
-        "Flicker: Great for dynamic transitions in video",
+        "Studio lighting: Professional setup",
         "golden hour with long shadows",
         "overcast softness",
         "neon nightclub hues",
@@ -178,47 +182,47 @@ Always include:
         "light leaks through blinds",
         "gradient sunset cast",
         "studio flash with softbox",
-        "high-contrast film noir",
+        "high-contrast noir",
         "volumetric fog beams",
-        "cinematic rim lighting",
+        "dramatic rim lighting",
         "harsh fluorescent glare",
         "warm fireplace glow",
         "cold LED strip accent",
         "dappled forest sunlight",
         "urban streetlight amber",
         "underwater caustic patterns",
-        "laser light show effects",
+        "colorful stage lighting",
         "vintage photography bulbs",
       ],
       Framing: [
-        "24mm: Wide landscapes, high energy",
+        "24mm: Wide landscapes, architectural",
         "35mm: Editorial and lifestyle portraits",
         "50mm: Clean product or natural portraits",
-        "85mm: Intimate close-up, emotional storytelling",
+        "85mm: Intimate close-up, emotional",
         "Low Angle: Power, presence",
         "Macro: Detail shots, textures",
         "extreme close-up on texture",
         "wide establishing shot",
         "symmetrical center crop",
-        "over-the-shoulder POV",
+        "over-the-shoulder perspective",
         "profile view portrait",
         "tight crop on eyes",
-        "subject entering frame",
+        "subject centered frame",
         "bird's eye view",
         "rule-of-thirds precision",
         "macro product angle",
         "reflection-in-mirror shot",
-        "rear-view mirror framing",
+        "mirror framing",
         "worm's eye perspective",
         "Dutch angle tilt",
-        "extreme wide aerial shot",
+        "extreme wide aerial view",
         "fisheye distortion effect",
-        "tracking shot movement",
-        "dolly zoom technique",
-        "handheld camera shake",
-        "steadicam smooth glide",
-        "crane shot elevation",
-        "split screen composition",
+        "dynamic composition",
+        "telephoto compression",
+        "sharp focus point",
+        "balanced composition",
+        "elevated perspective",
+        "split screen layout",
       ],
       Locations: [
         "foggy Tokyo street",
@@ -301,45 +305,39 @@ Always include:
         "Chloé minimalist elegance",
         "Supreme streetwear culture",
       ],
-      "Quality Modifiers": [
+      "Modify & Enhance": [
         "4K resolution",
-        "cinematic quality",
+        "photographic quality",
         "professional grade",
         "award-winning",
         "ultra-high resolution",
         "masterpiece",
         "commercial ready",
         "studio quality",
-        "professional video production",
-        "optimized for SORA AI",
-        "broadcast television grade",
-        "film festival worthy",
+        "professional photography",
+        "optimized for AI generation",
+        "print quality",
+        "gallery worthy",
         "magazine cover quality",
         "social media optimized",
         "HDR color grading",
-        "IMAX presentation format",
-        "streaming platform ready",
-        "commercial advertisement grade",
-        "documentary film standard",
-        "music video production",
-      ],
-      Enhancers: [
-        "Shift texture layer: Velvet → Glass → Chrome → Plastic",
-        "Change lighting mood: Golden hour → Neon glow → Paparazzi",
-        "Apply time-based logic: Day → Night → Rainy → Overcast",
-        "Swap camera angle: Top-down → Orbit → Over-the-shoulder",
+        "large format quality",
+        "web ready",
+        "commercial photography grade",
+        "editorial standard",
+        "fashion photography quality",
         "floating dust particles",
         "lens flare streak",
         "reflections on lens",
         "rain droplets on lens",
         "reflective shine",
         "film grain texture overlay",
-        "color grading LUT application",
+        "color grading application",
         "depth of field blur",
-        "motion blur trails",
+        "subtle motion",
         "chromatic aberration edge",
         "vignette corner darkening",
-        "lens distortion warp",
+        "lens distortion effect",
         "light leak artifacts",
         "double exposure blend",
         "cross-processing color shift",
@@ -349,22 +347,6 @@ Always include:
 
   // UPDATES - Running feed of new updates
   const updates = [
-    {
-      date: "Jan 20, 2025",
-      title: "O/S Creative System - Waiting List Now Open",
-      type: "New Launch",
-      description:
-        "Join the waitlist for our revolutionary O/S Creative System - the next generation of AI-powered creative tools",
-      isNew: true,
-    },
-    {
-      date: "Jan 20, 2025",
-      title: "Get Our Beginners Playbook to AI Creative for Free Here",
-      type: "Free Resource",
-      description:
-        "Download our comprehensive beginner's guide to AI creative tools and start creating professional content today",
-      isNew: true,
-    },
     {
       date: "Jan 20, 2025",
       title: "Follow Us on Social @overnightsuccessllc",
@@ -794,31 +776,170 @@ Always include:
 
   const clearFormula = () => {
     setSelectedKeywords([]);
+    setCustomPromptText("");
+    setUploadedImage(null);
+    setImageDescription("");
+    console.log("Formula cleared");
+  };
+
+  const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file && file.type.startsWith("image/")) {
+      // Check file size (limit to 10MB)
+      if (file.size > 10 * 1024 * 1024) {
+        alert("❌ File too large. Please select an image under 10MB.");
+        return;
+      }
+
+      setUploadedImage(file);
+      // Generate a basic description based on filename and type
+      const description = `[Image: ${file.name.replace(/\.[^/.]+$/, "").replace(/[-_]/g, " ")}]`;
+      setImageDescription(description);
+    } else {
+      alert("❌ Please select a valid image file (JPG, PNG, GIF).");
+    }
+  };
+
+  const removeImage = () => {
+    setUploadedImage(null);
+    setImageDescription("");
   };
 
   const getFormulaText = () => {
-    if (selectedKeywords.length === 0) {
-      return "Click keywords below to build your custom formula...";
+    if (
+      !customPromptText.trim() &&
+      selectedKeywords.length === 0 &&
+      !imageDescription
+    ) {
+      return "Type your vision above, upload an image, and click keywords below to build your custom formula...";
     }
-    return selectedKeywords.join(", ");
+
+    // Build structured prompt for SORA image generation
+    const formulaParts = [];
+
+    // 1. Start with custom text/vision
+    if (customPromptText.trim()) {
+      formulaParts.push(customPromptText.trim());
+    }
+
+    // 2. Add structured keywords
+    if (selectedKeywords.length > 0) {
+      // Restructure keywords for optimal image generation output
+      const lighting = selectedKeywords.filter((k) =>
+        [
+          "studio lighting",
+          "soft lighting",
+          "dramatic lighting",
+          "natural lighting",
+          "golden hour",
+          "neon lighting",
+          "backlighting",
+          "rim lighting",
+        ].includes(k),
+      );
+      const camera = selectedKeywords.filter((k) =>
+        [
+          "close-up",
+          "wide shot",
+          "portrait view",
+          "overhead view",
+          "low angle",
+          "high angle",
+          "dutch angle",
+          "macro angle",
+        ].includes(k),
+      );
+      const style = selectedKeywords.filter((k) =>
+        [
+          "minimalist",
+          "vintage",
+          "modern",
+          "futuristic",
+          "elegant",
+          "bold",
+          "artistic",
+          "commercial",
+        ].includes(k),
+      );
+      const quality = selectedKeywords.filter((k) =>
+        [
+          "4K",
+          "8K",
+          "high resolution",
+          "professional quality",
+          "photographic quality",
+          "ultra-detailed",
+          "photorealistic",
+          "masterpiece",
+        ].includes(k),
+      );
+      const remaining = selectedKeywords.filter(
+        (k) =>
+          !lighting.includes(k) &&
+          !camera.includes(k) &&
+          !style.includes(k) &&
+          !quality.includes(k),
+      );
+
+      // Build keyword sections in logical order
+      const keywordSections = [];
+      if (remaining.length > 0) keywordSections.push(remaining.join(", "));
+      if (camera.length > 0) keywordSections.push(camera.join(", "));
+      if (lighting.length > 0) keywordSections.push(lighting.join(", "));
+      if (style.length > 0) keywordSections.push(style.join(", "));
+      if (quality.length > 0) keywordSections.push(quality.join(", "));
+
+      if (keywordSections.length > 0) {
+        formulaParts.push(keywordSections.join(", "));
+      }
+    }
+
+    // 3. Add image reference at the end for SORA processing
+    if (imageDescription && uploadedImage) {
+      const imageRef = `--reference image: ${uploadedImage.name} (${imageDescription.replace(/[\[\]]/g, "")})`;
+      formulaParts.push(imageRef);
+    }
+
+    return formulaParts.length > 0
+      ? formulaParts.join(", ")
+      : "Start typing your vision...";
   };
 
-  const copyFormula = async () => {
+  const copyFormula = () => {
     const formula = getFormulaText();
-    if (selectedKeywords.length === 0) return;
-
-    try {
-      await navigator.clipboard.writeText(formula);
-      // Visual feedback could be added here
-    } catch (error) {
-      // Fallback for browsers that don't support clipboard API
-      const textArea = document.createElement("textarea");
-      textArea.value = formula;
-      document.body.appendChild(textArea);
-      textArea.select();
-      document.execCommand("copy");
-      document.body.removeChild(textArea);
+    if (
+      !customPromptText.trim() &&
+      selectedKeywords.length === 0 &&
+      !imageDescription
+    ) {
+      return;
     }
+
+    // Simple, reliable copy
+    const textArea = document.createElement("textarea");
+    textArea.value = formula;
+    textArea.style.position = "fixed";
+    textArea.style.left = "-999px";
+    textArea.style.top = "-999px";
+
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+
+    let success = false;
+    try {
+      success = document.execCommand("copy");
+    } catch (error) {
+      success = false;
+    }
+
+    if (success) {
+      alert("✅ Formula copied to clipboard!");
+    } else {
+      alert(`❌ Copy failed. Please copy this formula manually:\n\n${formula}`);
+    }
+
+    document.body.removeChild(textArea);
   };
 
   const getPromptQualityScore = () => {
@@ -857,42 +978,45 @@ Always include:
     return replacedPrompt;
   };
 
-  const copyPrompt = async (prompt: string, event?: any) => {
+  const copyPrompt = (prompt: string, event?: any) => {
     const finalPrompt = replacePlaceholders(prompt);
+    const clickedButton = event?.target?.closest("button");
+
+    // Simple, reliable copy
+    const textArea = document.createElement("textarea");
+    textArea.value = finalPrompt;
+    textArea.style.position = "fixed";
+    textArea.style.left = "-999px";
+    textArea.style.top = "-999px";
+
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+
+    let copySuccess = false;
     try {
-      await navigator.clipboard.writeText(finalPrompt);
-      // Show success feedback
-      const clickedButton = event?.target?.closest("button");
-      if (clickedButton) {
-        const originalText = clickedButton.innerHTML;
-        clickedButton.innerHTML =
-          '<svg class="h-3 w-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>';
-        clickedButton.style.backgroundColor = "#10b981";
-        setTimeout(() => {
-          clickedButton.innerHTML = originalText;
-          clickedButton.style.backgroundColor = "";
-        }, 1500);
-      }
+      copySuccess = document.execCommand("copy");
     } catch (error) {
-      // Fallback for browsers that don't support clipboard API
-      const textArea = document.createElement("textarea");
-      textArea.value = finalPrompt;
-      document.body.appendChild(textArea);
-      textArea.select();
-      document.execCommand("copy");
-      document.body.removeChild(textArea);
-      // Show success feedback for fallback too
-      const clickedButton = event?.target?.closest("button");
-      if (clickedButton) {
-        const originalText = clickedButton.innerHTML;
-        clickedButton.innerHTML =
-          '<svg class="h-3 w-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>';
-        clickedButton.style.backgroundColor = "#10b981";
-        setTimeout(() => {
-          clickedButton.innerHTML = originalText;
-          clickedButton.style.backgroundColor = "";
-        }, 1500);
-      }
+      copySuccess = false;
+    }
+
+    document.body.removeChild(textArea);
+
+    if (!copySuccess) {
+      alert(
+        `❌ Copy failed. Please copy this prompt manually:\n\n${finalPrompt}`,
+      );
+    }
+
+    // Show success feedback
+    if (copySuccess && clickedButton) {
+      const originalText = clickedButton.innerHTML;
+      clickedButton.innerHTML = "✓ COPIED";
+      clickedButton.style.backgroundColor = "#10b981";
+      setTimeout(() => {
+        clickedButton.innerHTML = originalText;
+        clickedButton.style.backgroundColor = "";
+      }, 1500);
     }
   };
 
@@ -902,14 +1026,14 @@ Always include:
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
-      <div className="bg-black rounded-lg max-w-6xl w-full max-h-[90vh] overflow-hidden">
+      <div className="bg-black rounded-lg max-w-6xl w-full max-h-[95vh] lg:max-h-[90vh] overflow-hidden">
         {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b-4 border-black">
+        <div className="flex items-center justify-between p-4 lg:p-6 border-b-4 border-black">
           <div className="flex items-center gap-3">
             <div className="p-2 rounded-lg bg-black">
               <Archive className="h-6 w-6 text-neon-orange" />
             </div>
-            <h2 className="text-2xl font-black text-black">THE BRIEFCASE</h2>
+            <h2 className="text-2xl font-black text-white">THE BRIEFCASE</h2>
           </div>
           <Button
             onClick={onClose}
@@ -922,13 +1046,16 @@ Always include:
 
         {/* Tabs */}
         <div className="border-b-2 border-black bg-black">
-          <div className="flex overflow-x-auto">
+          <div
+            className="flex overflow-x-auto scrollbar-hide"
+            style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+          >
             {tabs.map((tab) => (
               <Button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
                 className={`
-                  font-bold text-xs px-4 py-3 border-0 rounded-none whitespace-nowrap
+                  font-bold text-xs lg:text-sm px-3 lg:px-4 py-2 lg:py-3 border-0 rounded-none whitespace-nowrap shrink-0
                   ${
                     activeTab === tab.id
                       ? "bg-neon-orange text-black"
@@ -944,13 +1071,13 @@ Always include:
         </div>
 
         {/* Content */}
-        <div className="p-6 overflow-y-auto max-h-[60vh] bg-black">
+        <div className="p-4 lg:p-6 overflow-y-auto max-h-[70vh] lg:max-h-[60vh] bg-black">
           {/* THE PLAYBOOK */}
           {activeTab === "playbook" && (
             <div className="space-y-6">
               <div className="text-center mb-8">
                 <h3 className="text-2xl font-black text-cream mb-2">
-                  Image Generation with Sora & ChatGPT: Official Guide
+                  The Playbook: Image Generation with Sora & ChatGPT
                 </h3>
                 <p className="text-cream/80">
                   Complete guide for mastering AI image generation from beginner
@@ -1358,44 +1485,61 @@ Always include:
               <Card className="bg-black border-2 border-cream mb-6">
                 <CardHeader>
                   <CardTitle className="text-lg font-black text-cream">
-                    8. Using Modular Prompt Formulas
+                    8. Using the Prompt Vault
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="text-cream/90 text-sm space-y-3">
                     <p>
-                      Create template-based prompts for consistency and
-                      efficiency, especially useful for brand style guides.
+                      The Prompt Vault is your advanced formula builder that
+                      combines custom vision, professional keywords, and image
+                      references into perfectly structured SORA prompts.
                     </p>
                     <div>
                       <h4 className="text-neon-orange font-bold mb-2">
-                        Setting Up in Notion:
+                        Step-by-Step Process:
                       </h4>
                       <ul className="space-y-1 ml-4 text-xs">
                         <li>
-                          • Create table with columns: Subject, Action, Setting,
-                          Lighting, Style, Colors
+                          • <strong>Step 1:</strong> Write your creative vision
+                          in the text area (describe your subject, scene, or
+                          concept)
                         </li>
                         <li>
-                          • Use Formula property to concatenate fields into
-                          prompt string
+                          • <strong>Step 2:</strong> Upload a reference image
+                          for visual context (optional but recommended)
                         </li>
                         <li>
-                          �� Include conditional parts (omit empty fields)
+                          • <strong>Step 3:</strong> Select keywords from
+                          categories: Lighting, Framing, Locations, Texture,
+                          Creative Direction, Quality
+                        </li>
+                        <li>
+                          • <strong>Step 4:</strong> Review the structured
+                          formula that automatically organizes your inputs
+                        </li>
+                        <li>
+                          • <strong>Step 5:</strong> Copy the formula and paste
+                          directly into SORA
                         </li>
                       </ul>
                     </div>
                     <div className="bg-cream/10 p-3 rounded">
                       <p className="text-neon-orange font-bold mb-1">
-                        Benefits:
+                        Pro Tips:
                       </p>
                       <p className="text-xs">
-                        <strong>Consistency:</strong> Follow preferred structure
+                        <strong>Structure:</strong> The vault auto-organizes
+                        keywords for optimal SORA understanding
                         <br />
-                        <strong>Brainstorming:</strong> Quickly swap variables
+                        <strong>Images:</strong> Uploaded images become
+                        "--reference image:" parameters
                         <br />
-                        <strong>Scaling:</strong> Generate dozens of prompts
-                        efficiently
+                        <strong>Keywords:</strong> Click to add, click × to
+                        remove selected keywords
+                        <br />
+                        <strong>Quality:</strong> Use the quality meter to
+                        optimize your prompt completeness
                       </p>
                     </div>
                   </div>
@@ -1541,17 +1685,10 @@ Always include:
                 <h3 className="text-2xl font-black text-cream mb-2">
                   Prompt Vault
                 </h3>
-                <div className="max-w-2xl mx-auto">
-                  <p className="text-cream/80 mb-4">
-                    <strong className="text-neon-orange">Step 1:</strong> Type
-                    out your specific vision and request below
-                  </p>
-                  <p className="text-cream/80">
-                    <strong className="text-neon-orange">Step 2:</strong> Use
-                    the keyword selector to enhance and build the ultimate
-                    optimized prompt
-                  </p>
-                </div>
+                <span className="text-cream/80">
+                  Use the keyword selector to enhance and build the ultimate
+                  optimized prompt
+                </span>
               </div>
 
               {/* Suggestions Meter */}
@@ -1577,18 +1714,6 @@ Always include:
                     <p className="text-cream/80 text-sm">
                       💡 {getQualityMessage()}
                     </p>
-
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-2 text-xs">
-                      <div className="text-cream/60">
-                        ✓ Add lighting keywords
-                      </div>
-                      <div className="text-cream/60">
-                        ✓ Choose camera framing
-                      </div>
-                      <div className="text-cream/60">
-                        ✓ Select creative direction
-                      </div>
-                    </div>
                   </div>
                 </CardContent>
               </Card>
@@ -1602,10 +1727,89 @@ Always include:
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                  <div className="min-h-24 p-4 border-2 border-cream rounded-lg bg-black">
-                    <p className="text-cream text-sm font-mono leading-relaxed">
-                      {getFormulaText()}
-                    </p>
+                  {/* Custom Text Input */}
+                  <div className="space-y-2">
+                    <label className="text-sm font-bold text-neon-orange">
+                      YOUR VISION:
+                    </label>
+                    <textarea
+                      value={customPromptText}
+                      onChange={(e) => setCustomPromptText(e.target.value)}
+                      placeholder="Describe your creative vision, subject, or scene..."
+                      className="w-full min-h-20 p-3 border-2 border-cream rounded-lg bg-black text-cream text-sm placeholder:text-cream/60 focus:border-neon-orange focus:outline-none resize-none"
+                      maxLength={500}
+                      aria-label="Describe your creative vision"
+                      aria-describedby="vision-help"
+                    />
+                    <div id="vision-help" className="sr-only">
+                      Describe your creative vision, subject, or scene to help
+                      generate better prompts
+                    </div>
+                    <div className="text-xs text-cream/60 text-right">
+                      {customPromptText.length}/500
+                    </div>
+                  </div>
+
+                  {/* Image Upload */}
+                  <div className="space-y-2">
+                    <label className="text-sm font-bold text-neon-orange">
+                      REFERENCE IMAGE:
+                    </label>
+                    {!uploadedImage ? (
+                      <div className="border-2 border-dashed border-cream/50 rounded-lg p-4 text-center hover:border-neon-orange transition-colors">
+                        <input
+                          type="file"
+                          accept="image/*"
+                          onChange={handleImageUpload}
+                          className="hidden"
+                          id="image-upload"
+                          aria-label="Upload reference image"
+                        />
+                        <label
+                          htmlFor="image-upload"
+                          className="cursor-pointer flex flex-col items-center gap-2"
+                        >
+                          <Upload className="h-8 w-8 text-cream/60" />
+                          <span className="text-sm text-cream/80">
+                            Click to upload reference image
+                          </span>
+                          <span className="text-xs text-cream/60">
+                            JPG, PNG, GIF up to 10MB
+                          </span>
+                        </label>
+                      </div>
+                    ) : (
+                      <div className="border-2 border-cream rounded-lg p-3 flex items-center gap-3">
+                        <Image className="h-8 w-8 text-neon-orange" />
+                        <div className="flex-1">
+                          <p className="text-sm font-medium text-cream">
+                            {uploadedImage.name}
+                          </p>
+                          <p className="text-xs text-cream/60">
+                            {(uploadedImage.size / 1024 / 1024).toFixed(2)} MB
+                          </p>
+                        </div>
+                        <Button
+                          onClick={removeImage}
+                          className="p-1 h-auto bg-red-500 hover:bg-red-600 text-white"
+                          size="sm"
+                        >
+                          <X className="h-4 w-4" />
+                        </Button>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Generated Formula Display */}
+                  <div className="space-y-2">
+                    <label className="text-sm font-bold text-neon-orange">
+                      STRUCTURED FORMULA:
+                    </label>
+                    <div className="min-h-24 p-4 border-2 border-cream rounded-lg bg-black">
+                      <p className="text-cream text-sm font-mono leading-relaxed">
+                        {getFormulaText()}
+                      </p>
+                    </div>
                   </div>
 
                   {/* Selected Keywords */}
@@ -1619,7 +1823,7 @@ Always include:
                           <Badge
                             key={keyword}
                             onClick={() => removeKeywordFromFormula(keyword)}
-                            className="bg-neon-orange text-black font-bold text-xs cursor-pointer hover:bg-red-500 transition-all duration-200"
+                            className="bg-neon-orange text-white font-bold text-xs cursor-pointer hover:bg-red-500 transition-all duration-200"
                           >
                             {keyword} ×
                           </Badge>
@@ -1632,7 +1836,12 @@ Always include:
                     <Button
                       onClick={copyFormula}
                       className="bg-neon-orange text-black hover:bg-cream font-bold"
-                      disabled={selectedKeywords.length === 0}
+                      disabled={
+                        !customPromptText.trim() &&
+                        selectedKeywords.length === 0 &&
+                        !imageDescription
+                      }
+                      aria-label="Copy generated formula to clipboard"
                     >
                       <Copy className="h-4 w-4 mr-2" />
                       COPY FORMULA
@@ -1640,7 +1849,12 @@ Always include:
                     <Button
                       onClick={clearFormula}
                       className="bg-cream text-black hover:bg-red-500 hover:text-white font-bold"
-                      disabled={selectedKeywords.length === 0}
+                      disabled={
+                        !customPromptText.trim() &&
+                        selectedKeywords.length === 0 &&
+                        !imageDescription
+                      }
+                      aria-label="Clear all formula content"
                     >
                       CLEAR ALL
                     </Button>
@@ -1703,7 +1917,7 @@ Always include:
                 </p>
               </div>
 
-              <div className="space-y-4">
+              <div>
                 {updates.map((update, index) => (
                   <Card key={index} className="bg-black border-2 border-cream">
                     <CardContent className="p-6">

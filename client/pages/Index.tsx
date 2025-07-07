@@ -1,4 +1,13 @@
+<<<<<<< HEAD
 import React, { useState, useEffect } from "react";
+=======
+import React, { useEffect, useState } from "react";
+import { Navigation } from "../components/Navigation";
+import { Generator } from "../components/Generator";
+import { SignupWall } from "../components/SignupWall";
+import { Paywall } from "../components/Paywall";
+import { PaywallLanding } from "../components/PaywallLanding";
+>>>>>>> 4431a92914ee506e3207dd01dd6d789dc19e9af7
 import {
   ExternalLink,
   Video,
@@ -12,6 +21,7 @@ import {
   Zap,
 } from "lucide-react";
 
+<<<<<<< HEAD
 export default function Index() {
   const [hasAccess, setHasAccess] = useState(false);
   const [email, setEmail] = useState("");
@@ -22,6 +32,32 @@ export default function Index() {
     const access = localStorage.getItem("toolkitAccess");
     if (access === "true") {
       setHasAccess(true);
+=======
+function AppContent() {
+  const { state, actions, computed } = usePromptGenerator();
+  const [showPaywallLanding, setShowPaywallLanding] = useState(true);
+  const [showSignupWall, setShowSignupWall] = useState(false);
+  const [showPaywall, setShowPaywall] = useState(false);
+  const { subscriptionStatus, canUseFeature, loading } = useSubscription();
+  const { trackView } = useTracking();
+
+  // Check if user has already accessed the app
+  useEffect(() => {
+    // Clear localStorage for testing - remove this in production
+    localStorage.removeItem("hasAccessedApp");
+    localStorage.removeItem("userSignedUp");
+
+    const hasAccessedApp = localStorage.getItem("hasAccessedApp");
+    const hasSignedUp = localStorage.getItem("userSignedUp");
+
+    if (hasAccessedApp === "true") {
+      setShowPaywallLanding(false);
+      if (hasSignedUp === "true") {
+        setShowSignupWall(false);
+      } else {
+        setShowSignupWall(true);
+      }
+>>>>>>> 4431a92914ee506e3207dd01dd6d789dc19e9af7
     }
   }, []);
 
@@ -35,6 +71,7 @@ export default function Index() {
       // Simulate API call
       await new Promise((resolve) => setTimeout(resolve, 1500));
 
+<<<<<<< HEAD
       // Store access status
       localStorage.setItem("toolkitAccess", "true");
       localStorage.setItem("userEmail", email);
@@ -44,14 +81,45 @@ export default function Index() {
     } finally {
       setIsSubmitting(false);
     }
+=======
+    return () => clearTimeout(timer);
+  }, [
+    state.favorites,
+    state.history,
+    state.selections,
+    state.customInstructions,
+    actions.saveState, // Only depend on the specific action, not the entire actions object
+  ]);
+
+  const handlePageChange = (page: string) => {
+    // Handle navigation changes (no generators available in nav)
+    console.log("Page change requested:", page);
+>>>>>>> 4431a92914ee506e3207dd01dd6d789dc19e9af7
   };
 
   const openTool = (url: string) => {
     window.open(url, "_blank");
   };
 
+<<<<<<< HEAD
   const goToMainApp = () => {
     window.location.href = "/";
+=======
+  const handleGetAccess = () => {
+    localStorage.setItem("hasAccessedApp", "true");
+    setShowPaywallLanding(false);
+    setShowPaywall(true);
+  };
+
+  const handleStartFree = () => {
+    localStorage.setItem("hasAccessedApp", "true");
+    setShowPaywallLanding(false);
+    setShowSignupWall(true);
+  };
+
+  const handleSignupComplete = () => {
+    setShowSignupWall(false);
+>>>>>>> 4431a92914ee506e3207dd01dd6d789dc19e9af7
   };
 
   const resetAccess = () => {
@@ -60,6 +128,7 @@ export default function Index() {
     setHasAccess(false);
   };
 
+<<<<<<< HEAD
   // Show landing page paywall if user doesn't have access
   if (!hasAccess) {
     return (
@@ -593,6 +662,60 @@ export default function Index() {
             ACCESS THE FULL SYSTEM →
           </div>
         </a>
+=======
+  const checkUsageBeforeAction = (action: "outputs" | "downloads") => {
+    if (!canUseFeature(action)) {
+      setShowPaywall(true);
+      return false;
+    }
+    return true;
+  };
+
+  const renderMainContent = () => {
+    // Since we removed the generator from navigation, show the lifestyle generator by default
+    return (
+      <Generator type="lifestyle" onActionAttempt={checkUsageBeforeAction} />
+    );
+  };
+
+  // Show paywall landing page first
+  if (showPaywallLanding) {
+    return (
+      <PaywallLanding
+        onGetAccess={handleGetAccess}
+        onStartFree={handleStartFree}
+      />
+    );
+  }
+
+  // Show signup wall if user hasn't signed up
+  if (showSignupWall) {
+    return <SignupWall onSignupComplete={handleSignupComplete} />;
+  }
+
+  // Show paywall if user exceeded free limits
+  if (showPaywall) {
+    const userEmail = localStorage.getItem("userEmail") || "";
+    return <Paywall onUpgrade={handleUpgradeComplete} userEmail={userEmail} />;
+  }
+
+  return (
+    <div className="min-h-screen bg-neon-orange font-sans">
+      <div className="relative z-10">
+        {/* Enhanced Navigation */}
+        <Navigation
+          currentPage="lifestyle"
+          onPageChange={handlePageChange}
+          totalComponents={computed.totalComponents}
+          onReset={handleReset}
+        />
+
+        {/* Main Content */}
+        {renderMainContent()}
+
+        {/* Enhanced Footer */}
+        <footer className="border-t-2 border-black bg-black mt-12"></footer>
+>>>>>>> 4431a92914ee506e3207dd01dd6d789dc19e9af7
       </div>
     </div>
   );

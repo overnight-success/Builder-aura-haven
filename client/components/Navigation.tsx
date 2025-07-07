@@ -4,12 +4,12 @@ import { Badge } from "./ui/badge";
 import { TheBriefcase } from "./TheBriefcase";
 import {
   Package,
-  Camera,
   Palette,
   Briefcase,
   Target,
   RefreshCw,
   X,
+  Crown,
 } from "lucide-react";
 
 interface NavigationProps {
@@ -29,29 +29,9 @@ export function Navigation({
 
   const menuItems = [
     {
-      id: "briefcase",
-      label: "THE BRIEFCASE",
-      icon: <Briefcase className="h-5 w-5" />,
-    },
-    {
-      id: "product",
-      label: "PRODUCT GENERATOR",
-      icon: <Package className="h-5 w-5" />,
-    },
-    {
-      id: "lifestyle",
-      label: "LIFESTYLE GENERATOR",
-      icon: <Camera className="h-5 w-5" />,
-    },
-    {
-      id: "graphic",
-      label: "GRAPHIC GENERATOR",
-      icon: <Palette className="h-5 w-5" />,
-    },
-    {
-      id: "admin",
-      label: "ADMIN",
-      icon: <Target className="h-5 w-5" />,
+      id: "access",
+      label: "GET FULL ACCESS",
+      icon: <Crown className="h-5 w-5" />,
     },
   ];
 
@@ -61,6 +41,13 @@ export function Navigation({
     } else if (pageId === "admin") {
       // Navigate to admin dashboard
       window.location.href = "/admin";
+    } else if (pageId === "access") {
+      // Navigate to Gumroad page
+      window.open(
+        "https://overnightsuccessllc.gumroad.com/l/creativeos",
+        "_blank",
+      );
+      return;
     } else {
       setShowBriefcase(false);
       onPageChange(pageId);
@@ -80,8 +67,9 @@ export function Navigation({
             <div className="flex items-center flex-shrink-0">
               <img
                 src="https://cdn.builder.io/api/v1/image/assets%2F326314a2e8634f90977b83f81df01501%2Fec00ceaef5524675ba25aca88f5d5cec?format=webp&width=400"
-                alt="Overnight Success"
+                alt="Overnight Success LLC - Lifestyle Studio"
                 className="h-8 lg:h-12 w-auto"
+                loading="eager"
               />
             </div>
 
@@ -94,12 +82,13 @@ export function Navigation({
                 <Button
                   key={item.id}
                   onClick={() => handlePageChange(item.id)}
+                  aria-label={`Navigate to ${item.label}`}
                   className={`
-                    font-bold text-xs lg:text-sm px-2 lg:px-3 py-1 lg:py-2 h-auto border-2 transition-all duration-200 whitespace-nowrap shrink-0 min-w-0
+                    font-bold text-xs lg:text-sm px-2 lg:px-3 py-1 lg:py-2 h-auto border-2 transition-all duration-200 whitespace-nowrap shrink-0 min-w-0 mr-3
                     ${
                       (currentPage === item.id && !showBriefcase) ||
                       (item.id === "briefcase" && showBriefcase)
-                        ? "bg-black border-black text-cream"
+                        ? "bg-neon-orange border-black text-black"
                         : "bg-neon-orange border-black text-black hover:bg-black hover:text-cream"
                     }
                   `}
@@ -113,22 +102,6 @@ export function Navigation({
                   </span>
                 </Button>
               ))}
-            </div>
-
-            {/* Stats & Reset */}
-            <div className="flex items-center gap-2 shrink-0">
-              <Badge className="bg-black border-2 border-black text-cream font-bold text-xs px-2 py-1 whitespace-nowrap">
-                <Target className="h-3 w-3 text-neon-orange mr-1 shrink-0" />
-                <span>{totalComponents}/8</span>
-              </Badge>
-              <Button
-                onClick={onReset}
-                className="bg-black border-2 border-black text-cream font-bold text-xs px-3 py-1.5 h-auto hover:bg-cream hover:text-black transition-all duration-200 whitespace-nowrap"
-                disabled={totalComponents === 0}
-              >
-                <RefreshCw className="h-3 w-3 text-neon-orange mr-1 shrink-0" />
-                <span>RESET</span>
-              </Button>
             </div>
           </div>
         </div>

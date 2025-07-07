@@ -14,7 +14,8 @@ export function InstructionFlow({
     {
       number: 1,
       title: "Add Custom Instructions",
-      description: "Start with your specific requirements",
+      description:
+        "Start with your specific requirements, vision + categories = better results",
       icon: <MousePointer className="h-4 w-4" />,
     },
     {

@@ -37,7 +37,7 @@ export class PromptEngine {
     return PromptEngine.instance;
   }
 
-  // Generate clean SORA prompt - BULLETPROOF VERSION
+  // Generate SORA-optimized prompt using natural language structure
   generateFormula(
     generatorType: "product" | "lifestyle" | "graphic",
     selections: Record<string, string>,
@@ -45,44 +45,72 @@ export class PromptEngine {
     uploadedFiles: ProcessedFile[] = [],
   ): string {
     try {
-      const parts: string[] = [];
-
-      // Add custom instructions first
+      // Start with custom instructions as the foundation
+      let prompt = "";
       if (customInstructions && customInstructions.trim()) {
-        parts.push(customInstructions.trim());
+        prompt = customInstructions.trim();
       }
 
-      // Add each selection in simple format
-      Object.entries(selections).forEach(([category, value]) => {
+      // Structure the prompt in SORA-friendly order: Environment -> Angle -> Mood -> Lighting -> Style
+      const orderedCategories = [
+        "environment",
+        "angle",
+        "mood",
+        "lighting",
+        "style",
+      ];
+      const categoryPhrases: string[] = [];
+
+      // Build natural language phrases from selections
+      orderedCategories.forEach((category) => {
+        const value = selections[category];
         if (value && value.trim()) {
-          parts.push(value.toLowerCase());
+          switch (category) {
+            case "environment":
+              categoryPhrases.push(`in ${value.toLowerCase()}`);
+              break;
+            case "angle":
+              categoryPhrases.push(`shot from ${value.toLowerCase()}`);
+              break;
+            case "mood":
+              categoryPhrases.push(`capturing ${value.toLowerCase()}`);
+              break;
+            case "lighting":
+              categoryPhrases.push(`using ${value.toLowerCase()}`);
+              break;
+            case "style":
+              categoryPhrases.push(`shot in ${value.toLowerCase()} style`);
+              break;
+            default:
+              // For any other categories, use generic approach
+              categoryPhrases.push(value.toLowerCase());
+          }
         }
       });
+
+      // Combine custom instructions with structured selections
+      if (prompt && categoryPhrases.length > 0) {
+        prompt += ", " + categoryPhrases.join(", ");
+      } else if (categoryPhrases.length > 0) {
+        prompt = categoryPhrases.join(", ");
+      }
 
       // Add image references if any
       const images = uploadedFiles.filter(
         (f) => f.type.startsWith("image/") && f.processingStatus === "complete",
       );
-      if (images.length > 0) {
+      if (images.length > 0 && prompt) {
         const names = images.map((f) => f.name.split(".")[0]);
-        parts.push(`with reference to ${names.join(", ")}`);
+        prompt += `, referencing visual style from ${names.join(", ")}`;
       }
 
-      // Add basic SORA specs
-      parts.push("professional cinematic quality");
-      parts.push("4K resolution");
-      parts.push("optimized for SORA AI");
-
-      // Join with proper punctuation
-      const result = parts.filter((p) => p && p.trim()).join(", ");
-
       return (
-        result ||
-        "Professional video content, cinematic quality, 4K resolution, optimized for SORA AI"
+        prompt ||
+        "Add custom instructions and select categories to build your prompt"
       );
     } catch (error) {
       console.error("Error in generateFormula:", error);
-      return "Professional video content, cinematic quality, 4K resolution, optimized for SORA AI";
+      return "Add custom instructions and select categories to build your prompt";
     }
   }
 
@@ -216,7 +244,7 @@ export class PromptEngine {
     } catch (error) {
       console.error("Error in getCompleteSORAData:", error);
       const fallback =
-        "Professional video content, cinematic quality, 4K resolution, optimized for SORA AI";
+        "Add custom instructions and select categories to build your prompt";
       return {
         mainPrompt: fallback,
         imageData: [],
