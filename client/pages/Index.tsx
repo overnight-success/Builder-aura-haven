@@ -1,17 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Navigation } from "../components/Navigation";
-import { Generator } from "../components/Generator";
 import { SignupWall } from "../components/SignupWall";
 import { Paywall } from "../components/Paywall";
-import {
-  PromptGeneratorProvider,
-  usePromptGenerator,
-} from "../contexts/PromptGeneratorContext";
 import { useSubscription } from "../hooks/useSubscription";
 import { useTracking } from "../hooks/useTracking";
 
 function AppContent() {
-  const { state, actions, computed } = usePromptGenerator();
   const [showSignupWall, setShowSignupWall] = useState(true);
   const [showPaywall, setShowPaywall] = useState(false);
   const { subscriptionStatus, canUseFeature, loading } = useSubscription();
@@ -25,43 +19,6 @@ function AppContent() {
     }
   }, []);
 
-  // Track page views - DISABLED TO PREVENT FLASHING
-  // useEffect(() => {
-  //   if (!showSignupWall && !loading) {
-  //     trackView("main-app", `Generator: ${state.currentGenerator}`);
-  //   }
-  // }, [showSignupWall, loading, state.currentGenerator, trackView]);
-
-  // Load saved state on mount
-  useEffect(() => {
-    actions.loadState();
-  }, [actions.loadState]);
-
-  // Auto-save state changes (debounced)
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      actions.saveState();
-    }, 2000); // Save after 2 seconds of inactivity
-
-    return () => clearTimeout(timer);
-  }, [
-    state.favorites,
-    state.history,
-    state.selections,
-    state.customInstructions,
-    actions.saveState, // Only depend on the specific action, not the entire actions object
-  ]);
-
-  const handlePageChange = (page: string) => {
-    if (page === "product" || page === "lifestyle" || page === "graphic") {
-      actions.setGenerator(page);
-    }
-  };
-
-  const handleReset = () => {
-    actions.resetAll();
-  };
-
   const handleSignupComplete = () => {
     setShowSignupWall(false);
   };
@@ -70,23 +27,6 @@ function AppContent() {
     setShowPaywall(false);
     // Refresh subscription status
     window.location.reload();
-  };
-
-  const checkUsageBeforeAction = (action: "outputs" | "downloads") => {
-    if (!canUseFeature(action)) {
-      setShowPaywall(true);
-      return false;
-    }
-    return true;
-  };
-
-  const renderCurrentGenerator = () => {
-    return (
-      <Generator
-        type={state.currentGenerator}
-        onActionAttempt={checkUsageBeforeAction}
-      />
-    );
   };
 
   // Show signup wall if user hasn't signed up
@@ -103,16 +43,24 @@ function AppContent() {
   return (
     <div className="min-h-screen bg-neon-orange font-sans">
       <div className="relative z-10">
-        {/* Enhanced Navigation */}
-        <Navigation
-          currentPage={state.currentGenerator}
-          onPageChange={handlePageChange}
-          totalComponents={computed.totalComponents}
-          onReset={handleReset}
-        />
+        {/* Enhanced Navigation with The Briefcase */}
+        <Navigation onUpgradeRequest={() => setShowPaywall(true)} />
 
-        {/* Current Generator */}
-        {renderCurrentGenerator()}
+        {/* Main Content Area - Simple welcome message */}
+        <main className="container mx-auto px-8 py-12">
+          <div className="text-center">
+            <h1 className="text-6xl font-black text-black mb-6 retro-text">
+              OVERNIGHT SUCCESS
+            </h1>
+            <p className="text-2xl font-bold text-black mb-8">
+              Welcome to your creative resource hub
+            </p>
+            <p className="text-lg text-black/80 max-w-2xl mx-auto">
+              Access THE BRIEFCASE from the navigation above to explore our
+              complete resource library, playbook, updates, and more.
+            </p>
+          </div>
+        </main>
 
         {/* Enhanced Footer */}
         <footer className="border-t-2 border-black bg-black mt-12">
@@ -136,9 +84,5 @@ function AppContent() {
 }
 
 export default function Index() {
-  return (
-    <PromptGeneratorProvider>
-      <AppContent />
-    </PromptGeneratorProvider>
-  );
+  return <AppContent />;
 }

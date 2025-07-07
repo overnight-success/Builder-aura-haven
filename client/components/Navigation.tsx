@@ -2,29 +2,13 @@ import React, { useState } from "react";
 import { Button } from "./ui/button";
 import { Badge } from "./ui/badge";
 import { TheBriefcase } from "./TheBriefcase";
-import {
-  Package,
-  Camera,
-  Palette,
-  Briefcase,
-  Target,
-  RefreshCw,
-  X,
-} from "lucide-react";
+import { Briefcase, Target, X } from "lucide-react";
 
 interface NavigationProps {
-  currentPage: string;
-  onPageChange: (page: string) => void;
-  totalComponents: number;
-  onReset: () => void;
+  onUpgradeRequest: () => void;
 }
 
-export function Navigation({
-  currentPage,
-  onPageChange,
-  totalComponents,
-  onReset,
-}: NavigationProps) {
+export function Navigation({ onUpgradeRequest }: NavigationProps) {
   const [showBriefcase, setShowBriefcase] = useState(false);
 
   const menuItems = [
@@ -32,21 +16,6 @@ export function Navigation({
       id: "briefcase",
       label: "THE BRIEFCASE",
       icon: <Briefcase className="h-5 w-5" />,
-    },
-    {
-      id: "product",
-      label: "PRODUCT GENERATOR",
-      icon: <Package className="h-5 w-5" />,
-    },
-    {
-      id: "lifestyle",
-      label: "LIFESTYLE GENERATOR",
-      icon: <Camera className="h-5 w-5" />,
-    },
-    {
-      id: "graphic",
-      label: "GRAPHIC GENERATOR",
-      icon: <Palette className="h-5 w-5" />,
     },
     {
       id: "admin",
@@ -61,9 +30,6 @@ export function Navigation({
     } else if (pageId === "admin") {
       // Navigate to admin dashboard
       window.location.href = "/admin";
-    } else {
-      setShowBriefcase(false);
-      onPageChange(pageId);
     }
   };
 
@@ -97,37 +63,30 @@ export function Navigation({
                   className={`
                     font-bold text-xs lg:text-sm px-2 lg:px-3 py-1 lg:py-2 h-auto border-2 transition-all duration-200 whitespace-nowrap shrink-0 min-w-0
                     ${
-                      (currentPage === item.id && !showBriefcase) ||
-                      (item.id === "briefcase" && showBriefcase)
+                      item.id === "briefcase" && showBriefcase
                         ? "bg-black border-black text-cream"
                         : "bg-neon-orange border-black text-black hover:bg-black hover:text-cream"
                     }
                   `}
                 >
-                  <span className="mr-1 lg:mr-2 shrink-0">{item.icon}</span>
-                  <span className="truncate hidden sm:inline">
-                    {item.label}
-                  </span>
-                  <span className="truncate sm:hidden">
-                    {item.label.split(" ")[0]}
+                  <span className="flex items-center gap-1 lg:gap-2">
+                    {item.icon}
+                    <span className="hidden sm:inline">{item.label}</span>
                   </span>
                 </Button>
               ))}
-            </div>
 
-            {/* Stats & Reset */}
-            <div className="flex items-center gap-2 shrink-0">
-              <Badge className="bg-black border-2 border-black text-cream font-bold text-xs px-2 py-1 whitespace-nowrap">
-                <Target className="h-3 w-3 text-neon-orange mr-1 shrink-0" />
-                <span>{totalComponents}/8</span>
-              </Badge>
+              {/* Upgrade Button */}
               <Button
-                onClick={onReset}
-                className="bg-black border-2 border-black text-cream font-bold text-xs px-3 py-1.5 h-auto hover:bg-cream hover:text-black transition-all duration-200 whitespace-nowrap"
-                disabled={totalComponents === 0}
+                onClick={onUpgradeRequest}
+                className="bg-black border-2 border-black text-cream font-bold px-2 lg:px-3 py-1 lg:py-2 h-auto hover:bg-cream hover:text-black ml-2"
               >
-                <RefreshCw className="h-3 w-3 text-neon-orange mr-1 shrink-0" />
-                <span>RESET</span>
+                <span className="flex items-center gap-1">
+                  <Badge className="bg-neon-orange text-black text-xs">
+                    PRO
+                  </Badge>
+                  <span className="hidden sm:inline">UPGRADE</span>
+                </span>
               </Button>
             </div>
           </div>
@@ -137,14 +96,14 @@ export function Navigation({
       {/* Briefcase Modal/Overlay */}
       {showBriefcase && (
         <div className="fixed inset-0 z-50 bg-neon-orange">
-          <div className="relative h-full">
+          <div className="h-full flex flex-col">
             {/* Close Button */}
-            <div className="absolute top-4 right-4 z-10">
+            <div className="flex justify-end p-4">
               <Button
                 onClick={handleCloseBriefcase}
                 className="bg-black border-2 border-black text-cream font-bold px-4 py-2 hover:bg-cream hover:text-black"
               >
-                <X className="h-4 w-4 mr-1" />
+                <X className="h-4 w-4 mr-2" />
                 CLOSE
               </Button>
             </div>
