@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
   "hosting": {
     "public": "dist/spa",
@@ -18,3 +19,6 @@
     "runtime": "nodejs18"
   }
 }
+=======
+{"hosting":{"public":"dist/spa","ignore":["firebase.json","**/.*","**/node_modules/**"],"rewrites":[{"source":"**","destination":"/index.html"}]}}
+>>>>>>> 30fb001de1ab98d7b81c7ea3a45522b696db2016

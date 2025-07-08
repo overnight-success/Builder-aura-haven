@@ -222,7 +222,7 @@ export function SignupWall({ onSignupComplete }: SignupWallProps) {
               ) : (
                 <>
                   <Zap className="h-4 w-4 mr-2" />
-                  JOIN THE WAITLIST
+                  OPEN THE PLAYBOOK
                 </>
               )}
             </Button>
