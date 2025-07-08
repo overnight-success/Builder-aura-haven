@@ -160,7 +160,10 @@ export default function Templates() {
       : "Enter your details above to generate a custom prompt...";
   };
 
-  const clearPrompt = () => {
+  const clearPrompt = (event: React.MouseEvent) => {
+    event.preventDefault();
+    console.log("Clearing all placeholders");
+
     setPlaceholders({
       product: "",
       brand: "",
@@ -171,6 +174,8 @@ export default function Templates() {
       "Your Motto": "",
       "Your Quote": "",
     });
+
+    console.log("Placeholders cleared");
   };
 
   const copyCustomPrompt = async (event: React.MouseEvent) => {
