@@ -252,7 +252,7 @@ export default function PromptVault() {
       quality: [],
     };
 
-    // Categorize selected keywords for optimal SORA structure
+    // Categorize selected keywords for optimal SORA image structure
     selectedKeywords.forEach((keyword) => {
       const lowerKeyword = keyword.toLowerCase();
 
@@ -279,14 +279,14 @@ export default function PromptVault() {
       ) {
         categories.location.push(keyword);
       } else if (
-        lowerKeyword.includes("4k") ||
         lowerKeyword.includes("resolution") ||
         lowerKeyword.includes("cinematic") ||
         lowerKeyword.includes("professional") ||
         lowerKeyword.includes("commercial") ||
         lowerKeyword.includes("studio") ||
         lowerKeyword.includes("sora") ||
-        lowerKeyword.includes("broadcast")
+        lowerKeyword.includes("broadcast") ||
+        lowerKeyword.includes("masterpiece")
       ) {
         categories.quality.push(keyword);
       } else if (
@@ -298,15 +298,6 @@ export default function PromptVault() {
         lowerKeyword.includes("vintage")
       ) {
         categories.style.push(keyword);
-      } else if (
-        lowerKeyword.includes("smooth") ||
-        lowerKeyword.includes("floating") ||
-        lowerKeyword.includes("transition") ||
-        lowerKeyword.includes("movement") ||
-        lowerKeyword.includes("rotating") ||
-        lowerKeyword.includes("tracking")
-      ) {
-        categories.motion.push(keyword);
       } else if (
         lowerKeyword.includes("24mm") ||
         lowerKeyword.includes("85mm") ||
@@ -321,10 +312,10 @@ export default function PromptVault() {
       }
     });
 
-    // Build SORA-optimized prompt structure
+    // Build SORA-optimized image prompt structure
     let prompt = "";
 
-    // 1. Main Subject/Action (required for SORA)
+    // 1. Main Subject (required for SORA)
     if (categories.subject.length > 0) {
       prompt += `${categories.subject.join(", ")}`;
     }
@@ -357,24 +348,17 @@ export default function PromptVault() {
         : `set in ${categories.location.join(" and ")}`;
     }
 
-    // 6. Motion/Animation (crucial for SORA video)
-    if (categories.motion.length > 0) {
-      prompt += prompt
-        ? `, featuring ${categories.motion.join(", ")}`
-        : `featuring ${categories.motion.join(", ")}`;
-    }
-
-    // 7. Quality specifications (always important for SORA)
+    // 6. Quality specifications (always important for SORA)
     const qualitySpecs =
       categories.quality.length > 0
         ? categories.quality.join(", ")
-        : "4K resolution, cinematic quality, optimized for SORA AI";
+        : "high resolution, professional grade, optimized for SORA AI";
 
     prompt += prompt ? `, ${qualitySpecs}` : qualitySpecs;
 
-    // Ensure prompt starts with clear action/subject for SORA
+    // Ensure prompt starts with clear subject for SORA
     if (!prompt.trim()) {
-      return "Professional video content with cinematic quality, 4K resolution, optimized for SORA AI";
+      return "Professional image content with high resolution, optimized for SORA AI";
     }
 
     return prompt;

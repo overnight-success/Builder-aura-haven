@@ -52,37 +52,36 @@ export default function Templates() {
     {
       title: "Product Photography",
       description:
-        "SORA-optimized product showcase templates with cinematic quality",
+        "SORA-optimized product showcase templates for stunning images",
       templates: [
-        "Close-up cinematic shot of [product] made from [material], featuring [brand color] accent lighting, shot with 85mm macro lens, smooth camera orbit around product, professional studio lighting with soft key and rim lights, clean gradient background, 4K resolution, optimized for SORA AI video generation",
-        "Dynamic lifestyle reveal of [product] in modern minimalist setting, golden hour natural lighting streaming through windows, gentle camera push-in movement, shallow depth of field transition, Instagram-worthy composition, 4K cinematic quality, SORA-optimized",
-        "Macro detail sequence of [product] showcasing [material] texture, dramatic side lighting creating depth, slow camera drift across surface details, black velvet background, luxury commercial grade, ultra-high resolution, perfect for SORA AI",
-        "360-degree smooth rotation of [product] with studio lighting setup, gradient background transitioning from [brand's primary color] to [brand's secondary color], consistent lighting throughout rotation, commercial advertisement quality, 4K SORA-ready",
-        "Elegant product reveal animation with [product] emerging from darkness into spotlight, smooth camera movement, slow motion effect at 60fps, cinematic color grading, dramatic shadows, optimized for SORA AI video generation",
+        "Close-up shot of [product] made from [material], featuring [brand color] accent lighting, shot with 85mm macro lens, professional studio lighting with soft key and rim lights, clean gradient background, high resolution, optimized for SORA AI",
+        "Lifestyle shot of [product] in modern minimalist setting, golden hour natural lighting streaming through windows, shallow depth of field, Instagram-worthy composition, cinematic quality, SORA-optimized",
+        "Macro detail shot of [product] showcasing [material] texture, dramatic side lighting creating depth and shadows, black velvet background, luxury commercial grade, ultra-high resolution, perfect for SORA AI",
+        "Studio shot of [product] with gradient background transitioning from [brand's primary color] to [brand's secondary color], consistent professional lighting, commercial advertisement quality, SORA-ready",
+        "Elegant product shot with [product] in dramatic spotlight, sophisticated lighting setup, cinematic color grading, dramatic shadows, optimized for SORA AI image generation",
       ],
     },
     {
       title: "Lifestyle & Brand",
       description:
-        "Authentic lifestyle content optimized for SORA video generation",
+        "Authentic lifestyle content optimized for SORA image generation",
       templates: [
-        "Authentic lifestyle moment with person using [product] in natural daily setting, warm natural lighting, smooth handheld camera movement, emotional close-ups and wide establishing shots, 35mm lens aesthetic, SORA-optimized storytelling sequence",
-        "Brand story sequence featuring [product] with '[Your Motto]' subtly integrated, cinematic composition with smooth camera movements, warm color grading, inspirational mood lighting, seamless transitions, 4K quality for SORA AI",
-        "Behind-the-scenes documentary style sequence of [product] creation process, natural lighting with practical lights, authentic handheld camera movement, multiple angle coverage, real-time narrative flow, SORA-ready production quality",
-        "Seasonal brand campaign with [product] in natural outdoor environment, '[Your Quote]' message integration, golden hour cinematography, smooth camera pans and tilts, lifestyle authenticity, optimized for SORA video generation",
-        "Lifestyle montage sequence with [product] in various scenarios, smooth transitions between scenes, consistent lighting and color palette, upbeat pacing with natural movement, modern editing style, SORA AI optimized",
+        "Authentic lifestyle shot with person using [product] in natural daily setting, warm natural lighting, emotional composition, 35mm lens aesthetic, SORA-optimized lifestyle photography",
+        "Brand story image featuring [product] with '[Your Motto]' subtly integrated, cinematic composition, warm color grading, inspirational mood lighting, professional quality for SORA AI",
+        "Behind-the-scenes shot of [product] creation process, natural lighting with practical lights, authentic documentary style, professional production quality, SORA-ready",
+        "Seasonal brand campaign image with [product] in natural outdoor environment, '[Your Quote]' message integration, golden hour photography, lifestyle authenticity, optimized for SORA",
+        "Lifestyle composition with [product] in carefully curated setting, consistent lighting and color palette, modern aesthetic, professional lifestyle photography, SORA AI optimized",
       ],
     },
     {
       title: "Graphics & Design",
-      description:
-        "Motion graphics and design templates for SORA AI generation",
+      description: "Visual design and graphic templates for SORA AI generation",
       templates: [
-        "Animated logo reveal for [brand] in [brand's primary color], clean typography emerging with smooth easing, geometric shape transformations, modern aesthetic, vector-style animation, professional branding quality, SORA-optimized motion graphics",
-        "Abstract pattern animation inspired by [material] texture, [brand color] color palette flowing and morphing, contemporary design with smooth transitions, packaging and branding ready, 4K motion graphics for SORA",
-        "Typography animation sequence with '[Your Motto]' message reveal, dramatic contrast lighting, smooth text emergence, [brand's primary color] and [brand's secondary color] scheme transitions, modern poster style animation, SORA-ready",
-        "Geometric illustration animation of [product] concept, flat design elements moving in smooth sequences, vibrant [brand color] palette transitions, minimalist approach with elegant motion, icon animation ready for SORA AI",
-        "Corporate motion graphics sequence with [brand] logo animation and '[Your Quote]' text reveal, sleek transitions and smooth easing, professional presentation style, consistent branding elements, optimized for SORA video generation",
+        "Clean logo design for [brand] in [brand's primary color], modern typography, geometric shapes, professional aesthetic, vector-style graphics, high-quality branding, SORA-optimized",
+        "Abstract pattern design inspired by [material] texture, [brand color] color palette, contemporary graphic design, packaging and branding ready, professional graphics for SORA",
+        "Typography design with '[Your Motto]' message, dramatic contrast, [brand's primary color] and [brand's secondary color] scheme, modern poster style, SORA-ready graphics",
+        "Geometric illustration of [product] concept, flat design style, vibrant [brand color] palette, minimalist approach, professional icon design ready for SORA AI",
+        "Corporate branding design with [brand] logo and '[Your Quote]' text, professional presentation style, consistent branding elements, optimized for SORA image generation",
       ],
     },
   ];
@@ -148,11 +147,11 @@ export default function Templates() {
       return "Please fill in at least Product and Brand fields to generate a custom prompt...";
     }
 
-    // SORA-optimized prompt structure:
-    // 1. Main subject/action, 2. Visual style, 3. Technical specs, 4. Lighting, 5. Quality
+    // SORA-optimized image prompt structure:
+    // 1. Main subject, 2. Visual style, 3. Technical specs, 4. Lighting, 5. Quality
 
-    // 1. Main Subject/Action (what SORA will generate)
-    let prompt = `Close-up cinematic shot of ${product} for ${brand}`;
+    // 1. Main Subject (what SORA will generate)
+    let prompt = `Close-up shot of ${product} for ${brand}`;
 
     // 2. Visual Style and Materials
     if (material) {
@@ -165,8 +164,8 @@ export default function Templates() {
       prompt += `, featuring ${colors.join(" and ")} color palette`;
     }
 
-    // 4. Camera Movement and Technical Specs (crucial for SORA video)
-    prompt += `, smooth camera movement, 85mm lens with shallow depth of field`;
+    // 4. Photography Technical Specs
+    prompt += `, shot with 85mm lens, shallow depth of field`;
 
     // 5. Lighting (essential for SORA quality)
     prompt += `, professional studio lighting with soft key light and subtle rim lighting`;
@@ -177,11 +176,8 @@ export default function Templates() {
       prompt += `, subtly incorporating the brand essence "${message}"`;
     }
 
-    // 7. Motion and Animation (what makes SORA special)
-    prompt += `, gentle product rotation revealing key details, elegant transitions`;
-
-    // 8. Quality and Technical Specifications (always end with these for SORA)
-    prompt += `, shot in 4K resolution, cinematic color grading, commercial advertisement quality, optimized for SORA AI video generation, professional production value, broadcast-ready output`;
+    // 7. Quality and Technical Specifications (always end with these for SORA)
+    prompt += `, high resolution, cinematic color grading, commercial photography quality, optimized for SORA AI, professional production value`;
 
     return prompt;
   };
@@ -217,7 +213,7 @@ export default function Templates() {
           </div>
           <p className="text-xl font-bold text-black/80 max-w-2xl mx-auto">
             SORA-optimized prompt templates with customizable placeholders for
-            professional video generation
+            professional image generation
           </p>
         </div>
 
@@ -358,7 +354,7 @@ export default function Templates() {
           <Card className="bg-black border-4 border-black">
             <CardHeader>
               <CardTitle className="text-2xl font-black text-cream text-center">
-                🎬 SORA AI Optimization Tips
+                📸 SORA AI Image Generation Tips
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -368,10 +364,10 @@ export default function Templates() {
                     SORA Best Practices
                   </h3>
                   <ul className="text-cream/90 space-y-2">
-                    <li>• Include camera movement descriptions</li>
-                    <li>• Specify lighting conditions clearly</li>
-                    <li>• Add motion and animation details</li>
-                    <li>• Use technical specifications (4K, 60fps)</li>
+                    <li>• Specify photography techniques clearly</li>
+                    <li>• Include detailed lighting conditions</li>
+                    <li>• Add composition and framing details</li>
+                    <li>• Use technical specifications (lens, resolution)</li>
                     <li>• Structure: Subject → Style → Technical → Quality</li>
                   </ul>
                 </div>
