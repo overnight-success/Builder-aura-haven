@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Card,
   CardContent,
@@ -6,9 +6,29 @@ import {
   CardTitle,
 } from "../components/ui/card";
 import { Badge } from "../components/ui/badge";
+import { AppLayout } from "../components/AppLayout";
+import { Paywall } from "../components/Paywall";
+import { useSubscription } from "../hooks/useSubscription";
 import { Bell } from "lucide-react";
 
 export default function Updates() {
+  const [showPaywall, setShowPaywall] = useState(false);
+  const { subscriptionStatus, canUseFeature, loading } = useSubscription();
+
+  const handleUpgradeRequest = () => {
+    setShowPaywall(true);
+  };
+
+  const handleUpgradeComplete = () => {
+    setShowPaywall(false);
+    window.location.reload();
+  };
+
+  // Show paywall if needed
+  if (showPaywall) {
+    const userEmail = localStorage.getItem("userEmail") || "";
+    return <Paywall onUpgrade={handleUpgradeComplete} userEmail={userEmail} />;
+  }
   const updates = [
     {
       date: "Jan 20, 2025",
@@ -37,7 +57,7 @@ export default function Updates() {
   ];
 
   return (
-    <div className="min-h-screen bg-neon-orange font-sans">
+    <AppLayout onUpgradeRequest={handleUpgradeRequest}>
       <div className="container mx-auto px-8 py-12">
         {/* Header */}
         <div className="text-center mb-12">
@@ -123,6 +143,6 @@ export default function Updates() {
           </Card>
         </div>
       </div>
-    </div>
+    </AppLayout>
   );
 }
