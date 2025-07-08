@@ -132,40 +132,52 @@ export default function Templates() {
       "Your Quote": quote,
     } = placeholders;
 
-    // Structure for SORA: Subject, Style/Brand, Material, Colors, Message
+    // Build coherent SORA prompt structure
     let prompt = "";
 
-    // 1. Main subject first
-    if (product) {
+    // Start with product and brand relationship
+    if (product && brand) {
+      prompt = `${product} for ${brand}`;
+    } else if (product) {
       prompt = product;
+    } else if (brand) {
+      prompt = brand;
     }
 
-    // 2. Brand/Style context
-    if (brand) {
-      prompt = prompt ? `${prompt}, ${brand}` : brand;
-    }
-
-    // 3. Material specification
+    // Add material context
     if (material) {
-      prompt = prompt ? `${prompt}, ${material}` : material;
+      if (prompt) {
+        prompt += ` made from ${material}`;
+      } else {
+        prompt = material;
+      }
     }
 
-    // 4. Color palette (structured properly)
-    const colors = [];
-    if (brandColor) colors.push(brandColor);
-    if (primaryColor) colors.push(primaryColor);
-    if (secondaryColor) colors.push(secondaryColor);
-
-    if (colors.length > 0) {
-      prompt = prompt ? `${prompt}, ${colors.join(" ")}` : colors.join(" ");
+    // Add color specifications
+    if (brandColor || primaryColor || secondaryColor) {
+      const colors = [brandColor, primaryColor, secondaryColor].filter(Boolean);
+      if (prompt) {
+        prompt += ` in ${colors.join(" and ")} colors`;
+      } else {
+        prompt = `${colors.join(" and ")} colors`;
+      }
     }
 
-    // 5. Brand messaging
+    // Add brand messaging
     if (motto) {
-      prompt = prompt ? `${prompt}, ${motto}` : motto;
+      if (prompt) {
+        prompt += ` with "${motto}"`;
+      } else {
+        prompt = `"${motto}"`;
+      }
     }
+
     if (quote) {
-      prompt = prompt ? `${prompt}, ${quote}` : quote;
+      if (prompt) {
+        prompt += ` featuring "${quote}"`;
+      } else {
+        prompt = `"${quote}"`;
+      }
     }
 
     return prompt || "Enter your details above to generate a custom prompt...";
