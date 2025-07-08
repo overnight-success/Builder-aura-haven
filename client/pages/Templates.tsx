@@ -9,6 +9,9 @@ import { Button } from "../components/ui/button";
 import { Badge } from "../components/ui/badge";
 import { Input } from "../components/ui/input";
 import { Label } from "../components/ui/label";
+import { AppLayout } from "../components/AppLayout";
+import { Paywall } from "../components/Paywall";
+import { useSubscription } from "../hooks/useSubscription";
 import { FileText, Copy, ChevronDown, ChevronRight } from "lucide-react";
 
 export default function Templates() {
@@ -26,6 +29,23 @@ export default function Templates() {
   const [expandedTemplateSection, setExpandedTemplateSection] = useState<
     string | null
   >(null);
+  const [showPaywall, setShowPaywall] = useState(false);
+  const { subscriptionStatus, canUseFeature, loading } = useSubscription();
+
+  const handleUpgradeRequest = () => {
+    setShowPaywall(true);
+  };
+
+  const handleUpgradeComplete = () => {
+    setShowPaywall(false);
+    window.location.reload();
+  };
+
+  // Show paywall if needed
+  if (showPaywall) {
+    const userEmail = localStorage.getItem("userEmail") || "";
+    return <Paywall onUpgrade={handleUpgradeComplete} userEmail={userEmail} />;
+  }
 
   const templateSections = [
     {
@@ -125,10 +145,10 @@ export default function Templates() {
   };
 
   return (
-    <div className="min-h-screen bg-neon-orange font-sans">
-      <div className="container mx-auto px-8 py-12">
+    <AppLayout onUpgradeRequest={handleUpgradeRequest}>
+      <div className="container mx-auto px-8 py-5">
         {/* Header */}
-        <div className="text-center mb-12">
+        <div className="text-center mb-8">
           <div className="flex items-center justify-center gap-3 mb-6">
             <div className="p-3 rounded-lg bg-black">
               <FileText className="h-8 w-8 text-neon-orange" />
@@ -280,6 +300,6 @@ export default function Templates() {
           </Card>
         </div>
       </div>
-    </div>
+    </AppLayout>
   );
 }
