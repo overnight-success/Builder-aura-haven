@@ -299,7 +299,7 @@ export default function Templates() {
               />
               <div className="flex gap-3">
                 <Button
-                  onClick={(e) => copyCustomPrompt(e)}
+                  onClick={copyCustomPrompt}
                   disabled={generateCustomPrompt().includes(
                     "Enter your details",
                   )}
