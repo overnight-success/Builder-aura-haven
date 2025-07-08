@@ -240,7 +240,144 @@ export default function PromptVault() {
     if (selectedKeywords.length === 0) {
       return "Click keywords below to build your custom formula...";
     }
-    return selectedKeywords.join(", ");
+
+    // Structure prompt according to SORA best practices
+    const categories = {
+      subject: [],
+      style: [],
+      technical: [],
+      motion: [],
+      lighting: [],
+      location: [],
+      quality: [],
+    };
+
+    // Categorize selected keywords for optimal SORA structure
+    selectedKeywords.forEach((keyword) => {
+      const lowerKeyword = keyword.toLowerCase();
+
+      if (
+        lowerKeyword.includes("lighting") ||
+        lowerKeyword.includes("golden hour") ||
+        lowerKeyword.includes("neon") ||
+        lowerKeyword.includes("ambient") ||
+        lowerKeyword.includes("dramatic") ||
+        lowerKeyword.includes("soft") ||
+        lowerKeyword.includes("tungsten") ||
+        lowerKeyword.includes("flash")
+      ) {
+        categories.lighting.push(keyword);
+      } else if (
+        lowerKeyword.includes("tokyo") ||
+        lowerKeyword.includes("street") ||
+        lowerKeyword.includes("hotel") ||
+        lowerKeyword.includes("beach") ||
+        lowerKeyword.includes("warehouse") ||
+        lowerKeyword.includes("diner") ||
+        lowerKeyword.includes("space") ||
+        lowerKeyword.includes("cave")
+      ) {
+        categories.location.push(keyword);
+      } else if (
+        lowerKeyword.includes("4k") ||
+        lowerKeyword.includes("resolution") ||
+        lowerKeyword.includes("cinematic") ||
+        lowerKeyword.includes("professional") ||
+        lowerKeyword.includes("commercial") ||
+        lowerKeyword.includes("studio") ||
+        lowerKeyword.includes("sora") ||
+        lowerKeyword.includes("broadcast")
+      ) {
+        categories.quality.push(keyword);
+      } else if (
+        lowerKeyword.includes("wes anderson") ||
+        lowerKeyword.includes("kubrick") ||
+        lowerKeyword.includes("luxury") ||
+        lowerKeyword.includes("minimalist") ||
+        lowerKeyword.includes("aesthetic") ||
+        lowerKeyword.includes("vintage")
+      ) {
+        categories.style.push(keyword);
+      } else if (
+        lowerKeyword.includes("smooth") ||
+        lowerKeyword.includes("floating") ||
+        lowerKeyword.includes("transition") ||
+        lowerKeyword.includes("movement") ||
+        lowerKeyword.includes("rotating") ||
+        lowerKeyword.includes("tracking")
+      ) {
+        categories.motion.push(keyword);
+      } else if (
+        lowerKeyword.includes("24mm") ||
+        lowerKeyword.includes("85mm") ||
+        lowerKeyword.includes("macro") ||
+        lowerKeyword.includes("wide") ||
+        lowerKeyword.includes("close-up") ||
+        lowerKeyword.includes("angle")
+      ) {
+        categories.technical.push(keyword);
+      } else {
+        categories.subject.push(keyword);
+      }
+    });
+
+    // Build SORA-optimized prompt structure
+    let prompt = "";
+
+    // 1. Main Subject/Action (required for SORA)
+    if (categories.subject.length > 0) {
+      prompt += `${categories.subject.join(", ")}`;
+    }
+
+    // 2. Visual Style
+    if (categories.style.length > 0) {
+      prompt += prompt
+        ? `, ${categories.style.join(", ")}`
+        : categories.style.join(", ");
+    }
+
+    // 3. Camera/Technical specifications
+    if (categories.technical.length > 0) {
+      prompt += prompt
+        ? `, shot with ${categories.technical.join(", ")}`
+        : `shot with ${categories.technical.join(", ")}`;
+    }
+
+    // 4. Lighting conditions
+    if (categories.lighting.length > 0) {
+      prompt += prompt
+        ? `, ${categories.lighting.join(", ")}`
+        : categories.lighting.join(", ");
+    }
+
+    // 5. Location/Environment
+    if (categories.location.length > 0) {
+      prompt += prompt
+        ? `, set in ${categories.location.join(" and ")}`
+        : `set in ${categories.location.join(" and ")}`;
+    }
+
+    // 6. Motion/Animation (crucial for SORA video)
+    if (categories.motion.length > 0) {
+      prompt += prompt
+        ? `, featuring ${categories.motion.join(", ")}`
+        : `featuring ${categories.motion.join(", ")}`;
+    }
+
+    // 7. Quality specifications (always important for SORA)
+    const qualitySpecs =
+      categories.quality.length > 0
+        ? categories.quality.join(", ")
+        : "4K resolution, cinematic quality, optimized for SORA AI";
+
+    prompt += prompt ? `, ${qualitySpecs}` : qualitySpecs;
+
+    // Ensure prompt starts with clear action/subject for SORA
+    if (!prompt.trim()) {
+      return "Professional video content with cinematic quality, 4K resolution, optimized for SORA AI";
+    }
+
+    return prompt;
   };
 
   const copyFormula = async () => {
