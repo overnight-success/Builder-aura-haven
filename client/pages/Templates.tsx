@@ -132,45 +132,43 @@ export default function Templates() {
       "Your Quote": quote,
     } = placeholders;
 
-    const parts = [];
+    // Structure for SORA: Subject, Style/Brand, Material, Colors, Message
+    let prompt = "";
 
-    // Main subject
+    // 1. Main subject first
     if (product) {
-      parts.push(product);
+      prompt = product;
     }
 
-    // Brand context
+    // 2. Brand/Style context
     if (brand) {
-      parts.push(brand);
+      prompt = prompt ? `${prompt}, ${brand}` : brand;
     }
 
-    // Material
+    // 3. Material specification
     if (material) {
-      parts.push(material);
+      prompt = prompt ? `${prompt}, ${material}` : material;
     }
 
-    // Colors
-    if (brandColor) {
-      parts.push(brandColor);
-    }
-    if (primaryColor) {
-      parts.push(primaryColor);
-    }
-    if (secondaryColor) {
-      parts.push(secondaryColor);
+    // 4. Color palette (structured properly)
+    const colors = [];
+    if (brandColor) colors.push(brandColor);
+    if (primaryColor) colors.push(primaryColor);
+    if (secondaryColor) colors.push(secondaryColor);
+
+    if (colors.length > 0) {
+      prompt = prompt ? `${prompt}, ${colors.join(" ")}` : colors.join(" ");
     }
 
-    // Messaging
+    // 5. Brand messaging
     if (motto) {
-      parts.push(motto);
+      prompt = prompt ? `${prompt}, ${motto}` : motto;
     }
     if (quote) {
-      parts.push(quote);
+      prompt = prompt ? `${prompt}, ${quote}` : quote;
     }
 
-    return parts.length > 0
-      ? parts.join(", ")
-      : "Enter your details above to generate a custom prompt...";
+    return prompt || "Enter your details above to generate a custom prompt...";
   };
 
   const copyCustomPrompt = async () => {
