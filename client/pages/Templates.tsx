@@ -128,39 +128,59 @@ export default function Templates() {
     }
   };
 
-  // Generate a custom prompt based on user inputs
+  // Generate a SORA-optimized custom prompt based on user inputs
   const generateCustomPrompt = () => {
     const {
       product,
       brand,
       "brand color": brandColor,
+      "brand's primary color": primaryColor,
+      "brand's secondary color": secondaryColor,
       material,
       "Your Motto": motto,
+      "Your Quote": quote,
     } = placeholders;
 
     if (!product || !brand) {
       return "Please fill in at least Product and Brand fields to generate a custom prompt...";
     }
 
-    let customPrompt = `Professional ${product} photography for ${brand}`;
+    // SORA-optimized prompt structure:
+    // 1. Main subject/action, 2. Visual style, 3. Technical specs, 4. Lighting, 5. Quality
 
+    // 1. Main Subject/Action (what SORA will generate)
+    let prompt = `Close-up cinematic shot of ${product} for ${brand}`;
+
+    // 2. Visual Style and Materials
     if (material) {
-      customPrompt += `, showcasing ${material} materials`;
+      prompt += `, crafted from premium ${material}`;
     }
 
-    if (brandColor) {
-      customPrompt += `, featuring ${brandColor} color scheme`;
+    // 3. Color Scheme (important for visual coherence)
+    const colors = [brandColor, primaryColor, secondaryColor].filter(Boolean);
+    if (colors.length > 0) {
+      prompt += `, featuring ${colors.join(" and ")} color palette`;
     }
 
-    customPrompt += `, cinematic lighting, high-resolution, commercial grade`;
+    // 4. Camera Movement and Technical Specs (crucial for SORA video)
+    prompt += `, smooth camera movement, 85mm lens with shallow depth of field`;
 
-    if (motto) {
-      customPrompt += `, embodying the brand message "${motto}"`;
+    // 5. Lighting (essential for SORA quality)
+    prompt += `, professional studio lighting with soft key light and subtle rim lighting`;
+
+    // 6. Brand Integration
+    if (motto || quote) {
+      const message = motto || quote;
+      prompt += `, subtly incorporating the brand essence "${message}"`;
     }
 
-    customPrompt += `, optimized for SORA AI video generation, 4K quality, professional production value`;
+    // 7. Motion and Animation (what makes SORA special)
+    prompt += `, gentle product rotation revealing key details, elegant transitions`;
 
-    return customPrompt;
+    // 8. Quality and Technical Specifications (always end with these for SORA)
+    prompt += `, shot in 4K resolution, cinematic color grading, commercial advertisement quality, optimized for SORA AI video generation, professional production value, broadcast-ready output`;
+
+    return prompt;
   };
 
   const copyCustomPrompt = async () => {
