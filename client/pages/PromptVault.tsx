@@ -15,6 +15,7 @@ import { Archive, Copy, Star, RefreshCw } from "lucide-react";
 export default function PromptVault() {
   const [selectedKeywords, setSelectedKeywords] = useState<string[]>([]);
   const [showPaywall, setShowPaywall] = useState(false);
+  const [copySuccess, setCopySuccess] = useState(false);
   const { subscriptionStatus, canUseFeature, loading } = useSubscription();
 
   const handleUpgradeRequest = () => {
@@ -248,7 +249,8 @@ export default function PromptVault() {
 
     try {
       await navigator.clipboard.writeText(formula);
-      // Show success feedback
+      setCopySuccess(true);
+      setTimeout(() => setCopySuccess(false), 2000);
       console.log("Formula copied to clipboard:", formula);
     } catch (error) {
       console.log("Fallback copy method");
@@ -261,8 +263,13 @@ export default function PromptVault() {
       document.body.appendChild(textArea);
       textArea.focus();
       textArea.select();
-      document.execCommand("copy");
+      const success = document.execCommand("copy");
       document.body.removeChild(textArea);
+
+      if (success) {
+        setCopySuccess(true);
+        setTimeout(() => setCopySuccess(false), 2000);
+      }
     }
   };
 
@@ -350,24 +357,35 @@ export default function PromptVault() {
                 <Button
                   onClick={(e) => {
                     e.preventDefault();
+                    console.log("Copy button clicked", selectedKeywords.length);
                     copyFormula();
                   }}
                   disabled={selectedKeywords.length === 0}
-                  className="bg-neon-orange border-2 border-neon-orange text-black font-bold hover:bg-black hover:text-neon-orange disabled:opacity-50 disabled:cursor-not-allowed"
+                  className={`border-2 font-bold disabled:opacity-50 disabled:cursor-not-allowed ${
+                    copySuccess
+                      ? "bg-green-600 border-green-600 text-white"
+                      : "bg-neon-orange border-neon-orange text-black hover:bg-black hover:text-neon-orange"
+                  }`}
                 >
                   <Copy className="h-4 w-4 mr-2" />
-                  Copy Formula
+                  {copySuccess
+                    ? "Copied!"
+                    : `Copy Formula (${selectedKeywords.length})`}
                 </Button>
                 <Button
                   onClick={(e) => {
                     e.preventDefault();
+                    console.log(
+                      "Clear button clicked",
+                      selectedKeywords.length,
+                    );
                     clearSelection();
                   }}
                   disabled={selectedKeywords.length === 0}
                   className="bg-transparent border-2 border-cream text-cream font-bold hover:bg-cream hover:text-black disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   <RefreshCw className="h-4 w-4 mr-2" />
-                  Clear Selection
+                  Clear ({selectedKeywords.length})
                 </Button>
               </div>
             </CardContent>
