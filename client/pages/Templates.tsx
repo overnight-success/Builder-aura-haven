@@ -9,10 +9,11 @@ import { Button } from "../components/ui/button";
 import { Badge } from "../components/ui/badge";
 import { Input } from "../components/ui/input";
 import { Label } from "../components/ui/label";
+import { Textarea } from "../components/ui/textarea";
 import { AppLayout } from "../components/AppLayout";
 import { Paywall } from "../components/Paywall";
 import { useSubscription } from "../hooks/useSubscription";
-import { FileText, Copy, ChevronDown, ChevronRight } from "lucide-react";
+import { FileText, Copy, ChevronDown, ChevronRight, Wand2 } from "lucide-react";
 
 export default function Templates() {
   const [placeholders, setPlaceholders] = useState({
@@ -56,6 +57,7 @@ export default function Templates() {
         "Lifestyle shot of [product] in a modern minimalist setting, golden hour lighting, shallow depth of field, Instagram-ready composition, professional photography",
         "Macro detailed shot of [product] texture and materials, dramatic lighting, black background, premium luxury feel, ultra-high resolution",
         "360-degree rotating view of [product], studio lighting setup, gradient background from [brand's primary color] to [brand's secondary color], commercial advertisement grade",
+        "Smooth product reveal animation, [product] emerging from darkness into spotlight, cinematic quality, slow motion effect, dramatic music sync point",
       ],
     },
     {
@@ -66,36 +68,18 @@ export default function Templates() {
         "Brand story visual showing [product] with '[Your Motto]' overlay, cinematic composition, warm color grading, inspirational mood",
         "Behind-the-scenes content creation process, documentary style, handheld camera movement, natural light, authentic brand narrative",
         "Seasonal brand campaign featuring [product] with '[Your Quote]' message, outdoor setting, natural environment, lifestyle photography",
-      ],
-    },
-    {
-      title: "Video & Motion",
-      description: "Dynamic video content optimized for SORA AI",
-      templates: [
-        "Smooth product reveal animation, [product] emerging from darkness into spotlight, cinematic quality, slow motion effect, dramatic music sync point",
         "Lifestyle video montage, quick cuts of [product] in various scenarios, upbeat rhythm, modern editing style, social media optimized",
-        "Brand manifesto video, inspirational quotes '[Your Motto]' appearing over lifestyle scenes, emotional journey, premium feel",
-        "Product demonstration video, clean hands showcasing [product] features, professional lighting, clear visual storytelling, educational content",
       ],
     },
     {
-      title: "Social Media",
-      description: "Platform-optimized content for maximum engagement",
+      title: "Graphics & Design",
+      description: "Visual design and graphic content templates",
       templates: [
-        "Instagram story template: [product] with bold [brand color] background, modern typography overlay, swipe-up call to action",
-        "TikTok-style quick reveal: Fast-paced product unboxing, trending audio sync, Gen-Z aesthetic, vertical 9:16 format",
-        "LinkedIn professional post: Clean [product] photography with business context, professional lighting, corporate aesthetic",
-        "Twitter header design: [brand] logo with [product] showcase, [brand's primary color] color scheme, social media optimized dimensions",
-      ],
-    },
-    {
-      title: "Advertising & Marketing",
-      description: "High-impact commercial and advertising content",
-      templates: [
-        "Premium advertising shot: [product] as hero object, luxury environment, sophisticated lighting, '[Your Motto]' tagline integration, commercial grade",
-        "Comparison advertisement: Before/after or competitor comparison, clear visual hierarchy, professional photography, convincing narrative",
-        "Emotional advertising: [product] connecting people, heartwarming moment, soft lighting, family/relationship focus, brand values alignment",
-        "Tech-focused ad: [product] with futuristic setting, clean lines, innovative feeling, cutting-edge aesthetic, modern technology vibe",
+        "Minimalist logo design featuring [brand] name in [brand's primary color], clean typography, geometric shapes, modern aesthetic, vector style, professional branding",
+        "Abstract graphic pattern inspired by [material] texture, [brand color] color palette, contemporary design, suitable for packaging and branding",
+        "Bold typography layout with '[Your Motto]' message, dramatic contrast, [brand's primary color] and [brand's secondary color] scheme, modern poster style",
+        "Geometric illustration of [product] concept, flat design style, vibrant [brand color] palette, minimalist approach, icon-ready format",
+        "Dynamic motion graphics sequence, [brand] logo animation with '[Your Quote]' reveal, sleek transitions, corporate presentation style",
       ],
     },
   ];
@@ -144,6 +128,57 @@ export default function Templates() {
     }
   };
 
+  // Generate a custom prompt based on user inputs
+  const generateCustomPrompt = () => {
+    const {
+      product,
+      brand,
+      "brand color": brandColor,
+      material,
+      "Your Motto": motto,
+    } = placeholders;
+
+    if (!product || !brand) {
+      return "Please fill in at least Product and Brand fields to generate a custom prompt...";
+    }
+
+    let customPrompt = `Professional ${product} photography for ${brand}`;
+
+    if (material) {
+      customPrompt += `, showcasing ${material} materials`;
+    }
+
+    if (brandColor) {
+      customPrompt += `, featuring ${brandColor} color scheme`;
+    }
+
+    customPrompt += `, cinematic lighting, high-resolution, commercial grade`;
+
+    if (motto) {
+      customPrompt += `, embodying the brand message "${motto}"`;
+    }
+
+    customPrompt += `, optimized for SORA AI video generation, 4K quality, professional production value`;
+
+    return customPrompt;
+  };
+
+  const copyCustomPrompt = async () => {
+    const customPrompt = generateCustomPrompt();
+    if (customPrompt.includes("Please fill in")) return;
+
+    try {
+      await navigator.clipboard.writeText(customPrompt);
+    } catch (error) {
+      const textArea = document.createElement("textarea");
+      textArea.value = customPrompt;
+      document.body.appendChild(textArea);
+      textArea.select();
+      document.execCommand("copy");
+      document.body.removeChild(textArea);
+    }
+  };
+
   return (
     <AppLayout onUpgradeRequest={handleUpgradeRequest}>
       <div className="container mx-auto px-8 py-5">
@@ -163,7 +198,7 @@ export default function Templates() {
         </div>
 
         {/* Placeholder Configuration */}
-        <div className="max-w-4xl mx-auto mb-12">
+        <div className="max-w-4xl mx-auto mb-8">
           <Card className="bg-black border-4 border-black">
             <CardHeader>
               <CardTitle className="text-2xl font-black text-cream">
@@ -194,6 +229,37 @@ export default function Templates() {
                   </div>
                 ))}
               </div>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Live Prompt Generator */}
+        <div className="max-w-4xl mx-auto mb-8">
+          <Card className="bg-black border-4 border-black">
+            <CardHeader>
+              <CardTitle className="text-2xl font-black text-cream flex items-center gap-2">
+                <Wand2 className="h-6 w-6 text-neon-orange" />
+                Your Custom Prompt
+              </CardTitle>
+              <p className="text-cream/80">
+                Live preview of your personalized prompt based on your inputs
+              </p>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <Textarea
+                value={generateCustomPrompt()}
+                readOnly
+                className="bg-black/50 border-cream/20 text-cream min-h-[120px] font-mono text-sm"
+                placeholder="Your custom prompt will appear here as you fill in the variables above..."
+              />
+              <Button
+                onClick={copyCustomPrompt}
+                disabled={generateCustomPrompt().includes("Please fill in")}
+                className="bg-neon-orange border-2 border-neon-orange text-black font-bold hover:bg-black hover:text-neon-orange"
+              >
+                <Copy className="h-4 w-4 mr-2" />
+                Copy Custom Prompt
+              </Button>
             </CardContent>
           </Card>
         </div>
@@ -264,7 +330,7 @@ export default function Templates() {
         </div>
 
         {/* Usage Tips */}
-        <div className="mt-16 max-w-4xl mx-auto">
+        <div className="mt-12 max-w-4xl mx-auto">
           <Card className="bg-black border-4 border-black">
             <CardHeader>
               <CardTitle className="text-2xl font-black text-cream text-center">
@@ -279,7 +345,9 @@ export default function Templates() {
                   </h3>
                   <ul className="text-cream/90 space-y-2">
                     <li>• Fill out all placeholder fields above</li>
-                    <li>• Templates auto-update with your values</li>
+                    <li>
+                      • Use the custom prompt generator for personalized results
+                    </li>
                     <li>• Mix and match elements from different templates</li>
                     <li>• Combine with Prompt Vault keywords</li>
                   </ul>
