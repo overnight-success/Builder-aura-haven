@@ -7,10 +7,30 @@ import {
 } from "../components/ui/card";
 import { Button } from "../components/ui/button";
 import { Badge } from "../components/ui/badge";
+import { AppLayout } from "../components/AppLayout";
+import { Paywall } from "../components/Paywall";
+import { useSubscription } from "../hooks/useSubscription";
 import { Archive, Copy, Star, RefreshCw } from "lucide-react";
 
 export default function PromptVault() {
   const [selectedKeywords, setSelectedKeywords] = useState<string[]>([]);
+  const [showPaywall, setShowPaywall] = useState(false);
+  const { subscriptionStatus, canUseFeature, loading } = useSubscription();
+
+  const handleUpgradeRequest = () => {
+    setShowPaywall(true);
+  };
+
+  const handleUpgradeComplete = () => {
+    setShowPaywall(false);
+    window.location.reload();
+  };
+
+  // Show paywall if needed
+  if (showPaywall) {
+    const userEmail = localStorage.getItem("userEmail") || "";
+    return <Paywall onUpgrade={handleUpgradeComplete} userEmail={userEmail} />;
+  }
 
   const promptVault = {
     keywords: {
@@ -265,10 +285,10 @@ export default function PromptVault() {
   };
 
   return (
-    <div className="min-h-screen bg-neon-orange font-sans">
-      <div className="container mx-auto px-8 py-12">
+    <AppLayout onUpgradeRequest={handleUpgradeRequest}>
+      <div className="container mx-auto px-8 py-5">
         {/* Header */}
-        <div className="text-center mb-12">
+        <div className="text-center mb-8">
           <div className="flex items-center justify-center gap-3 mb-6">
             <div className="p-3 rounded-lg bg-black">
               <Archive className="h-8 w-8 text-neon-orange" />
@@ -369,6 +389,6 @@ export default function PromptVault() {
           ))}
         </div>
       </div>
-    </div>
+    </AppLayout>
   );
 }
