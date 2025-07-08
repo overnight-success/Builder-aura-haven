@@ -21,21 +21,10 @@ function AppContent() {
 
   // Check if user has already accessed the app
   useEffect(() => {
-    // Clear localStorage for testing - remove this in production
-    localStorage.removeItem("hasAccessedApp");
-    localStorage.removeItem("userSignedUp");
-
-    const hasAccessedApp = localStorage.getItem("hasAccessedApp");
-    const hasSignedUp = localStorage.getItem("userSignedUp");
-
-    if (hasAccessedApp === "true") {
-      setShowPaywallLanding(false);
-      if (hasSignedUp === "true") {
-        setShowSignupWall(false);
-      } else {
-        setShowSignupWall(true);
-      }
-    }
+    // Skip all paywalls and go directly to content
+    setShowPaywallLanding(false);
+    setShowSignupWall(false);
+    setShowPaywall(false);
   }, []);
 
   // Track page views - DISABLED TO PREVENT FLASHING
