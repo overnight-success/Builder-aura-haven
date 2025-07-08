@@ -58,7 +58,7 @@ export default function Updates() {
 
   return (
     <AppLayout onUpgradeRequest={handleUpgradeRequest}>
-      <div className="container mx-auto px-8 py-12">
+      <div className="container mx-auto px-8 py-5">
         {/* Header */}
         <div className="text-center mb-12">
           <div className="flex items-center justify-center gap-3 mb-6">
@@ -108,39 +108,6 @@ export default function Updates() {
               </CardContent>
             </Card>
           ))}
-        </div>
-
-        {/* Call to Action */}
-        <div className="text-center mt-16">
-          <Card className="bg-black border-4 border-black max-w-2xl mx-auto">
-            <CardContent className="p-8">
-              <h2 className="text-3xl font-black text-cream mb-4">
-                Never Miss an Update
-              </h2>
-              <p className="text-cream/80 mb-6">
-                Stay connected with the latest developments in AI creative tools
-                and exclusive resources.
-              </p>
-              <div className="flex justify-center gap-4">
-                <a
-                  href="https://twitter.com/overnightsuccessllc"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-neon-orange border-2 border-neon-orange text-black font-bold px-6 py-3 rounded-lg hover:bg-black hover:text-neon-orange transition-all duration-200"
-                >
-                  Follow on Twitter
-                </a>
-                <a
-                  href="https://instagram.com/overnightsuccessllc"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-transparent border-2 border-neon-orange text-neon-orange font-bold px-6 py-3 rounded-lg hover:bg-neon-orange hover:text-black transition-all duration-200"
-                >
-                  Follow on Instagram
-                </a>
-              </div>
-            </CardContent>
-          </Card>
         </div>
       </div>
     </AppLayout>
