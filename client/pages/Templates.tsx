@@ -130,7 +130,7 @@ export default function Templates() {
     }
   };
 
-  // Generate custom prompt using only user inputs in proper SORA order
+  // Generate custom prompt properly structured for SORA
   const generateCustomPrompt = () => {
     const {
       product,
@@ -143,21 +143,48 @@ export default function Templates() {
       "Your Quote": quote,
     } = placeholders;
 
-    // Structure inputs in logical order: product, brand, material, colors, motto/quote
-    const orderedInputs = [];
+    // Build structured SORA prompt from user inputs only
+    let prompt = "";
 
-    if (product) orderedInputs.push(product);
-    if (brand) orderedInputs.push(brand);
-    if (material) orderedInputs.push(material);
-    if (brandColor) orderedInputs.push(brandColor);
-    if (primaryColor) orderedInputs.push(primaryColor);
-    if (secondaryColor) orderedInputs.push(secondaryColor);
-    if (motto) orderedInputs.push(motto);
-    if (quote) orderedInputs.push(quote);
+    // Main subject first
+    if (product) {
+      prompt = product;
+      if (brand) {
+        prompt += ` for ${brand}`;
+      }
+    } else if (brand) {
+      prompt = brand;
+    }
 
-    return orderedInputs.length > 0
-      ? orderedInputs.join(", ")
-      : "Enter your details above to generate a custom prompt...";
+    // Material specification
+    if (material && prompt) {
+      prompt += `, ${material}`;
+    } else if (material) {
+      prompt = material;
+    }
+
+    // Color specifications
+    const colors = [brandColor, primaryColor, secondaryColor].filter(Boolean);
+    if (colors.length > 0 && prompt) {
+      prompt += `, ${colors.join(" and ")}`;
+    } else if (colors.length > 0) {
+      prompt = colors.join(" and ");
+    }
+
+    // Brand messaging
+    if (motto && prompt) {
+      prompt += `, ${motto}`;
+    } else if (motto) {
+      prompt = motto;
+    }
+
+    if (quote && prompt) {
+      prompt += `, ${quote}`;
+    } else if (quote) {
+      prompt = quote;
+    }
+
+    return prompt || "Enter your details above to generate a custom prompt...";
   };
 
   const clearPrompt = (event: React.MouseEvent) => {
