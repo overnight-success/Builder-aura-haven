@@ -103,34 +103,23 @@ export default function Templates() {
     return replacedPrompt;
   };
 
-  const copyPrompt = async (prompt: string, event?: any) => {
+  const copyPrompt = async (prompt: string) => {
     const finalPrompt = replacePlaceholders(prompt);
     try {
       await navigator.clipboard.writeText(finalPrompt);
-      // Show success feedback
-      const clickedButton = event?.target?.closest("button");
-      if (clickedButton) {
-        const originalText = clickedButton.innerHTML;
-        clickedButton.innerHTML =
-          '<svg class="h-3 w-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>';
-        clickedButton.style.backgroundColor = "#10b981";
-        setTimeout(() => {
-          clickedButton.innerHTML = originalText;
-          clickedButton.style.backgroundColor = "";
-        }, 1500);
-      }
+      console.log("Copied prompt:", finalPrompt);
     } catch (error) {
-      // Fallback for browsers that don't support clipboard API
       const textArea = document.createElement("textarea");
       textArea.value = finalPrompt;
       document.body.appendChild(textArea);
       textArea.select();
       document.execCommand("copy");
       document.body.removeChild(textArea);
+      console.log("Fallback copy successful");
     }
   };
 
-  // Generate custom prompt properly structured for SORA
+  // Generate SORA-structured custom prompt from user inputs
   const generateCustomPrompt = () => {
     const {
       product,
@@ -143,54 +132,66 @@ export default function Templates() {
       "Your Quote": quote,
     } = placeholders;
 
-    // Build structured SORA prompt from user inputs only
-    let prompt = "";
+    const parts = [];
 
-    // Main subject first
+    // Main subject
     if (product) {
-      prompt = product;
-      if (brand) {
-        prompt += ` for ${brand}`;
-      }
-    } else if (brand) {
-      prompt = brand;
+      parts.push(product);
     }
 
-    // Material specification
-    if (material && prompt) {
-      prompt += `, ${material}`;
-    } else if (material) {
-      prompt = material;
+    // Brand context
+    if (brand) {
+      parts.push(brand);
     }
 
-    // Color specifications
-    const colors = [brandColor, primaryColor, secondaryColor].filter(Boolean);
-    if (colors.length > 0 && prompt) {
-      prompt += `, ${colors.join(" and ")}`;
-    } else if (colors.length > 0) {
-      prompt = colors.join(" and ");
+    // Material
+    if (material) {
+      parts.push(material);
     }
 
-    // Brand messaging
-    if (motto && prompt) {
-      prompt += `, ${motto}`;
-    } else if (motto) {
-      prompt = motto;
+    // Colors
+    if (brandColor) {
+      parts.push(brandColor);
+    }
+    if (primaryColor) {
+      parts.push(primaryColor);
+    }
+    if (secondaryColor) {
+      parts.push(secondaryColor);
     }
 
-    if (quote && prompt) {
-      prompt += `, ${quote}`;
-    } else if (quote) {
-      prompt = quote;
+    // Messaging
+    if (motto) {
+      parts.push(motto);
+    }
+    if (quote) {
+      parts.push(quote);
     }
 
-    return prompt || "Enter your details above to generate a custom prompt...";
+    return parts.length > 0
+      ? parts.join(", ")
+      : "Enter your details above to generate a custom prompt...";
   };
 
-  const clearPrompt = (event: React.MouseEvent) => {
-    event.preventDefault();
-    console.log("Clearing all placeholders");
+  const copyCustomPrompt = async () => {
+    const customPrompt = generateCustomPrompt();
+    if (customPrompt.includes("Enter your details")) return;
 
+    try {
+      await navigator.clipboard.writeText(customPrompt);
+      console.log("Custom prompt copied:", customPrompt);
+    } catch (error) {
+      const textArea = document.createElement("textarea");
+      textArea.value = customPrompt;
+      document.body.appendChild(textArea);
+      textArea.select();
+      document.execCommand("copy");
+      document.body.removeChild(textArea);
+      console.log("Custom prompt copied with fallback");
+    }
+  };
+
+  const clearPrompt = () => {
     setPlaceholders({
       product: "",
       brand: "",
@@ -201,53 +202,7 @@ export default function Templates() {
       "Your Motto": "",
       "Your Quote": "",
     });
-
-    console.log("Placeholders cleared");
-  };
-
-  const copyCustomPrompt = async (event: React.MouseEvent) => {
-    event.preventDefault();
-    const customPrompt = generateCustomPrompt();
-    console.log("Copying prompt:", customPrompt);
-
-    if (customPrompt.includes("Enter your details")) {
-      console.log("No inputs to copy");
-      return;
-    }
-
-    try {
-      await navigator.clipboard.writeText(customPrompt);
-      console.log("Copied to clipboard successfully");
-
-      // Show success feedback
-      const button = event.currentTarget as HTMLButtonElement;
-      const originalText = button.innerHTML;
-      button.innerHTML = "Copied!";
-      button.style.backgroundColor = "#10b981";
-
-      setTimeout(() => {
-        button.innerHTML = originalText;
-        button.style.backgroundColor = "";
-      }, 1500);
-    } catch (error) {
-      console.log("Clipboard failed, using fallback", error);
-
-      // Fallback for browsers that don't support clipboard API
-      const textArea = document.createElement("textarea");
-      textArea.value = customPrompt;
-      document.body.appendChild(textArea);
-      textArea.focus();
-      textArea.select();
-
-      try {
-        document.execCommand("copy");
-        console.log("Fallback copy successful");
-      } catch (fallbackError) {
-        console.error("Copy failed:", fallbackError);
-      } finally {
-        document.body.removeChild(textArea);
-      }
-    }
+    console.log("All fields cleared");
   };
 
   return (
@@ -396,7 +351,7 @@ export default function Templates() {
                             </p>
                           </div>
                           <Button
-                            onClick={(e) => copyPrompt(template, e)}
+                            onClick={() => copyPrompt(template)}
                             className="bg-neon-orange border-2 border-neon-orange text-black font-bold hover:bg-black hover:text-neon-orange"
                             size="sm"
                           >
