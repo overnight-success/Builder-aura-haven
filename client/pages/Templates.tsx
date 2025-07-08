@@ -173,12 +173,24 @@ export default function Templates() {
     });
   };
 
-  const copyCustomPrompt = async () => {
+  const copyCustomPrompt = async (event?: any) => {
     const customPrompt = generateCustomPrompt();
-    if (customPrompt.includes("Please fill in")) return;
+    if (customPrompt.includes("Enter your details")) return;
 
     try {
       await navigator.clipboard.writeText(customPrompt);
+      // Show success feedback
+      const clickedButton = event?.target?.closest("button");
+      if (clickedButton) {
+        const originalText = clickedButton.innerHTML;
+        clickedButton.innerHTML =
+          '<svg class="h-4 w-4 mr-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>Copied!';
+        clickedButton.style.backgroundColor = "#10b981";
+        setTimeout(() => {
+          clickedButton.innerHTML = originalText;
+          clickedButton.style.backgroundColor = "";
+        }, 1500);
+      }
     } catch (error) {
       const textArea = document.createElement("textarea");
       textArea.value = customPrompt;
@@ -370,7 +382,9 @@ export default function Templates() {
                     <li>• Include detailed lighting conditions</li>
                     <li>• Add composition and framing details</li>
                     <li>• Use technical specifications (lens, resolution)</li>
-                    <li>• Structure: Subject → Style → Technical → Quality</li>
+                    <li>
+                      • Structure: Subject ��� Style → Technical → Quality
+                    </li>
                   </ul>
                 </div>
                 <div className="space-y-3">
