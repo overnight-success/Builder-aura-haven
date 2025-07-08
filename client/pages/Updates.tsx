@@ -60,7 +60,7 @@ export default function Updates() {
     <AppLayout onUpgradeRequest={handleUpgradeRequest}>
       <div className="container mx-auto px-8 py-5">
         {/* Header */}
-        <div className="text-center mb-12">
+        <div className="text-center mb-8">
           <div className="flex items-center justify-center gap-3 mb-6">
             <div className="p-3 rounded-lg bg-black">
               <Bell className="h-8 w-8 text-neon-orange" />
