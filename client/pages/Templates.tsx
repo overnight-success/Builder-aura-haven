@@ -183,25 +183,54 @@ export default function Templates() {
     return prompt || "Enter your details above to generate a custom prompt...";
   };
 
-  const copyCustomPrompt = async () => {
+  const copyCustomPrompt = async (e: any) => {
+    e.preventDefault();
+    e.stopPropagation();
+
     const customPrompt = generateCustomPrompt();
-    if (customPrompt.includes("Enter your details")) return;
+    console.log("Attempting to copy:", customPrompt);
+
+    if (customPrompt.includes("Enter your details")) {
+      console.log("No content to copy");
+      return;
+    }
 
     try {
       await navigator.clipboard.writeText(customPrompt);
-      console.log("Custom prompt copied:", customPrompt);
+      console.log("Successfully copied to clipboard");
+      alert("Copied to clipboard!");
     } catch (error) {
+      console.log("Clipboard failed, using fallback");
+
       const textArea = document.createElement("textarea");
       textArea.value = customPrompt;
+      textArea.style.position = "fixed";
+      textArea.style.left = "-9999px";
       document.body.appendChild(textArea);
+      textArea.focus();
       textArea.select();
-      document.execCommand("copy");
+
+      try {
+        const successful = document.execCommand("copy");
+        if (successful) {
+          console.log("Fallback copy successful");
+          alert("Copied to clipboard!");
+        }
+      } catch (err) {
+        console.error("Copy failed:", err);
+        alert("Copy failed");
+      }
+
       document.body.removeChild(textArea);
-      console.log("Custom prompt copied with fallback");
     }
   };
 
-  const clearPrompt = () => {
+  const clearPrompt = (e: any) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    console.log("Clearing all fields");
+
     setPlaceholders({
       product: "",
       brand: "",
@@ -212,7 +241,9 @@ export default function Templates() {
       "Your Motto": "",
       "Your Quote": "",
     });
+
     console.log("All fields cleared");
+    alert("Fields cleared!");
   };
 
   return (
