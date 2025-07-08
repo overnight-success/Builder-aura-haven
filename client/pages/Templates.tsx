@@ -216,7 +216,8 @@ export default function Templates() {
             </h1>
           </div>
           <p className="text-xl font-bold text-black/80 max-w-2xl mx-auto">
-            Ready-to-use prompt templates with customizable placeholders
+            SORA-optimized prompt templates with customizable placeholders for
+            professional video generation
           </p>
         </div>
 
@@ -357,33 +358,33 @@ export default function Templates() {
           <Card className="bg-black border-4 border-black">
             <CardHeader>
               <CardTitle className="text-2xl font-black text-cream text-center">
-                💡 Template Usage Tips
+                🎬 SORA AI Optimization Tips
               </CardTitle>
             </CardHeader>
             <CardContent>
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="space-y-3">
                   <h3 className="text-lg font-black text-neon-orange">
-                    Customization
+                    SORA Best Practices
                   </h3>
                   <ul className="text-cream/90 space-y-2">
-                    <li>• Fill out all placeholder fields above</li>
-                    <li>
-                      • Use the custom prompt generator for personalized results
-                    </li>
-                    <li>• Mix and match elements from different templates</li>
-                    <li>• Combine with Prompt Vault keywords</li>
+                    <li>• Include camera movement descriptions</li>
+                    <li>• Specify lighting conditions clearly</li>
+                    <li>• Add motion and animation details</li>
+                    <li>• Use technical specifications (4K, 60fps)</li>
+                    <li>• Structure: Subject → Style → Technical → Quality</li>
                   </ul>
                 </div>
                 <div className="space-y-3">
                   <h3 className="text-lg font-black text-neon-orange">
-                    Best Practices
+                    Customization Tips
                   </h3>
                   <ul className="text-cream/90 space-y-2">
-                    <li>• Use specific brand colors and materials</li>
-                    <li>• Keep your motto/quote consistent</li>
-                    <li>• Test templates with different products</li>
-                    <li>• Save successful combinations</li>
+                    <li>• Fill brand details for personalized results</li>
+                    <li>• Use specific materials and colors</li>
+                    <li>• Combine templates with Prompt Vault keywords</li>
+                    <li>• Test prompts in SORA for optimal results</li>
+                    <li>• Keep brand messaging consistent</li>
                   </ul>
                 </div>
               </div>
