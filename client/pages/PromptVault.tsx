@@ -245,10 +245,18 @@ export default function PromptVault() {
 
     try {
       await navigator.clipboard.writeText(formula);
+      // Show success feedback
+      console.log("Formula copied to clipboard:", formula);
     } catch (error) {
+      console.log("Fallback copy method");
+      // Fallback for browsers that don't support clipboard API
       const textArea = document.createElement("textarea");
       textArea.value = formula;
+      textArea.style.position = "fixed";
+      textArea.style.left = "-999999px";
+      textArea.style.top = "-999999px";
       document.body.appendChild(textArea);
+      textArea.focus();
       textArea.select();
       document.execCommand("copy");
       document.body.removeChild(textArea);
@@ -256,6 +264,7 @@ export default function PromptVault() {
   };
 
   const clearSelection = () => {
+    console.log("Clearing selection");
     setSelectedKeywords([]);
   };
 
@@ -336,17 +345,23 @@ export default function PromptVault() {
               {/* Actions */}
               <div className="flex gap-3">
                 <Button
-                  onClick={copyFormula}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    copyFormula();
+                  }}
                   disabled={selectedKeywords.length === 0}
-                  className="bg-neon-orange border-2 border-neon-orange text-black font-bold hover:bg-black hover:text-neon-orange"
+                  className="bg-neon-orange border-2 border-neon-orange text-black font-bold hover:bg-black hover:text-neon-orange disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   <Copy className="h-4 w-4 mr-2" />
                   Copy Formula
                 </Button>
                 <Button
-                  onClick={clearSelection}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    clearSelection();
+                  }}
                   disabled={selectedKeywords.length === 0}
-                  className="bg-transparent border-2 border-cream text-cream font-bold hover:bg-cream hover:text-black"
+                  className="bg-transparent border-2 border-cream text-cream font-bold hover:bg-cream hover:text-black disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   <RefreshCw className="h-4 w-4 mr-2" />
                   Clear Selection
