@@ -1,0 +1,15 @@
+[build]
+builder = "nixpacks"
+
+[deploy]
+startCommand = "npm start"
+healthcheckPath = "/"
+healthcheckTimeout = 100
+restartPolicyType = "always"
+
+[[services]]
+name = "web"
+source = "."
+
+[services.web]
+tcpProxyApplicationPort = 8080
