@@ -225,11 +225,14 @@ export default function PromptVault() {
   };
 
   const toggleKeyword = (keyword: string) => {
-    setSelectedKeywords((prev) =>
-      prev.includes(keyword)
+    console.log("Toggling keyword:", keyword);
+    setSelectedKeywords((prev) => {
+      const newSelection = prev.includes(keyword)
         ? prev.filter((k) => k !== keyword)
-        : [...prev, keyword],
-    );
+        : [...prev, keyword];
+      console.log("New selection:", newSelection);
+      return newSelection;
+    });
   };
 
   const getFormulaText = () => {
