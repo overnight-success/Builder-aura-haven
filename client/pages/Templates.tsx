@@ -277,7 +277,7 @@ export default function Templates() {
               />
               <div className="flex gap-3">
                 <Button
-                  onClick={copyCustomPrompt}
+                  onClick={(e) => copyCustomPrompt(e)}
                   disabled={generateCustomPrompt().includes(
                     "Enter your details",
                   )}
@@ -382,9 +382,7 @@ export default function Templates() {
                     <li>• Include detailed lighting conditions</li>
                     <li>• Add composition and framing details</li>
                     <li>• Use technical specifications (lens, resolution)</li>
-                    <li>
-                      • Structure: Subject ��� Style → Technical → Quality
-                    </li>
+                    <li>• Structure: Subject → Style → Technical → Quality</li>
                   </ul>
                 </div>
                 <div className="space-y-3">
