@@ -130,7 +130,7 @@ export default function Templates() {
     }
   };
 
-  // Generate a SORA-optimized custom prompt based on user inputs
+  // Generate custom prompt using only user inputs
   const generateCustomPrompt = () => {
     const {
       product,
@@ -143,43 +143,34 @@ export default function Templates() {
       "Your Quote": quote,
     } = placeholders;
 
-    if (!product || !brand) {
-      return "Please fill in at least Product and Brand fields to generate a custom prompt...";
-    }
+    // Just combine the user inputs with commas, no extra text
+    const inputs = [
+      product,
+      brand,
+      brandColor,
+      primaryColor,
+      secondaryColor,
+      material,
+      motto,
+      quote,
+    ]
+      .filter((input) => input && input.trim())
+      .join(", ");
 
-    // SORA-optimized image prompt structure:
-    // 1. Main subject, 2. Visual style, 3. Technical specs, 4. Lighting, 5. Quality
+    return inputs || "Enter your details above to generate a custom prompt...";
+  };
 
-    // 1. Main Subject (what SORA will generate)
-    let prompt = `Close-up shot of ${product} for ${brand}`;
-
-    // 2. Visual Style and Materials
-    if (material) {
-      prompt += `, crafted from premium ${material}`;
-    }
-
-    // 3. Color Scheme (important for visual coherence)
-    const colors = [brandColor, primaryColor, secondaryColor].filter(Boolean);
-    if (colors.length > 0) {
-      prompt += `, featuring ${colors.join(" and ")} color palette`;
-    }
-
-    // 4. Photography Technical Specs
-    prompt += `, shot with 85mm lens, shallow depth of field`;
-
-    // 5. Lighting (essential for SORA quality)
-    prompt += `, professional studio lighting with soft key light and subtle rim lighting`;
-
-    // 6. Brand Integration
-    if (motto || quote) {
-      const message = motto || quote;
-      prompt += `, subtly incorporating the brand essence "${message}"`;
-    }
-
-    // 7. Quality and Technical Specifications (always end with these for SORA)
-    prompt += `, high resolution, cinematic color grading, commercial photography quality, optimized for SORA AI, professional production value`;
-
-    return prompt;
+  const clearPrompt = () => {
+    setPlaceholders({
+      product: "",
+      brand: "",
+      "brand color": "",
+      "brand's primary color": "",
+      "brand's secondary color": "",
+      material: "",
+      "Your Motto": "",
+      "Your Quote": "",
+    });
   };
 
   const copyCustomPrompt = async () => {
