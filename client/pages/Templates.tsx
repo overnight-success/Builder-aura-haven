@@ -51,35 +51,38 @@ export default function Templates() {
   const templateSections = [
     {
       title: "Product Photography",
-      description: "Professional e-commerce and product showcase templates",
+      description:
+        "SORA-optimized product showcase templates with cinematic quality",
       templates: [
-        "Cinematic close-up of a [product] made from [material] in [brand color], shot with 85mm lens, soft ambient lighting, clean white background, 4K resolution, commercial ready, studio quality",
-        "Lifestyle shot of [product] in a modern minimalist setting, golden hour lighting, shallow depth of field, Instagram-ready composition, professional photography",
-        "Macro detailed shot of [product] texture and materials, dramatic lighting, black background, premium luxury feel, ultra-high resolution",
-        "360-degree rotating view of [product], studio lighting setup, gradient background from [brand's primary color] to [brand's secondary color], commercial advertisement grade",
-        "Smooth product reveal animation, [product] emerging from darkness into spotlight, cinematic quality, slow motion effect, dramatic music sync point",
+        "Close-up cinematic shot of [product] made from [material], featuring [brand color] accent lighting, shot with 85mm macro lens, smooth camera orbit around product, professional studio lighting with soft key and rim lights, clean gradient background, 4K resolution, optimized for SORA AI video generation",
+        "Dynamic lifestyle reveal of [product] in modern minimalist setting, golden hour natural lighting streaming through windows, gentle camera push-in movement, shallow depth of field transition, Instagram-worthy composition, 4K cinematic quality, SORA-optimized",
+        "Macro detail sequence of [product] showcasing [material] texture, dramatic side lighting creating depth, slow camera drift across surface details, black velvet background, luxury commercial grade, ultra-high resolution, perfect for SORA AI",
+        "360-degree smooth rotation of [product] with studio lighting setup, gradient background transitioning from [brand's primary color] to [brand's secondary color], consistent lighting throughout rotation, commercial advertisement quality, 4K SORA-ready",
+        "Elegant product reveal animation with [product] emerging from darkness into spotlight, smooth camera movement, slow motion effect at 60fps, cinematic color grading, dramatic shadows, optimized for SORA AI video generation",
       ],
     },
     {
       title: "Lifestyle & Brand",
-      description: "Authentic lifestyle content and brand storytelling",
+      description:
+        "Authentic lifestyle content optimized for SORA video generation",
       templates: [
-        "Authentic lifestyle moment featuring [product] in daily use, natural lighting, candid photography style, emotional storytelling, 35mm lens aesthetic",
-        "Brand story visual showing [product] with '[Your Motto]' overlay, cinematic composition, warm color grading, inspirational mood",
-        "Behind-the-scenes content creation process, documentary style, handheld camera movement, natural light, authentic brand narrative",
-        "Seasonal brand campaign featuring [product] with '[Your Quote]' message, outdoor setting, natural environment, lifestyle photography",
-        "Lifestyle video montage, quick cuts of [product] in various scenarios, upbeat rhythm, modern editing style, social media optimized",
+        "Authentic lifestyle moment with person using [product] in natural daily setting, warm natural lighting, smooth handheld camera movement, emotional close-ups and wide establishing shots, 35mm lens aesthetic, SORA-optimized storytelling sequence",
+        "Brand story sequence featuring [product] with '[Your Motto]' subtly integrated, cinematic composition with smooth camera movements, warm color grading, inspirational mood lighting, seamless transitions, 4K quality for SORA AI",
+        "Behind-the-scenes documentary style sequence of [product] creation process, natural lighting with practical lights, authentic handheld camera movement, multiple angle coverage, real-time narrative flow, SORA-ready production quality",
+        "Seasonal brand campaign with [product] in natural outdoor environment, '[Your Quote]' message integration, golden hour cinematography, smooth camera pans and tilts, lifestyle authenticity, optimized for SORA video generation",
+        "Lifestyle montage sequence with [product] in various scenarios, smooth transitions between scenes, consistent lighting and color palette, upbeat pacing with natural movement, modern editing style, SORA AI optimized",
       ],
     },
     {
       title: "Graphics & Design",
-      description: "Visual design and graphic content templates",
+      description:
+        "Motion graphics and design templates for SORA AI generation",
       templates: [
-        "Minimalist logo design featuring [brand] name in [brand's primary color], clean typography, geometric shapes, modern aesthetic, vector style, professional branding",
-        "Abstract graphic pattern inspired by [material] texture, [brand color] color palette, contemporary design, suitable for packaging and branding",
-        "Bold typography layout with '[Your Motto]' message, dramatic contrast, [brand's primary color] and [brand's secondary color] scheme, modern poster style",
-        "Geometric illustration of [product] concept, flat design style, vibrant [brand color] palette, minimalist approach, icon-ready format",
-        "Dynamic motion graphics sequence, [brand] logo animation with '[Your Quote]' reveal, sleek transitions, corporate presentation style",
+        "Animated logo reveal for [brand] in [brand's primary color], clean typography emerging with smooth easing, geometric shape transformations, modern aesthetic, vector-style animation, professional branding quality, SORA-optimized motion graphics",
+        "Abstract pattern animation inspired by [material] texture, [brand color] color palette flowing and morphing, contemporary design with smooth transitions, packaging and branding ready, 4K motion graphics for SORA",
+        "Typography animation sequence with '[Your Motto]' message reveal, dramatic contrast lighting, smooth text emergence, [brand's primary color] and [brand's secondary color] scheme transitions, modern poster style animation, SORA-ready",
+        "Geometric illustration animation of [product] concept, flat design elements moving in smooth sequences, vibrant [brand color] palette transitions, minimalist approach with elegant motion, icon animation ready for SORA AI",
+        "Corporate motion graphics sequence with [brand] logo animation and '[Your Quote]' text reveal, sleek transitions and smooth easing, professional presentation style, consistent branding elements, optimized for SORA video generation",
       ],
     },
   ];
