@@ -263,14 +263,25 @@ export default function Templates() {
                 className="bg-black/50 border-cream/20 text-cream min-h-[120px] font-mono text-sm"
                 placeholder="Your custom prompt will appear here as you fill in the variables above..."
               />
-              <Button
-                onClick={copyCustomPrompt}
-                disabled={generateCustomPrompt().includes("Please fill in")}
-                className="bg-neon-orange border-2 border-neon-orange text-black font-bold hover:bg-black hover:text-neon-orange"
-              >
-                <Copy className="h-4 w-4 mr-2" />
-                Copy Custom Prompt
-              </Button>
+              <div className="flex gap-3">
+                <Button
+                  onClick={copyCustomPrompt}
+                  disabled={generateCustomPrompt().includes(
+                    "Enter your details",
+                  )}
+                  className="bg-neon-orange border-2 border-neon-orange text-black font-bold hover:bg-black hover:text-neon-orange"
+                >
+                  <Copy className="h-4 w-4 mr-2" />
+                  Copy Custom Prompt
+                </Button>
+                <Button
+                  onClick={clearPrompt}
+                  variant="outline"
+                  className="border-2 border-cream text-cream hover:bg-cream hover:text-black"
+                >
+                  Clear
+                </Button>
+              </div>
             </CardContent>
           </Card>
         </div>
