@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: overnight-success-ai
+    env: node
+    plan: free
+    buildCommand: npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+    disk:
+      name: overnight-success-data
+      sizeGB: 1
+      mountPath: /app/data
