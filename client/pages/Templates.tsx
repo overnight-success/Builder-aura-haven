@@ -130,7 +130,7 @@ export default function Templates() {
     }
   };
 
-  // Generate custom prompt using only user inputs
+  // Generate custom prompt using only user inputs in proper SORA order
   const generateCustomPrompt = () => {
     const {
       product,
@@ -143,21 +143,21 @@ export default function Templates() {
       "Your Quote": quote,
     } = placeholders;
 
-    // Just combine the user inputs with commas, no extra text
-    const inputs = [
-      product,
-      brand,
-      brandColor,
-      primaryColor,
-      secondaryColor,
-      material,
-      motto,
-      quote,
-    ]
-      .filter((input) => input && input.trim())
-      .join(", ");
+    // Structure inputs in logical order: product, brand, material, colors, motto/quote
+    const orderedInputs = [];
 
-    return inputs || "Enter your details above to generate a custom prompt...";
+    if (product) orderedInputs.push(product);
+    if (brand) orderedInputs.push(brand);
+    if (material) orderedInputs.push(material);
+    if (brandColor) orderedInputs.push(brandColor);
+    if (primaryColor) orderedInputs.push(primaryColor);
+    if (secondaryColor) orderedInputs.push(secondaryColor);
+    if (motto) orderedInputs.push(motto);
+    if (quote) orderedInputs.push(quote);
+
+    return orderedInputs.length > 0
+      ? orderedInputs.join(", ")
+      : "Enter your details above to generate a custom prompt...";
   };
 
   const clearPrompt = () => {
